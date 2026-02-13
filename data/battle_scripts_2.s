@@ -240,6 +240,11 @@ BattleScript_TrainerBallBlock::
 	waitmessage B_WAIT_TIME_LONG
 	finishaction
 
+BattleScript_ShadowPokemonAppeared::
+	printstring STRINGID_SHADOWPOKEMONAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_RunByUsingItem::
 	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
