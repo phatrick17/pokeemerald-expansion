@@ -1,3 +1,9 @@
+GIVEMASTERBALL_LittlerootTown::
+	giveitem ITEM_MASTER_BALL, 5
+	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	end
+
+
 LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
