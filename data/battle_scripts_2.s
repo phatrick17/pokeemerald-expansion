@@ -195,6 +195,8 @@ BattleScript_SuccessBallThrow::
 	goto BattleScript_TryPrintCaughtMonInfo
 
 BattleScript_BallThrowSteal::
+	@ Shadow snag catches behave like trainer battles: clear faint effects and
+	@ continue through the fainted-mon handler so battle flow stays consistent.
 	printstring STRINGID_GOTCHAPKMNCAUGHTNOBGM
 	givecaughtmon BattleScript_SuccessBallThrowEnd
 	cleareffectsonfaint BS_TARGET

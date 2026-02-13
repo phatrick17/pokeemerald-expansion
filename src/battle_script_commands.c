@@ -13956,6 +13956,8 @@ static void Cmd_givecaughtmon(void)
     switch (state)
     {
     case GIVECAUGHTMON_CHECK_PARTY_SIZE:
+        // Trainer catches (e.g. Shadow snag battles) do not add the mon directly into
+        // the player's active party during battle, so they must skip the swap prompt.
         if (CalculatePlayerPartyCount() == PARTY_SIZE
          && B_CATCH_SWAP_INTO_PARTY >= GEN_7
          && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
