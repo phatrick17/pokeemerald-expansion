@@ -245,11 +245,6 @@ BattleScript_ShadowPokemonAppeared::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
-BattleScript_ShadowPokemonAppearedEnd2::
-	printstring STRINGID_SHADOWPOKEMONAPPEARED
-	waitmessage B_WAIT_TIME_LONG
-	end2
-
 BattleScript_RunByUsingItem::
 	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN

@@ -3931,7 +3931,7 @@ static void TryDoEventsBeforeFirstTurn(void)
              && !IsOnPlayerSide(battler)
              && gSpeciesInfo[gBattleMons[battler].species].isShadow)
             {
-                BattleScriptExecute(BattleScript_ShadowPokemonAppearedEnd2);
+                BattleScriptExecute(BattleScript_ShadowPokemonAppeared);
                 return;
             }
         }
