@@ -14146,7 +14146,7 @@ static void Cmd_givecaughtmon(void)
             // In double snag battles, don't send in the replacement immediately.
             // Defer it until the next turn begins.
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-                gBattleStruct->snagDelayedSwitchTurn[gBattlerTarget] = gBattleTurnCounter + 1;
+                gBattleStruct->snagDelayedSwitchTurn[gBattlerTarget] = gBattleResults.battleTurnCounter + 1;
         }
         break;
     }

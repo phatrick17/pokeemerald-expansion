@@ -1935,7 +1935,7 @@ bool32 HandleFaintedMonActions(void)
             {
                 gBattlerFainted = gBattlerTarget = gBattleStruct->eventState.faintedActionBattler;
                 if (gBattleStruct->snagDelayedSwitchTurn[gBattlerFainted] != 0
-                 && gBattleTurnCounter < gBattleStruct->snagDelayedSwitchTurn[gBattlerFainted])
+                 && gBattleResults.battleTurnCounter < gBattleStruct->snagDelayedSwitchTurn[gBattlerFainted])
                     continue;
 
                 gBattleStruct->snagDelayedSwitchTurn[gBattlerFainted] = 0;
