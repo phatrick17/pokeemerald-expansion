@@ -7437,13 +7437,6 @@ static void Cmd_switchinanim(void)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-     && !IsOnPlayerSide(battler)
-     && gSpeciesInfo[gBattleMons[battler].species].isShadow)
-    {
-        BattleScriptPushCursor();
-        gBattlescriptCurrInstr = BattleScript_ShadowPokemonAppeared;
-    }
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_InitPoints();
