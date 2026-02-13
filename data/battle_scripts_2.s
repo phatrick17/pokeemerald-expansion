@@ -195,7 +195,7 @@ BattleScript_SuccessBallThrow::
 
 BattleScript_BallThrowSteal::
     printstring STRINGID_GOTCHAPKMNCAUGHTNOBGM
-    givecaughtmon
+    givecaughtmon BattleScript_SuccessBallThrowEnd
     cleareffectsonfaint BS_TARGET
 	goto BattleScript_HandleFaintedMon
 
