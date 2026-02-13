@@ -288,7 +288,7 @@ static bool32 ShouldChooseBallThrowTarget(u32 battler)
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (!IsBattlerAlive(left) || !IsBattlerAlive(right))
+    if (!IsValidBallThrowTarget(left) || !IsValidBallThrowTarget(right))
         return FALSE;
 
     gMultiUsePlayerCursor = left;
@@ -308,15 +308,6 @@ static void HandleInputChooseBallTarget(u32 battler)
 
     if (JOY_NEW(A_BUTTON))
     {
-        if (!IsValidBallThrowTarget(gMultiUsePlayerCursor))
-        {
-            static const u8 sText_CantThrowBallAtTarget[] = COMPOUND_STRING("You can't throw a Ball at\nthat Pokémon!\p");
-
-            PlaySE(SE_BOO);
-            BattlePutTextOnWindow(sText_CantThrowBallAtTarget, B_WIN_ACTION_PROMPT);
-            return;
-        }
-
         PlaySE(SE_SELECT);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_HideAsMoveTarget;
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
