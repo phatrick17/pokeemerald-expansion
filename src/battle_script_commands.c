@@ -7438,7 +7438,7 @@ static void Cmd_switchinanim(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-     && IsBattlerOpponent(battler)
+     && !IsOnPlayerSide(battler)
      && gSpeciesInfo[gBattleMons[battler].species].isShadow)
     {
         BattleScriptPushCursor();
