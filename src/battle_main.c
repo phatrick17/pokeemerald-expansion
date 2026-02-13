@@ -2047,34 +2047,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
     }
 
-    // Snagging: keep a stable non-player OT on trainer mons so caught trainer Pokémon don't become Bad Eggs.
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
-     && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_HILL)))
-    {
-        const struct Trainer *trainer = GetTrainerStructFromId(trainerNum);
-        u8 monsCount = retVal;
-        u8 i;
-        u32 fixedOTID = Random32();
-        u8 otGender;
-
-        if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && monsCount > PARTY_SIZE / 2)
-            monsCount = PARTY_SIZE / 2;
-
-        if (trainer->battleType != TRAINER_BATTLE_TYPE_SINGLES)
-            otGender = gSaveBlock2Ptr->playerGender;
-        else if (trainer->encounterMusic_gender & F_TRAINER_FEMALE)
-            otGender = FEMALE;
-        else
-            otGender = MALE;
-
-        for (i = 0; i < monsCount; i++)
-        {
-            SetMonData(&party[i], MON_DATA_OT_ID, &fixedOTID);
-            SetMonData(&party[i], MON_DATA_OT_GENDER, &otGender);
-            SetMonData(&party[i], MON_DATA_OT_NAME, trainer->trainerName);
-        }
-    }
-
     return retVal;
 }
 
