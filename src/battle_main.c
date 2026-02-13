@@ -4212,36 +4212,6 @@ enum
     STATE_SELECTION_SCRIPT_MAY_RUN
 };
 
-static bool32 IsBattlerPokeBallActionChosen(u32 battler)
-{
-    if (gChosenActionByBattler[battler] == B_ACTION_THROW_BALL)
-        return TRUE;
-
-    if (gChosenActionByBattler[battler] == B_ACTION_USE_ITEM)
-    {
-        u16 item = gBattleResources->bufferB[battler][1] | (gBattleResources->bufferB[battler][2] << 8);
-        if (item != ITEM_NONE && GetItemPocket(item) == POCKET_POKE_BALLS)
-            return TRUE;
-    }
-
-    return FALSE;
-}
-
-static void RefreshThrowingPokeBallState(void)
-{
-    s32 battler;
-
-    gBattleStruct->throwingPokeBall = FALSE;
-    for (battler = 0; battler < gBattlersCount; battler++)
-    {
-        if (IsBattlerPokeBallActionChosen(battler))
-        {
-            gBattleStruct->throwingPokeBall = TRUE;
-            break;
-        }
-    }
-}
-
 static void HandleTurnActionSelectionState(void)
 {
     s32 i, battler;
@@ -4259,7 +4229,6 @@ static void HandleTurnActionSelectionState(void)
             // fallthrough
         case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
             gBattleStruct->monToSwitchIntoId[battler] = PARTY_SIZE;
-            RefreshThrowingPokeBallState();
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI
                 || (position & BIT_FLANK) == B_FLANK_LEFT
                 || gAbsentBattlerFlags & 1u << GetBattlerAtPosition(BATTLE_PARTNER(position))
