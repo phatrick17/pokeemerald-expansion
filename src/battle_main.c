@@ -4568,6 +4568,8 @@ static void HandleTurnActionSelectionState(void)
                 case B_ACTION_USE_ITEM:
                     if ((gBattleResources->bufferB[battler][1] | (gBattleResources->bufferB[battler][2] << 8)) == 0)
                     {
+                        // Clear pending throw state when backing out of item selection.
+                        gBattleStruct->throwingPokeBall = FALSE;
                         gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
                     }
                     else
