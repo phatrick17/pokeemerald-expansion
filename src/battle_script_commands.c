@@ -13842,6 +13842,12 @@ static void Cmd_handleballthrow(void)
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
             SetMonData(caughtMon, MON_DATA_POKEBALL, &ballId);
+            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+            {
+                SetMonData(caughtMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+                SetMonData(caughtMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+                SetMonData(caughtMon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+            }
 
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -13910,6 +13916,12 @@ static void Cmd_handleballthrow(void)
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
                 SetMonData(caughtMon, MON_DATA_POKEBALL, &ballId);
+                if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+                {
+                    SetMonData(caughtMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+                    SetMonData(caughtMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+                    SetMonData(caughtMon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+                }
 
                 if (CalculatePlayerPartyCount() == PARTY_SIZE)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -14078,6 +14090,13 @@ static void Cmd_givecaughtmon(void)
             // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL
             if (FlagGet(FLAG_SYS_PC_LANETTE))
                 gBattleCommunication[MULTISTRING_CHOOSER]++;
+        }
+
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        {
+            u32 hp = 0;
+            gBattleMons[GetCatchingBattler()].hp = hp;
+            SetMonData(caughtMon, MON_DATA_HP, &hp);
         }
 
         gBattleResults.caughtMonSpecies = GetMonData(caughtMon, MON_DATA_SPECIES, NULL);
