@@ -4600,6 +4600,7 @@ static void HandleTurnActionSelectionState(void)
                     break;
                 case B_ACTION_THROW_BALL:
                     gBattleStruct->throwingPokeBall = TRUE;
+                    gBattleStruct->moveTarget[battler] = gBattleResources->bufferB[battler][2];
                     gBattleCommunication[battler]++;
                     break;
                 case B_ACTION_SAFARI_POKEBLOCK:

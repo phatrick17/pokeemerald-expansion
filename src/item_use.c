@@ -1141,8 +1141,13 @@ void ItemUseOutOfBattle_EvolutionStone(u8 taskId)
 
 static u32 GetBallThrowableState(void)
 {
-    if (IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT))
-     && IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)))
+    bool32 leftAlive = IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
+    bool32 rightAlive = IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
+
+    if (leftAlive && rightAlive
+     && (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+      || (!gSpeciesInfo[gBattleMons[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)].species].isShadow
+       && !gSpeciesInfo[gBattleMons[GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)].species].isShadow)))
         return BALL_THROW_UNABLE_TWO_MONS;
     else if (IsPlayerPartyAndPokemonStorageFull() == TRUE)
         return BALL_THROW_UNABLE_NO_ROOM;
@@ -1152,6 +1157,16 @@ static u32 GetBallThrowableState(void)
         return BALL_THROW_UNABLE_DISABLED_FLAG;
 
     return BALL_THROW_ABLE;
+}
+
+static bool32 ShouldConsumeBallOnUse(void)
+{
+    if (B_TRY_CATCH_TRAINER_BALL >= GEN_4
+     && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !gSpeciesInfo[gBattleMons[GetCatchingBattler()].species].isShadow)
+        return FALSE;
+
+    return TRUE;
 }
 
 bool32 CanThrowBall(void)
@@ -1376,7 +1391,8 @@ void ItemUseInBattle_BagMenu(u8 taskId)
     else
     {
         PlaySE(SE_SELECT);
-        if (!GetItemImportance(gSpecialVar_ItemId) && !(B_TRY_CATCH_TRAINER_BALL >= GEN_4 && (GetItemBattleUsage(gSpecialVar_ItemId) == EFFECT_ITEM_THROW_BALL) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
+        if (!GetItemImportance(gSpecialVar_ItemId)
+         && (GetItemBattleUsage(gSpecialVar_ItemId) != EFFECT_ITEM_THROW_BALL || ShouldConsumeBallOnUse()))
             RemoveUsedItem();
         ScheduleBgCopyTilemapToVram(2);
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)

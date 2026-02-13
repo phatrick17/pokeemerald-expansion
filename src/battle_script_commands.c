@@ -13604,10 +13604,48 @@ static void Cmd_removescreens(void)
 
 u8 GetCatchingBattler(void)
 {
-    if (IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)))
-        return GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-    else
-        return GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+    u32 opponentLeft = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+    u32 opponentRight = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+    bool32 leftAlive = IsBattlerAlive(opponentLeft);
+    bool32 rightAlive = IsBattlerAlive(opponentRight);
+
+    if (IsOnPlayerSide(gBattlerAttacker))
+    {
+        u32 selectedTarget = gBattleStruct->moveTarget[gBattlerAttacker];
+
+        if (selectedTarget < gBattlersCount
+         && IsBattlerAlive(selectedTarget)
+         && !IsOnPlayerSide(selectedTarget)
+         && (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+          || gSpeciesInfo[gBattleMons[selectedTarget].species].isShadow))
+            return selectedTarget;
+    }
+
+    if (leftAlive && !rightAlive)
+        return opponentLeft;
+    else if (!leftAlive && rightAlive)
+        return opponentRight;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    {
+        bool32 leftShadow = gSpeciesInfo[gBattleMons[opponentLeft].species].isShadow;
+        bool32 rightShadow = gSpeciesInfo[gBattleMons[opponentRight].species].isShadow;
+
+        if (leftShadow && !rightShadow)
+            return opponentLeft;
+        else if (!leftShadow && rightShadow)
+            return opponentRight;
+        else if (leftShadow && rightShadow)
+        {
+            // If both opposing mons are shadow, target the one in front of the acting battler.
+            if (IsOnPlayerSide(gBattlerAttacker) && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_RIGHT)
+                return opponentRight;
+            else if (IsOnPlayerSide(gBattlerInMenuId) && GetBattlerPosition(gBattlerInMenuId) == B_POSITION_PLAYER_RIGHT)
+                return opponentRight;
+        }
+    }
+
+    return opponentLeft;
 }
 
 static void Cmd_handleballthrow(void)

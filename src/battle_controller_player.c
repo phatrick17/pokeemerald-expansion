@@ -92,6 +92,9 @@ static void Task_GiveExpWithExpBar(u8);
 static void Task_UpdateLvlInHealthbox(u8);
 static void PrintLinkStandbyMsg(void);
 
+static void HandleInputChooseAction(u32 battler);
+static void HandleInputChooseBallTarget(u32 battler);
+
 static void ReloadMoveNames(u32 battler);
 static u32 CheckTypeEffectiveness(u32 battlerAtk, u32 battlerDef);
 static u32 CheckTargetTypeEffectiveness(u32 battler);
@@ -230,6 +233,76 @@ static u32 GetNextBall(u32 ballId)
     return ballId;
 }
 
+static bool32 IsValidBallThrowTarget(u32 battler)
+{
+    if (!IsBattlerAlive(battler))
+        return FALSE;
+
+    if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        return TRUE;
+
+    return gSpeciesInfo[gBattleMons[battler].species].isShadow;
+}
+
+static bool32 ShouldChooseBallThrowTarget(u32 battler)
+{
+    u32 left = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+    u32 right = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+
+    if (!IsDoubleBattle())
+        return FALSE;
+
+    if (!IsValidBallThrowTarget(left) || !IsValidBallThrowTarget(right))
+        return FALSE;
+
+    gMultiUsePlayerCursor = left;
+    if (GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT)
+        gMultiUsePlayerCursor = right;
+
+    return TRUE;
+}
+
+static void HandleInputChooseBallTarget(u32 battler)
+{
+    DoBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX, 15, 1);
+    if (JOY_HELD(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+        gPlayerDpadHoldFrames++;
+    else
+        gPlayerDpadHoldFrames = 0;
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_HideAsMoveTarget;
+        EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
+        TryHideLastUsedBall();
+        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, gMultiUsePlayerCursor);
+        BtlController_Complete(battler);
+    }
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
+    {
+        PlaySE(SE_SELECT);
+        gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_HideAsMoveTarget;
+        EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
+        gBattlerControllerFuncs[battler] = HandleInputChooseAction;
+        ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+    }
+    else if (JOY_NEW(DPAD_LEFT) || JOY_NEW(DPAD_RIGHT))
+    {
+        u32 next = (GetBattlerPosition(gMultiUsePlayerCursor) == B_POSITION_OPPONENT_LEFT)
+                 ? GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)
+                 : GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        if (IsValidBallThrowTarget(next))
+        {
+            PlaySE(SE_SELECT);
+            EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
+            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_HideAsMoveTarget;
+            gMultiUsePlayerCursor = next;
+            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+        }
+    }
+}
+
 static void HandleInputChooseAction(u32 battler)
 {
     u16 itemId = gBattleResources->bufferA[battler][2] | (gBattleResources->bufferA[battler][3] << 8);
@@ -293,9 +366,18 @@ static void HandleInputChooseAction(u32 battler)
                 gBattleStruct->ackBallUseBtn = FALSE;
                 PlaySE(SE_SELECT);
                 ArrowsChangeColorLastBallCycle(FALSE);
-                TryHideLastUsedBall();
-                BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
-                BtlController_Complete(battler);
+                if (ShouldChooseBallThrowTarget(battler))
+                {
+                    ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+                    gBattlerControllerFuncs[battler] = HandleInputChooseBallTarget;
+                    gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+                }
+                else
+                {
+                    TryHideLastUsedBall();
+                    BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
+                    BtlController_Complete(battler);
+                }
             }
             return;
         }
@@ -403,9 +485,18 @@ static void HandleInputChooseAction(u32 battler)
              && JOY_NEW(B_LAST_USED_BALL_BUTTON) && CanThrowLastUsedBall())
     {
         PlaySE(SE_SELECT);
-        TryHideLastUsedBall();
-        BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
-        BtlController_Complete(battler);
+        if (ShouldChooseBallThrowTarget(battler))
+        {
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gBattlerControllerFuncs[battler] = HandleInputChooseBallTarget;
+            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+        }
+        else
+        {
+            TryHideLastUsedBall();
+            BtlController_EmitTwoReturnValues(battler, B_COMM_TO_ENGINE, B_ACTION_THROW_BALL, 0);
+            BtlController_Complete(battler);
+        }
     }
 }
 
