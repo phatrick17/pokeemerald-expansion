@@ -14097,6 +14097,10 @@ static void Cmd_givecaughtmon(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
+            // Shadow snag catches continue into the fainted-mon handler. Ensure the
+            // handler points at the caught enemy battler, otherwise it may try to
+            // replace the player's active mon instead.
+            gBattlerFainted = gBattlerTarget;
             gBattleMons[gBattlerTarget].hp = 0;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
