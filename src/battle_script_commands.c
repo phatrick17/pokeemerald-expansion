@@ -7437,6 +7437,14 @@ static void Cmd_switchinanim(void)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !IsOnPlayerSide(battler)
+     && gSpeciesInfo[gBattleMons[battler].species].isShadow)
+    {
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_ShadowPokemonAppeared;
+    }
+
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_InitPoints();
 }
@@ -13611,7 +13619,8 @@ static void Cmd_handleballthrow(void)
 
     gBattlerTarget = GetCatchingBattler();
 
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !gSpeciesInfo[gBattleMons[gBattlerTarget].species].isShadow)
     {
         BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gBattlerAttacker);
