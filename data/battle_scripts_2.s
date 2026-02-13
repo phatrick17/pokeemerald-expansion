@@ -210,14 +210,8 @@ BattleScript_TryNicknameCaughtMon::
 BattleScript_GiveCaughtMonEnd::
 	givecaughtmon BattleScript_SuccessBallThrowEnd
 BattleScript_SuccessBallThrowEnd::
-	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_SnagTrainerMon
 	setbyte gBattleOutcome, B_OUTCOME_CAUGHT
 	finishturn
-
-BattleScript_SnagTrainerMon::
-	tryfaintmon BS_TARGET
-	setbyte sMON_CAUGHT, FALSE
-	finishaction
 
 BattleScript_WallyBallThrow::
 	printstring STRINGID_GOTCHAPKMNCAUGHTWALLY
