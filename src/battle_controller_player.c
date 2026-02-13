@@ -94,6 +94,7 @@ static void PrintLinkStandbyMsg(void);
 
 static void HandleInputChooseAction(u32 battler);
 static void HandleInputChooseBallTarget(u32 battler);
+static void StartChooseBallTarget(u32 battler);
 
 static bool32 ShouldChooseBallThrowTarget(u32 battler);
 
@@ -327,17 +328,9 @@ static void HandleInputChooseBallTarget(u32 battler)
         PlaySE(SE_SELECT);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_HideAsMoveTarget;
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
-        if (gBattleResources->bufferA[battler][1] == B_ACTION_USE_ITEM)
-        {
-            gBattleStruct->moveTarget[battler] = GetDefaultBallThrowTarget(battler);
-            BtlController_EmitOneReturnValue(battler, B_COMM_TO_ENGINE, gSpecialVar_ItemId);
-            BtlController_Complete(battler);
-        }
-        else
-        {
-            gBattlerControllerFuncs[battler] = HandleInputChooseAction;
-            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
-        }
+        gBattlerControllerFuncs[battler] = HandleInputChooseAction;
+        ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
     }
     else if (JOY_NEW(DPAD_LEFT) || JOY_NEW(DPAD_RIGHT))
     {
@@ -353,6 +346,15 @@ static void HandleInputChooseBallTarget(u32 battler)
             gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
         }
     }
+}
+
+static void StartChooseBallTarget(u32 battler)
+{
+    static const u8 sText_SelectTargetPokemon[] = COMPOUND_STRING("Select a target Pokemon");
+
+    gBattlerControllerFuncs[battler] = HandleInputChooseBallTarget;
+    gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+    BattlePutTextOnWindow(sText_SelectTargetPokemon, B_WIN_ACTION_PROMPT);
 }
 
 static void HandleInputChooseAction(u32 battler)
@@ -421,8 +423,7 @@ static void HandleInputChooseAction(u32 battler)
                 if (ShouldChooseBallThrowTarget(battler))
                 {
                     ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
-                    gBattlerControllerFuncs[battler] = HandleInputChooseBallTarget;
-                    gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+                    StartChooseBallTarget(battler);
                 }
                 else
                 {
@@ -540,8 +541,7 @@ static void HandleInputChooseAction(u32 battler)
         if (ShouldChooseBallThrowTarget(battler))
         {
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
-            gBattlerControllerFuncs[battler] = HandleInputChooseBallTarget;
-            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+            StartChooseBallTarget(battler);
         }
         else
         {
@@ -1726,8 +1726,7 @@ static void CompleteWhenChoseItem(u32 battler)
     {
         if (ShouldChooseBagBallTarget(battler))
         {
-            gBattlerControllerFuncs[battler] = HandleInputChooseBallTarget;
-            gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCB_ShowAsMoveTarget;
+            StartChooseBallTarget(battler);
             return;
         }
 
