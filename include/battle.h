@@ -114,6 +114,7 @@ struct DisableStruct
     u8 iceFaceActivationPrevention:1; // fixes hit escape move edge case
     u8 unnerveActivated:1; // Unnerve and As One (Unnerve part) activate only once per switch in
     u8 hazardsDone:1;
+    u8 shadowMessageDone:1;
     u8 endured:1;
     u8 tryEjectPack:1;
     u8 octolockedBy:3;

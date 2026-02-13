@@ -8016,6 +8016,16 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
 {
     u32 i = 0;
     u32 side = GetBattlerSide(battler);
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !IsOnPlayerSide(battler)
+     && gSpeciesInfo[gBattleMons[battler].species].isShadow
+     && !gDisableStructs[battler].shadowMessageDone)
+    {
+        gDisableStructs[battler].shadowMessageDone = TRUE;
+        BattleScriptCall(BattleScript_ShadowPokemonAppeared);
+        return TRUE;
+    }
+
     // Neutralizing Gas announces itself before hazards
     if (AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS, battler, 0, 0, 0))
     {
