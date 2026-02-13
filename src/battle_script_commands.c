@@ -14140,7 +14140,7 @@ static void Cmd_givecaughtmon(void)
             // replace the player's active mon instead.
             gBattlerFainted = gBattlerTarget;
             gBattleMons[gBattlerTarget].hp = 0;
-            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
         }
         break;
