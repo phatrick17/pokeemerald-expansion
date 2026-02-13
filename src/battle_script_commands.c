@@ -14091,6 +14091,12 @@ static void Cmd_givecaughtmon(void)
             gBattlescriptCurrInstr = cmd->passInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        {
+            gBattleMons[gBattlerTarget].hp = 0;
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
+            SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
+        }
         break;
     }
     }

@@ -715,6 +715,7 @@ enum StringID
     STRINGID_POWERCONSTRUCTTRANSFORM,
     STRINGID_ABILITYSHIELDPROTECTS,
     STRINGID_COUNT
+    STRINGID_GOTCHAPKMNCAUGHTNOBGM
 };
 
 // The below IDs are all indexes into battle message tables,

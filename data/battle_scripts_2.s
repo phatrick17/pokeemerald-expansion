@@ -187,10 +187,18 @@ BattleScript_SuccessBallThrow::
 	setbyte sMON_CAUGHT, TRUE
 	incrementgamestat GAME_STAT_POKEMON_CAPTURES
 	printstring STRINGID_GOTCHAPKMNCAUGHTPLAYER
+	jumpifword CMP_COMMON_BITS, gBattleTypeFlags, BATTLE_TYPE_TRAINER, BattleScript_BallThrowSteal
 	jumpifbyte CMP_NOT_EQUAL, sEXP_CATCH, TRUE, BattleScript_TryPrintCaughtMonInfo
 	setbyte sGIVEEXP_STATE, 0
 	getexp BS_TARGET
 	sethword gBattle_BG2_X, 0
+
+BattleScript_BallThrowSteal::
+    printstring STRINGID_GOTCHAPKMNCAUGHTNOBGM
+    givecaughtmon
+    cleareffectsonfaint BS_TARGET
+	goto BattleScript_HandleFaintedMon
+
 BattleScript_TryPrintCaughtMonInfo:
 	jumpifbattletype BATTLE_TYPE_RECORDED, BattleScript_GiveCaughtMonEnd
 	trysetcaughtmondexflags BattleScript_TryNicknameCaughtMon
