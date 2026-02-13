@@ -210,8 +210,14 @@ BattleScript_TryNicknameCaughtMon::
 BattleScript_GiveCaughtMonEnd::
 	givecaughtmon BattleScript_SuccessBallThrowEnd
 BattleScript_SuccessBallThrowEnd::
+	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_SnagTrainerMon
 	setbyte gBattleOutcome, B_OUTCOME_CAUGHT
 	finishturn
+
+BattleScript_SnagTrainerMon::
+	tryfaintmon BS_TARGET
+	setbyte sMON_CAUGHT, FALSE
+	finishaction
 
 BattleScript_WallyBallThrow::
 	printstring STRINGID_GOTCHAPKMNCAUGHTWALLY
@@ -239,6 +245,16 @@ BattleScript_TrainerBallBlock::
 	printstring STRINGID_DONTBEATHIEF
 	waitmessage B_WAIT_TIME_LONG
 	finishaction
+
+BattleScript_ShadowPokemonAppeared::
+	printstring STRINGID_SHADOWPOKEMONAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_ShadowPokemonAppearedEnd2::
+	printstring STRINGID_SHADOWPOKEMONAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	end2
 
 BattleScript_RunByUsingItem::
 	playse SE_FLEE

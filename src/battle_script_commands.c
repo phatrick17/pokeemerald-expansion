@@ -7437,6 +7437,7 @@ static void Cmd_switchinanim(void)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 
+
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_InitPoints();
 }
@@ -8008,6 +8009,16 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
 {
     u32 i = 0;
     u32 side = GetBattlerSide(battler);
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !IsOnPlayerSide(battler)
+     && gSpeciesInfo[gBattleMons[battler].species].isShadow
+     && !gDisableStructs[battler].shadowMessageDone)
+    {
+        gDisableStructs[battler].shadowMessageDone = TRUE;
+        BattleScriptCall(BattleScript_ShadowPokemonAppeared);
+        return TRUE;
+    }
+
     // Neutralizing Gas announces itself before hazards
     if (AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS, battler, 0, 0, 0))
     {
@@ -13611,7 +13622,8 @@ static void Cmd_handleballthrow(void)
 
     gBattlerTarget = GetCatchingBattler();
 
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !gSpeciesInfo[gBattleMons[gBattlerTarget].species].isShadow)
     {
         BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gBattlerAttacker);
@@ -13830,6 +13842,12 @@ static void Cmd_handleballthrow(void)
             gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
             struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
             SetMonData(caughtMon, MON_DATA_POKEBALL, &ballId);
+            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+            {
+                SetMonData(caughtMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+                SetMonData(caughtMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+                SetMonData(caughtMon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+            }
 
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -13898,6 +13916,12 @@ static void Cmd_handleballthrow(void)
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 struct Pokemon *caughtMon = GetBattlerMon(gBattlerTarget);
                 SetMonData(caughtMon, MON_DATA_POKEBALL, &ballId);
+                if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+                {
+                    SetMonData(caughtMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+                    SetMonData(caughtMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+                    SetMonData(caughtMon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
+                }
 
                 if (CalculatePlayerPartyCount() == PARTY_SIZE)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -14066,6 +14090,13 @@ static void Cmd_givecaughtmon(void)
             // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL
             if (FlagGet(FLAG_SYS_PC_LANETTE))
                 gBattleCommunication[MULTISTRING_CHOOSER]++;
+        }
+
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        {
+            u32 hp = 0;
+            gBattleMons[GetCatchingBattler()].hp = hp;
+            SetMonData(caughtMon, MON_DATA_HP, &hp);
         }
 
         gBattleResults.caughtMonSpecies = GetMonData(caughtMon, MON_DATA_SPECIES, NULL);

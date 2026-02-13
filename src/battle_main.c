@@ -3923,6 +3923,22 @@ static void TryDoEventsBeforeFirstTurn(void)
         gBattleStruct->switchInBattlerCounter = 0;
         gBattleStruct->eventState.beforeFirstTurn++;
         break;
+    case FIRST_TURN_EVENTS_SHADOW_MESSAGE:
+        while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
+        {
+            u32 battler = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++];
+            if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+             && !IsOnPlayerSide(battler)
+             && gSpeciesInfo[gBattleMons[battler].species].isShadow)
+            {
+                gDisableStructs[battler].shadowMessageDone = TRUE;
+                BattleScriptExecute(BattleScript_ShadowPokemonAppearedEnd2);
+                return;
+            }
+        }
+        gBattleStruct->switchInBattlerCounter = 0;
+        gBattleStruct->eventState.beforeFirstTurn++;
+        break;
     case FIRST_TURN_EVENTS_EJECT_PACK:
         gBattleStruct->eventState.beforeFirstTurn++;
         if (TrySwitchInEjectPack(FIRST_TURN))
