@@ -769,6 +769,7 @@ struct BattleStruct
     u8 incrementEchoedVoice:1;
     u8 echoedVoiceCounter:3;
     u8 padding3:4;
+    u16 snagDelayedSwitchTurn[MAX_BATTLERS_COUNT];
 };
 
 struct AiBattleData
