@@ -94,6 +94,7 @@ static void PrintLinkStandbyMsg(void);
 
 static void HandleInputChooseAction(u32 battler);
 static void HandleInputChooseBallTarget(u32 battler);
+static void OpenBagAndChooseItem(u32 battler);
 
 static bool32 ShouldChooseBallThrowTarget(u32 battler);
 
