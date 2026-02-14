@@ -308,3 +308,25 @@ DOUBLE_BATTLE_TEST("Moves that target the field are not going to fail if one mon
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, playerLeft);
     }
 }
+
+DOUBLE_BATTLE_TEST("Remaining opponent battler stays visible after its partner faints")
+{
+    u8 visibility;
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(100); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(90); }
+        OPPONENT(SPECIES_WYNAUT)  { HP(1); Speed(80); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(70); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_POUND, target: opponentLeft); MOVE(opponentRight, MOVE_CELEBRATE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Pound!");
+        MESSAGE("The opposing Wynaut fainted!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentRight);
+    } THEN {
+        visibility = gBattleSpritesDataPtr->battlerData[3].invisible;
+        EXPECT_EQ(visibility, FALSE);
+        EXPECT_EQ(gSprites[gBattlerSpriteIds[3]].invisible, FALSE);
+    }
+}

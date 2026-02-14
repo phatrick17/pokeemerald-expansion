@@ -2037,10 +2037,29 @@ static void Controller_FaintPlayerMon(u32 battler)
     }
 }
 
+static void RestoreBattlerSpritesVisibilityAfterFaint(void)
+{
+    for (u32 i = 0; i < gBattlersCount; i++)
+    {
+        if ((gAbsentBattlerFlags & (1u << i))
+         || !IsBattlerAlive(i)
+         || gBattleMons[i].volatiles.semiInvulnerable != STATE_NONE
+         || gBattleSpritesDataPtr->battlerData[i].behindSubstitute)
+            continue;
+
+        if (gSprites[gBattlerSpriteIds[i]].inUse)
+        {
+            gSprites[gBattlerSpriteIds[i]].invisible = FALSE;
+            gBattleSpritesDataPtr->battlerData[i].invisible = FALSE;
+        }
+    }
+}
+
 static void Controller_FaintOpponentMon(u32 battler)
 {
     if (!gSprites[gBattlerSpriteIds[battler]].inUse)
     {
+        RestoreBattlerSpritesVisibilityAfterFaint();
         SetHealthboxSpriteInvisible(gHealthboxSpriteIds[battler]);
         BtlController_Complete(battler);
     }
@@ -2065,21 +2084,7 @@ static void Controller_DoMoveAnimation(u32 battler)
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
         {
             // In some 2v1 edge cases a valid battler can get stuck invisible after a faint.
-            // Ensure active battlers that should be visible are restored before running animations.
-            for (u32 i = 0; i < gBattlersCount; i++)
-            {
-                if ((gAbsentBattlerFlags & (1u << i))
-                 || !IsBattlerAlive(i)
-                 || gBattleMons[i].volatiles.semiInvulnerable != STATE_NONE
-                 || gBattleSpritesDataPtr->battlerData[i].behindSubstitute)
-                    continue;
-
-                if (gSprites[gBattlerSpriteIds[i]].inUse)
-                {
-                    gSprites[gBattlerSpriteIds[i]].invisible = FALSE;
-                    gBattleSpritesDataPtr->battlerData[i].invisible = FALSE;
-                }
-            }
+            RestoreBattlerSpritesVisibilityAfterFaint();
 
             SetBattlerSpriteAffineMode(ST_OAM_AFFINE_OFF);
             DoMoveAnim(move);
