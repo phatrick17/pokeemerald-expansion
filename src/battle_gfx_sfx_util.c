@@ -1312,7 +1312,8 @@ void SetBattlerShadowSpriteCallback(u8 battler, u16 species)
 {
     if (B_ENEMY_MON_SHADOW_STYLE >= GEN_4 && P_GBA_STYLE_SPECIES_GFX == FALSE)
     {
-        if (IsOnPlayerSide(battler) || gBattleScripting.monCaught)
+        if (IsOnPlayerSide(battler)
+         || (gBattleScripting.monCaught && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
         {
             gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary].callback = SpriteCB_SetInvisible;
             gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary].callback = SpriteCB_SetInvisible;
@@ -1339,7 +1340,8 @@ void SetBattlerShadowSpriteCallback(u8 battler, u16 species)
     }
     else
     {
-        if (IsOnPlayerSide(battler) || gBattleScripting.monCaught)
+        if (IsOnPlayerSide(battler)
+         || (gBattleScripting.monCaught && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
         {
             gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary].callback = SpriteCB_SetInvisible;
             return;
