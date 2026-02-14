@@ -138,14 +138,20 @@ static void CB2_ReshowBattleScreenAfterMenu(void)
             LoadAndCreateEnemyShadowSprites();
 
             opponentBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-            species = GetMonData(GetBattlerMon(opponentBattler), MON_DATA_SPECIES);
-            SetBattlerShadowSpriteCallback(opponentBattler, species);
+            if (!(gAbsentBattlerFlags & (1u << opponentBattler)))
+            {
+                species = GetMonData(GetBattlerMon(opponentBattler), MON_DATA_SPECIES);
+                SetBattlerShadowSpriteCallback(opponentBattler, species);
+            }
 
             if (IsDoubleBattle())
             {
                 opponentBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
-                species = GetMonData(GetBattlerMon(opponentBattler), MON_DATA_SPECIES);
-                SetBattlerShadowSpriteCallback(opponentBattler, species);
+                if (!(gAbsentBattlerFlags & (1u << opponentBattler)))
+                {
+                    species = GetMonData(GetBattlerMon(opponentBattler), MON_DATA_SPECIES);
+                    SetBattlerShadowSpriteCallback(opponentBattler, species);
+                }
             }
 
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gBattlerInMenuId], 0);
@@ -268,6 +274,9 @@ static bool8 LoadBattlerSpriteGfx(u32 battler)
 {
     if (battler < gBattlersCount)
     {
+        if (gAbsentBattlerFlags & (1u << battler))
+            return TRUE;
+
         if (!IsOnPlayerSide(battler))
         {
             if (!gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
@@ -293,6 +302,9 @@ void CreateBattlerSprite(u32 battler)
 {
     if (battler < gBattlersCount)
     {
+        if (gAbsentBattlerFlags & (1u << battler))
+            return;
+
         u8 posY;
 
         if (gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
@@ -363,6 +375,9 @@ static void CreateHealthboxSprite(u32 battler)
 {
     if (battler < gBattlersCount)
     {
+        if (gAbsentBattlerFlags & (1u << battler))
+            return;
+
         u8 healthboxSpriteId;
 
         if (gBattleTypeFlags & BATTLE_TYPE_SAFARI && battler == B_POSITION_PLAYER_LEFT)
