@@ -2,6 +2,7 @@
 	.equiv MUSIC_PLAYER_SE1,1
 	.equiv MUSIC_PLAYER_SE2,2
 	.equiv MUSIC_PLAYER_SE3,3
+	.equiv mus_littleroot, mus_littleroot_test
 
 	.align 2
 
