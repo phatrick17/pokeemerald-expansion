@@ -14092,7 +14092,8 @@ static void Cmd_givecaughtmon(void)
         break;
     case GIVECAUGHTMON_GIVE_AND_SHOW_MSG:
     {
-        struct Pokemon *caughtMon = GetBattlerMon(GetCatchingBattler());
+        u32 caughtBattler = GetCatchingBattler();
+        struct Pokemon *caughtMon = GetBattlerMon(caughtBattler);
         if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9)
         {
             u16 lostItem = gBattleStruct->itemLost[B_SIDE_OPPONENT][gBattlerPartyIndexes[GetCatchingBattler()]].originalItem;
@@ -14138,10 +14139,10 @@ static void Cmd_givecaughtmon(void)
             // Shadow snag catches continue into the fainted-mon handler. Ensure the
             // handler points at the caught enemy battler, otherwise it may try to
             // replace the player's active mon instead.
-            gBattlerFainted = gBattlerTarget;
-            gBattleMons[gBattlerTarget].hp = 0;
-            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
-            SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
+            gBattlerFainted = caughtBattler;
+            gBattleMons[caughtBattler].hp = 0;
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[caughtBattler]], MON_DATA_HP, &gBattleMons[caughtBattler].hp);
+            SetHealthboxSpriteInvisible(gHealthboxSpriteIds[caughtBattler]);
         }
         break;
     }
