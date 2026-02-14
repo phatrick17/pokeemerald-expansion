@@ -2064,6 +2064,23 @@ static void Controller_DoMoveAnimation(u32 battler)
     case 1:
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
         {
+            // In some 2v1 edge cases a valid battler can get stuck invisible after a faint.
+            // Ensure active battlers that should be visible are restored before running animations.
+            for (u32 i = 0; i < gBattlersCount; i++)
+            {
+                if ((gAbsentBattlerFlags & (1u << i))
+                 || !IsBattlerAlive(i)
+                 || gBattleMons[i].volatiles.semiInvulnerable != STATE_NONE
+                 || gBattleSpritesDataPtr->battlerData[i].behindSubstitute)
+                    continue;
+
+                if (gSprites[gBattlerSpriteIds[i]].inUse)
+                {
+                    gSprites[gBattlerSpriteIds[i]].invisible = FALSE;
+                    gBattleSpritesDataPtr->battlerData[i].invisible = FALSE;
+                }
+            }
+
             SetBattlerSpriteAffineMode(ST_OAM_AFFINE_OFF);
             DoMoveAnim(move);
             gBattleSpritesDataPtr->healthBoxesData[battler].animationState = 2;
