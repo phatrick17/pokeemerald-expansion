@@ -329,9 +329,7 @@ static void HandleInputChooseBallTarget(u32 battler)
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
         if (gBattleResources->bufferA[battler][1] == B_ACTION_USE_ITEM)
         {
-            gBattleStruct->moveTarget[battler] = GetDefaultBallThrowTarget(battler);
-            BtlController_EmitOneReturnValue(battler, B_COMM_TO_ENGINE, gSpecialVar_ItemId);
-            BtlController_Complete(battler);
+            gBattlerControllerFuncs[battler] = OpenBagAndChooseItem;
         }
         else
         {
