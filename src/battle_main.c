@@ -4405,6 +4405,7 @@ static void HandleTurnActionSelectionState(void)
                 case B_ACTION_CANCEL_PARTNER:
                     gBattleCommunication[battler] = STATE_WAIT_SET_BEFORE_ACTION;
                     gBattleCommunication[GetPartnerBattler(battler)] = STATE_BEFORE_ACTION_CHOSEN;
+                    gBattleStruct->throwingPokeBall = FALSE;
                     RecordedBattle_ClearBattlerAction(battler, 1);
                     if (gBattleMons[GetPartnerBattler(battler)].volatiles.multipleTurns
                         || gDisableStructs[GetPartnerBattler(battler)].rechargeTimer > 0)
