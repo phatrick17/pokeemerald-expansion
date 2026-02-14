@@ -2,6 +2,7 @@
 	.equiv MUSIC_PLAYER_SE1,1
 	.equiv MUSIC_PLAYER_SE2,2
 	.equiv MUSIC_PLAYER_SE3,3
+
 	.align 2
 
 gSongTable::
@@ -355,7 +356,7 @@ gSongTable::
 	song dummy_song_header, MUSIC_PLAYER_BGM, 0
 	song dummy_song_header, MUSIC_PLAYER_BGM, 0
 	song dummy_song_header, MUSIC_PLAYER_BGM, 0
-	song mus_littleroot_test, MUSIC_PLAYER_BGM, 0
+	song mus_littleroot, MUSIC_PLAYER_BGM, 0
 	song mus_gsc_route38, MUSIC_PLAYER_BGM, 0
 	song mus_caught, MUSIC_PLAYER_BGM, 0
 	song mus_victory_wild, MUSIC_PLAYER_BGM, 0
