@@ -317,7 +317,11 @@ void CreateBattlerSprite(u32 battler)
             struct Pokemon *mon = GetBattlerMon(battler);
             if (GetMonData(mon, MON_DATA_HP) == 0)
                 return;
-            if (gBattleScripting.monCaught) // Don't create opponent sprite if it has been caught.
+            // Wild catches end the battle, so the opponent sprite should remain hidden.
+            // In trainer snag battles, `monCaught` can remain set while the fight continues,
+            // and hiding all opposing sprites here makes remaining opponents disappear after
+            // reopening party/bag menus.
+            if (gBattleScripting.monCaught && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
                 return;
             u32 species = GetMonData(mon, MON_DATA_SPECIES);
 
