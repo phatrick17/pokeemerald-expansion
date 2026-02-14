@@ -330,6 +330,10 @@ static void HandleInputChooseBallTarget(u32 battler)
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
         if (gBattleResources->bufferA[battler][1] == B_ACTION_USE_ITEM)
         {
+            // Item was already removed from bag when selected.
+            // Return it before reopening the bag after canceling target selection.
+            if (GetItemConsumability(gSpecialVar_ItemId))
+                AddBagItem(gSpecialVar_ItemId, 1);
             gBattlerControllerFuncs[battler] = OpenBagAndChooseItem;
         }
         else
