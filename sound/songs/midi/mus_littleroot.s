@@ -7,6 +7,7 @@
 
         .section .rodata
         .global mus_dmca_battle
+        .global mus_littleroot
         .align  2
 
 @****************** Track 0 (Midi-Chn.0) ******************@
@@ -3290,6 +3291,7 @@ mus_dmca_battle_8_22:
 @********************** End of Song ***********************@
 
         .align  2
+mus_littleroot:
 mus_dmca_battle:
         .byte   9                       @ Num Tracks
         .byte   0                       @ Unknown
