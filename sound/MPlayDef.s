@@ -1,3 +1,22 @@
+	@ Compatibility aliases for legacy pokeemerald song exports that still
+	@ reference numbered voice groups / key split tables.
+	@
+	@ In pokeemerald-expansion, most voice groups are named (for example
+	@ `voicegroup_piano_keysplit`) instead of numbered (`voicegroup001`).
+	@ Keeping these aliases allows old .s song dumps to assemble without having
+	@ to manually rename every voice group reference.
+	.equ	voicegroup001,	voicegroup_piano_keysplit
+	.equ	voicegroup002,	voicegroup_strings_keysplit
+	.equ	voicegroup005,	voicegroup_rs_drumset
+	.equ	voicegroup006,	voicegroup_strings_keysplit
+	.equ	voicegroup007,	voicegroup_trumpet_keysplit
+	.equ	voicegroup009,	voicegroup_french_horn_keysplit
+
+	.equ	KeySplitTable1,	keysplit_piano
+	.equ	KeySplitTable2,	keysplit_strings
+	.equ	KeySplitTable3,	keysplit_trumpet
+	.equ	KeySplitTable5,	keysplit_french_horn
+
 	.equ	W00,	0x80		@ WAIT
 	.equ	W01,	W00+1		@
 	.equ	W02,	W00+2		@
