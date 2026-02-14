@@ -367,7 +367,20 @@ void CreateBattlerSprite(u32 battler)
             StartSpriteAnim(&gSprites[gBattlerSpriteIds[battler]], 0);
         }
 
-        gSprites[gBattlerSpriteIds[battler]].invisible = gBattleSpritesDataPtr->battlerData[battler].invisible;
+        // In some 2v1 states (typically after one foe faints/is removed), a remaining battler can
+        // have a stale invisible flag when returning from a non-battle menu.
+        // If the battler is currently active on the field, force it visible on reshow.
+        bool8 invisible = gBattleSpritesDataPtr->battlerData[battler].invisible;
+
+        if (IsBattlerAlive(battler)
+         && gBattleMons[battler].volatiles.semiInvulnerable == STATE_NONE
+         && !gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
+        {
+            invisible = FALSE;
+        }
+
+        gSprites[gBattlerSpriteIds[battler]].invisible = invisible;
+        gBattleSpritesDataPtr->battlerData[battler].invisible = invisible;
     }
 }
 
