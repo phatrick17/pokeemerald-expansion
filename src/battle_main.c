@@ -4197,6 +4197,20 @@ void SwitchPartyOrder(u32 battler)
     }
 }
 
+static bool32 HasBattlerCommittedBallThrow(u32 battler)
+{
+    if (gChosenActionByBattler[battler] == B_ACTION_THROW_BALL)
+        return TRUE;
+
+    if (gChosenActionByBattler[battler] != B_ACTION_USE_ITEM)
+        return FALSE;
+
+    if ((gBattleResources->bufferB[battler][1] | (gBattleResources->bufferB[battler][2] << 8)) == 0)
+        return FALSE;
+
+    return GetItemPocket(gBattleResources->bufferB[battler][1] | (gBattleResources->bufferB[battler][2] << 8)) == POCKET_POKE_BALLS;
+}
+
 enum
 {
     STATE_TURN_START_RECORD,
@@ -4404,7 +4418,7 @@ static void HandleTurnActionSelectionState(void)
                 case B_ACTION_CANCEL_PARTNER:
                     gBattleCommunication[battler] = STATE_WAIT_SET_BEFORE_ACTION;
                     gBattleCommunication[GetPartnerBattler(battler)] = STATE_BEFORE_ACTION_CHOSEN;
-                    if (gChosenActionByBattler[GetPartnerBattler(battler)] == B_ACTION_THROW_BALL)
+                    if (HasBattlerCommittedBallThrow(GetPartnerBattler(battler)))
                         gBattleStruct->throwingPokeBall = FALSE;
                     RecordedBattle_ClearBattlerAction(battler, 1);
                     if (gBattleMons[GetPartnerBattler(battler)].volatiles.multipleTurns
@@ -4570,7 +4584,7 @@ static void HandleTurnActionSelectionState(void)
                     if ((gBattleResources->bufferB[battler][1] | (gBattleResources->bufferB[battler][2] << 8)) == 0)
                     {
                         // Don't clear the throw state if the partner already locked in a throw-ball action.
-                        if (gChosenActionByBattler[GetPartnerBattler(battler)] != B_ACTION_THROW_BALL)
+                        if (!HasBattlerCommittedBallThrow(GetPartnerBattler(battler)))
                             gBattleStruct->throwingPokeBall = FALSE;
                         gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
                     }
