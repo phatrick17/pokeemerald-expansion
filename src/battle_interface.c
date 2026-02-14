@@ -636,6 +636,12 @@ static const struct WindowTemplate sHealthboxWindowTemplate = {
 // The same goes for a 2 vs 1 where opponent has only one pokemon.
 enum BattleCoordTypes GetBattlerCoordsIndex(u32 battler)
 {
+    if (IsDoubleBattle()
+     && battler < gBattlersCount
+     && !(gAbsentBattlerFlags & (1u << battler))
+     && (gAbsentBattlerFlags & (1u << BATTLE_PARTNER(battler))))
+        return BATTLE_COORDS_SINGLES;
+
     if (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT && gPlayerPartyCount == 1 && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         return BATTLE_COORDS_SINGLES;
     else if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT && gEnemyPartyCount == 1 && !(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
