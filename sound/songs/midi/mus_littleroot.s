@@ -1,6 +1,6 @@
         .include "MPlayDef.s"
 
-        .equ    mus_dmca_battle_grp, voicegroup000
+        .equ    mus_dmca_battle_grp, voicegroup_colosseum_trainer_voicegroup
         .equ    mus_dmca_battle_pri, 0
         .equ    mus_dmca_battle_rev, 0
         .equ    mus_dmca_battle_key, 0
