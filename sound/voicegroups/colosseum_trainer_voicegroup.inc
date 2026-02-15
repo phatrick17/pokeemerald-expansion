@@ -1,5 +1,5 @@
 voice_group colosseum_trainer_voicegroup
-	voice_keysplit_all voicegroup_rs_drumset
+	voice_keysplit_all voicegroup_frlg_drumset
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_piano1_60, 255, 238, 0, 150
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
