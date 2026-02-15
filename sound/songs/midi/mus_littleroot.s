@@ -1229,7 +1229,7 @@ mus_littleroot_4:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
 mus_littleroot_4_LOOP:
-        .byte           VOICE , 3
+        .byte           VOICE , 58
         .byte           VOL   , 93
         .byte           BENDR , 0
         .byte           MODT  , mod_vib
