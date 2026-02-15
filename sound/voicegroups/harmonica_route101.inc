@@ -4,7 +4,7 @@ voice_group harmonica_route101
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_flute, 255, 127, 231, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_flute, 255, 127, 231, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_flute, 255, 127, 231, 127
-	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_string_ensemble_72, 255, 0, 255, 165
+	voice_square_2 60, 0, 2, 0, 1, 7, 1 @ program 7 used by mus_route101 countermelody; PSG avoids DirectSound contention with SFX
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_string_ensemble_60, 255, 0, 255, 165
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_string_ensemble_60, 255, 0, 255, 165
 	voice_directsound 60, 0, DirectSoundWaveData_sd90_classical_whistle, 85, 137, 180, 180
