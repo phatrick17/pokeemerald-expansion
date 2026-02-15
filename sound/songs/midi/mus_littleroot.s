@@ -1,5 +1,17 @@
         .include "MPlayDef.s"
 
+@ --- Compact voice remap (for smaller voicegroups) ---
+@ Original -> New:
+@     0 -> 0
+@     1 -> 2
+@     2 -> 2
+@    33 -> 1
+@    48 -> 4
+@    60 -> 3
+@    81 -> 3
+@ Drums remain VOICE 0 (drumset).
+@ You must ensure your chosen voicegroup defines instruments at these indices.
+
         .equ    mus_littleroot_grp, voicegroup_colosseum_trainer_voicegroup
         .equ    mus_littleroot_pri, 0
         .equ    mus_littleroot_rev, 0
@@ -16,7 +28,7 @@ mus_littleroot_0:
 @ 000   ----------------------------------------
         .byte   TEMPO , 146/2
 mus_littleroot_0_LOOP:
-        .byte           VOICE , 33
+        .byte           VOICE , 1
         .byte           PAN   , c_v+34
         .byte           VOL   , 56
         .byte           N05   , Cn1 , v106
@@ -364,7 +376,7 @@ mus_littleroot_2:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
 mus_littleroot_2_LOOP:
-        .byte           VOICE , 81
+        .byte           VOICE , 3
         .byte           N03   , Cn6 , v047
         .byte   W06
         .byte           VOL   , 93
@@ -938,7 +950,7 @@ mus_littleroot_3:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
 mus_littleroot_3_LOOP:
-        .byte           VOICE , 1
+        .byte           VOICE , 2
         .byte           PAN   , c_v-8
         .byte           VOL   , 110
         .byte           N05   , Cn6 , v085
@@ -1229,7 +1241,7 @@ mus_littleroot_4:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
 mus_littleroot_4_LOOP:
-        .byte           VOICE , 60
+        .byte           VOICE , 3
         .byte           VOL   , 93
         .byte           BENDR , 0
         .byte           MODT  , mod_vib
@@ -1376,7 +1388,7 @@ mus_littleroot_5:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
 mus_littleroot_5_LOOP:
-        .byte           VOICE , 48
+        .byte           VOICE , 4
         .byte           VOL   , 110
         .byte           BENDR , 0
         .byte           MODT  , mod_vib
