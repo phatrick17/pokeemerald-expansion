@@ -1,5 +1,17 @@
         .include "MPlayDef.s"
 
+@ --- Compact voice remap (for smaller voicegroups) ---
+@ Original -> New:
+@     0 -> 0
+@     1 -> 2
+@     2 -> 2
+@    33 -> 1
+@    48 -> 4
+@    60 -> 3
+@    81 -> 3
+@ Drums remain VOICE 0 (drumset).
+@ You must ensure your chosen voicegroup defines instruments at these indices.
+
         .equ    mus_littleroot_grp, voicegroup_littleroot_compact
         .equ    mus_littleroot_pri, 0
         .equ    mus_littleroot_rev, 0
