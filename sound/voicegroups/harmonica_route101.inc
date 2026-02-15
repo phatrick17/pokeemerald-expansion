@@ -39,7 +39,7 @@ voice_group harmonica_route101
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
-	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
+	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0 @ program 40 used by mus_route101 lead; PSG avoids DirectSound popping
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
@@ -127,4 +127,3 @@ voice_group harmonica_route101
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
 	voice_directsound 60, 0, DirectSoundWaveData_sc88pro_accordion, 255, 0, 255, 127
 	voice_noise_alt 60, 0, 0, 0, 1, 0, 0
-
