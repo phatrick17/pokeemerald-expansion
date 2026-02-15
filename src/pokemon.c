@@ -6099,7 +6099,7 @@ u16 GetBattleBGM(void)
     }
     else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
     {
-        return MUS_VS_TRAINER;
+        return MUS_LITTLEROOT;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
