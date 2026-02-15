@@ -12,7 +12,7 @@
 @ Drums remain VOICE 0 (drumset).
 @ You must ensure your chosen voicegroup defines instruments at these indices.
 
-        .equ    mus_littleroot_grp, voicegroup_colosseum_trainer_voicegroup
+        .equ    mus_littleroot_grp, voicegroup_littleroot_compact
         .equ    mus_littleroot_pri, 0
         .equ    mus_littleroot_rev, 0
         .equ    mus_littleroot_key, 0
