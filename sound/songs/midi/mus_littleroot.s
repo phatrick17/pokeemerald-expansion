@@ -1559,7 +1559,9 @@ mus_littleroot_6:
 @ 000   ----------------------------------------
 mus_littleroot_6_LOOP:
         .byte           VOICE , 0
-        .byte           VOL   , 84
+        .byte           VOL   , 102
+        .byte           N06   , Gn1 , v031
+        .byte           N06   , Bn0 , v111
         .byte           N48   , Dn1 , v110 , gtp3
         .byte           N24   , Cs2 , v111
         .byte   W96
