@@ -2328,7 +2328,7 @@ mus_dmca_battle_8:
 @ 000   ----------------------------------------
 mus_dmca_battle_8_LOOP:
         .byte           VOICE , 0
-        .byte           VOL   , 84
+        .byte           VOL   , 102
         .byte           N06   , Gn1 , v031
         .byte           N06   , Bn0 , v111
         .byte           N48   , Dn1 , v110 , gtp3
