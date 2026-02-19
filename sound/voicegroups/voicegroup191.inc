@@ -1,6 +1,5 @@
-	.align 2
-voicegroup191::
-	voice_keysplit voicegroup_rs_drumset, keysplit_piano
+voicegroup191
+	voice_keysplit_all voicegroup_rs_drumset
 	voice_keysplit_all voicegroup_piano_keysplit
 	voice_keysplit_all voicegroup_strings_keysplit
 	voice_directsound 60, 0, DirectSoundWaveData_steinway_b_piano, 128, 204, 51, 242
