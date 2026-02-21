@@ -205,3 +205,4 @@
 .include "sound/voicegroups/rg_sevii_67.inc"
 .include "sound/voicegroups/drumsets/rg_credits.inc"
 .include "sound/voicegroups/voicegroup191.inc" @voicegroups from TAA Repo
+.include "sound/voicegroups/colosseum_battle_trainer.inc"
