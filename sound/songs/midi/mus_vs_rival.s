@@ -14,7 +14,7 @@
 mus_vs_rival_0:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte   TEMPO , 148/2
+        .byte   TEMPO , 142/2
         .byte           VOICE , 0
         .byte           BENDR , 12
         .byte           VOL   , 105
@@ -167,10 +167,10 @@ mus_vs_rival_0_24:
         .byte           N05   , Dn1 , v103
         .byte   W12
         .byte           N04   , Dn1 , v105
-        .byte   W06
+        .byte   W16
         .byte   GOTO
          .word  mus_vs_rival_0_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte   FINE
 
@@ -179,7 +179,7 @@ mus_vs_rival_0_24:
 mus_vs_rival_1:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 33
+        .byte           VOICE , 38
         .byte           BENDR , 12
         .byte           VOL   , 105
         .byte   W96
@@ -300,10 +300,10 @@ mus_vs_rival_1_LOOP:
 @ 033   ----------------------------------------
         .byte   W96
 @ 034   ----------------------------------------
-        .byte   W18
+        .byte   W28
         .byte   GOTO
          .word  mus_vs_rival_1_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -313,7 +313,7 @@ mus_vs_rival_1_LOOP:
 mus_vs_rival_2:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 1
+        .byte           VOICE , 3
         .byte           BENDR , 12
         .byte           VOL   , 105
         .byte   W24
@@ -647,10 +647,10 @@ mus_vs_rival_2_15:
         .byte   W01
         .byte           N04   , Gn4
         .byte           N04   , Dn4
-        .byte   W07
+        .byte   W17
         .byte   GOTO
          .word  mus_vs_rival_2_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -660,7 +660,7 @@ mus_vs_rival_2_15:
 mus_vs_rival_3:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 33
+        .byte           VOICE , 83
         .byte           BENDR , 12
         .byte           VOL   , 105
         .byte   W24
@@ -793,10 +793,10 @@ mus_vs_rival_3_16:
 @ 033   ----------------------------------------
         .byte   W96
 @ 034   ----------------------------------------
-        .byte   W18
+        .byte   W28
         .byte   GOTO
          .word  mus_vs_rival_3_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -806,7 +806,7 @@ mus_vs_rival_3_16:
 mus_vs_rival_4:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 48
+        .byte           VOICE , 2
         .byte           BENDR , 12
         .byte           VOL   , 105
         .byte   W24
@@ -1089,10 +1089,10 @@ mus_vs_rival_4_10:
         .byte                   Gn0
         .byte   W01
         .byte                   Gn1
-        .byte   W02
+        .byte   W12
         .byte   GOTO
          .word  mus_vs_rival_4_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -1277,10 +1277,10 @@ mus_vs_rival_5_LOOP:
 @ 033   ----------------------------------------
         .byte   W96
 @ 034   ----------------------------------------
-        .byte   W18
+        .byte   W28
         .byte   GOTO
          .word  mus_vs_rival_5_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -1561,10 +1561,10 @@ mus_vs_rival_6_LOOP:
 @ 033   ----------------------------------------
         .byte   W96
 @ 034   ----------------------------------------
-        .byte   W18
+        .byte   W28
         .byte   GOTO
          .word  mus_vs_rival_6_LOOP
-        .byte   W78
+        .byte   W68
 @ 035   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -1576,10 +1576,10 @@ mus_vs_rival_6_LOOP:
 mus_vs_rival:
         .byte   7                       @ Num Tracks
         .byte   0                       @ Unknown
-        .byte   mus_vs_rival_pri        @ Priority
-        .byte   mus_vs_rival_rev        @ Reverb
+        .byte   mus_vs_rival_pri       @ Priority
+        .byte   mus_vs_rival_rev       @ Reverb
 
-        .word   mus_vs_rival_grp       
+        .word   mus_vs_rival_grp      
 
         .word   mus_vs_rival_0
         .word   mus_vs_rival_1

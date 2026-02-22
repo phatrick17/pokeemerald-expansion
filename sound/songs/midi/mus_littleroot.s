@@ -15,11 +15,11 @@ mus_littleroot_0:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
         .byte   TEMPO , 146/2
-mus_littleroot_0_LOOP:
         .byte           VOL   , 44
         .byte           VOICE , 33
         .byte           BENDR , 12
         .byte   W24
+mus_littleroot_0_LOOP:
         .byte           N04   , Cn2 , v119
         .byte   W11
         .byte           N05
@@ -293,11 +293,11 @@ mus_littleroot_0_27:
 mus_littleroot_1:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-mus_littleroot_1_LOOP:
         .byte           VOL   , 67
         .byte           VOICE , 46
         .byte           BENDR , 12
         .byte   W24
+mus_littleroot_1_LOOP:
         .byte           N03   , Cn6 , v070
         .byte   W11
         .byte                   Ds5
@@ -626,12 +626,13 @@ mus_littleroot_1_14:
 mus_littleroot_2:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-mus_littleroot_2_LOOP:
         .byte           VOL   , 113
         .byte           VOICE , 1
         .byte           BENDR , 12
         .byte           PAN   , c_v+35
-        .byte   W96
+        .byte   W24
+mus_littleroot_2_LOOP:
+        .byte   W72
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
@@ -871,15 +872,15 @@ mus_littleroot_2_14:
 mus_littleroot_3:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-mus_littleroot_3_LOOP:
         .byte           VOICE , 56
         .byte           BENDR , 12
         .byte           PAN   , c_v+46
         .byte           VOL   , 93
         .byte   W01
         .byte           PAN   , c_v+0
-        .byte   W92
-        .byte   W03
+        .byte   W23
+mus_littleroot_3_LOOP:
+        .byte   W72
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
@@ -904,7 +905,7 @@ mus_littleroot_3_LOOP:
         .byte   W96
 @ 012   ----------------------------------------
         .byte   W23
-        .byte                   c_v+46
+        .byte           PAN   , c_v+46
         .byte   W16
         .byte                   c_v-46
         .byte   W20
@@ -1051,11 +1052,13 @@ mus_littleroot_3_LOOP:
         .byte   W96
 @ 030   ----------------------------------------
         .byte   W12
+        .byte           PAN   , c_v+0
         .byte   GOTO
          .word  mus_littleroot_3_LOOP
         .byte   W84
 @ 031   ----------------------------------------
         .byte           VOICE , 0
+        .byte           PAN   , c_v+46
         .byte   FINE
 
 @****************** Track 4 (Midi-Chn.5) ******************@
@@ -1063,11 +1066,12 @@ mus_littleroot_3_LOOP:
 mus_littleroot_4:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-mus_littleroot_4_LOOP:
         .byte           VOL   , 116
         .byte           VOICE , 73
         .byte           BENDR , 12
-        .byte   W96
+        .byte   W24
+mus_littleroot_4_LOOP:
+        .byte   W72
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
@@ -1253,11 +1257,12 @@ mus_littleroot_4_LOOP:
 mus_littleroot_5:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-mus_littleroot_5_LOOP:
         .byte           VOL   , 118
         .byte           VOICE , 4
         .byte           BENDR , 12
-        .byte   W96
+        .byte   W24
+mus_littleroot_5_LOOP:
+        .byte   W72
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
@@ -1400,11 +1405,12 @@ mus_littleroot_5_5:
 mus_littleroot_6:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-mus_littleroot_6_LOOP:
         .byte           VOL   , 85
         .byte           VOICE , 0
         .byte           BENDR , 12
-        .byte   W96
+        .byte   W24
+mus_littleroot_6_LOOP:
+        .byte   W72
 @ 001   ----------------------------------------
         .byte   W96
 @ 002   ----------------------------------------
