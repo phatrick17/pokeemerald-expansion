@@ -281,9 +281,10 @@ mus_littleroot_0_27:
         .byte           N04   , Gn1 , v119
         .byte   W12
         .byte           N05
+        .byte   W12
         .byte   GOTO
          .word  mus_littleroot_0_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -613,10 +614,10 @@ mus_littleroot_1_14:
 @ 029   ----------------------------------------
         .byte   W96
 @ 030   ----------------------------------------
-        .byte   W12
+        .byte   W24
         .byte   GOTO
          .word  mus_littleroot_1_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -859,10 +860,10 @@ mus_littleroot_2_14:
         .byte   W84
         .byte   W01
 @ 030   ----------------------------------------
-        .byte   W12
+        .byte   W24
         .byte   GOTO
          .word  mus_littleroot_2_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -1051,11 +1052,11 @@ mus_littleroot_3_LOOP:
 @ 029   ----------------------------------------
         .byte   W96
 @ 030   ----------------------------------------
-        .byte   W12
+        .byte   W24
         .byte           PAN   , c_v+0
         .byte   GOTO
          .word  mus_littleroot_3_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte           VOICE , 0
         .byte           PAN   , c_v+46
@@ -1244,10 +1245,10 @@ mus_littleroot_4_LOOP:
 @ 029   ----------------------------------------
         .byte   W96
 @ 030   ----------------------------------------
-        .byte   W12
+        .byte   W24
         .byte   GOTO
          .word  mus_littleroot_4_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -1392,10 +1393,10 @@ mus_littleroot_5_5:
 @ 029   ----------------------------------------
         .byte   W96
 @ 030   ----------------------------------------
-        .byte   W12
+        .byte   W24
         .byte   GOTO
          .word  mus_littleroot_5_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte           VOICE , 0
         .byte   FINE
@@ -1559,10 +1560,10 @@ mus_littleroot_6_7:
         .byte   PATT
          .word  mus_littleroot_6_5
 @ 030   ----------------------------------------
-        .byte   W12
+        .byte   W24
         .byte   GOTO
          .word  mus_littleroot_6_LOOP
-        .byte   W84
+        .byte   W72
 @ 031   ----------------------------------------
         .byte   FINE
 
