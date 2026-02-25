@@ -60,15 +60,15 @@
       "x": 3,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_ROUTE101",
+      "dest_warp_id": "OUTSKIRT_STAND_OUTSIDE"
     },
     {
       "x": 4,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_ROUTE101",
+      "dest_warp_id": "OUTSKIRT_STAND_OUTSIDE"
     }
   ],
   "coord_events": [],
