@@ -593,6 +593,9 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
     DmaFill32(3, 0, (void *)OAM, OAM_SIZE);
     DmaFill16(3, 0, (void *)(PLTT + 2), PLTT_SIZE - 2);
 
+    if (!returningFromOptionsMenu)
+        PlayBGM(MUS_OLDALE);
+
     ResetPaletteFade();
     LoadPalette(sMainMenuBgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
     LoadPalette(sMainMenuTextPal, BG_PLTT_ID(15), PLTT_SIZE_4BPP);

@@ -1,6 +1,6 @@
         .include "MPlayDef.s"
 
-        .equ    mus_littleroot_grp, voicegroup_colosseum_battle_trainer
+        .equ    mus_littleroot_grp, voicegroup229
         .equ    mus_littleroot_pri, 0
         .equ    mus_littleroot_rev, 0
         .equ    mus_littleroot_key, 0
@@ -15,8 +15,8 @@ mus_littleroot_0:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
         .byte   TEMPO , 146/2
-        .byte           VOL   , 40
-        .byte           VOICE , 33
+        .byte           VOL   , 44
+        .byte           VOICE , 20
         .byte           BENDR , 12
         .byte   W24
 mus_littleroot_0_LOOP:
@@ -294,8 +294,8 @@ mus_littleroot_0_27:
 mus_littleroot_1:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 60
-        .byte           VOICE , 46
+        .byte           VOL   , 67
+        .byte           VOICE , 23
         .byte           BENDR , 12
         .byte   W24
 mus_littleroot_1_LOOP:
@@ -627,7 +627,7 @@ mus_littleroot_1_14:
 mus_littleroot_2:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 60
+        .byte           VOL   , 70
         .byte           VOICE , 1
         .byte           BENDR , 12
         .byte           PAN   , c_v+35
@@ -873,10 +873,10 @@ mus_littleroot_2_14:
 mus_littleroot_3:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 56
+        .byte           VOICE , 29
         .byte           BENDR , 12
         .byte           PAN   , c_v+46
-        .byte           VOL   , 80
+        .byte           VOL   , 70
         .byte   W01
         .byte           PAN   , c_v+0
         .byte   W23
@@ -1067,8 +1067,8 @@ mus_littleroot_3_LOOP:
 mus_littleroot_4:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 100
-        .byte           VOICE , 73
+        .byte           VOL   , 70
+        .byte           VOICE , 35
         .byte           BENDR , 12
         .byte   W24
 mus_littleroot_4_LOOP:
@@ -1258,7 +1258,7 @@ mus_littleroot_4_LOOP:
 mus_littleroot_5:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 100
+        .byte           VOL   , 70
         .byte           VOICE , 4
         .byte           BENDR , 12
         .byte   W24
@@ -1406,8 +1406,8 @@ mus_littleroot_5_5:
 mus_littleroot_6:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 85
-        .byte           VOICE , 0
+        .byte           VOL   , 90
+        .byte           VOICE , 39
         .byte           BENDR , 12
         .byte   W24
 mus_littleroot_6_LOOP:
@@ -1574,10 +1574,10 @@ mus_littleroot_6_7:
 mus_littleroot:
         .byte   7                       @ Num Tracks
         .byte   0                       @ Unknown
-        .byte   mus_littleroot_pri      @ Priority
-        .byte   mus_littleroot_rev      @ Reverb
+        .byte   mus_littleroot_pri     @ Priority
+        .byte   mus_littleroot_rev     @ Reverb
 
-        .word   mus_littleroot_grp     
+        .word   mus_littleroot_grp    
 
         .word   mus_littleroot_0
         .word   mus_littleroot_1
