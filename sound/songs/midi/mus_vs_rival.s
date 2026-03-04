@@ -1,6 +1,6 @@
         .include "MPlayDef.s"
 
-        .equ    mus_vs_rival_grp, voicegroup229
+        .equ    mus_vs_rival_grp, voicegroup_vs_frontier_brain
         .equ    mus_vs_rival_pri, 0
         .equ    mus_vs_rival_rev, 0
         .equ    mus_vs_rival_key, 0
@@ -15,7 +15,7 @@ mus_vs_rival_0:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
         .byte   TEMPO , 142/2
-        .byte           VOICE , 20
+        .byte           VOICE , 33
         .byte           BENDR , 12
         .byte           VOL   , 80
         .byte   W96
@@ -496,7 +496,7 @@ mus_vs_rival_1_15:
 mus_vs_rival_2:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 20
+        .byte           VOICE , 33
         .byte           BENDR , 12
         .byte           VOL   , 80
         .byte   W24
@@ -642,7 +642,7 @@ mus_vs_rival_2_16:
 mus_vs_rival_3:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 23
+        .byte           VOICE , 48
         .byte           BENDR , 12
         .byte           VOL   , 75
         .byte   W24
@@ -939,7 +939,7 @@ mus_vs_rival_4:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
         .byte           VOL   , 60
-        .byte           VOICE , 15
+        .byte           VOICE , 24
         .byte           BENDR , 12
         .byte   W96
 @ 001   ----------------------------------------
@@ -1126,7 +1126,7 @@ mus_vs_rival_4_LOOP:
 mus_vs_rival_5:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 17
+        .byte           VOICE , 29
         .byte           BENDR , 12
         .byte           VOL   , 80
         .byte   W96
@@ -1410,9 +1410,9 @@ mus_vs_rival_5_LOOP:
 mus_vs_rival_6:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOICE , 39
+        .byte           VOICE , 0
         .byte           BENDR , 12
-        .byte           VOL   , 65
+        .byte           VOL   , 75
         .byte   W48
         .byte           N04   , Dn1 , v115
         .byte   W48
