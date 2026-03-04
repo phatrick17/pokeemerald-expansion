@@ -14,6 +14,7 @@
 #include "util.h"
 #include "pokemon.h"
 #include "constants/moves.h"
+#include "constants/rgb.h"
 #include "task.h"
 #include "sprite.h"
 #include "sound.h"
@@ -79,6 +80,32 @@ const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2] =
 {
     {gBattleInterface_BallStatusBarPal, TAG_HEALTHBOX_PAL},
     {gBattleInterface_BallDisplayPal, TAG_HEALTHBAR_PAL}
+};
+
+// Purple-tinted healthbox palette for Shadow Pokemon
+// Based on the normal healthbox palette with box colors shifted to purple
+static const u16 sShadowHealthboxPal[] = {
+    [0]  = RGB(0, 0, 0),       // Transparent
+    [1]  = RGB(8, 8, 8),       // Dark grey (text shadow) - unchanged
+    [2]  = RGB(29, 25, 31),    // Light lavender (box fill, was light cream)
+    [3]  = RGB(24, 19, 28),    // Medium lavender (was tan)
+    [4]  = RGB(20, 14, 24),    // Purple accent (was gold/olive)
+    [5]  = RGB(14, 10, 19),    // Muted purple border (was grey-green)
+    [6]  = RGB(10, 6, 15),     // Dark purple border (was dark grey-green)
+    [7]  = RGB(6, 0, 10),      // Very dark purple (was very dark green)
+    [8]  = RGB(8, 4, 12),      // Dark purple (was dark grey-green)
+    [9]  = RGB(31, 28, 0),     // Yellow HP text - unchanged
+    [10] = RGB(31, 19, 18),    // Red HP text - unchanged
+    [11] = RGB(8, 25, 31),     // Blue - unchanged
+    [12] = RGB(0, 0, 31),      // Blue - unchanged
+    [13] = RGB(0, 31, 0),      // Green - unchanged
+    [14] = RGB(31, 0, 0),      // Red - unchanged
+    [15] = RGB(13, 18, 31),    // Light blue - unchanged
+};
+
+static const struct SpritePalette sSpritePalette_ShadowHealthbox =
+{
+    sShadowHealthboxPal, TAG_HEALTHBOX_SHADOW_PAL
 };
 
 const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow =
@@ -718,6 +745,7 @@ void BattleLoadAllHealthBoxesGfxAtOnce(void)
 
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+    LoadSpritePalette(&sSpritePalette_ShadowHealthbox);
     if (!IsDoubleBattle())
     {
         LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
@@ -746,6 +774,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
         {
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
+            LoadSpritePalette(&sSpritePalette_ShadowHealthbox);
             LoadIndicatorSpritesGfx();
             CategoryIcons_LoadSpritesGfx();
         }

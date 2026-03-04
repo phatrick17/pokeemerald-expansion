@@ -56,6 +56,7 @@ enum
 #define TAG_HEALTHBAR_PAL               TAG_HEALTHBAR_PLAYER1_TILE
 #define TAG_HEALTHBOX_PAL               TAG_HEALTHBOX_PLAYER1_TILE
 #define TAG_SHADOW_PAL                  TAG_HEALTHBOX_PLAYER1_TILE
+#define TAG_HEALTHBOX_SHADOW_PAL        0xD75A
 
 #define TAG_SHADOW_TILE                 0xD759
 
@@ -138,5 +139,6 @@ void UpdateAbilityPopup(u8 battlerId);
 void CategoryIcons_LoadSpritesGfx(void);
 void TryToAddMoveInfoWindow(void);
 void TryToHideMoveInfoWindow(void);
+void SetHealthboxPalette_Pokemon(u8 healthboxSpriteId, struct Pokemon *mon);
 
 #endif // GUARD_BATTLE_INTERFACE_H
