@@ -1346,8 +1346,11 @@ static u8 GetPartyBoxPaletteFlags(u8 slot, u8 animNum)
     }
     if (gPartyMenu.action == PARTY_ACTION_SOFTBOILED && slot == gPartyMenu.slotId )
         palFlags |= PARTY_PAL_TO_SOFTBOIL;
-    if (GetMonData(&gPlayerParty[slot], MON_DATA_IS_SHADOW))
-        palFlags |= PARTY_PAL_SHADOW;
+    {
+        u16 species = GetMonData(&gPlayerParty[slot], MON_DATA_SPECIES);
+        if (species != SPECIES_NONE && gSpeciesInfo[species].isShadow)
+            palFlags |= PARTY_PAL_SHADOW;
+    }
 
     return palFlags;
 }
