@@ -820,6 +820,26 @@ void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
     UpdateIndicatorVisibilityAndType(healthboxSpriteId, FALSE);
 }
 
+// Applies the purple Shadow Pokemon palette to a healthbox if the mon is a Shadow Pokemon.
+void SetHealthboxPalette_Pokemon(u8 healthboxSpriteId, struct Pokemon *mon)
+{
+    bool32 isShadow = GetMonData(mon, MON_DATA_IS_SHADOW);
+    u8 palIdx;
+    u8 rightSpriteId;
+
+    if (isShadow)
+        palIdx = IndexOfSpritePaletteTag(TAG_HEALTHBOX_SHADOW_PAL);
+    else
+        palIdx = IndexOfSpritePaletteTag(TAG_HEALTHBOX_PAL);
+
+    if (palIdx < 16)
+    {
+        gSprites[healthboxSpriteId].oam.paletteNum = palIdx;
+        rightSpriteId = gSprites[healthboxSpriteId].oam.affineParam;
+        gSprites[rightSpriteId].oam.paletteNum = palIdx;
+    }
+}
+
 static void UpdateSpritePos(u8 spriteId, s16 x, s16 y)
 {
     gSprites[spriteId].x = x;
@@ -1989,6 +2009,10 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
     u32 battler = gSprites[healthboxSpriteId].hMain_Battler;
     s32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
     s32 currHp = GetMonData(mon, MON_DATA_HP);
+
+    // Apply shadow palette when fully refreshing the healthbox
+    if (elementId == HEALTHBOX_ALL)
+        SetHealthboxPalette_Pokemon(healthboxSpriteId, mon);
 
     if (IsOnPlayerSide(battler))
     {

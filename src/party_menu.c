@@ -158,7 +158,7 @@ enum {
 #define PARTY_PAL_SWITCHING    (1 << 4)
 #define PARTY_PAL_TO_SOFTBOIL  (1 << 5)
 #define PARTY_PAL_NO_MON       (1 << 6)
-#define PARTY_PAL_UNUSED       (1 << 7)
+#define PARTY_PAL_SHADOW       (1 << 7)
 
 #define MENU_DIR_DOWN     1
 #define MENU_DIR_UP      -1
@@ -1346,6 +1346,8 @@ static u8 GetPartyBoxPaletteFlags(u8 slot, u8 animNum)
     }
     if (gPartyMenu.action == PARTY_ACTION_SOFTBOILED && slot == gPartyMenu.slotId )
         palFlags |= PARTY_PAL_TO_SOFTBOIL;
+    if (GetMonData(&gPlayerParty[slot], MON_DATA_IS_SHADOW))
+        palFlags |= PARTY_PAL_SHADOW;
 
     return palFlags;
 }
@@ -2412,6 +2414,14 @@ static void DrawEmptySlot(u8 windowId)
     LoadPalette(GetPartyMenuPalBufferPtr(paletteIds[2]), paletteOffsets[2] + palOffset, PLTT_SIZEOF(1));  \
 }
 
+// Loads shadow palette colors directly from const arrays (not from the palette buffer)
+#define LOAD_PARTY_BOX_PAL_DIRECT(colorArray, paletteOffsets)                                             \
+{                                                                                                         \
+    LoadPalette(&(colorArray)[0], paletteOffsets[0] + palOffset, PLTT_SIZEOF(1));                         \
+    LoadPalette(&(colorArray)[1], paletteOffsets[1] + palOffset, PLTT_SIZEOF(1));                         \
+    LoadPalette(&(colorArray)[2], paletteOffsets[2] + palOffset, PLTT_SIZEOF(1));                         \
+}
+
 static void LoadPartyBoxPalette(struct PartyMenuBox *menuBox, u8 palFlags)
 {
     u8 palOffset = BG_PLTT_ID(GetWindowAttribute(menuBox->windowId, WINDOW_PALETTE_NUM));
@@ -2449,6 +2459,19 @@ static void LoadPartyBoxPalette(struct PartyMenuBox *menuBox, u8 palFlags)
         {
             LOAD_PARTY_BOX_PAL(sPartyBoxSelectedForActionPalIds1, sPartyBoxPalOffsets1);
             LOAD_PARTY_BOX_PAL(sPartyBoxSelectedForActionPalIds2, sPartyBoxPalOffsets2);
+        }
+    }
+    else if (palFlags & PARTY_PAL_SHADOW)
+    {
+        if (palFlags & PARTY_PAL_SELECTED)
+        {
+            LOAD_PARTY_BOX_PAL_DIRECT(sShadowSelectionPalColors1, sPartyBoxPalOffsets1);
+            LOAD_PARTY_BOX_PAL_DIRECT(sShadowPalColors2, sPartyBoxPalOffsets2);
+        }
+        else
+        {
+            LOAD_PARTY_BOX_PAL_DIRECT(sShadowPalColors1, sPartyBoxPalOffsets1);
+            LOAD_PARTY_BOX_PAL_DIRECT(sShadowPalColors2, sPartyBoxPalOffsets2);
         }
     }
     else if (palFlags & PARTY_PAL_FAINTED)

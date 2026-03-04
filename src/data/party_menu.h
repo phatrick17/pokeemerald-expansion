@@ -629,6 +629,13 @@ static const u8 sPartyBoxCurrSelectionPalIds2[] = {97, 103, 104};
 static const u8 sPartyBoxSelectedForActionPalIds2[] = {161, 167, 168};
 static const u8 sPartyBoxNoMonPalIds[] = {17, 27, 28};
 
+// Shadow Pokemon purple palette colors (loaded directly, not from palBuffer)
+// Offsets1 colors map to palette positions {4, 5, 6} in the window palette
+// Offsets2 colors map to palette positions {1, 7, 8} in the window palette
+static const u16 sShadowPalColors1[] = {RGB(17, 10, 22), RGB(13, 7, 18), RGB(9, 4, 14)};   // Dark purple box body
+static const u16 sShadowPalColors2[] = {RGB(22, 16, 26), RGB(7, 3, 11), RGB(5, 1, 9)};     // Purple box accents
+static const u16 sShadowSelectionPalColors1[] = {RGB(24, 16, 29), RGB(20, 12, 25), RGB(16, 8, 21)}; // Brighter purple when selected
+
 static const u8 *const sActionStringTable[] =
 {
     [PARTY_MSG_CHOOSE_MON]             = gText_ChoosePokemon,
