@@ -93,8 +93,9 @@
       "flag": "FLAG_HIDE_ROUTE_101_BOY"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_3",
-      "x": 23,
+      "local_id": "LOCALID_WILLIE_OUTSIDE",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
+      "x": 18,
       "y": 10,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -103,7 +104,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_HIDE_OUTSIDE_WILLIE"
     }
   ],
   "warp_events": [
@@ -197,6 +198,24 @@
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
       "script": "Route101_EventScript_PreventExitNorth"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_WILLIE_STATE",
+      "var_value": "1",
+      "script": "Outside_EventScript_WillieAmbush"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "TEST_WILLIE_INVIS"
     }
   ],
   "bg_events": [
