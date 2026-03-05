@@ -3934,6 +3934,7 @@ static void TryDoEventsBeforeFirstTurn(void)
              && gSpeciesInfo[gBattleMons[battler].species].isShadow)
             {
                 gDisableStructs[battler].shadowMessageDone = TRUE;
+                gBattlerAttacker = battler;
                 BattleScriptExecute(BattleScript_ShadowPokemonAppearedEnd2);
                 return;
             }

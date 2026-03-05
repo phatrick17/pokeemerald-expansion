@@ -32099,6 +32099,17 @@ SnatchMoveSwapMonForSubstitute:
 	waitforvisualfinish
 	goto SnatchMoveTrySwapToSubstituteEnd
 
+@ Shadow Pokemon purple glow effect
+gBattleAnimGeneral_ShadowGlow::
+	monbg ANIM_ATTACKER
+	setalpha 12, 8
+	playsewithpan SE_M_TOXIC, SOUND_PAN_ATTACKER
+	blend_color_cycle selector=F_PAL_ATTACKER, delay=1, num_blends=3, initial_blend_y=0, target_blend_y=13, color=RGB(18, 0, 28)
+	waitforvisualfinish
+	blendoff
+	clearmonbg ANIM_ATTACKER
+	end
+
 @ Healthbox blue flash effect on level up
 gBattleAnimSpecial_LevelUp::
 	playsewithpan SE_EXP_MAX, 0
