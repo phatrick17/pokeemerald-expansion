@@ -823,7 +823,8 @@ void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
 // Applies the purple Shadow Pokemon palette to a healthbox if the mon is a Shadow Pokemon.
 void SetHealthboxPalette_Pokemon(u8 healthboxSpriteId, struct Pokemon *mon)
 {
-    bool32 isShadow = GetMonData(mon, MON_DATA_IS_SHADOW);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    bool32 isShadow = gSpeciesInfo[species].isShadow;
     u8 palIdx;
     u8 rightSpriteId;
  
