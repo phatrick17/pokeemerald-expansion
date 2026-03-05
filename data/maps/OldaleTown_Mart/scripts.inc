@@ -132,3 +132,66 @@ OldaleTown_Mart_Text_RestoreHPWithPotion:
 	.string "To prevent your POKéMON from fainting,\n"
 # 67 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "restore its HP with a POTION.$"
+
+InsideBuilding_EventScript_Willie::
+# 70 "data/maps/OldaleTown_Mart/scripts.pory"
+	lock
+# 71 "data/maps/OldaleTown_Mart/scripts.pory"
+	faceplayer
+# 74 "data/maps/OldaleTown_Mart/scripts.pory"
+	goto_if_set FLAG_DEFEATED_WILLIE, InsideBuilding_EventScript_Willie_2
+# 88 "data/maps/OldaleTown_Mart/scripts.pory"
+	compare VAR_WILLIE_STATE, 1
+	goto_if_eq InsideBuilding_EventScript_Willie_3
+# 98 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox InsideBuilding_EventScript_Willie_Text_2, MSGBOX_DEFAULT
+# 112 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_WILLIE_STATE, 1
+InsideBuilding_EventScript_Willie_1:
+# 115 "data/maps/OldaleTown_Mart/scripts.pory"
+	release
+	end
+
+InsideBuilding_EventScript_Willie_2:
+# 76 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox InsideBuilding_EventScript_Willie_Text_0, MSGBOX_DEFAULT
+	goto InsideBuilding_EventScript_Willie_1
+
+InsideBuilding_EventScript_Willie_3:
+# 90 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox InsideBuilding_EventScript_Willie_Text_1, MSGBOX_DEFAULT
+	goto InsideBuilding_EventScript_Willie_1
+
+
+InsideBuilding_EventScript_Willie_Text_0:
+# 77 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "WILLIE: But, yeah, you're tough.\n"
+	.string "Real tough.\p"
+	.string "You did a real number on us.\p"
+	.string "Hey, I know. Why not test your\n"
+	.string "skills in Phenac City?\p"
+	.string "It's out west of here.\p"
+	.string "You'll find trainers who are way\n"
+	.string "better than me there.\p"
+	.string "You should go out there and get\n"
+	.string "some battling in.$"
+
+InsideBuilding_EventScript_Willie_Text_1:
+# 91 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "WILLIE: Heh... I can tell you're\n"
+	.string "good. I can see it in your eyes.\p"
+	.string "If the opportunity ever arises,\n"
+	.string "I'd like to have a battle with you.$"
+
+InsideBuilding_EventScript_Willie_Text_2:
+# 99 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "WILLIE: You're a POKéMON Trainer\n"
+	.string "too, aren't you?\p"
+	.string "Heh... I can tell. And you're\n"
+	.string "good. I can see it in your eyes.\p"
+	.string "I bet your POKéMON are impressive,\n"
+	.string "too.\p"
+	.string "If the opportunity ever arises,\n"
+	.string "I'd like to have a battle with you.\p"
+	.string "Heh... though I doubt I'd have\n"
+	.string "any chance of beating you.$"

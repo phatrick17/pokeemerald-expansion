@@ -66,3 +66,52 @@ OldaleTown_Mart_Text_RestoreHPWithPotion:
 	.string "To prevent your POKéMON from fainting,\n"
 	.string "restore its HP with a POTION.$"
 `
+script InsideBuilding_EventScript_Willie {
+    lock
+    faceplayer
+
+    // Check if Willie has been defeated
+    if (flag(FLAG_DEFEATED_WILLIE)) {
+        // Post-defeat dialogue
+        msgbox(
+            format("WILLIE: But, yeah, you're tough.\n"
+                   "Real tough.\p"
+                   "You did a real number on us.\p"
+                   "Hey, I know. Why not test your\n"
+                   "skills in Phenac City?\p"
+                   "It's out west of here.\p"
+                   "You'll find trainers who are way\n"
+                   "better than me there.\p"
+                   "You should go out there and get\n"
+                   "some battling in."),
+            MSGBOX_DEFAULT)
+    } elif (var(VAR_WILLIE_STATE) == 1) {
+        // Already talked but hasn't gone outside yet
+        msgbox(
+            format("WILLIE: Heh... I can tell you're\n"
+                   "good. I can see it in your eyes.\p"
+                   "If the opportunity ever arises,\n"
+                   "I'd like to have a battle with you."),
+            MSGBOX_DEFAULT)
+    } else {
+        // First meeting
+        msgbox(
+            format("WILLIE: You're a POKéMON Trainer\n"
+                   "too, aren't you?\p"
+                   "Heh... I can tell. And you're\n"
+                   "good. I can see it in your eyes.\p"
+                   "I bet your POKéMON are impressive,\n"
+                   "too.\p"
+                   "If the opportunity ever arises,\n"
+                   "I'd like to have a battle with you.\p"
+                   "Heh... though I doubt I'd have\n"
+                   "any chance of beating you."),
+            MSGBOX_DEFAULT)
+
+        // Set the state so the outdoor trigger is now armed
+        setvar(VAR_WILLIE_STATE, 1)
+    }
+
+    release
+    end
+}
