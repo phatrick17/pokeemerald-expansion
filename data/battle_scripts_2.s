@@ -252,11 +252,15 @@ BattleScript_TrainerBallBlock::
 	finishaction
 
 BattleScript_ShadowPokemonAppeared::
+	playanimation BS_ATTACKER, B_ANIM_SHADOW_GLOW
+	waitanimation
 	printstring STRINGID_SHADOWPOKEMONAPPEARED
 	waitmessage B_WAIT_TIME_LONG
 	return
 
 BattleScript_ShadowPokemonAppearedEnd2::
+	playanimation BS_ATTACKER, B_ANIM_SHADOW_GLOW
+	waitanimation
 	printstring STRINGID_SHADOWPOKEMONAPPEARED
 	waitmessage B_WAIT_TIME_LONG
 	end2

@@ -8015,6 +8015,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
      && !gDisableStructs[battler].shadowMessageDone)
     {
         gDisableStructs[battler].shadowMessageDone = TRUE;
+        gBattlerAttacker = battler;
         BattleScriptCall(BattleScript_ShadowPokemonAppeared);
         return TRUE;
     }
