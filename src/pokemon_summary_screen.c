@@ -1193,6 +1193,42 @@ u32 GetAdjustedIvData(struct Pokemon *mon, u32 stat)
     return GetMonData(mon, MON_DATA_HP_IV + stat);
 }
 
+// Purple replacement colors for BG palette 0 indices 7-15 (the frame gradient),
+// used when displaying a Shadow Pokémon on the summary screen.
+static const u16 sShadowFramePalette[] =
+{
+    RGB(18, 12, 27), // Index 7:  light purple (was light blue)
+    RGB(16,  9, 25), // Index 8:  medium purple (was teal-blue)
+    RGB(15,  7, 23), // Index 9:  purple (was teal)
+    RGB(14,  4, 21), // Index 10: darker purple (was teal-green)
+    RGB(13,  2, 19), // Index 11: dark purple (was green)
+    RGB(24, 19, 27), // Index 12: light purple inner (was light green)
+    RGB(19, 12, 24), // Index 13: medium purple inner (was medium green)
+    RGB(14,  6, 20), // Index 14: dark purple inner (was dark green)
+    RGB( 9,  0, 16), // Index 15: very dark purple (was very dark teal)
+};
+ 
+static u16 GetSummaryScreenMonSpecies(void)
+{
+    if (!sMonSummaryScreen->isBoxMon)
+    {
+        struct Pokemon *mon = &sMonSummaryScreen->monList.mons[sMonSummaryScreen->curMonIndex];
+        return GetMonData(mon, MON_DATA_SPECIES);
+    }
+    else
+    {
+        struct BoxPokemon *boxMon = &sMonSummaryScreen->monList.boxMons[sMonSummaryScreen->curMonIndex];
+        return GetBoxMonData(boxMon, MON_DATA_SPECIES);
+    }
+}
+ 
+static void LoadShadowFramePaletteIfNeeded(void)
+{
+    u16 species = GetSummaryScreenMonSpecies();
+    if (gSpeciesInfo[species].isShadow)
+        LoadPalette(sShadowFramePalette, BG_PLTT_ID(0) + 7, sizeof(sShadowFramePalette));
+}
+
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
@@ -1463,6 +1499,7 @@ static bool8 DecompressGraphics(void)
         break;
     case 6:
         LoadPalette(gSummaryScreen_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
+        LoadShadowFramePaletteIfNeeded();
         LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
         sMonSummaryScreen->switchCounter++;
         break;
@@ -2099,6 +2136,9 @@ static void Task_ChangeSummaryMon(u8 taskId)
         break;
     case 3:
         CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
+        // Reload frame palette: purple for Shadow Pokémon, default otherwise.
+        LoadPalette(gSummaryScreen_Pal + 7, BG_PLTT_ID(0) + 7, PLTT_SIZEOF(9));
+        LoadShadowFramePaletteIfNeeded();
         sMonSummaryScreen->switchCounter = 0;
         break;
     case 4:

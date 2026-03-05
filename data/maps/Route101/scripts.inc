@@ -663,7 +663,7 @@ Outside_EventScript_WillieAmbush_2:
 # 402 "data/maps/Route101/scripts.pory"
 Outside_Movement_PlayerStepDown:
 # 403 "data/maps/Route101/scripts.pory"
-	walk_down
+	face_up
 # 404 "data/maps/Route101/scripts.pory"
 	step_end
 
