@@ -58,3 +58,5 @@ tools/aif2pcm/aif2pcm
 *.fastSmol
 *.smolTM
 __pycache__
+sound/songs/midi/mus_littleroot.s
+sound/songs/midi/mus_vs_rival.s
