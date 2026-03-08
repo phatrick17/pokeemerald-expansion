@@ -73,6 +73,7 @@
 #define GEN_LATEST GEN_9
 
 // General settings
+#define SKIP_INTRO                   TRUE     // If TRUE, skips the copyright screen and intro animation, going straight to the title screen.
 #define EXPANSION_INTRO              FALSE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
 #define HQ_RANDOM                    TRUE    // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
 #define PHONEMES_SHARED              FALSE   // If TRUE, bard phonemes all reference the same sound (sound/direct_sound_samples/phonemes/shared.bin) to save ROM space.
