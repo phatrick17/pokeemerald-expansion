@@ -1457,6 +1457,9 @@ static void Task_NewGameCustom_StartNamingScreen(u8 taskId)
 
 static void Task_NewGameCustom_GoToOutro(u8 taskId)
 {
+    // Hide the current player sprite; AreYouReady will reposition and show it centered
+    gSprites[gTasks[taskId].tPlayerSpriteId].invisible = TRUE;
+
     // Slide spotlight back to center if it was shifted right (after returning from naming screen)
     if (gTasks[taskId].tBG1HOFS)
     {
@@ -1464,8 +1467,7 @@ static void Task_NewGameCustom_GoToOutro(u8 taskId)
         SetGpuReg(REG_OFFSET_BG1HOFS, gTasks[taskId].tBG1HOFS);
         return;
     }
-    // Hide the current player sprite; AreYouReady will reposition and show it centered
-    gSprites[gTasks[taskId].tPlayerSpriteId].invisible = TRUE;
+
     NewGameBirchSpeech_ClearWindow(0);
     gTasks[taskId].tTimer = 0;
     gTasks[taskId].tIsDoneFadingSprites = TRUE;
