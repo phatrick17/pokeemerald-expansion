@@ -427,7 +427,7 @@ static const struct WindowTemplate sNewGameBirchSpeechTextWindows[] =
         .tilemapLeft = 3,
         .tilemapTop = 2,
         .width = 9,
-        .height = 10,
+        .height = 8,
         .paletteNum = 15,
         .baseBlock = 0x85
     },
@@ -489,15 +489,15 @@ static const struct MenuAction sMenuActions_Gender[] = {
 };
 
 static const struct MenuAction sMenuActions_CustomName[] = {
-    {COMPOUND_STRING("NEW NAME"), {NULL}},
-    {COMPOUND_STRING("WES"), {NULL}},
-    {COMPOUND_STRING("SETH"), {NULL}},
-    {COMPOUND_STRING("THOMAS"), {NULL}}
+    {COMPOUND_STRING("New Name"), {NULL}},
+    {COMPOUND_STRING("Wes"), {NULL}},
+    {COMPOUND_STRING("Seth"), {NULL}},
+    {COMPOUND_STRING("Thomas"), {NULL}}
 };
 
-static const u8 sCustomName_Wes[] = _("WES");
-static const u8 sCustomName_Seth[] = _("SETH");
-static const u8 sCustomName_Thomas[] = _("THOMAS");
+static const u8 sCustomName_Wes[] = _("Wes");
+static const u8 sCustomName_Seth[] = _("Seth");
+static const u8 sCustomName_Thomas[] = _("Thomas");
 
 static const u8 *const sCustomPresetNames[] = {
     sCustomName_Wes,
@@ -1457,6 +1457,13 @@ static void Task_NewGameCustom_StartNamingScreen(u8 taskId)
 
 static void Task_NewGameCustom_GoToOutro(u8 taskId)
 {
+    // Slide spotlight back to center if it was shifted right (after returning from naming screen)
+    if (gTasks[taskId].tBG1HOFS)
+    {
+        gTasks[taskId].tBG1HOFS += 2;
+        SetGpuReg(REG_OFFSET_BG1HOFS, gTasks[taskId].tBG1HOFS);
+        return;
+    }
     // Hide the current player sprite; AreYouReady will reposition and show it centered
     gSprites[gTasks[taskId].tPlayerSpriteId].invisible = TRUE;
     NewGameBirchSpeech_ClearWindow(0);
