@@ -3341,7 +3341,12 @@ static void DebugAction_Sound_MUS(u8 taskId)
     // Display initial song
     StringCopy(gStringVar2, gText_DigitIndicator[0]);
     ConvertIntToDecimalStringN(gStringVar3, START_MUS, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_ITEMS);
-    StringCopyPadded(gStringVar1, sBGMNames[0], CHAR_SPACE, 35);
+    {
+        const u8 *bgmName = sBGMNames[0];
+        if (bgmName == NULL)
+            bgmName = sDebugText_Dashes;
+        StringCopyPadded(gStringVar1, bgmName, CHAR_SPACE, 35);
+    }
     StringExpandPlaceholders(gStringVar4, sDebugText_Sound_Music_ID);
     AddTextPrinterParameterized(windowId, DEBUG_MENU_FONT, gStringVar4, 0, 0, 0, NULL);
 
