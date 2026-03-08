@@ -330,6 +330,7 @@ script Outside_EventScript_WillieAmbush {
     // --- Make Willie visible and walk out from the door ---
     clearflag(FLAG_HIDE_OUTSIDE_WILLIE)
     addobject(LOCALID_WILLIE_OUTSIDE)
+	playse(SE_EXIT)
     applymovement(LOCALID_WILLIE_OUTSIDE, Outside_Movement_WillieExitDoor)
     waitmovement(0)
 
@@ -385,13 +386,25 @@ script Outside_EventScript_WillieAmbush {
     // --- After the battle ---
     // Willie has already said his defeat line via the trainerbattle.
     // He now stands in place. Set the flags:
-
+    msgbox(format("WILLIE: You're tough. Real tough.\p"
+                  "You did a real number on us.\p"
+                  "Hey, I know. Why not test your\n"
+                  "skills in Phenac City?\p"
+                  "It's out west of here.\p"
+                  "You'll find trainers who are way\n"
+                  "better than me there.\p"
+                  "You should go out there and get\n"
+                  "some battling in."), MSGBOX_DEFAULT)
     setflag(FLAG_DEFEATED_WILLIE)       // Mark Willie as defeated
     setvar(VAR_WILLIE_STATE, 2)         // Prevent trigger from ever firing again
-
+	applymovement(LOCALID_WILLIE_OUTSIDE, Outside_Movement_Willie_Disappear)
+	playse(SE_EXIT)
+    removeobject(LOCALID_WILLIE_OUTSIDE)
+	setflag(FLAG_HIDE_OUTSIDE_WILLIE)
     // Willie stays visible for now, player can walk away.
     // The flag to re-hide Willie will be set on the next map transition
     // (see the MAP_SCRIPT_ON_TRANSITION below)
+	// Willie then walks away and diseappears
 
     releaseall
     end
@@ -409,6 +422,10 @@ movement Outside_Movement_WillieExitDoor {
     walk_down  // walk out from the door
     face_player
     step_end
+}
+
+movement Outside_Movement_Willie_Disappear {
+	walk_up
 }
 
 script TEST_WILLIE_INVIS {

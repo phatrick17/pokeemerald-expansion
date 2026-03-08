@@ -3254,8 +3254,8 @@ static void DebugAction_PCBag_ClearBoxes(u8 taskId)
 
 // *******************************
 // Actions Sound
-static const u8 *const sBGMNames[END_MUS - START_MUS + 1];
-static const u8 *const sSENames[END_SE + 1];
+static const u8 *const sBGMNames[END_MUS - START_MUS + 1]; //DEBUG FIX?
+static const u8 *const sSENames[END_SE + 1]; //DEBUG FIX?
 
 #define tCurrentSong  data[5]
 

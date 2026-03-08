@@ -1177,6 +1177,17 @@ void CB2_InitCopyrightScreenAfterTitleScreen(void)
 
 void Task_Scene1_Load(u8 taskId)
 {
+#if SKIP_INTRO == TRUE
+    SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
+    ResetMenuAndMonGlobals();
+    Save_ResetSaveCounters();
+    LoadGameSave(SAVE_NORMAL);
+    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+        Sav2_ClearSetDefault();
+    SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
+    InitHeap(gHeap, HEAP_SIZE);
+    SetMainCallback2(CB2_InitTitleScreen);
+#else
     SetVBlankCallback(NULL);
     sIntroCharacterGender = MOD(Random(), GENDER_COUNT);
     IntroResetGpuRegs();
@@ -1213,6 +1224,7 @@ void Task_Scene1_Load(u8 taskId)
     CreateGameFreakLogoSprites(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, 0);
     gTasks[taskId].sBigDropSpriteId = CreateWaterDrop(236, -14, 0x200, 1, 0x78, FALSE);
     gTasks[taskId].func = Task_Scene1_FadeIn;
+#endif
 }
 
 static void Task_Scene1_FadeIn(u8 taskId)
@@ -1222,7 +1234,7 @@ static void Task_Scene1_FadeIn(u8 taskId)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG_ALL_ON | DISPCNT_OBJ_ON);
     gTasks[taskId].func = Task_Scene1_WaterDrops;
     gIntroFrameCounter = 0;
-    m4aSongNumStart(MUS_INTRO);
+//  m4aSongNumStart(MUS_INTRO);
     ResetSerial();
 }
 
