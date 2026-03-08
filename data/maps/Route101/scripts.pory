@@ -316,6 +316,8 @@ script Outside_EventScript_WillieAmbush {
 
     // --- Exclamation mark on the PLAYER ---
     applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	playse(SE_PIN)
+	waitse
     waitmovement(0)
 
     // --- Pause for half a second (~30 frames at 60fps) ---

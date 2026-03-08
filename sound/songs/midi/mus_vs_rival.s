@@ -17,7 +17,7 @@ mus_vs_rival_0:
         .byte   TEMPO , 142/2
         .byte           VOICE , 33
         .byte           BENDR , 12
-        .byte           VOL   , 80
+        .byte           VOL   , 75
         .byte   W96
 @ 001   ----------------------------------------
         .byte   W96
@@ -498,7 +498,7 @@ mus_vs_rival_2:
 @ 000   ----------------------------------------
         .byte           VOICE , 33
         .byte           BENDR , 12
-        .byte           VOL   , 80
+        .byte           VOL   , 75
         .byte   W24
         .byte           TIE   , Cn1 , v076
         .byte   W72
@@ -1128,7 +1128,7 @@ mus_vs_rival_5:
 @ 000   ----------------------------------------
         .byte           VOICE , 29
         .byte           BENDR , 12
-        .byte           VOL   , 80
+        .byte           VOL   , 75
         .byte   W96
 @ 001   ----------------------------------------
         .byte   W96
