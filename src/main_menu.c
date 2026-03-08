@@ -427,7 +427,7 @@ static const struct WindowTemplate sNewGameBirchSpeechTextWindows[] =
         .tilemapLeft = 3,
         .tilemapTop = 2,
         .width = 9,
-        .height = 10,
+        .height = 8,
         .paletteNum = 15,
         .baseBlock = 0x85
     },
@@ -494,9 +494,9 @@ static const struct MenuAction sMenuActions_CustomName[] = {
     {COMPOUND_STRING("SETH"), {NULL}},
     {COMPOUND_STRING("THOMAS"), {NULL}}
 };
-static const u8 sCustomName_Wes[] = _("WES");
-static const u8 sCustomName_Seth[] = _("SETH");
-static const u8 sCustomName_Thomas[] = _("THOMAS");
+static const u8 sCustomName_Wes[] = _("Wes");
+static const u8 sCustomName_Seth[] = _("Seth");
+static const u8 sCustomName_Thomas[] = _("Thomas");
 static const u8 *const sCustomPresetNames[] = {
     sCustomName_Wes,
     sCustomName_Seth,
@@ -1449,6 +1449,13 @@ static void Task_NewGameCustom_GoToOutro(u8 taskId)
 {
     // Hide the current player sprite; AreYouReady will reposition and show it centered
     gSprites[gTasks[taskId].tPlayerSpriteId].invisible = TRUE;
+    if (gTasks[taskId].tBG1HOFS)
+    {
+        gTasks[taskId].tBG1HOFS += 2;
+        SetGpuReg(REG_OFFSET_BG1HOFS, gTasks[taskId].tBG1HOFS);
+        return;
+    }
+
     NewGameBirchSpeech_ClearWindow(0);
     gTasks[taskId].tTimer = 0;
     gTasks[taskId].tIsDoneFadingSprites = TRUE;
