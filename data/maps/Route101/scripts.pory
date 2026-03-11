@@ -431,9 +431,28 @@ movement Outside_Movement_Willie_Disappear {
 script TEST_WILLIE_INVIS {
     lockall
     setflag(FLAG_HIDE_OUTSIDE_WILLIE)
-    msgbox(
-        format("WILLIE FLAG SET DISAPPEAR."),
-        MSGBOX_DEFAULT)
+	fadescreen(FADE_TO_BLACK)
+    blackscreentext(format
+    	("WILLIE FLAG SET DISAPPEAR."
+		"THIS IS A TEST"
+		"LINE 3"
+		"LINE 4")
+		)
+	fadescreen(FADE_FROM_BLACK)
     releaseall
     end
 }
+
+
+//Fwaah! We sure pigged out, eh?
+//I love chowing down after a job!
+//It adds to the flavor, I swear.
+
+//Heheheh, yeah.
+//And we bagged outselves a great big
+//catch, too.
+
+//Boss'll be sure to fix us up good with
+//big rewards, too.
+//Heheheh, it doesn't get any better than
+//this!

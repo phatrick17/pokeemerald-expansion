@@ -115,3 +115,5 @@ script InsideBuilding_EventScript_Willie {
     release
     end
 }
+
+//MUS_ENCOUNTER_INTERVIEWER

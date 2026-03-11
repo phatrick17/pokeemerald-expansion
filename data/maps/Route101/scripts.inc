@@ -704,8 +704,12 @@ TEST_WILLIE_INVIS::
 # 433 "data/maps/Route101/scripts.pory"
 	setflag FLAG_HIDE_OUTSIDE_WILLIE
 # 434 "data/maps/Route101/scripts.pory"
-	msgbox TEST_WILLIE_INVIS_Text_0, MSGBOX_DEFAULT
-# 437 "data/maps/Route101/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 435 "data/maps/Route101/scripts.pory"
+	blackscreentext TEST_WILLIE_INVIS_Text_0
+# 441 "data/maps/Route101/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 442 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
@@ -760,5 +764,6 @@ Outside_EventScript_WillieAmbush_Text_6:
 	.string "some battling in.$"
 
 TEST_WILLIE_INVIS_Text_0:
-# 435 "data/maps/Route101/scripts.pory"
-	.string "WILLIE FLAG SET DISAPPEAR.$"
+# 436 "data/maps/Route101/scripts.pory"
+	.string "WILLIE FLAG SET DISAPPEAR. THIS IS A\n"
+	.string "TEST LINE 3 LINE 4$"

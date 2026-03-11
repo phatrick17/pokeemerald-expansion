@@ -1467,6 +1467,66 @@ void FieldCB_RushInjuredPokemonToCenter(void)
     gTasks[taskId].tState = WHITEOUT_CUTSCENE_ENTER_MSG_SCREEN;
 }
 
+// Black screen text overlay - callable from scripts via callnative
+// Displays white text on the current (black) screen without a message box frame.
+// Usage in asm: blackscreentext MyText
+// The screen should already be faded to black before calling this.
+ 
+static const u8 *sBlackScreenTextPtr;
+ 
+enum {
+    BLACK_SCREEN_TEXT_CREATE_WINDOW,
+    BLACK_SCREEN_TEXT_PRINT,
+    BLACK_SCREEN_TEXT_WAIT_INPUT,
+    BLACK_SCREEN_TEXT_CLEANUP,
+};
+ 
+static void Task_BlackScreenText(u8 taskId)
+{
+    u32 windowId;
+ 
+    switch (gTasks[taskId].tState)
+    {
+    case BLACK_SCREEN_TEXT_CREATE_WINDOW:
+        windowId = AddWindow(&sWindowTemplate_WhiteoutText);
+        gTasks[taskId].tWindowId = windowId;
+        Menu_LoadStdPalAt(BG_PLTT_ID(15));
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+        PutWindowTilemap(windowId);
+        CopyWindowToVram(windowId, COPYWIN_FULL);
+        gTasks[taskId].tState = BLACK_SCREEN_TEXT_PRINT;
+        gTasks[taskId].tPrintState = 0;
+        break;
+    case BLACK_SCREEN_TEXT_PRINT:
+        if (PrintWhiteOutRecoveryMessage(taskId, sBlackScreenTextPtr, 2, 8))
+            gTasks[taskId].tState = BLACK_SCREEN_TEXT_WAIT_INPUT;
+        break;
+    case BLACK_SCREEN_TEXT_WAIT_INPUT:
+        if (JOY_NEW(A_BUTTON | B_BUTTON))
+            gTasks[taskId].tState = BLACK_SCREEN_TEXT_CLEANUP;
+        break;
+    case BLACK_SCREEN_TEXT_CLEANUP:
+        windowId = gTasks[taskId].tWindowId;
+        ClearWindowTilemap(windowId);
+        CopyWindowToVram(windowId, COPYWIN_MAP);
+        RemoveWindow(windowId);
+        DestroyTask(taskId);
+        ScriptContext_Enable();
+        break;
+    }
+}
+ 
+void ScrCmd_blackscreentext(struct ScriptContext *ctx)
+{
+    u8 taskId;
+    sBlackScreenTextPtr = (const u8 *)ScriptReadWord(ctx);
+ 
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+ 
+    taskId = CreateTask(Task_BlackScreenText, 10);
+    gTasks[taskId].tState = BLACK_SCREEN_TEXT_CREATE_WINDOW;
+}
+ 
 static void GetStairsMovementDirection(u32 metatileBehavior, s16 *speedX, s16 *speedY)
 {
     if (MetatileBehavior_IsDirectionalUpRightStairWarp(metatileBehavior))

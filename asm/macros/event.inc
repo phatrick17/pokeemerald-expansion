@@ -2710,3 +2710,13 @@
 	callnative ScrCmd_istmrelearneractive, requests_effects=1
 	.4byte \destination
 	.endm
+ 
+	@ Displays white text on the current (black) screen without a message box frame.
+	@ The screen should already be faded to black before calling this.
+	@ Waits for a button press before continuing.
+	@ Usage: fadescreen FADE_TO_BLACK / blackscreentext MyText / fadescreen FADE_FROM_BLACK
+	.macro blackscreentext text:req
+	callnative ScrCmd_blackscreentext, requests_effects=1
+	.4byte \text
+	waitstate
+	.endm

@@ -344,7 +344,7 @@
     {
       "id": "LAYOUT_ROUTE119",
       "name": "Route119_Layout",
-      "width": 40,
+      "width": 46,
       "height": 140,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fortree",
