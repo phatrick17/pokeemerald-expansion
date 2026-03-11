@@ -1,8 +1,160 @@
-Route119_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, Route119_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, Route119_OnTransition
-	.byte 0
+// =============================================================
+// Route 119 Scripts (Poryscript)
+// =============================================================
+// The mapscripts block and intro cutscene are in poryscript.
+// All original Route 119 scripts are preserved in the raw block below.
 
+mapscripts Route119_MapScripts {
+    MAP_SCRIPT_ON_RESUME: Route119_OnResume
+    MAP_SCRIPT_ON_TRANSITION: Route119_OnTransition
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_ROUTE119_INTRO_STATE, 0: Route119_EventScript_IntroCutscene
+    ]
+}
+
+// =============================================================
+// OPENING CUTSCENE - Runs once on new game start
+// =============================================================
+// Player warps here at (11, 35) but is moved off-screen.
+// Camera pans down to show Umbreon, Espeon, and WES_RIDE_AWAY.
+// Pokemon disappear, Wes rides off-screen left.
+// Camera pans up, Snaggem grunts + Gonzap appear, say "..."
+// Screen fades, teleport sound, player warps to Route 101.
+
+script Route119_EventScript_IntroCutscene {
+    lockall
+    setflag(FLAG_HIDE_MAP_NAME_POPUP)
+
+    // Spawn camera object at player position (11, 35) BEFORE moving player
+    special(SpawnCameraObject)
+
+    // Move player far off-screen so they are invisible during cutscene
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 11, 0)
+
+    // Pan camera down from (11, 35) to (11, 45) = 10 tiles
+    applymovement(OBJ_EVENT_ID_CAMERA, Route119_Movement_CameraPanDown)
+    waitmovement(0)
+
+    // Pause to show Umbreon and Espeon waiting
+    delay(90)
+
+    // Umbreon and Espeon disappear
+    removeobject(LOCALID_ROUTE119_UMBREON)
+    removeobject(LOCALID_ROUTE119_ESPEON)
+    setflag(FLAG_HIDE_ROUTE119_UMBREON)
+    setflag(FLAG_HIDE_ROUTE119_ESPEON)
+
+    delay(30)
+
+    // WES_RIDE_AWAY moves left 11 tiles (off-screen)
+    // Camera does NOT follow because it's anchored to the camera object
+    applymovement(WES_RIDE_AWAY, Route119_Movement_WesRideLeft)
+    waitmovement(0)
+
+    // WES_RIDE_AWAY disappears
+    setflag(FLAG_HIDE_ROUTE119_WES_RIDE_AWAY)
+    removeobject(WES_RIDE_AWAY)
+
+    delay(30)
+
+    // Pan camera back up from (11, 45) to (11, 37) = 8 tiles
+    applymovement(OBJ_EVENT_ID_CAMERA, Route119_Movement_CameraPanUp)
+    waitmovement(0)
+
+    // Make SNAGGEM_1, SNAGGEM_2, and GONZAP_1 visible
+    clearflag(FLAG_HIDE_ROUTE_119_TEAM_AQUA)
+    clearflag(FLAG_HIDE_ROUTE119_GONZAP)
+    addobject(SNAGGEM_1)
+    addobject(SNAGGEM_2)
+    addobject(GONZAP_1)
+
+    delay(30)
+
+    // Dialogue
+    msgbox(format("..."), MSGBOX_DEFAULT)
+    closemessage
+
+    // Fade screen to black
+    fadescreen(FADE_TO_BLACK)
+
+    // Hide all cutscene NPCs
+    setflag(FLAG_HIDE_ROUTE_119_TEAM_AQUA)
+    setflag(FLAG_HIDE_ROUTE119_GONZAP)
+
+    // Teleport sound
+    playse(SE_WARP_IN)
+    waitse
+
+    // Mark cutscene as complete (will never run again)
+    setflag(FLAG_ROUTE119_INTRO_DONE)
+    setvar(VAR_ROUTE119_INTRO_STATE, 1)
+
+    // Remove camera object before warping
+    special(RemoveCameraObject)
+
+    // Warp player to Route 101
+    clearflag(FLAG_HIDE_MAP_NAME_POPUP)
+    warp(MAP_ROUTE101, 23, 14)
+    waitstate
+
+    releaseall
+    end
+}
+
+// =============================================================
+// MOVEMENT DATA for intro cutscene
+// =============================================================
+
+// Camera pans down 10 tiles (from y=35 to y=45)
+movement Route119_Movement_CameraPanDown {
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    step_end
+}
+
+// Camera pans up 8 tiles (from y=45 to y=37)
+movement Route119_Movement_CameraPanUp {
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    step_end
+}
+
+// WES_RIDE_AWAY moves left 11 tiles (off-screen)
+movement Route119_Movement_WesRideLeft {
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    step_end
+}
+
+
+// =============================================================
+// All original Route 119 scripts below (raw assembly)
+// =============================================================
+
+raw `
 Route119_OnResume:
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Route119_EventScript_TryRemoveKecleon
 	end
@@ -18,7 +170,13 @@ Route119_OnTransition:
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
 	special SetRoute119Weather
+	call_if_eq VAR_ROUTE119_INTRO_STATE, 0, Route119_EventScript_SetupIntroObjects
 	end
+
+Route119_EventScript_SetupIntroObjects::
+	setflag FLAG_HIDE_ROUTE_119_TEAM_AQUA
+	setflag FLAG_HIDE_ROUTE119_GONZAP
+	return
 
 Route119_EventScript_MoveInstituteWorkersDownstairs::
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
@@ -608,3 +766,4 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+`
