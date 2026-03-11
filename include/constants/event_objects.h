@@ -287,6 +287,10 @@
 #define OBJ_EVENT_GFX_SPECIES_FEMALE(name)          (SPECIES_##name + OBJ_EVENT_MON + OBJ_EVENT_MON_FEMALE)
 #define OBJ_EVENT_GFX_SPECIES_SHINY_FEMALE(name)    (SPECIES_##name + OBJ_EVENT_MON + OBJ_EVENT_MON_SHINY + OBJ_EVENT_MON_FEMALE)
 
+// Named Pokémon OW sprite constants for use in map.json graphics_id fields
+#define OBJ_EVENT_GFX_UMBREON   OBJ_EVENT_GFX_SPECIES(UMBREON)
+#define OBJ_EVENT_GFX_ESPEON    OBJ_EVENT_GFX_SPECIES(ESPEON)
+
 #define OW_SPECIES(x) ((x)->graphicsId & OBJ_EVENT_MON_SPECIES_MASK)
 #define OW_SHINY(x) ((x)->graphicsId & OBJ_EVENT_MON_SHINY)
 #define OW_FEMALE(x) ((x)->graphicsId & OBJ_EVENT_MON_FEMALE)
