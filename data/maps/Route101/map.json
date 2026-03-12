@@ -235,15 +235,6 @@
       "var": "VAR_WILLIE_STATE",
       "var_value": "1",
       "script": "Outside_EventScript_WillieAmbush"
-    },
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "TEST_WILLIE_INVIS"
     }
   ],
   "bg_events": [

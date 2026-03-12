@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE119",
   "name": "Route119",
   "layout": "LAYOUT_ROUTE119",
-  "music": "MUS_ROUTE119",
+  "music": "MUS_NONE",
   "region_map_section": "MAPSEC_ROUTE_119",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -323,8 +323,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_EventScript_BridgeAquaGrunt1",
-      "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
+      "script": "NULL",
+      "flag": "FLAG_HIDE_SNAGGEM_INTRO"
     },
     {
       "local_id": "SNAGGEM_1",
@@ -337,8 +337,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route119_EventScript_BridgeAquaGrunt2",
-      "flag": "FLAG_HIDE_ROUTE_119_TEAM_AQUA"
+      "script": "NULL",
+      "flag": "FLAG_HIDE_SNAGGEM_INTRO"
     },
     {
       "local_id": "LOCALID_ROUTE119_RIVAL_ON_BIKE",
@@ -601,7 +601,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_HIDE_SNAGGEM_INTRO"
     },
     {
       "local_id": "WES_RIDE_AWAY",
@@ -615,7 +615,35 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_HIDE_UMBREON_ESPEON_WES"
+    },
+    {
+      "local_id": "LOCALID_ROUTE119_ESPEON",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ESPEON)",
+      "x": 12,
+      "y": 44,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_UMBREON_ESPEON_WES"
+    },
+    {
+      "local_id": "LOCALID_ROUTE119_UMBREON",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(UMBREON)",
+      "x": 10,
+      "y": 44,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_UMBREON_ESPEON_WES"
     }
   ],
   "warp_events": [

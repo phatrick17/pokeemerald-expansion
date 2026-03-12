@@ -45,9 +45,9 @@
 
 #define FLAG_HIDE_OUTSIDE_WILLIE    0x20 // Hides Willie Outside
 #define FLAG_DEFEATED_WILLIE      0x21 // Flag set when Willie Defeated
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+#define FLAG_HIDE_UMBREON_ESPEON_WES    0x22 // Hides Umbreon/Espeon/Wes in Intro
+#define FLAG_HIDE_SNAGGEM_INTRO    0x23 // Hide Team Snaggem Intro
+#define FLAG_ROUTE119_INTRO_DONE    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
