@@ -85,7 +85,7 @@ script InsideBuilding_EventScript_Willie {
                    "You should go out there and get\n"
                    "some battling in."),
             MSGBOX_DEFAULT)
-    } elif (var(VAR_WILLIE_STATE) == 1) {
+    } else if (var(VAR_WILLIE_STATE) == 1) {
         // Already talked but hasn't gone outside yet
         msgbox(
             format("WILLIE: Heh... I can tell you're\n"
