@@ -99,10 +99,9 @@ script MyScript {
 }
 ```
 
-Single-line (whitespace and commas are both fine):
+Single-line — whitespace separates commands, no commas needed:
 ```
 applymovement(2, moves(walk_left walk_up * 5 face_down))
-applymovement(2, moves(walk_left, walk_up * 5, face_down))
 ```
 
 Key points:
