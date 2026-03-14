@@ -1,6 +1,6 @@
 mapscripts OldaleTown_Mart_MapScripts {
-    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST, 0: OldaleTown_Mart_EventScript_SnaggHideoutBroadcast
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_OLDALE_MART_TV_STATE, 0: OldaleTown_Mart_EventScript_SnaggHideoutBroadcast
     ]
 }
 
@@ -140,6 +140,7 @@ script OldaleTown_Mart_EventScript_SnaggHideoutBroadcast {
     applymovement(OBJ_EVENT_ID_CAMERA, OldaleTown_Mart_Movement_CamPanDown)
     waitmovement(0)
     special(RemoveCameraObject)
+    setvar(VAR_OLDALE_MART_TV_STATE, 1)
     setflag(FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST)
     releaseall
     end
