@@ -63,7 +63,9 @@ static void AddCameraTileOffset(struct FieldCameraOffset *cameraOffset, u32 xOff
 static void AddCameraPixelOffset(struct FieldCameraOffset *cameraOffset, u32 xOffset, u32 yOffset)
 {
     cameraOffset->xPixelOffset += xOffset;
+    cameraOffset->xPixelOffset %= 16;
     cameraOffset->yPixelOffset += yOffset;
+    cameraOffset->yPixelOffset %= 16;
 }
 
 void ResetFieldCamera(void)
