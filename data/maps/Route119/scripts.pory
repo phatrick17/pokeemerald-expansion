@@ -41,13 +41,18 @@ script Route119_EventScript_IntroCutscene {
  
     // Pause to show Umbreon and Espeon waiting
     delay(90)
+//	setobjeventsprite(LOCALID_ROUTE119_UMBREON, OBJ_EVENT_GFX_POKE_BALL)
+//	special(DrawWholeMapView)
+//	delay(90)
+
  
     // Umbreon and Espeon disappear
     removeobject(LOCALID_ROUTE119_UMBREON)
     removeobject(LOCALID_ROUTE119_ESPEON)
     setflag(FLAG_HIDE_UMBREON_ESPEON_WES)
- 
-    delay(90)
+ 	playse(SE_BALL_TRADE)
+	waitse
+    delay(60)
  
     // WES_RIDE_AWAY moves left 11 tiles (off-screen)
     // Camera does NOT follow because it's anchored to the camera object
@@ -118,6 +123,7 @@ script Route119_EventScript_IntroCutscene {
 	setflag(FLAG_BADGE06_GET)
 	setflag(FLAG_BADGE07_GET)
 	setflag(FLAG_BADGE08_GET)
+	setflag(FLAG_TRUDLEY_FOLEY_SPRITE)
     clearflag(FLAG_HIDE_MAP_NAME_POPUP)
     warp(MAP_ROUTE101, 23, 14)
     waitstate

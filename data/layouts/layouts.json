@@ -165,7 +165,7 @@
       "id": "LAYOUT_ROUTE101",
       "name": "Route101_Layout",
       "width": 40,
-      "height": 20,
+      "height": 22,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Lilycove",
       "border_filepath": "data/layouts/Route101/border.bin",
@@ -624,7 +624,7 @@
     {
       "id": "LAYOUT_MART",
       "name": "Mart_Layout",
-      "width": 11,
+      "width": 16,
       "height": 8,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Shop",

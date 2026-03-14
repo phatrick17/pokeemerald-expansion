@@ -47,10 +47,10 @@
 #define FLAG_DEFEATED_WILLIE      0x21 // Flag set when Willie Defeated
 #define FLAG_HIDE_UMBREON_ESPEON_WES    0x22 // Hides Umbreon/Espeon/Wes in Intro
 #define FLAG_HIDE_SNAGGEM_INTRO    0x23 // Hide Team Snaggem Intro
-#define FLAG_ROUTE119_INTRO_DONE    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
+#define FLAG_ROUTE119_INTRO_DONE    0x24 // idk
+#define FLAG_TRUDLEY_FOLEY_SPRITE   0x25 // Trudley Foley sprites outskirt stand
+#define FLAG_CAR_AND_BAG_OUTSKIRT   0x26 // Outskirt Stand Intro Scene Flag. AlsoMakes outskirt stand intro sprites go away
+#define FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST    0x27 // Outskirt Stand TV
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag

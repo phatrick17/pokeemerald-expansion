@@ -1,6 +1,109 @@
-raw `OldaleTown_Mart_MapScripts::
-	.byte 0
+//script TV
 
+mapscripts OldaleTown_Mart_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST, 0: OldaleTown_Mart_EventScript_SnaggHideoutBroadcast
+    ]
+}
+
+script OldaleTown_Mart_EventScript_SnaggHideoutBroadcast {
+    lockall
+    special(SpawnCameraObject)
+    special(TurnOnTVScreen)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(
+		walk_up * 3
+	))
+    waitmovement(0)
+    playbgm(MUS_ABNORMAL_WEATHER, FALSE)
+    delay(30)
+    msgbox(OldaleTown_Mart_Text_SnaggHideoutReport, MSGBOX_DEFAULT)
+    special(TurnOffTVScreen)
+    fadedefaultbgm
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(
+		walk_down * 3
+	))
+    waitmovement(0)
+    special(RemoveCameraObject)
+    setflag(FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST)
+    releaseall
+    end
+}
+ 
+text OldaleTown_Mart_Text_SnaggHideoutReport {
+    format("Authorities have made a stunning\n"
+           "announcement on the mysterious\n"
+           "building that exploded in Eclo Canyon.\p"
+           "It was Team Snaggem's Hideout.\p"
+           "Team Snaggem is a gang of POKéMON\n"
+           "abductors who have already been\n"
+           "marked for arrest.\p"
+           "The hideout was discovered only as\n"
+           "a result of the explosion.\p"
+           "By the time police arrived, the\n"
+           "ruined building had already\n"
+           "been abandoned.\p"
+           "The cause of the explosion is\n"
+           "under investigation. It should\n"
+           "become apparent eventually.$")
+}
+
+
+script InsideBuilding_EventScript_Willie {
+    lock
+    faceplayer
+
+    // Check if Willie has been defeated
+    if (flag(FLAG_DEFEATED_WILLIE)) {
+        // Post-defeat dialogue
+        msgbox(
+            format("WILLIE: But, yeah, you're tough.\n"
+                   "Real tough.\p"
+                   "You did a real number on us.\p"
+                   "Hey, I know. Why not test your\n"
+                   "skills in Phenac City?\p"
+                   "It's out west of here.\p"
+                   "You'll find trainers who are way\n"
+                   "better than me there.\p"
+                   "You should go out there and get\n"
+                   "some battling in."),
+            MSGBOX_DEFAULT)
+    } elif (var(VAR_WILLIE_STATE) == 1) {
+        // Already talked but hasn't gone outside yet
+        msgbox(
+            format("WILLIE: Heh... I can tell you're\n"
+                   "good. I can see it in your eyes.\p"
+                   "If the opportunity ever arises,\n"
+                   "I'd like to have a battle with you."),
+            MSGBOX_DEFAULT)
+    } else {
+        // First meeting
+        msgbox(
+            format("WILLIE: You're a POKéMON Trainer\n"
+                   "too, aren't you?\p"
+                   "Heh... I can tell. And you're\n"
+                   "good. I can see it in your eyes.\p"
+                   "I bet your POKéMON are impressive,\n"
+                   "too.\p"
+                   "If the opportunity ever arises,\n"
+                   "I'd like to have a battle with you.\p"
+                   "Heh... though I doubt I'd have\n"
+                   "any chance of beating you."),
+            MSGBOX_DEFAULT)
+
+        // Set the state so the outdoor trigger is now armed
+        setvar(VAR_WILLIE_STATE, 1)
+    }
+
+    release
+    end
+}
+
+//MUS_ENCOUNTER_INTERVIEWER
+
+//OldaleTown_Mart_MapScripts::
+//	.byte 0
+
+raw `
 OldaleTown_Mart_EventScript_Clerk::
 	lock
 	faceplayer
@@ -66,54 +169,3 @@ OldaleTown_Mart_Text_RestoreHPWithPotion:
 	.string "To prevent your POKéMON from fainting,\n"
 	.string "restore its HP with a POTION.$"
 `
-script InsideBuilding_EventScript_Willie {
-    lock
-    faceplayer
-
-    // Check if Willie has been defeated
-    if (flag(FLAG_DEFEATED_WILLIE)) {
-        // Post-defeat dialogue
-        msgbox(
-            format("WILLIE: But, yeah, you're tough.\n"
-                   "Real tough.\p"
-                   "You did a real number on us.\p"
-                   "Hey, I know. Why not test your\n"
-                   "skills in Phenac City?\p"
-                   "It's out west of here.\p"
-                   "You'll find trainers who are way\n"
-                   "better than me there.\p"
-                   "You should go out there and get\n"
-                   "some battling in."),
-            MSGBOX_DEFAULT)
-    } elif (var(VAR_WILLIE_STATE) == 1) {
-        // Already talked but hasn't gone outside yet
-        msgbox(
-            format("WILLIE: Heh... I can tell you're\n"
-                   "good. I can see it in your eyes.\p"
-                   "If the opportunity ever arises,\n"
-                   "I'd like to have a battle with you."),
-            MSGBOX_DEFAULT)
-    } else {
-        // First meeting
-        msgbox(
-            format("WILLIE: You're a POKéMON Trainer\n"
-                   "too, aren't you?\p"
-                   "Heh... I can tell. And you're\n"
-                   "good. I can see it in your eyes.\p"
-                   "I bet your POKéMON are impressive,\n"
-                   "too.\p"
-                   "If the opportunity ever arises,\n"
-                   "I'd like to have a battle with you.\p"
-                   "Heh... though I doubt I'd have\n"
-                   "any chance of beating you."),
-            MSGBOX_DEFAULT)
-
-        // Set the state so the outdoor trigger is now armed
-        setvar(VAR_WILLIE_STATE, 1)
-    }
-
-    release
-    end
-}
-
-//MUS_ENCOUNTER_INTERVIEWER

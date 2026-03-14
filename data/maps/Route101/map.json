@@ -28,8 +28,8 @@
     {
       "local_id": "LOCALID_ROUTE101_BIRCH",
       "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
-      "x": 4,
-      "y": 2,
+      "x": -7,
+      "y": -5,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_RIGHT",
       "movement_range_x": 0,
@@ -41,8 +41,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BIRCHS_BAG",
-      "x": 4,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -55,8 +55,8 @@
     {
       "local_id": "LOCALID_ROUTE101_ZIGZAGOON",
       "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_1",
-      "x": 5,
-      "y": 3,
+      "x": -7,
+      "y": -5,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_LEFT",
       "movement_range_x": 0,
@@ -68,8 +68,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
-      "x": 2,
-      "y": 3,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -81,8 +81,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_2",
-      "x": 2,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 1,
@@ -118,7 +118,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_CAR_AND_BAG_OUTSKIRT"
     },
     {
       "local_id": "FOLLY_TRUDLY_CAR",
@@ -132,7 +132,35 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_CAR_AND_BAG_OUTSKIRT"
+    },
+    {
+      "local_id": "TRUDLY_1",
+      "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
+      "x": 18,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TRUDLEY_FOLEY_SPRITE"
+    },
+    {
+      "local_id": "FOLLEY_1",
+      "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
+      "x": 18,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TRUDLEY_FOLEY_SPRITE"
     }
   ],
   "warp_events": [
@@ -148,8 +176,8 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 4,
-      "y": 6,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "1",
@@ -157,8 +185,8 @@
     },
     {
       "type": "trigger",
-      "x": 3,
-      "y": 6,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "1",
@@ -166,8 +194,8 @@
     },
     {
       "type": "trigger",
-      "x": 1,
-      "y": 6,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -175,8 +203,8 @@
     },
     {
       "type": "trigger",
-      "x": 2,
-      "y": 6,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -184,8 +212,8 @@
     },
     {
       "type": "trigger",
-      "x": 6,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -193,8 +221,8 @@
     },
     {
       "type": "trigger",
-      "x": 7,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -202,8 +230,8 @@
     },
     {
       "type": "trigger",
-      "x": 5,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -211,8 +239,8 @@
     },
     {
       "type": "trigger",
-      "x": 8,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -220,8 +248,8 @@
     },
     {
       "type": "trigger",
-      "x": 3,
-      "y": 5,
+      "x": -7,
+      "y": -5,
       "elevation": 3,
       "var": "VAR_ROUTE101_STATE",
       "var_value": "2",
@@ -235,13 +263,22 @@
       "var": "VAR_WILLIE_STATE",
       "var_value": "1",
       "script": "Outside_EventScript_WillieAmbush"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Outskirt_Stand_Folley_Trudly_1"
     }
   ],
   "bg_events": [
     {
       "type": "sign",
-      "x": 4,
-      "y": 3,
+      "x": -7,
+      "y": -5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route101_EventScript_RouteSign"
