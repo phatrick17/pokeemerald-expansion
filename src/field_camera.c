@@ -418,6 +418,8 @@ void CameraUpdate(void)
         SetBerryTreesSeen();
         AddCameraTileOffset(&sFieldCameraOffset, deltaX * 2, deltaY * 2);
         RedrawMapSlicesForCameraUpdate(&sFieldCameraOffset, deltaX * 2, deltaY * 2);
+        sFieldCameraOffset.xPixelOffset = 0;
+        sFieldCameraOffset.yPixelOffset = 0;
     }
 
     AddCameraPixelOffset(&sFieldCameraOffset, movementSpeedX, movementSpeedY);
