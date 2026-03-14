@@ -50,7 +50,7 @@
 #define FLAG_ROUTE119_INTRO_DONE    0x24 // idk
 #define FLAG_TRUDLEY_FOLEY_SPRITE   0x25 // Trudley Foley sprites outskirt stand
 #define FLAG_CAR_AND_BAG_OUTSKIRT   0x26 // Outskirt Stand Intro Scene Flag. AlsoMakes outskirt stand intro sprites go away
-#define FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST    0x27 // Outskirt Stand TV
+#define EXTRA_FLAG_1    0x27 // EXTRA_FLAG
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag

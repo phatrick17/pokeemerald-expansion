@@ -13,7 +13,7 @@ Route101_OnTransition:
 # 7 "data/maps/Route101/scripts.pory"
 	call ProfBirch_EventScript_UpdateLocation
 # 8 "data/maps/Route101/scripts.pory"
-    call_if_eq VAR_WILLIE_STATE, 2, Outside_EventScript_HideWillie
+    call_if_eq VAR_WILLIE_STATE, 3, Outside_EventScript_HideWillie
 # 9 "data/maps/Route101/scripts.pory"
 	end
 # 10 "data/maps/Route101/scripts.pory"
@@ -644,35 +644,35 @@ Outskirt_Stand_Folley_Trudly_1::
 	waitmovement 0
 # 344 "data/maps/Route101/scripts.pory"
 	msgbox Outskirt_Stand_Folley_Trudly_1_Text_0, MSGBOX_DEFAULT
-# 354 "data/maps/Route101/scripts.pory"
+# 353 "data/maps/Route101/scripts.pory"
 	closemessage
-# 355 "data/maps/Route101/scripts.pory"
+# 354 "data/maps/Route101/scripts.pory"
 	applymovement FOLLEY_1, Outskirt_Stand_Folley_Trudly_1_Movement_4
-# 359 "data/maps/Route101/scripts.pory"
+# 358 "data/maps/Route101/scripts.pory"
 	applymovement TRUDLY_1, Outskirt_Stand_Folley_Trudly_1_Movement_5
-# 364 "data/maps/Route101/scripts.pory"
+# 363 "data/maps/Route101/scripts.pory"
 	waitmovement 0
-# 365 "data/maps/Route101/scripts.pory"
+# 364 "data/maps/Route101/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 366 "data/maps/Route101/scripts.pory"
+# 365 "data/maps/Route101/scripts.pory"
 	playse SE_EXIT
-# 367 "data/maps/Route101/scripts.pory"
+# 366 "data/maps/Route101/scripts.pory"
 	waitse
-# 368 "data/maps/Route101/scripts.pory"
+# 367 "data/maps/Route101/scripts.pory"
 	removeobject TRUDLY_1
-# 369 "data/maps/Route101/scripts.pory"
+# 368 "data/maps/Route101/scripts.pory"
 	removeobject FOLLEY_1
-# 370 "data/maps/Route101/scripts.pory"
+# 369 "data/maps/Route101/scripts.pory"
 	removeobject FOLLY_TRUDLY_CAR
-# 371 "data/maps/Route101/scripts.pory"
+# 370 "data/maps/Route101/scripts.pory"
 	removeobject RUI_IN_BAG
-# 372 "data/maps/Route101/scripts.pory"
+# 371 "data/maps/Route101/scripts.pory"
 	setflag FLAG_CAR_AND_BAG_OUTSKIRT
-# 373 "data/maps/Route101/scripts.pory"
+# 372 "data/maps/Route101/scripts.pory"
 	delay 30
-# 374 "data/maps/Route101/scripts.pory"
+# 373 "data/maps/Route101/scripts.pory"
 	fadescreen FADE_FROM_BLACK
-# 375 "data/maps/Route101/scripts.pory"
+# 374 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
@@ -683,95 +683,95 @@ Outskirt_Stand_Folley_Trudly_1_1:
 
 
 Outside_EventScript_WillieAmbush::
-# 404 "data/maps/Route101/scripts.pory"
+# 403 "data/maps/Route101/scripts.pory"
 	lockall
-# 407 "data/maps/Route101/scripts.pory"
+# 406 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
-# 408 "data/maps/Route101/scripts.pory"
+# 407 "data/maps/Route101/scripts.pory"
 	playse SE_PIN
-# 409 "data/maps/Route101/scripts.pory"
+# 408 "data/maps/Route101/scripts.pory"
 	waitse
-# 410 "data/maps/Route101/scripts.pory"
+# 409 "data/maps/Route101/scripts.pory"
 	waitmovement 0
-# 413 "data/maps/Route101/scripts.pory"
+# 412 "data/maps/Route101/scripts.pory"
 	delay 30
-# 416 "data/maps/Route101/scripts.pory"
+# 415 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Outside_Movement_PlayerStepDown
-# 417 "data/maps/Route101/scripts.pory"
+# 416 "data/maps/Route101/scripts.pory"
 	waitmovement 0
-# 420 "data/maps/Route101/scripts.pory"
+# 419 "data/maps/Route101/scripts.pory"
 	clearflag FLAG_HIDE_OUTSIDE_WILLIE
-# 421 "data/maps/Route101/scripts.pory"
+# 420 "data/maps/Route101/scripts.pory"
 	addobject LOCALID_WILLIE_OUTSIDE
-# 422 "data/maps/Route101/scripts.pory"
+# 421 "data/maps/Route101/scripts.pory"
 	playse SE_EXIT
-# 423 "data/maps/Route101/scripts.pory"
+# 422 "data/maps/Route101/scripts.pory"
 	applymovement LOCALID_WILLIE_OUTSIDE, Outside_Movement_WillieExitDoor
-# 424 "data/maps/Route101/scripts.pory"
+# 423 "data/maps/Route101/scripts.pory"
 	waitmovement 0
-# 427 "data/maps/Route101/scripts.pory"
+# 426 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_0, MSGBOX_DEFAULT
-# 438 "data/maps/Route101/scripts.pory"
+# 437 "data/maps/Route101/scripts.pory"
 Outside_EventScript_WillieAskBattle:
-# 439 "data/maps/Route101/scripts.pory"
+# 438 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_1, MSGBOX_YESNO
-# 444 "data/maps/Route101/scripts.pory"
+# 443 "data/maps/Route101/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq Outside_EventScript_WillieAmbush_2
-# 452 "data/maps/Route101/scripts.pory"
+# 451 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_3, MSGBOX_DEFAULT
-# 456 "data/maps/Route101/scripts.pory"
+# 455 "data/maps/Route101/scripts.pory"
 	goto Outside_EventScript_WillieAskBattle
 Outside_EventScript_WillieAmbush_1:
-# 460 "data/maps/Route101/scripts.pory"
+# 459 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_4, MSGBOX_DEFAULT
-# 466 "data/maps/Route101/scripts.pory"
+# 465 "data/maps/Route101/scripts.pory"
 	closemessage
-# 471 "data/maps/Route101/scripts.pory"
+# 470 "data/maps/Route101/scripts.pory"
 	trainerbattle_no_intro TRAINER_SAWYER_1, Outside_EventScript_WillieAmbush_Text_5
-# 478 "data/maps/Route101/scripts.pory"
+# 477 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_6, MSGBOX_DEFAULT
-# 487 "data/maps/Route101/scripts.pory"
+# 486 "data/maps/Route101/scripts.pory"
 	setflag FLAG_DEFEATED_WILLIE
+# 487 "data/maps/Route101/scripts.pory"
+	setvar VAR_WILLIE_STATE, 3
 # 488 "data/maps/Route101/scripts.pory"
-	setvar VAR_WILLIE_STATE, 2
-# 489 "data/maps/Route101/scripts.pory"
 	applymovement LOCALID_WILLIE_OUTSIDE, Outside_Movement_Willie_Disappear
-# 490 "data/maps/Route101/scripts.pory"
+# 489 "data/maps/Route101/scripts.pory"
 	playse SE_EXIT
-# 491 "data/maps/Route101/scripts.pory"
+# 490 "data/maps/Route101/scripts.pory"
 	removeobject LOCALID_WILLIE_OUTSIDE
-# 492 "data/maps/Route101/scripts.pory"
+# 491 "data/maps/Route101/scripts.pory"
 	setflag FLAG_HIDE_OUTSIDE_WILLIE
-# 498 "data/maps/Route101/scripts.pory"
+# 497 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
 Outside_EventScript_WillieAmbush_2:
-# 446 "data/maps/Route101/scripts.pory"
+# 445 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_2, MSGBOX_DEFAULT
 	goto Outside_EventScript_WillieAmbush_1
 
 
-# 505 "data/maps/Route101/scripts.pory"
+# 504 "data/maps/Route101/scripts.pory"
 Outside_Movement_PlayerStepDown:
-# 506 "data/maps/Route101/scripts.pory"
+# 505 "data/maps/Route101/scripts.pory"
 	face_up
-# 507 "data/maps/Route101/scripts.pory"
+# 506 "data/maps/Route101/scripts.pory"
 	step_end
 
-# 510 "data/maps/Route101/scripts.pory"
+# 509 "data/maps/Route101/scripts.pory"
 Outside_Movement_WillieExitDoor:
-# 511 "data/maps/Route101/scripts.pory"
+# 510 "data/maps/Route101/scripts.pory"
 	walk_down
-# 512 "data/maps/Route101/scripts.pory"
+# 511 "data/maps/Route101/scripts.pory"
 	face_player
-# 513 "data/maps/Route101/scripts.pory"
+# 512 "data/maps/Route101/scripts.pory"
 	step_end
 
-# 516 "data/maps/Route101/scripts.pory"
+# 515 "data/maps/Route101/scripts.pory"
 Outside_Movement_Willie_Disappear:
-# 517 "data/maps/Route101/scripts.pory"
+# 516 "data/maps/Route101/scripts.pory"
 	walk_up
 	step_end
 
@@ -813,45 +813,45 @@ Outskirt_Stand_Folley_Trudly_1_Movement_3:
 	walk_down
 	step_end
 
-# 355 "data/maps/Route101/scripts.pory"
+# 354 "data/maps/Route101/scripts.pory"
 Outskirt_Stand_Folley_Trudly_1_Movement_4:
-# 356 "data/maps/Route101/scripts.pory"
+# 355 "data/maps/Route101/scripts.pory"
+	walk_left
+# 355 "data/maps/Route101/scripts.pory"
+	walk_left
+# 355 "data/maps/Route101/scripts.pory"
 	walk_left
 # 356 "data/maps/Route101/scripts.pory"
-	walk_left
-# 356 "data/maps/Route101/scripts.pory"
-	walk_left
-# 357 "data/maps/Route101/scripts.pory"
 	face_down
 	step_end
 
-# 359 "data/maps/Route101/scripts.pory"
+# 358 "data/maps/Route101/scripts.pory"
 Outskirt_Stand_Folley_Trudly_1_Movement_5:
-# 360 "data/maps/Route101/scripts.pory"
+# 359 "data/maps/Route101/scripts.pory"
 	walk_down
-# 361 "data/maps/Route101/scripts.pory"
+# 360 "data/maps/Route101/scripts.pory"
+	walk_left
+# 360 "data/maps/Route101/scripts.pory"
 	walk_left
 # 361 "data/maps/Route101/scripts.pory"
-	walk_left
-# 362 "data/maps/Route101/scripts.pory"
 	face_down
 	step_end
 
 Outskirt_Stand_Folley_Trudly_1_Text_0:
 # 345 "data/maps/Route101/scripts.pory"
 	.string "???: Fwaah! We sure pigged out, eh?\n"
-	.string "I love chowing down after a job!\p"
+	.string "I love chowing down after a job!\l"
 	.string "It adds to the flavor, I swear.\p"
 	.string "???: Heheheh, yeah.\n"
 	.string "And we bagged outselves a great big\l"
 	.string "catch, too.\p"
-	.string "Boss'll be sure to fix us up good with\n"
-	.string "big rewards, too.\p"
+	.string "???: Boss'll be sure to fix us up good\n"
+	.string "with big rewards, too.\p"
 	.string "???: Heheheh, it doesn't get any better\n"
 	.string "than this!$"
 
 Outside_EventScript_WillieAmbush_Text_0:
-# 428 "data/maps/Route101/scripts.pory"
+# 427 "data/maps/Route101/scripts.pory"
 	.string "WILLIE: Yo! Wait! Wait up!\p"
 	.string "Hey, my name's WILLIE.\p"
 	.string "After I got a good look at you,\n"
@@ -861,38 +861,38 @@ Outside_EventScript_WillieAmbush_Text_0:
 	.string "that you're no ordinary Joe.$"
 
 Outside_EventScript_WillieAmbush_Text_1:
-# 440 "data/maps/Route101/scripts.pory"
+# 439 "data/maps/Route101/scripts.pory"
 	.string "So, what do you say?\n"
 	.string "Let's you and me have a quick battle!$"
 
 Outside_EventScript_WillieAmbush_Text_2:
-# 447 "data/maps/Route101/scripts.pory"
+# 446 "data/maps/Route101/scripts.pory"
 	.string "WILLIE: Yeahah! That's the spirit!\n"
 	.string "All right, all right.$"
 
 Outside_EventScript_WillieAmbush_Text_3:
-# 453 "data/maps/Route101/scripts.pory"
+# 452 "data/maps/Route101/scripts.pory"
 	.string "WILLIE: What are you saying?\n"
 	.string "You're joshing, right?$"
 
 Outside_EventScript_WillieAmbush_Text_4:
-# 461 "data/maps/Route101/scripts.pory"
+# 460 "data/maps/Route101/scripts.pory"
 	.string "Yeeeeeeaaaah!\n"
 	.string "I'm burning now! I'm on fire!\p"
 	.string "It's full-throttle time!\n"
 	.string "Vrum! Vroom! Let's roll!$"
 
 Outside_EventScript_WillieAmbush_Text_5:
-# 472 "data/maps/Route101/scripts.pory"
+# 471 "data/maps/Route101/scripts.pory"
 	.string "Tch... Wiped out.\n"
 	.string "I still need seasoning.$"
 
 Outside_EventScript_WillieAmbush_Text_6:
-# 478 "data/maps/Route101/scripts.pory"
-	.string "WILLIE: You're tough. Real tough.\p"
+# 477 "data/maps/Route101/scripts.pory"
+	.string "WILLIE: You're tough. Real tough.\n"
 	.string "You did a real number on us.\p"
 	.string "Hey, I know. Why not test your\n"
-	.string "skills in Phenac City?\p"
+	.string "skills in Phenac City?\l"
 	.string "It's out west of here.\p"
 	.string "You'll find trainers who are way\n"
 	.string "better than me there.\p"

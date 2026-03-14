@@ -1,12 +1,12 @@
 //script TV
 
 mapscripts OldaleTown_Mart_MapScripts {
-    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST, 0: OldaleTown_Mart_EventScript_SnaggHideoutBroadcast
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_WILLIE_STATE, 0: OldaleTown_Mart_SnaggHideoutBroadcast
     ]
 }
 
-script OldaleTown_Mart_EventScript_SnaggHideoutBroadcast {
+script OldaleTown_Mart_SnaggHideoutBroadcast {
     lockall
     special(SpawnCameraObject)
     special(TurnOnTVScreen)
@@ -24,27 +24,28 @@ script OldaleTown_Mart_EventScript_SnaggHideoutBroadcast {
 	))
     waitmovement(0)
     special(RemoveCameraObject)
-    setflag(FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST)
+    setvar(VAR_WILLIE_STATE, 1)
     releaseall
     end
+	
 }
  
 text OldaleTown_Mart_Text_SnaggHideoutReport {
     format("Authorities have made a stunning\n"
-           "announcement on the mysterious\n"
-           "building that exploded in Eclo Canyon.\p"
+           "announcement on the mysterious\l"
+           "building that exploded in Eclo Canyon.\l"
            "It was Team Snaggem's Hideout.\p"
            "Team Snaggem is a gang of POKéMON\n"
-           "abductors who have already been\n"
+           "abductors who have already been\l"
            "marked for arrest.\p"
            "The hideout was discovered only as\n"
            "a result of the explosion.\p"
            "By the time police arrived, the\n"
-           "ruined building had already\n"
-           "been abandoned.\p"
+           "ruined building had already been\l"
+           "abandoned.\p"
            "The cause of the explosion is\n"
-           "under investigation. It should\n"
-           "become apparent eventually.$")
+           "under investigation.\p"
+           "It should become apparent eventually.$")
 }
 
 
@@ -60,38 +61,41 @@ script InsideBuilding_EventScript_Willie {
                    "Real tough.\p"
                    "You did a real number on us.\p"
                    "Hey, I know. Why not test your\n"
-                   "skills in Phenac City?\p"
+                   "skills in Phenac City?\l"
                    "It's out west of here.\p"
                    "You'll find trainers who are way\n"
                    "better than me there.\p"
                    "You should go out there and get\n"
                    "some battling in."),
             MSGBOX_DEFAULT)
-    } elif (var(VAR_WILLIE_STATE) == 1) {
-        // Already talked but hasn't gone outside yet
-        msgbox(
-            format("WILLIE: Heh... I can tell you're\n"
-                   "good. I can see it in your eyes.\p"
-                   "If the opportunity ever arises,\n"
-                   "I'd like to have a battle with you."),
-            MSGBOX_DEFAULT)
     } else {
         // First meeting
+    	msgbox(
+        	format("You're a Pokémon Trainer too,\naren't you?"),
+        	MSGBOX_YESNO)
+    	if (var(VAR_RESULT) == YES) {
+        	// Player said Yes
         msgbox(
-            format("WILLIE: You're a POKéMON Trainer\n"
-                   "too, aren't you?\p"
-                   "Heh... I can tell. And you're\n"
-                   "good. I can see it in your eyes.\p"
-                   "I bet your POKéMON are impressive,\n"
-                   "too.\p"
+            format("Heh... I can tell. And you're\n"
+                   "good. I can see it in your eyes.\l"
+                   "I bet your POKéMON are impressive, too.\p"
+                   "If the opportunity ever arises,\n"
+                   "I'd like to have a battle with you.\l"
+                   "Heh... though I doubt I'd have\l"
+                   "any chance of beating you."),
+            MSGBOX_DEFAULT)
+    	} else {
+        	// Player said No - loop back
+        	msgbox(
+            format("Heh... I can tell. And you're\n"
+                   "good. I can see it in your eyes.\l"
+                   "I bet your POKéMON are impressive, too.\p"
                    "If the opportunity ever arises,\n"
                    "I'd like to have a battle with you.\p"
                    "Heh... though I doubt I'd have\n"
                    "any chance of beating you."),
-            MSGBOX_DEFAULT)
-
-        // Set the state so the outdoor trigger is now armed
-        setvar(VAR_WILLIE_STATE, 1)
+            	MSGBOX_DEFAULT)
+    	}
     }
 
     release

@@ -5,7 +5,7 @@ raw `Route101_MapScripts::
 
 Route101_OnTransition:
 	call ProfBirch_EventScript_UpdateLocation
-    call_if_eq VAR_WILLIE_STATE, 2, Outside_EventScript_HideWillie
+    call_if_eq VAR_WILLIE_STATE, 3, Outside_EventScript_HideWillie
 	end
 
 Route101_OnFrame:
@@ -343,12 +343,11 @@ script Outskirt_Stand_Folley_Trudly_1 {
 		waitmovement(0)
 		msgbox(
         	format("???: Fwaah! We sure pigged out, eh?\n"
-               	"I love chowing down after a job!\p"
+               	"I love chowing down after a job!\l"
                	"It adds to the flavor, I swear.\p"
                	"???: Heheheh, yeah.\n"
                	"And we bagged outselves a great big catch, too.\p"
-               	"Boss'll be sure to fix us up good with\n"
-			   	"big rewards, too.\p"
+               	"???: Boss'll be sure to fix us up good with big rewards, too.\p"
                	"???: Heheheh, it doesn't get any better than this!"),
         	MSGBOX_DEFAULT)
 		closemessage
@@ -398,7 +397,7 @@ script Outskirt_Stand_Folley_Trudly_1 {
 // SCRIPT 2: Outside - the ambush when player exits the building
 // =============================================================
 // This is a coord_event trigger script.
-// It fires when VAR_WILLIE_STATE == 1 and the player
+// It fires when VAR_WILLIE_STATE == 2 and the player
 // steps on the trigger tile outside the door.
 script Outside_EventScript_WillieAmbush {
     lockall
@@ -475,17 +474,17 @@ script Outside_EventScript_WillieAmbush {
     // --- After the battle ---
     // Willie has already said his defeat line via the trainerbattle.
     // He now stands in place. Set the flags:
-    msgbox(format("WILLIE: You're tough. Real tough.\p"
-                  "You did a real number on us.\p"
-                  "Hey, I know. Why not test your\n"
-                  "skills in Phenac City?\p"
-                  "It's out west of here.\p"
-                  "You'll find trainers who are way\n"
-                  "better than me there.\p"
-                  "You should go out there and get\n"
-                  "some battling in."), MSGBOX_DEFAULT)
+    msgbox(format("WILLIE: You're tough. Real tough.\n"
+                   "You did a real number on us.\p"
+                   "Hey, I know. Why not test your\n"
+                   "skills in Phenac City?\l"
+                   "It's out west of here.\p"
+                   "You'll find trainers who are way\n"
+                   "better than me there.\p"
+                   "You should go out there and get\n"
+                   "some battling in."), MSGBOX_DEFAULT)
     setflag(FLAG_DEFEATED_WILLIE)       // Mark Willie as defeated
-    setvar(VAR_WILLIE_STATE, 2)         // Prevent trigger from ever firing again
+    setvar(VAR_WILLIE_STATE, 3)         // Prevent trigger from ever firing again
 	applymovement(LOCALID_WILLIE_OUTSIDE, Outside_Movement_Willie_Disappear)
 	playse(SE_EXIT)
     removeobject(LOCALID_WILLIE_OUTSIDE)
