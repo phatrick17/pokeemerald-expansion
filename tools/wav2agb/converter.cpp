@@ -76,14 +76,25 @@ static void convert_uncompressed(wav_file& wf, std::ofstream& ofs)
 
 static void convert_uncompressed_bin(wav_file& wf, std::vector<uint8_t>& data)
 {
+    int loop_sample = 0;
+
     for (size_t i = 0; i < wf.loopEnd; i++) {
         double ds;
         wf.readData(i, &ds, 1);
         // TODO apply dither noise
         int s = clamp(static_cast<int>(floor(ds * 128.0)), -128, 127);
 
+        if (wf.loopEnabled && i == wf.loopStart)
+            loop_sample = s;
+
         bin_write_u8(data, static_cast<uint8_t>(s));
     }
+
+    // Append the loop start sample for correct linear interpolation at the loop boundary.
+    // The M4A mixer reads one sample past the loop end for interpolation; this prevents
+    // reading into alignment padding (zero bytes) which would cause audio artifacts.
+    if (wf.loopEnabled)
+        bin_write_u8(data, static_cast<uint8_t>(loop_sample));
 
     // Align to 4 bytes.
     while (data.size() % 4 != 0) {
