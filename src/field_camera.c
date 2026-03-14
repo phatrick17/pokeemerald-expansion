@@ -400,9 +400,9 @@ void CameraUpdate(void)
     if (curMovementOffsetY != 0 && curMovementOffsetY == -movementSpeedY)
     {
         if (movementSpeedY > 0)
-            deltaX = 1;
+            deltaY = 1;
         else
-            deltaX = -1;
+            deltaY = -1;
     }
 
     gFieldCamera.x += movementSpeedX;
