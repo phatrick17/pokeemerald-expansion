@@ -1,7 +1,10 @@
-raw `OldaleTown_Mart_MapScripts::
-	.byte 0
+mapscripts OldaleTown_Mart_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST, 0: OldaleTown_Mart_EventScript_SnaggHideoutBroadcast
+    ]
+}
 
-OldaleTown_Mart_EventScript_Clerk::
+raw `OldaleTown_Mart_EventScript_Clerk::
 	lock
 	faceplayer
 	message gText_HowMayIServeYou
@@ -117,3 +120,61 @@ script InsideBuilding_EventScript_Willie {
 }
 
 //MUS_ENCOUNTER_INTERVIEWER
+
+// ============================================================
+// Snaggem Hideout explosion TV broadcast — plays once on entry
+// Requires: a tile with MB_TELEVISION behavior in this map's tileset
+// ============================================================
+
+script OldaleTown_Mart_EventScript_SnaggHideoutBroadcast {
+    lockall
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, OldaleTown_Mart_Movement_CamPanUp)
+    waitmovement(0)
+    playbgm(MUS_ABNORMAL_WEATHER, FALSE)
+    special(TurnOnTVScreen)
+    delay(30)
+    msgbox(OldaleTown_Mart_Text_SnaggHideoutReport, MSGBOX_DEFAULT)
+    special(TurnOffTVScreen)
+    fadedefaultbgm
+    applymovement(OBJ_EVENT_ID_CAMERA, OldaleTown_Mart_Movement_CamPanDown)
+    waitmovement(0)
+    special(RemoveCameraObject)
+    setflag(FLAG_TV_SNAGGEM_HIDEOUT_BROADCAST)
+    releaseall
+    end
+}
+
+movement OldaleTown_Mart_Movement_CamPanUp {
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    step_end
+}
+
+movement OldaleTown_Mart_Movement_CamPanDown {
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    step_end
+}
+
+text OldaleTown_Mart_Text_SnaggHideoutReport {
+    format("Authorities have made a stunning\n"
+           "announcement on the mysterious\n"
+           "building that exploded in Eclo Canyon.\p"
+           "It was Team Snaggem's Hideout.\p"
+           "Team Snaggem is a gang of POKéMON\n"
+           "abductors who have already been\n"
+           "marked for arrest.\p"
+           "The hideout was discovered only as\n"
+           "a result of the explosion.\p"
+           "By the time police arrived, the\n"
+           "ruined building had already\n"
+           "been abandoned.\p"
+           "The cause of the explosion is\n"
+           "under investigation. It should\n"
+           "become apparent eventually.$")
+}
