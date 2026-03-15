@@ -163,7 +163,7 @@ Route119_EventScript_IntroCutscene::
 # 135 "data/maps/Route119/scripts.pory"
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 # 136 "data/maps/Route119/scripts.pory"
-	warp MAP_ROUTE101, 23, 14
+	warp MAP_ROUTE101, 33, 15
 # 137 "data/maps/Route119/scripts.pory"
 	waitstate
 # 139 "data/maps/Route119/scripts.pory"

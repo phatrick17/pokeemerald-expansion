@@ -273,7 +273,6 @@
 #define METATILE_Lavaridge_RockWall             0x274
 
 // gTileset_Lilycove
-#define METATILE_Lilycove_Door             0x246
 #define METATILE_Lilycove_Door_DeptStore   0x30C
 #define METATILE_Lilycove_Door_SafariZone  0x32D
 #define METATILE_Lilycove_Door_Wooden      0x28E

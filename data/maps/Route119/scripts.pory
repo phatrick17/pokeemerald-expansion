@@ -133,7 +133,7 @@ script Route119_EventScript_IntroCutscene {
 	additem(ITEM_FULL_HEAL, 2)
 	setflag(FLAG_TRUDLEY_FOLEY_SPRITE)
     clearflag(FLAG_HIDE_MAP_NAME_POPUP)
-    warp(MAP_ROUTE101, 23, 14)
+    warp(MAP_ROUTE101, 33, 15)
     waitstate
  
     releaseall
