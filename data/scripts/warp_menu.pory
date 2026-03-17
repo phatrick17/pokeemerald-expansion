@@ -1,0 +1,164 @@
+// =============================================================================
+// Dynamic Warp Menu Script
+// =============================================================================
+// This script builds a warp destination menu based on which flags are set.
+// Outskirt Stand is ALWAYS available. Other destinations unlock via flags.
+//
+// --- CUSTOMIZATION GUIDE ---
+// 1. Replace FLAG_VISITED_xxx with your actual flag constants
+//    (defined in include/constants/flags.h)
+// 2. Replace MAP_xxx, WARP_ID, X, Y with your actual map/warp values
+//    (map names come from Porymap, e.g. MAP_OUTSKIRT_STAND)
+// 3. Add/remove destination blocks as needed following the pattern
+// 4. Update WARP_MENU_ID_xxx constants to match your destination count
+// 5. Attach WarpMenu_Start to an NPC or trigger via object_event script
+// =============================================================================
+
+// --- Destination ID constants ---
+// These correspond to the IDs passed in dynmultipush.
+// They auto-increment as destinations are pushed.
+// VAR_RESULT will be set to the selected destination's ID.
+raw `
+.set WARP_MENU_ID_OUTSKIRT_STAND,   0
+.set WARP_MENU_ID_PHENAC_CITY,      1
+.set WARP_MENU_ID_PYRITE_TOWN,      2
+.set WARP_MENU_ID_AGATE_VILLAGE,    3
+.set WARP_MENU_ID_THE_UNDER,        4
+`
+
+// --- Placeholder Flags ---
+// Replace these with your actual flags from include/constants/flags.h
+// FLAG_VISITED_PHENAC_CITY    = your flag here
+// FLAG_VISITED_PYRITE_TOWN    = your flag here
+// FLAG_VISITED_AGATE_VILLAGE  = your flag here
+// FLAG_VISITED_THE_UNDER      = your flag here
+
+// =============================================================================
+// Main Entry Point - call this from your NPC / trigger
+// =============================================================================
+script WarpMenu_Start {
+	lockall
+	msgbox(format("Where would you like to go?"), MSGBOX_DEFAULT)
+
+	// --- Always push Outskirt Stand (always unlocked) ---
+	dynmultipush(WarpMenu_Text_OutskirtStand, WARP_MENU_ID_OUTSKIRT_STAND)
+
+	// --- Conditionally push each destination based on its flag ---
+
+	// PHENAC CITY
+	if (flag(FLAG_VISITED_PHENAC_CITY)) {
+		dynmultipush(WarpMenu_Text_PhenacCity, WARP_MENU_ID_PHENAC_CITY)
+	}
+
+	// PYRITE TOWN
+	if (flag(FLAG_VISITED_PYRITE_TOWN)) {
+		dynmultipush(WarpMenu_Text_PyriteTown, WARP_MENU_ID_PYRITE_TOWN)
+	}
+
+	// AGATE VILLAGE
+	if (flag(FLAG_VISITED_AGATE_VILLAGE)) {
+		dynmultipush(WarpMenu_Text_AgateVillage, WARP_MENU_ID_AGATE_VILLAGE)
+	}
+
+	// THE UNDER
+	if (flag(FLAG_VISITED_THE_UNDER)) {
+		dynmultipush(WarpMenu_Text_TheUnder, WARP_MENU_ID_THE_UNDER)
+	}
+
+	// --- Display the menu ---
+	// dynmultistack args: left, top, ignoreBPress, maxBeforeScroll, shouldSort, initialSelected, callbacks
+	// B press returns MULTI_B_PRESSED (127)
+	dynmultistack(0, 0, FALSE, 5, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+
+	// --- Handle selection ---
+	switch (var(VAR_RESULT)) {
+		case MULTI_B_PRESSED:
+			goto(WarpMenu_Cancel)
+		case WARP_MENU_ID_OUTSKIRT_STAND:
+			goto(WarpMenu_GoTo_OutskirtStand)
+		case WARP_MENU_ID_PHENAC_CITY:
+			goto(WarpMenu_GoTo_PhenacCity)
+		case WARP_MENU_ID_PYRITE_TOWN:
+			goto(WarpMenu_GoTo_PyriteTown)
+		case WARP_MENU_ID_AGATE_VILLAGE:
+			goto(WarpMenu_GoTo_AgateVillage)
+		case WARP_MENU_ID_THE_UNDER:
+			goto(WarpMenu_GoTo_TheUnder)
+		// Add more cases here...
+	}
+	goto(WarpMenu_Cancel)
+}
+
+// =============================================================================
+// Warp Handlers
+// =============================================================================
+// Replace MAP_xxx and warp coordinates with your actual values.
+// Use either:
+//   warp MAP_NAME, WARP_ID          (warp to a warp event on destination map)
+//   warp MAP_NAME, 255, X, Y       (warp to specific X,Y coordinates)
+
+script WarpMenu_GoTo_OutskirtStand {
+	msgbox(format("Warping now..."), MSGBOX_DEFAULT)
+	releaseall
+	// REPLACE: Use your actual map name and warp/coordinates
+	warp(MAP_OUTSKIRT_STAND, 0)
+	waitstate
+}
+
+script WarpMenu_GoTo_PhenacCity {
+	msgbox(format("Warping now..."), MSGBOX_DEFAULT)
+	releaseall
+	// REPLACE: Use your actual map name and warp/coordinates
+	warp(MAP_PHENAC_CITY, 0)
+	waitstate
+}
+
+script WarpMenu_GoTo_PyriteTown {
+	msgbox(format("Warping now..."), MSGBOX_DEFAULT)
+	releaseall
+	// REPLACE: Use your actual map name and warp/coordinates
+	warp(MAP_PYRITE_TOWN, 0)
+	waitstate
+}
+
+script WarpMenu_GoTo_AgateVillage {
+	msgbox(format("Warping now..."), MSGBOX_DEFAULT)
+	releaseall
+	// REPLACE: Use your actual map name and warp/coordinates
+	warp(MAP_AGATE_VILLAGE, 0)
+	waitstate
+}
+
+script WarpMenu_GoTo_TheUnder {
+	msgbox(format("Warping now..."), MSGBOX_DEFAULT)
+	releaseall
+	// REPLACE: Use your actual map name and warp/coordinates
+	warp(MAP_THE_UNDER, 0)
+	waitstate
+}
+
+script WarpMenu_Cancel {
+	msgbox(format("Maybe another time."), MSGBOX_DEFAULT)
+	releaseall
+}
+
+// =============================================================================
+// Text Strings (used by dynmultipush - must be raw assembly)
+// =============================================================================
+raw `
+@ Menu option labels
+WarpMenu_Text_OutskirtStand:
+	.string "Outskirt Stand$"
+
+WarpMenu_Text_PhenacCity:
+	.string "Phenac City$"
+
+WarpMenu_Text_PyriteTown:
+	.string "Pyrite Town$"
+
+WarpMenu_Text_AgateVillage:
+	.string "Agate Village$"
+
+WarpMenu_Text_TheUnder:
+	.string "The Under$"
+`
