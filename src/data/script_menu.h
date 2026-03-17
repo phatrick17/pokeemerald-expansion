@@ -778,6 +778,20 @@ static const struct MenuAction MultichoiceList_BerryPlot[] =
     {gText_Exit},
 };
 
+// Pokemon Colosseum-style World Map destination list
+// TODO: Add/remove entries here as you add more destinations.
+// Keep "CANCEL" as the last entry. The index of each entry must match
+// the WORLDMAP_SELECTION_* constants in include/constants/script_menu.h.
+static const struct MenuAction MultichoiceList_WorldMap[] =
+{
+    {COMPOUND_STRING("OUTSKIRT STAND")},
+    {COMPOUND_STRING("PHENAC CITY")},
+    {COMPOUND_STRING("PYRITE TOWN")},
+    // {COMPOUND_STRING("AGATE VILLAGE")},  // Uncomment when adding more destinations
+    // {COMPOUND_STRING("THE UNDER")},
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_Exit[] =
 {
     {gText_Exit},
@@ -906,6 +920,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
+    [MULTI_WORLD_MAP]                  = MULTICHOICE(MultichoiceList_WorldMap),
 };
 
 const u8 *const gStdStrings[] =

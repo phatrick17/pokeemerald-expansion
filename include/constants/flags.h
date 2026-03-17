@@ -51,10 +51,13 @@
 #define FLAG_TRUDLEY_FOLEY_SPRITE   0x25 // Trudley Foley sprites outskirt stand
 #define FLAG_CAR_AND_BAG_OUTSKIRT   0x26 // Outskirt Stand Intro Scene Flag. AlsoMakes outskirt stand intro sprites go away
 #define EXTRA_FLAG_1    0x27 // EXTRA_FLAG
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
+// World Map destination unlock flags
+// Set these flags in your story scripts when the player unlocks each destination.
+// Outskirt Stand is available from the start (no flag check needed).
+#define FLAG_WORLD_MAP_PHENAC_CITY     0x28 // Set when player unlocks Phenac City
+#define FLAG_WORLD_MAP_PYRITE_TOWN     0x29 // Set when player unlocks Pyrite Town
+#define FLAG_WORLD_MAP_AGATE_VILLAGE   0x2A // (Future) Set when player unlocks Agate Village
+#define FLAG_WORLD_MAP_THE_UNDER       0x2B // (Future) Set when player unlocks The Under
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag

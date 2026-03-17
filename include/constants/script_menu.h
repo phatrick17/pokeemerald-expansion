@@ -123,6 +123,17 @@
 #define MULTI_FALLARBOR_TENT_RULES         112
 #define MULTI_TAG_MATCH_TYPE               113
 #define MULTI_BERRY_PLOT                   114
+#define MULTI_WORLD_MAP                    115
+
+// World Map Multichoice Selections
+#define WORLDMAP_SELECTION_OUTSKIRT_STAND   0
+#define WORLDMAP_SELECTION_PHENAC_CITY      1
+#define WORLDMAP_SELECTION_PYRITE_TOWN      2
+// Add more destinations here (up to 9 total), incrementing the index
+// #define WORLDMAP_SELECTION_AGATE_VILLAGE 3
+// #define WORLDMAP_SELECTION_THE_UNDER     4
+// ...
+#define WORLDMAP_SELECTION_CANCEL           3  // Always keep Cancel as the last entry
 
 // Lilycove SS Tidal Multichoice Selections
 #define SSTIDAL_SELECTION_SLATEPORT        0
