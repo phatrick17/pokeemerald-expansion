@@ -532,3 +532,12 @@ movement Outside_Movement_Willie_Disappear {
 //}
 
 
+script MyScript_OpenMap {
+    lockall
+    playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
+    special(Special_OpenCustomMap)
+    waitstate
+    releaseall
+    fadedefaultbgm
+    end
+}

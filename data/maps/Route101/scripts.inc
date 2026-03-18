@@ -775,6 +775,22 @@ Outside_Movement_Willie_Disappear:
 	walk_up
 	step_end
 
+MyScript_OpenMap::
+# 536 "data/maps/Route101/scripts.pory"
+	lockall
+# 537 "data/maps/Route101/scripts.pory"
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+# 538 "data/maps/Route101/scripts.pory"
+	special Special_OpenCustomMap
+# 539 "data/maps/Route101/scripts.pory"
+	waitstate
+# 540 "data/maps/Route101/scripts.pory"
+	releaseall
+# 541 "data/maps/Route101/scripts.pory"
+	fadedefaultbgm
+	end
+
+
 # 316 "data/maps/Route101/scripts.pory"
 Outskirt_Stand_Folley_Trudly_1_Movement_0:
 # 317 "data/maps/Route101/scripts.pory"

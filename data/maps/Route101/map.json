@@ -261,6 +261,15 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "Outskirt_Stand_Folley_Trudly_1"
+    },
+    {
+      "type": "trigger",
+      "x": 36,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MyScript_OpenMap"
     }
   ],
   "bg_events": [
