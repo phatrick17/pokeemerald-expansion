@@ -2,5 +2,6 @@
 #define GUARD_CUSTOM_MAP_H
 
 void CB2_OpenCustomMap(void);
+void Special_OpenCustomMap(void);
 
 #endif // GUARD_CUSTOM_MAP_H

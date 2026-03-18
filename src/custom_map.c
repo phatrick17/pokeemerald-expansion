@@ -77,6 +77,7 @@ static EWRAM_DATA struct {
     u16 state;
     u8 selectedTown;
     bool8 choseFlyLocation;
+    bool8 calledFromScript;
     u8 cursorSpriteId;
 } *sCustomMap = NULL;
 
@@ -462,6 +463,13 @@ static void CB_ExitCustomMap(void)
                 FreeAllWindowBuffers();
                 ReturnToFieldFromFlyMapSelect();
             }
+            else if (sCustomMap->calledFromScript)
+            {
+                // Return to field and continue running the script
+                TRY_FREE_AND_SET_NULL(sCustomMap);
+                FreeAllWindowBuffers();
+                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+            }
             else
             {
                 TRY_FREE_AND_SET_NULL(sCustomMap);
@@ -497,4 +505,21 @@ static void UpdateTownNameWindow(void)
 
     PutWindowTilemap(WIN_TOWN_NAME);
     ScheduleBgCopyTilemapToVram(0);
+}
+
+// ==================== Poryscript Special ====================
+// Call from Poryscript with: special(Special_OpenCustomMap)
+// On cancel (B), returns to field and continues script.
+// On select (A), warps to the chosen town.
+static void CB2_OpenCustomMapFromScript(void)
+{
+    CB2_OpenCustomMap();
+    // Set the flag after allocation in state 0
+    if (sCustomMap != NULL)
+        sCustomMap->calledFromScript = TRUE;
+}
+
+void Special_OpenCustomMap(void)
+{
+    SetMainCallback2(CB2_OpenCustomMapFromScript);
 }
