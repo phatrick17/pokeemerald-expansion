@@ -95,7 +95,7 @@ static const struct BgTemplate sCustomMapBgTemplates[] = {
     },
     {
         .bg = 1,
-        .charBaseIndex = 2,
+        .charBaseIndex = 1,
         .mapBaseIndex = 28,
         .screenSize = 0,
         .paletteMode = 1, // 8bpp for 256-color map image

@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-Convert a 224x120 custom map image into the tile sheet (map.png) and
-tilemap (map.bin) format used by pokeemerald-expansion's region map.
+Convert a custom map image into the tile sheet (map.png) and
+tilemap (map.bin) format used by the custom fly map screen.
 
 Usage:
     python3 tools/convert_region_map.py <input_map.png>
 
 The input image must be:
-  - Exactly 224x120 pixels (28 tiles wide x 15 tiles tall, at 8px per tile)
-  - 256-color indexed PNG (palette mode 'P')
+  - Up to 256x256 pixels (32 tiles wide x 32 tiles tall, at 8px per tile)
+  - 256-color indexed PNG (palette mode 'P'), or will be auto-quantized
 
-Output:
-  - graphics/pokenav/region_map/map.png  (tile sheet, ready to build)
-  - graphics/pokenav/region_map/map.bin  (64x64 affine tilemap)
+Output (into graphics/custom_map/):
+  - map.png   (tile sheet with unique 8x8 tiles, 8bpp indexed)
+  - map.bin   (32x32 text-mode tilemap, 2 bytes per entry)
 """
 
 import sys
@@ -24,15 +24,14 @@ try:
 except ImportError:
     sys.exit("Pillow is required: pip install Pillow")
 
-MAP_TILES_W = 28      # tiles wide (visible map area)
-MAP_TILES_H = 15      # tiles tall (visible map area)
 TILE_SIZE   = 8       # pixels per tile side
-TILEMAP_DIM = 64      # affine tilemap is 64x64 entries
+TILEMAP_DIM = 32      # text-mode tilemap is 32x32 entries
 SHEET_TILES_PER_ROW = 16  # tile sheet layout: 16 tiles per row
-MAX_TILES   = 256     # affine BG supports 8-bit tile indices (0-255)
+MAX_TILES   = 640     # practical limit based on VRAM layout (charbase 1 to mapbase 28)
 
-OUT_MAP_PNG = Path("graphics/pokenav/region_map/map.png")
-OUT_MAP_BIN = Path("graphics/pokenav/region_map/map.bin")
+OUT_DIR     = Path("graphics/custom_map")
+OUT_MAP_PNG = OUT_DIR / "map.png"
+OUT_MAP_BIN = OUT_DIR / "map.bin"
 
 
 def tile_bytes(img_data, img_width, tx, ty):
@@ -57,27 +56,32 @@ def main():
     img = Image.open(input_path)
 
     # ---- validate dimensions ------------------------------------------------
-    expected_w = MAP_TILES_W * TILE_SIZE   # 224
-    expected_h = MAP_TILES_H * TILE_SIZE   # 120
+    max_w = TILEMAP_DIM * TILE_SIZE  # 256
+    max_h = TILEMAP_DIM * TILE_SIZE  # 256
 
-    if img.size != (expected_w, expected_h):
+    if img.width > max_w or img.height > max_h:
         sys.exit(
-            f"Image must be {expected_w}x{expected_h} pixels "
-            f"(got {img.width}x{img.height}).\n"
-            f"Resize your map to exactly {expected_w}x{expected_h} px."
+            f"Image must be at most {max_w}x{max_h} pixels "
+            f"(got {img.width}x{img.height})."
         )
+
+    if img.width % TILE_SIZE != 0 or img.height % TILE_SIZE != 0:
+        sys.exit(
+            f"Image dimensions must be multiples of {TILE_SIZE} "
+            f"(got {img.width}x{img.height})."
+        )
+
+    map_tiles_w = img.width // TILE_SIZE
+    map_tiles_h = img.height // TILE_SIZE
+    print(f"Map size: {img.width}x{img.height} px = {map_tiles_w}x{map_tiles_h} tiles")
 
     # ---- ensure indexed palette mode ----------------------------------------
     if img.mode != "P":
         print(f"Converting from {img.mode} to indexed 256-color palette...")
         img = img.quantize(colors=256)
-    else:
-        # Make sure the palette has exactly 256 entries
-        pass
 
     palette_bytes = img.palette.tobytes()
     if len(palette_bytes) < 256 * 3:
-        # Pad palette to 256 colors
         palette_bytes = palette_bytes + b"\x00" * (256 * 3 - len(palette_bytes))
 
     # ---- read pixel data as 2-D array ----------------------------------------
@@ -85,20 +89,20 @@ def main():
     img_array = [pixels[row * img.width: (row + 1) * img.width] for row in range(img.height)]
 
     # ---- extract & deduplicate 8x8 tiles -------------------------------------
-    tile_to_index = {}   # tile_bytes -> tile_index
-    tile_list     = []   # ordered list of unique tile bytes (index = position in list)
+    tile_to_index = {}
+    tile_list     = []
 
-    tilemap_area = []  # 15 rows x 28 cols of tile indices
+    tilemap_area = []
 
-    for ty in range(MAP_TILES_H):
+    for ty in range(map_tiles_h):
         row_indices = []
-        for tx in range(MAP_TILES_W):
+        for tx in range(map_tiles_w):
             tb = tile_bytes(img_array, img.width, tx, ty)
             if tb not in tile_to_index:
                 if len(tile_list) >= MAX_TILES:
                     sys.exit(
                         f"Too many unique tiles ({len(tile_list)}+)!\n"
-                        "The region map supports at most 256 unique 8x8 tiles.\n"
+                        f"The custom map supports at most {MAX_TILES} unique 8x8 tiles.\n"
                         "Simplify your map image (reduce detail/colors, use flat areas)."
                     )
                 tile_to_index[tb] = len(tile_list)
@@ -109,11 +113,18 @@ def main():
     num_unique = len(tile_list)
     print(f"Unique tiles: {num_unique} / {MAX_TILES}")
 
-    # ---- build the 64x64 affine tilemap (4096 bytes) -------------------------
-    tilemap = bytearray(TILEMAP_DIM * TILEMAP_DIM)  # all zeros
-    for ty in range(MAP_TILES_H):
-        for tx in range(MAP_TILES_W):
-            tilemap[ty * TILEMAP_DIM + tx] = tilemap_area[ty][tx]
+    # ---- build the 32x32 text-mode tilemap (2048 bytes) ----------------------
+    # Text-mode tilemap entries are 16-bit (little-endian):
+    #   bits 0-9:   tile index (0-1023)
+    #   bit  10:    horizontal flip
+    #   bit  11:    vertical flip
+    #   bits 12-15: palette number (unused for 8bpp, set to 0)
+    tilemap = bytearray(TILEMAP_DIM * TILEMAP_DIM * 2)  # 2 bytes per entry
+    for ty in range(map_tiles_h):
+        for tx in range(map_tiles_w):
+            idx = tilemap_area[ty][tx]
+            offset = (ty * TILEMAP_DIM + tx) * 2
+            struct.pack_into("<H", tilemap, offset, idx)
 
     # ---- build the tile sheet PNG --------------------------------------------
     sheet_cols = SHEET_TILES_PER_ROW
@@ -135,15 +146,15 @@ def main():
     sheet_img.putdata(sheet_pixels)
 
     # ---- write outputs -------------------------------------------------------
-    OUT_MAP_PNG.parent.mkdir(parents=True, exist_ok=True)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     sheet_img.save(OUT_MAP_PNG)
     OUT_MAP_BIN.write_bytes(tilemap)
 
     print(f"Written: {OUT_MAP_PNG}  ({sheet_w}x{sheet_h} px, {num_unique} tiles)")
-    print(f"Written: {OUT_MAP_BIN}  ({len(tilemap)} bytes)")
+    print(f"Written: {OUT_MAP_BIN}  ({len(tilemap)} bytes, {TILEMAP_DIM}x{TILEMAP_DIM} text-mode tilemap)")
     print()
     print("Next steps:")
-    print("  make  (the build system will compress map.png -> .8bpp.smol and map.bin -> .bin.smolTM)")
+    print("  make  (the build system will compress map.png -> .8bpp.lz and map.bin -> .bin.lz)")
 
 
 if __name__ == "__main__":
