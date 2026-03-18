@@ -11,6 +11,7 @@
 #include "menu.h"
 #include "text_window.h"
 #include "string_util.h"
+#include "international_string_util.h"
 #include "strings.h"
 #include "m4a.h"
 #include "overworld.h"
