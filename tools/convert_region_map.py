@@ -80,7 +80,9 @@ def main():
         print(f"Converting from {img.mode} to indexed 256-color palette...")
         img = img.quantize(colors=256)
 
-    palette_bytes = img.palette.tobytes()
+    palette_bytes = img.palette.palette or img.palette.tobytes()
+    if isinstance(palette_bytes, str):
+        palette_bytes = bytes(palette_bytes, "latin-1")
     if len(palette_bytes) < 256 * 3:
         palette_bytes = palette_bytes + b"\x00" * (256 * 3 - len(palette_bytes))
 
