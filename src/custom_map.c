@@ -34,6 +34,7 @@ struct CustomMapTown {
     s16 y;
     mapsec_u16_t mapSecId;
     u16 healLocationId;
+    u16 flag;  // If non-zero, this town can only be selected when this flag is set (0 = always available)
     const u8 *name;
 };
 
@@ -105,28 +106,18 @@ static const struct BgTemplate sCustomMapBgTemplates[] = {
 
 // ==================== Window Templates ====================
 enum {
-    WIN_TOWN_NAME,
-    WIN_FLY_PROMPT,
+    WIN_MAP_INFO,
 };
 
 static const struct WindowTemplate sCustomMapWindowTemplates[] = {
-    [WIN_TOWN_NAME] = {
+    [WIN_MAP_INFO] = {
         .bg = 0,
-        .tilemapLeft = 17,
+        .tilemapLeft = 5,
         .tilemapTop = 17,
-        .width = 12,
+        .width = 20,
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x01,
-    },
-    [WIN_FLY_PROMPT] = {
-        .bg = 0,
-        .tilemapLeft = 1,
-        .tilemapTop = 18,
-        .width = 14,
-        .height = 2,
-        .paletteNum = 15,
-        .baseBlock = 0x20,
     },
     DUMMY_WIN_TEMPLATE,
 };
@@ -178,6 +169,14 @@ static void CB_ExitCustomMap(void);
 static void UpdateTownNameWindow(void);
 static void MoveCursorToTown(u8 townIdx);
 
+// Returns TRUE if this town is available for selection
+static bool8 IsTownAvailable(u8 townIdx)
+{
+    if (sCustomTowns[townIdx].flag == 0)
+        return TRUE;
+    return FlagGet(sCustomTowns[townIdx].flag);
+}
+
 // ==================== Cursor Sprite Callback ====================
 // Gentle bounce animation
 static void SpriteCB_CustomCursor(struct Sprite *sprite)
@@ -226,8 +225,6 @@ void CB2_OpenCustomMap(void)
         gMain.state++;
         break;
     case 3:
-        // Load user window border for text boxes
-        LoadUserWindowBorderGfx(0, 0x65, BG_PLTT_ID(13));
         ClearScheduledBgCopiesToVram();
         gMain.state++;
         break;
@@ -263,24 +260,31 @@ void CB2_OpenCustomMap(void)
         LoadCompressedSpriteSheet(&sheet);
         LoadSpritePalette(&pal);
 
-        // Create cursor sprite at first town
+        // Create cursor sprite at first available town
         sCustomMap->selectedTown = 0;
+        for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
+        {
+            if (IsTownAvailable(i))
+            {
+                sCustomMap->selectedTown = i;
+                break;
+            }
+        }
         sCustomMap->cursorSpriteId = CreateSprite(
             &sCursorSpriteTemplate,
-            sCustomTowns[0].x,
-            sCustomTowns[0].y,
+            sCustomTowns[sCustomMap->selectedTown].x,
+            sCustomTowns[sCustomMap->selectedTown].y,
             0
         );
         gMain.state++;
         break;
     }
     case 8:
-        // Draw "FLY to where?" prompt
-        DrawStdFrameWithCustomTileAndPalette(WIN_FLY_PROMPT, FALSE, 0x65, 13);
-        PutWindowTilemap(WIN_FLY_PROMPT);
-        FillWindowPixelBuffer(WIN_FLY_PROMPT, PIXEL_FILL(1));
-        AddTextPrinterParameterized(WIN_FLY_PROMPT, FONT_NORMAL, gText_FlyToWhere, 0, 1, 0, NULL);
-        // Draw initial town name
+        // Load window border AFTER map palette so it doesn't get overwritten
+        // The 8bpp map palette fills palettes 0-15; we must reload 13 (border) and 15 (text)
+        LoadUserWindowBorderGfx(0, 0x65, BG_PLTT_ID(13));
+        LoadPalette(GetTextWindowPalette(0), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+        // Draw initial town name in centered window
         UpdateTownNameWindow();
         ScheduleBgCopyTilemapToVram(0);
         gMain.state++;
@@ -346,25 +350,43 @@ static void CB_HandleCustomMapInput(void)
 
     if (JOY_NEW(DPAD_RIGHT))
     {
-        // Move to next town
-        u8 next = (sCustomMap->selectedTown + 1) % NUM_CUSTOM_TOWNS;
-        sCustomMap->selectedTown = next;
-        MoveCursorToTown(next);
-        UpdateTownNameWindow();
-        m4aSongNumStart(SE_DEX_SCROLL);
+        // Move to next available town
+        u8 next = sCustomMap->selectedTown;
+        for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
+        {
+            next = (next + 1) % NUM_CUSTOM_TOWNS;
+            if (IsTownAvailable(next))
+                break;
+        }
+        if (next != sCustomMap->selectedTown)
+        {
+            sCustomMap->selectedTown = next;
+            MoveCursorToTown(next);
+            UpdateTownNameWindow();
+            m4aSongNumStart(SE_DEX_SCROLL);
+        }
     }
     else if (JOY_NEW(DPAD_LEFT))
     {
-        // Move to previous town
-        u8 prev = (sCustomMap->selectedTown == 0) ? NUM_CUSTOM_TOWNS - 1 : sCustomMap->selectedTown - 1;
-        sCustomMap->selectedTown = prev;
-        MoveCursorToTown(prev);
-        UpdateTownNameWindow();
-        m4aSongNumStart(SE_DEX_SCROLL);
+        // Move to previous available town
+        u8 prev = sCustomMap->selectedTown;
+        for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
+        {
+            prev = (prev == 0) ? NUM_CUSTOM_TOWNS - 1 : prev - 1;
+            if (IsTownAvailable(prev))
+                break;
+        }
+        if (prev != sCustomMap->selectedTown)
+        {
+            sCustomMap->selectedTown = prev;
+            MoveCursorToTown(prev);
+            UpdateTownNameWindow();
+            m4aSongNumStart(SE_DEX_SCROLL);
+        }
     }
     else if (JOY_NEW(DPAD_UP))
     {
-        // Find the nearest town above current position
+        // Find the nearest available town above current position
         s16 curX = sCustomTowns[sCustomMap->selectedTown].x;
         s16 curY = sCustomTowns[sCustomMap->selectedTown].y;
         s32 bestDist = 0x7FFFFFFF;
@@ -372,7 +394,7 @@ static void CB_HandleCustomMapInput(void)
 
         for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
         {
-            if (i == sCustomMap->selectedTown)
+            if (i == sCustomMap->selectedTown || !IsTownAvailable(i))
                 continue;
             if (sCustomTowns[i].y < curY)
             {
@@ -396,7 +418,7 @@ static void CB_HandleCustomMapInput(void)
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        // Find the nearest town below current position
+        // Find the nearest available town below current position
         s16 curX = sCustomTowns[sCustomMap->selectedTown].x;
         s16 curY = sCustomTowns[sCustomMap->selectedTown].y;
         s32 bestDist = 0x7FFFFFFF;
@@ -404,7 +426,7 @@ static void CB_HandleCustomMapInput(void)
 
         for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
         {
-            if (i == sCustomMap->selectedTown)
+            if (i == sCustomMap->selectedTown || !IsTownAvailable(i))
                 continue;
             if (sCustomTowns[i].y > curY)
             {
@@ -495,15 +517,17 @@ static void UpdateTownNameWindow(void)
 {
     u8 name[MAP_NAME_LENGTH + 1];
 
-    // Draw frame around town name window
-    DrawStdFrameWithCustomTileAndPalette(WIN_TOWN_NAME, FALSE, 0x65, 13);
-    FillWindowPixelBuffer(WIN_TOWN_NAME, PIXEL_FILL(1));
+    // Draw frame around the centered info window
+    DrawStdFrameWithCustomTileAndPalette(WIN_MAP_INFO, FALSE, 0x65, 13);
+    FillWindowPixelBuffer(WIN_MAP_INFO, PIXEL_FILL(1));
 
-    // Get the map section name for the selected town
+    // Get the map section name for the selected town and center it
     GetMapName(name, sCustomTowns[sCustomMap->selectedTown].mapSecId, 0);
-    AddTextPrinterParameterized(WIN_TOWN_NAME, FONT_NORMAL, name, 0, 1, 0, NULL);
+    // Window is 20 tiles = 160px wide; center the text
+    u32 x = GetStringCenterAlignXOffset(FONT_NORMAL, name, 160);
+    AddTextPrinterParameterized(WIN_MAP_INFO, FONT_NORMAL, name, x, 1, 0, NULL);
 
-    PutWindowTilemap(WIN_TOWN_NAME);
+    PutWindowTilemap(WIN_MAP_INFO);
     ScheduleBgCopyTilemapToVram(0);
 }
 
