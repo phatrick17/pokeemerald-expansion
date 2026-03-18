@@ -54,6 +54,7 @@
 #include "pokemon_storage_system.h"
 #include "pokemon_summary_screen.h"
 #include "region_map.h"
+#include "custom_map.h"
 #include "reshow_battle_screen.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -4087,7 +4088,7 @@ static void CursorCb_FieldMove(u8 taskId)
                 sPartyMenuInternal->data[0] = fieldMove;
                 break;
             case FIELD_MOVE_FLY:
-                gPartyMenu.exitCallback = CB2_OpenFlyMap;
+                gPartyMenu.exitCallback = CB2_OpenCustomMap;
                 Task_ClosePartyMenu(taskId);
                 break;
             default:
