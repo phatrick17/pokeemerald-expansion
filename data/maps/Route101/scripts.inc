@@ -788,6 +788,10 @@ MyScript_OpenMap::
 	releaseall
 # 541 "data/maps/Route101/scripts.pory"
 	fadedefaultbgm
+# 542 "data/maps/Route101/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, MyScript_OpenMap_Movement_0
+# 545 "data/maps/Route101/scripts.pory"
+	waitmovement 0
 	end
 
 
@@ -851,6 +855,12 @@ Outskirt_Stand_Folley_Trudly_1_Movement_5:
 	walk_left
 # 361 "data/maps/Route101/scripts.pory"
 	face_down
+	step_end
+
+# 542 "data/maps/Route101/scripts.pory"
+MyScript_OpenMap_Movement_0:
+# 543 "data/maps/Route101/scripts.pory"
+	walk_left
 	step_end
 
 Outskirt_Stand_Folley_Trudly_1_Text_0:
