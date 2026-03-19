@@ -4122,6 +4122,7 @@ static void CustomFlyIn_ChangeBack(struct Task *task)
     objectEvent->noShadow = FALSE;
     ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(state));
     ObjectEventTurn(objectEvent, DIR_SOUTH);
+    SetUpShadow(objectEvent);
     task->tTimer = 0;
     task->tState++;
 }
