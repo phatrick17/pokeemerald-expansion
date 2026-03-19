@@ -3873,6 +3873,18 @@ static void FlyInFieldEffect_End(struct Task *task)
 // Uses submarine_shadow sprite instead of the bird fly animation.
 // Flow: player transforms to submarine_shadow -> fade out -> warp -> fade in as submarine_shadow -> transform back
 
+static void RestoreNpcPalettes(void)
+{
+    u8 slot;
+    for (slot = PALSLOT_NPC_1; slot <= PALSLOT_NPC_4_REFLECTION; slot++)
+    {
+        u16 tag = GetObjectPaletteTag(slot);
+        if (tag != OBJ_EVENT_PAL_TAG_NONE)
+            PatchObjectPalette(tag, slot);
+    }
+}
+
+
 #define tState      data[0]
 #define tTimer      data[1]
 #define tAvatarFlags data[15]
@@ -3987,6 +3999,7 @@ static void CustomFlyOut_ChangeSprite(struct Task *task)
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     objectEvent->noShadow = TRUE;
     ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+//    RestoreNpcPalettes();
     ObjectEventTurn(objectEvent, DIR_SOUTH);
     PlaySE(SE_M_FLY);
     task->tTimer = 0;
@@ -4038,6 +4051,7 @@ static void Task_CustomFlyIntoMap(u8 taskId)
     {
     case 0:
         ObjectEventSetGraphicsId(player, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+        RestoreNpcPalettes();
         ObjectEventTurn(player, DIR_SOUTH);
         player->noShadow = TRUE;
         player->invisible = FALSE;
