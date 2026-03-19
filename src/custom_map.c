@@ -11,6 +11,7 @@
 #include "menu.h"
 #include "text_window.h"
 #include "string_util.h"
+#include "international_string_util.h"
 #include "strings.h"
 #include "m4a.h"
 #include "overworld.h"
@@ -46,8 +47,8 @@ struct CustomMapTown {
 // Pixel positions of the red diamond markers on the custom map image.
 // The user should update these to match their actual map.
 static const struct CustomMapTown sCustomTowns[NUM_CUSTOM_TOWNS] = {
-    { .x =  40, .y =  48, .mapSecId = MAPSEC_RUSTBORO_CITY,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
-    { .x = 128, .y =  24, .mapSecId = MAPSEC_FORTREE_CITY,      .healLocationId = HEAL_LOCATION_FORTREE_CITY },
+    { .x =  213, .y =  114, .mapSecId = MAPSEC_ROUTE_101,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
+    { .x = 160, .y =  115, .mapSecId = MAPSEC_FORTREE_CITY,      .healLocationId = HEAL_LOCATION_FORTREE_CITY },
     { .x = 200, .y =  48, .mapSecId = MAPSEC_LILYCOVE_CITY,     .healLocationId = HEAL_LOCATION_LILYCOVE_CITY },
     { .x =  24, .y =  96, .mapSecId = MAPSEC_PETALBURG_CITY,    .healLocationId = HEAL_LOCATION_PETALBURG_CITY },
     { .x =  72, .y =  96, .mapSecId = MAPSEC_MAUVILLE_CITY,     .healLocationId = HEAL_LOCATION_MAUVILLE_CITY },

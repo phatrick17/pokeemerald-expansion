@@ -539,5 +539,9 @@ script MyScript_OpenMap {
     waitstate
     releaseall
     fadedefaultbgm
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_left
+	))
+    waitmovement(0)
     end
 }
