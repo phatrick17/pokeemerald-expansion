@@ -3985,6 +3985,7 @@ static void CustomFlyOut_Init(struct Task *task)
 static void CustomFlyOut_ChangeSprite(struct Task *task)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    objectEvent->noShadow = TRUE;
     ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
     ObjectEventTurn(objectEvent, DIR_SOUTH);
     PlaySE(SE_M_FLY);
@@ -4018,13 +4019,9 @@ static void CustomFlyOut_End(struct Task *task)
 
 void FieldCallback_CustomFlyIntoMap(void)
 {
-    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     Overworld_PlaySpecialMapMusic();
-    // Set graphics immediately so submarine_shadow is visible when fade completes
-    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
-    ObjectEventTurn(objectEvent, DIR_SOUTH);
-    objectEvent->invisible = TRUE;
-    FadeInFromBlack();
+    // Don't fade in yet - keep screen black until submarine_shadow sprite is ready
+    gObjectEvents[gPlayerAvatar.objectEventId].invisible = TRUE;
     CreateTask(Task_CustomFlyIntoMap, 0);
     LockPlayerFieldControls();
     FreezeObjectEvents();
@@ -4039,12 +4036,24 @@ static void Task_CustomFlyIntoMap(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        if (gPaletteFade.active)
-            return;
-        CreateTask(Task_CustomFlyIn, 254);
+        // Set up submarine_shadow sprite while screen is still black
+        ObjectEventSetGraphicsId(player, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+        ObjectEventTurn(player, DIR_SOUTH);
+        player->noShadow = TRUE;
+        player->invisible = FALSE;
+        // Now fade in with the sprite already showing
+        FadeInFromBlack();
         task->data[0]++;
         break;
     case 1:
+        // Wait for fade-in to complete
+        if (!gPaletteFade.active)
+        {
+            CreateTask(Task_CustomFlyIn, 254);
+            task->data[0]++;
+        }
+        break;
+    case 2:
         if (!FuncIsActiveTask(Task_CustomFlyIn))
         {
             if (FNPC_NPC_FOLLOWER_SHOW_AFTER_LEAVE_ROUTE)
@@ -4055,7 +4064,7 @@ static void Task_CustomFlyIntoMap(u8 taskId)
             task->data[0]++;
         }
         break;
-    case 2:
+    case 3:
         if (PlayerHasFollowerNPC())
         {
             struct ObjectEvent *follower = &gObjectEvents[GetFollowerNPCObjectId()];
@@ -4084,12 +4093,10 @@ static void Task_CustomFlyIn(u8 taskId)
 
 static void CustomFlyIn_Init(struct Task *task)
 {
-    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    // Graphics and visibility already set up in Task_CustomFlyIntoMap
     task->tAvatarFlags = gPlayerAvatar.flags;
     gPlayerAvatar.preventStep = TRUE;
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
-    // Graphics already set in callback - just make visible
-    objectEvent->invisible = FALSE;
     CameraObjectFreeze();
     task->tTimer = 0;
     task->tState++;
@@ -4112,6 +4119,7 @@ static void CustomFlyIn_ChangeBack(struct Task *task)
         state = PLAYER_AVATAR_STATE_SURFING;
         SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
     }
+    objectEvent->noShadow = FALSE;
     ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(state));
     ObjectEventTurn(objectEvent, DIR_SOUTH);
     task->tTimer = 0;
@@ -4129,7 +4137,6 @@ static void CustomFlyIn_WaitChangeBack(struct Task *task)
 static void CustomFlyIn_End(struct Task *task)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-    objectEvent->noShadow = FALSE;
     MoveObjectEventToMapCoords(objectEvent, objectEvent->currentCoords.x, objectEvent->currentCoords.y);
     gSprites[objectEvent->spriteId].x2 = 0;
     gSprites[objectEvent->spriteId].y2 = 0;
