@@ -4018,10 +4018,14 @@ static void CustomFlyOut_End(struct Task *task)
 
 void FieldCallback_CustomFlyIntoMap(void)
 {
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     Overworld_PlaySpecialMapMusic();
+    // Set graphics immediately so submarine_shadow is visible when fade completes
+    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+    ObjectEventTurn(objectEvent, DIR_SOUTH);
+    objectEvent->invisible = TRUE;
     FadeInFromBlack();
     CreateTask(Task_CustomFlyIntoMap, 0);
-    gObjectEvents[gPlayerAvatar.objectEventId].invisible = TRUE;
     LockPlayerFieldControls();
     FreezeObjectEvents();
     gFieldCallback = NULL;
@@ -4084,8 +4088,7 @@ static void CustomFlyIn_Init(struct Task *task)
     task->tAvatarFlags = gPlayerAvatar.flags;
     gPlayerAvatar.preventStep = TRUE;
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
-    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
-    ObjectEventTurn(objectEvent, DIR_SOUTH);
+    // Graphics already set in callback - just make visible
     objectEvent->invisible = FALSE;
     CameraObjectFreeze();
     task->tTimer = 0;
