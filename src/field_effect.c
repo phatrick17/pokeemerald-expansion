@@ -79,6 +79,9 @@ static void Task_UseFly(u8);
 static void FieldCallback_FlyIntoMap(void);
 static void Task_FlyIntoMap(u8);
 
+static void Task_UseCustomFly(u8);
+static void Task_CustomFlyIntoMap(u8);
+
 static void Task_FallWarpFieldEffect(u8);
 static bool8 FallWarpEffect_Init(struct Task *);
 static bool8 FallWarpEffect_WaitWeather(struct Task *);
@@ -3865,6 +3868,278 @@ static void FlyInFieldEffect_End(struct Task *task)
 #undef tAvatarFlags
 #undef sPlayerSpriteId
 #undef sAnimCompleted
+
+// ==================== Custom Fly (no bird animation) ====================
+// Uses submarine_shadow sprite instead of the bird fly animation.
+// Flow: player transforms to submarine_shadow -> fade out -> warp -> fade in as submarine_shadow -> transform back
+
+#define tState      data[0]
+#define tTimer      data[1]
+#define tAvatarFlags data[15]
+
+static void Task_CustomFlyOut(u8 taskId);
+static void Task_CustomFlyIn(u8 taskId);
+
+static void CustomFlyOut_Init(struct Task *task);
+static void CustomFlyOut_ChangeSprite(struct Task *task);
+static void CustomFlyOut_Wait(struct Task *task);
+static void CustomFlyOut_FadeOut(struct Task *task);
+static void CustomFlyOut_End(struct Task *task);
+
+static void CustomFlyIn_Init(struct Task *task);
+static void CustomFlyIn_Wait(struct Task *task);
+static void CustomFlyIn_ChangeBack(struct Task *task);
+static void CustomFlyIn_WaitChangeBack(struct Task *task);
+static void CustomFlyIn_End(struct Task *task);
+
+// -- Custom Fly Out --
+
+void ReturnToFieldFromCustomFlySelect(void)
+{
+    SetMainCallback2(CB2_ReturnToField);
+    gFieldCallback = FieldCallback_UseCustomFly;
+}
+
+void FieldCallback_UseCustomFly(void)
+{
+    FadeInFromBlack();
+    CreateTask(Task_UseCustomFly, 0);
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    gFieldCallback = NULL;
+}
+
+static void Task_UseCustomFly(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    switch (task->data[3])
+    {
+    case 0:
+        // Handle follower NPC
+        if (!PlayerHasFollowerNPC())
+        {
+            task->data[3] = 2;
+        }
+        else
+        {
+            FollowerNPCWalkIntoPlayerForLeaveMap();
+            task->data[3]++;
+        }
+        break;
+    case 1:
+    {
+        struct ObjectEvent *follower = &gObjectEvents[GetFollowerNPCObjectId()];
+        if (ObjectEventClearHeldMovementIfFinished(follower))
+        {
+            FollowerNPCHideForLeaveMap(follower);
+            task->data[3]++;
+        }
+        break;
+    }
+    case 2:
+        if (!task->data[0])
+        {
+            if (!IsWeatherNotFadingIn())
+                return;
+            CreateTask(Task_CustomFlyOut, 254);
+            task->data[0] = TRUE;
+        }
+        if (!FuncIsActiveTask(Task_CustomFlyOut))
+        {
+            Overworld_ResetStateAfterFly();
+            WarpIntoMap();
+            SetMainCallback2(CB2_LoadMap);
+            gFieldCallback = FieldCallback_CustomFlyIntoMap;
+            DestroyTask(taskId);
+        }
+        break;
+    }
+}
+
+static void (*const sCustomFlyOutFuncs[])(struct Task *) = {
+    CustomFlyOut_Init,
+    CustomFlyOut_ChangeSprite,
+    CustomFlyOut_Wait,
+    CustomFlyOut_FadeOut,
+    CustomFlyOut_End,
+};
+
+static void Task_CustomFlyOut(u8 taskId)
+{
+    sCustomFlyOutFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+}
+
+static void CustomFlyOut_Init(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    if (!ObjectEventIsMovementOverridden(objectEvent) || ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        task->tAvatarFlags = gPlayerAvatar.flags;
+        gPlayerAvatar.preventStep = TRUE;
+        SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
+        task->tState++;
+    }
+}
+
+static void CustomFlyOut_ChangeSprite(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+    ObjectEventTurn(objectEvent, DIR_SOUTH);
+    PlaySE(SE_M_FLY);
+    task->tTimer = 0;
+    task->tState++;
+}
+
+static void CustomFlyOut_Wait(struct Task *task)
+{
+    if (++task->tTimer > 40)
+    {
+        task->tState++;
+    }
+}
+
+static void CustomFlyOut_FadeOut(struct Task *task)
+{
+    WarpFadeOutScreen();
+    task->tState++;
+}
+
+static void CustomFlyOut_End(struct Task *task)
+{
+    if (!gPaletteFade.active)
+    {
+        DestroyTask(FindTaskIdByFunc(Task_CustomFlyOut));
+    }
+}
+
+// -- Custom Fly In --
+
+void FieldCallback_CustomFlyIntoMap(void)
+{
+    Overworld_PlaySpecialMapMusic();
+    FadeInFromBlack();
+    CreateTask(Task_CustomFlyIntoMap, 0);
+    gObjectEvents[gPlayerAvatar.objectEventId].invisible = TRUE;
+    LockPlayerFieldControls();
+    FreezeObjectEvents();
+    gFieldCallback = NULL;
+}
+
+static void Task_CustomFlyIntoMap(u8 taskId)
+{
+    struct ObjectEvent *player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    struct Task *task = &gTasks[taskId];
+
+    switch (task->data[0])
+    {
+    case 0:
+        if (gPaletteFade.active)
+            return;
+        CreateTask(Task_CustomFlyIn, 254);
+        task->data[0]++;
+        break;
+    case 1:
+        if (!FuncIsActiveTask(Task_CustomFlyIn))
+        {
+            if (FNPC_NPC_FOLLOWER_SHOW_AFTER_LEAVE_ROUTE)
+            {
+                struct ObjectEvent *follower = &gObjectEvents[GetFollowerNPCObjectId()];
+                FollowerNPCReappearAfterLeaveMap(follower, player);
+            }
+            task->data[0]++;
+        }
+        break;
+    case 2:
+        if (PlayerHasFollowerNPC())
+        {
+            struct ObjectEvent *follower = &gObjectEvents[GetFollowerNPCObjectId()];
+            if (!ObjectEventClearHeldMovementIfFinished(follower))
+                return;
+        }
+        UnlockPlayerFieldControls();
+        UnfreezeObjectEvents();
+        DestroyTask(taskId);
+        break;
+    }
+}
+
+static void (*const sCustomFlyInFuncs[])(struct Task *) = {
+    CustomFlyIn_Init,
+    CustomFlyIn_Wait,
+    CustomFlyIn_ChangeBack,
+    CustomFlyIn_WaitChangeBack,
+    CustomFlyIn_End,
+};
+
+static void Task_CustomFlyIn(u8 taskId)
+{
+    sCustomFlyInFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+}
+
+static void CustomFlyIn_Init(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    task->tAvatarFlags = gPlayerAvatar.flags;
+    gPlayerAvatar.preventStep = TRUE;
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
+    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+    ObjectEventTurn(objectEvent, DIR_SOUTH);
+    objectEvent->invisible = FALSE;
+    CameraObjectFreeze();
+    task->tTimer = 0;
+    task->tState++;
+}
+
+static void CustomFlyIn_Wait(struct Task *task)
+{
+    if (++task->tTimer > 40)
+    {
+        task->tState++;
+    }
+}
+
+static void CustomFlyIn_ChangeBack(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    u8 state = PLAYER_AVATAR_STATE_NORMAL;
+    if (task->tAvatarFlags & PLAYER_AVATAR_FLAG_SURFING)
+    {
+        state = PLAYER_AVATAR_STATE_SURFING;
+        SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
+    }
+    ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(state));
+    ObjectEventTurn(objectEvent, DIR_SOUTH);
+    task->tTimer = 0;
+    task->tState++;
+}
+
+static void CustomFlyIn_WaitChangeBack(struct Task *task)
+{
+    if (++task->tTimer > 16)
+    {
+        task->tState++;
+    }
+}
+
+static void CustomFlyIn_End(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    objectEvent->noShadow = FALSE;
+    MoveObjectEventToMapCoords(objectEvent, objectEvent->currentCoords.x, objectEvent->currentCoords.y);
+    gSprites[objectEvent->spriteId].x2 = 0;
+    gSprites[objectEvent->spriteId].y2 = 0;
+    gSprites[objectEvent->spriteId].coordOffsetEnabled = TRUE;
+    gPlayerAvatar.flags = task->tAvatarFlags;
+    gPlayerAvatar.preventStep = FALSE;
+    CameraObjectReset();
+    DestroyTask(FindTaskIdByFunc(Task_CustomFlyIn));
+}
+
+#undef tState
+#undef tTimer
+#undef tAvatarFlags
 
 #define tState         data[1]
 #define tObjectEventId data[2]

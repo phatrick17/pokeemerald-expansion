@@ -483,7 +483,7 @@ static void CB_ExitCustomMap(void)
                 SetWarpDestinationToHealLocation(sCustomTowns[townIdx].healLocationId);
                 TRY_FREE_AND_SET_NULL(sCustomMap);
                 FreeAllWindowBuffers();
-                ReturnToFieldFromFlyMapSelect();
+                ReturnToFieldFromCustomFlySelect();
             }
             else if (sCustomMap->calledFromScript)
             {
