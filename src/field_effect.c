@@ -4037,10 +4037,6 @@ static void Task_CustomFlyIntoMap(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-//        if (gPaletteFade.active)
-//            return;
-//        CreateTask(Task_CustomFlyIn, 254);
-// Set up submarine_shadow sprite while screen is still black
         ObjectEventSetGraphicsId(player, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
         ObjectEventTurn(player, DIR_SOUTH);
         player->noShadow = TRUE;
@@ -4097,13 +4093,9 @@ static void Task_CustomFlyIn(u8 taskId)
 
 static void CustomFlyIn_Init(struct Task *task)
 {
-    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     task->tAvatarFlags = gPlayerAvatar.flags;
     gPlayerAvatar.preventStep = TRUE;
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
-    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
-    ObjectEventTurn(objectEvent, DIR_SOUTH);
-    objectEvent->invisible = FALSE;
     CameraObjectFreeze();
     task->tTimer = 0;
     task->tState++;
@@ -4125,8 +4117,8 @@ static void CustomFlyIn_ChangeBack(struct Task *task)
     {
         state = PLAYER_AVATAR_STATE_SURFING;
         SetSurfBlob_BobState(objectEvent->fieldEffectSpriteId, BOB_PLAYER_AND_MON);
-    objectEvent->noShadow = FALSE;
     }
+    objectEvent->noShadow = FALSE;
     ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(state));
     ObjectEventTurn(objectEvent, DIR_SOUTH);
     SetUpShadow(objectEvent);
