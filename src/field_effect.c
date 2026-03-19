@@ -4129,6 +4129,7 @@ static void CustomFlyIn_ChangeBack(struct Task *task)
     }
     ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(state));
     ObjectEventTurn(objectEvent, DIR_SOUTH);
+    SetUpShadow(objectEvent);
     task->tTimer = 0;
     task->tState++;
 }
@@ -4144,7 +4145,7 @@ static void CustomFlyIn_WaitChangeBack(struct Task *task)
 static void CustomFlyIn_End(struct Task *task)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-    objectEvent->noShadow = FALSE;
+//    objectEvent->noShadow = FALSE;
     MoveObjectEventToMapCoords(objectEvent, objectEvent->currentCoords.x, objectEvent->currentCoords.y);
     gSprites[objectEvent->spriteId].x2 = 0;
     gSprites[objectEvent->spriteId].y2 = 0;
