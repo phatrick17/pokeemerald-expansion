@@ -264,12 +264,75 @@
     },
     {
       "type": "trigger",
-      "x": 36,
+      "x": 37,
       "y": 14,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "MyScript_OpenMap"
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 17,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Left"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Left"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Left"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 17,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Left"
     }
   ],
   "bg_events": [

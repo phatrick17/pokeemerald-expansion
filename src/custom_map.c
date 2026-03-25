@@ -47,8 +47,8 @@ struct CustomMapTown {
 // Pixel positions of the red diamond markers on the custom map image.
 // The user should update these to match their actual map.
 static const struct CustomMapTown sCustomTowns[NUM_CUSTOM_TOWNS] = {
-    { .x =  213, .y =  114, .mapSecId = MAPSEC_ROUTE_101,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
-    { .x = 160, .y =  115, .mapSecId = MAPSEC_FORTREE_CITY,      .healLocationId = HEAL_LOCATION_FORTREE_CITY },
+    { .x =  212, .y =  116, .mapSecId = MAPSEC_ROUTE_101,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
+    { .x =  164, .y =  116, .mapSecId = MAPSEC_OLDALE_TOWN,     .healLocationId = HEAL_LOCATION_OLDALE_TOWN },
     { .x = 200, .y =  48, .mapSecId = MAPSEC_LILYCOVE_CITY,     .healLocationId = HEAL_LOCATION_LILYCOVE_CITY },
     { .x =  24, .y =  96, .mapSecId = MAPSEC_PETALBURG_CITY,    .healLocationId = HEAL_LOCATION_PETALBURG_CITY },
     { .x =  72, .y =  96, .mapSecId = MAPSEC_MAUVILLE_CITY,     .healLocationId = HEAL_LOCATION_MAUVILLE_CITY },

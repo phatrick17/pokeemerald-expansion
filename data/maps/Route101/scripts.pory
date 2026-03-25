@@ -351,6 +351,13 @@ script Outskirt_Stand_Folley_Trudly_1 {
                	"???: Heheheh, it doesn't get any better than this!"),
         	MSGBOX_DEFAULT)
 		closemessage
+			applymovement(FOLLEY_1, moves(
+			face_down
+		))
+		delay(30)
+		removeobject(RUI_IN_BAG)
+		playse(SE_TRUCK_UNLOAD)
+		waitse
 		applymovement(FOLLEY_1, moves(
 			walk_left * 3
 			face_down
@@ -367,7 +374,6 @@ script Outskirt_Stand_Folley_Trudly_1 {
 		removeobject(TRUDLY_1)
 		removeobject(FOLLEY_1)
 		removeobject(FOLLY_TRUDLY_CAR)
-		removeobject(RUI_IN_BAG)
 		setflag(FLAG_CAR_AND_BAG_OUTSKIRT)
     	delay(30)
 		fadescreen(FADE_FROM_BLACK)
@@ -532,7 +538,7 @@ movement Outside_Movement_Willie_Disappear {
 //}
 
 
-script MyScript_OpenMap {
+script OPEN_WORLD_MAP_ENTER_Right {
     lockall
     playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
     special(Special_OpenCustomMap)
@@ -541,6 +547,20 @@ script MyScript_OpenMap {
     fadedefaultbgm
 	applymovement(OBJ_EVENT_ID_PLAYER, moves(
 		walk_left
+	))
+    waitmovement(0)
+    end
+}
+
+script OPEN_WORLD_MAP_ENTER_Left {
+    lockall
+    playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
+    special(Special_OpenCustomMap)
+    waitstate
+    releaseall
+    fadedefaultbgm
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_right
 	))
     waitmovement(0)
     end
