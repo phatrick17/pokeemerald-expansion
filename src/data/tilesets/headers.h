@@ -841,3 +841,25 @@ const struct Tileset gTileset_ORAS =
     .metatileAttributes = gMetatileAttributes_ORAS,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Phenac_City =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Phenac_City,
+    .palettes = gTilesetPalettes_Phenac_City,
+    .metatiles = gMetatiles_Phenac_City,
+    .metatileAttributes = gMetatileAttributes_Phenac_City,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Desert_Primary =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Desert_Primary,
+    .palettes = gTilesetPalettes_Desert_Primary,
+    .metatiles = gMetatiles_Desert_Primary,
+    .metatileAttributes = gMetatileAttributes_Desert_Primary,
+    .callback = NULL,
+};

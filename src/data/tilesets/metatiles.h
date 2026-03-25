@@ -210,3 +210,9 @@ const u16 gMetatileAttributes_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/
 
 const u16 gMetatiles_ORAS[] = INCBIN_U16("data/tilesets/primary/oras/metatiles.bin");
 const u16 gMetatileAttributes_ORAS[] = INCBIN_U16("data/tilesets/primary/oras/metatile_attributes.bin");
+
+const u16 gMetatiles_Phenac_City[] = INCBIN_U16("data/tilesets/secondary/phenac_city/metatiles.bin");
+const u16 gMetatileAttributes_Phenac_City[] = INCBIN_U16("data/tilesets/secondary/phenac_city/metatile_attributes.bin");
+
+const u16 gMetatiles_Desert_Primary[] = INCBIN_U16("data/tilesets/primary/desert_primary/metatiles.bin");
+const u16 gMetatileAttributes_Desert_Primary[] = INCBIN_U16("data/tilesets/primary/desert_primary/metatile_attributes.bin");

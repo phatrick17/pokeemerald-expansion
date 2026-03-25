@@ -17,7 +17,7 @@ mus_vs_rival_0:
         .byte   TEMPO , 142/2
         .byte           VOICE , 33
         .byte           BENDR , 12
-        .byte           VOL   , 75
+        .byte           VOL   , 70
         .byte   W96
 @ 001   ----------------------------------------
         .byte   W96
@@ -151,7 +151,7 @@ mus_vs_rival_1:
 @ 000   ----------------------------------------
         .byte           VOICE , 1
         .byte           BENDR , 12
-        .byte           VOL   , 60
+        .byte           VOL   , 80
         .byte   W24
         .byte           N28   , Cn3 , v096
         .byte           N28   , Gn2
@@ -498,7 +498,7 @@ mus_vs_rival_2:
 @ 000   ----------------------------------------
         .byte           VOICE , 33
         .byte           BENDR , 12
-        .byte           VOL   , 75
+        .byte           VOL   , 95
         .byte   W24
         .byte           TIE   , Cn1 , v076
         .byte   W72
@@ -644,7 +644,7 @@ mus_vs_rival_3:
 @ 000   ----------------------------------------
         .byte           VOICE , 48
         .byte           BENDR , 12
-        .byte           VOL   , 75
+        .byte           VOL   , 95
         .byte   W24
         .byte           N36   , Cn5 , v080 , gtp2
         .byte   W36
@@ -938,7 +938,7 @@ mus_vs_rival_3_10:
 mus_vs_rival_4:
         .byte   KEYSH , mus_vs_rival_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 60
+        .byte           VOL   , 80
         .byte           VOICE , 24
         .byte           BENDR , 12
         .byte   W96
@@ -1128,7 +1128,7 @@ mus_vs_rival_5:
 @ 000   ----------------------------------------
         .byte           VOICE , 29
         .byte           BENDR , 12
-        .byte           VOL   , 75
+        .byte           VOL   , 95
         .byte   W96
 @ 001   ----------------------------------------
         .byte   W96
@@ -1412,7 +1412,7 @@ mus_vs_rival_6:
 @ 000   ----------------------------------------
         .byte           VOICE , 0
         .byte           BENDR , 12
-        .byte           VOL   , 75
+        .byte           VOL   , 95
         .byte   W48
         .byte           N04   , Dn1 , v115
         .byte   W48
