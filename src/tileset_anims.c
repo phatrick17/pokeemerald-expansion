@@ -43,6 +43,7 @@ static void TilesetAnim_MauvilleGym(u16);
 static void TilesetAnim_BikeShop(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
+static void TilesetAnim_DesertPrimary(u16);
 static void QueueAnimTiles_General_Flower(u16);
 static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
@@ -73,6 +74,7 @@ static void QueueAnimTiles_MauvilleGym_ElectricGates(u16);
 static void QueueAnimTiles_SootopolisGym_Waterfalls(u16);
 static void QueueAnimTiles_EliteFour_GroundLights(u16);
 static void QueueAnimTiles_EliteFour_WallLights(u16);
+static void QueueAnimTiles_DesertPrimary_Water(u16);
 
 const u16 gTilesetAnims_General_Flower_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/1.4bpp");
 const u16 gTilesetAnims_General_Flower_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/0.4bpp");
@@ -427,6 +429,16 @@ const u16 *const gTilesetAnims_Building_TvTurnedOn[] = {
     gTilesetAnims_Building_TvTurnedOn_Frame1
 };
 
+const u16 gTilesetAnims_DesertPrimary_Water_Frame1[] = INCBIN_U16("data/tilesets/primary/desert_primary/anim/water/1.4bpp");
+const u16 gTilesetAnims_DesertPrimary_Water_Frame2[] = INCBIN_U16("data/tilesets/primary/desert_primary/anim/water/2.4bpp");
+const u16 gTilesetAnims_DesertPrimary_Water_Frame3[] = INCBIN_U16("data/tilesets/primary/desert_primary/anim/water/3.4bpp");
+
+const u16 *const gTilesetAnims_DesertPrimary_Water[] = {
+    gTilesetAnims_DesertPrimary_Water_Frame1,
+    gTilesetAnims_DesertPrimary_Water_Frame2,
+    gTilesetAnims_DesertPrimary_Water_Frame3,
+};
+
 const u16 gTilesetAnims_SootopolisGym_SideWaterfall_Frame0[] = INCBIN_U16("data/tilesets/secondary/sootopolis_gym/anim/side_waterfall/0.4bpp");
 const u16 gTilesetAnims_SootopolisGym_SideWaterfall_Frame1[] = INCBIN_U16("data/tilesets/secondary/sootopolis_gym/anim/side_waterfall/1.4bpp");
 const u16 gTilesetAnims_SootopolisGym_SideWaterfall_Frame2[] = INCBIN_U16("data/tilesets/secondary/sootopolis_gym/anim/side_waterfall/2.4bpp");
@@ -629,6 +641,13 @@ void InitTilesetAnim_Building(void)
     sPrimaryTilesetAnimCallback = TilesetAnim_Building;
 }
 
+void InitTilesetAnim_DesertPrimary(void)
+{
+    sPrimaryTilesetAnimCounter = 0;
+    sPrimaryTilesetAnimCounterMax = 256;
+    sPrimaryTilesetAnimCallback = TilesetAnim_DesertPrimary;
+}
+
 static void TilesetAnim_General(u16 timer)
 {
     if (timer % 16 == 0)
@@ -647,6 +666,18 @@ static void TilesetAnim_Building(u16 timer)
 {
     if (timer % 8 == 0)
         QueueAnimTiles_Building_TVTurnedOn(timer / 8);
+}
+
+static void TilesetAnim_DesertPrimary(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_DesertPrimary_Water(timer / 16);
+}
+
+static void QueueAnimTiles_DesertPrimary_Water(u16 timer)
+{
+    u8 i = timer % ARRAY_COUNT(gTilesetAnims_DesertPrimary_Water);
+    AppendTilesetAnimToBuffer(gTilesetAnims_DesertPrimary_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x001)), 4 * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_General_Flower(u16 timer)

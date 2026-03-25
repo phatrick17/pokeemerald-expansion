@@ -861,5 +861,5 @@ const struct Tileset gTileset_Desert_Primary =
     .palettes = gTilesetPalettes_Desert_Primary,
     .metatiles = gMetatiles_Desert_Primary,
     .metatileAttributes = gMetatileAttributes_Desert_Primary,
-    .callback = NULL,
+    .callback = InitTilesetAnim_DesertPrimary,
 };
