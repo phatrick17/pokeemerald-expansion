@@ -872,5 +872,5 @@ const struct Tileset gTileset_Outskirt_Stand_Indoor =
     .palettes = gTilesetPalettes_Outskirt_Stand_Indoor,
     .metatiles = gMetatiles_Outskirt_Stand_Indoor,
     .metatileAttributes = gMetatileAttributes_Outskirt_Stand_Indoor,
-    .callback = InitTilesetAnim_OutskirtStandIndoor,
+    .callback = NULL,
 };
