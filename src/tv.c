@@ -877,6 +877,37 @@ void TurnOnTVScreen(void)
     DrawWholeMapView();
 }
 
+static void SetOutskirtStandTVMetatilesOnMap(u16 lTile, u16 rTile)
+{
+    int x, y;
+    int width = gBackupMapLayout.width;
+    int height = gBackupMapLayout.height;
+
+    for (y = 0; y < height; y++)
+    {
+        for (x = 0; x < width; x++)
+        {
+            u32 metatile = MapGridGetMetatileIdAt(x, y);
+            if (metatile == METATILE_Outskirt_Stand_Indoor_TV_On_L || metatile == METATILE_Outskirt_Stand_Indoor_TV_Off_L)
+                MapGridSetMetatileIdAt(x, y, lTile | MAPGRID_COLLISION_MASK);
+            else if (metatile == METATILE_Outskirt_Stand_Indoor_TV_On_R || metatile == METATILE_Outskirt_Stand_Indoor_TV_Off_R)
+                MapGridSetMetatileIdAt(x, y, rTile | MAPGRID_COLLISION_MASK);
+        }
+    }
+}
+
+void TurnOffOutskirtStandTVScreen(void)
+{
+    SetOutskirtStandTVMetatilesOnMap(METATILE_Outskirt_Stand_Indoor_TV_Off_L, METATILE_Outskirt_Stand_Indoor_TV_Off_R);
+    DrawWholeMapView();
+}
+
+void TurnOnOutskirtStandTVScreen(void)
+{
+    SetOutskirtStandTVMetatilesOnMap(METATILE_Outskirt_Stand_Indoor_TV_On_L, METATILE_Outskirt_Stand_Indoor_TV_On_R);
+    DrawWholeMapView();
+}
+
 // gSpecialVar_0x8004 here is set from GetRandomActiveShowIdx in EventScript_TryDoTVShow
 u8 GetSelectedTVShow(void)
 {
