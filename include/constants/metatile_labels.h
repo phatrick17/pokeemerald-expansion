@@ -369,10 +369,6 @@
 // gTileset_MossdeepGym
 #define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
-// gTileset_Outskirt_Stand_Indoor
-#define METATILE_Outskirt_Stand_Indoor_TV_Off  0x251
-#define METATILE_Outskirt_Stand_Indoor_TV_On   0x258
-
 // gTileset_Pacifidlog
 #define METATILE_Pacifidlog_Door                               0x21A
 #define METATILE_Pacifidlog_FloatingLogs_HorizontalLeft        0x250
