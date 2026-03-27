@@ -370,9 +370,9 @@
 #define METATILE_MossdeepGym_YellowArrow_Right  0x250
 
 // gTileset_Outskirt_Stand_Indoor
-#define METATILE_Outskirt_Stand_Indoor_TV_On_L   0x248
 #define METATILE_Outskirt_Stand_Indoor_TV_Off_L  0x249
 #define METATILE_Outskirt_Stand_Indoor_TV_Off_R  0x24A
+#define METATILE_Outskirt_Stand_Indoor_TV_On_L   0x248
 #define METATILE_Outskirt_Stand_Indoor_TV_On_R   0x250
 
 // gTileset_Pacifidlog
