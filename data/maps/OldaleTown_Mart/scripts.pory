@@ -11,19 +11,21 @@ script OldaleTown_Mart_SnaggHideoutBroadcast {
     special(SpawnCameraObject)
     special(TurnOnTVScreen)
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(
+        walk_right * 6
 		walk_up * 3
 	))
     waitmovement(0)
     playbgm(MUS_ABNORMAL_WEATHER, FALSE)
     delay(30)
     msgbox(OldaleTown_Mart_Text_SnaggHideoutReport, MSGBOX_DEFAULT)
-    special(TurnOffTVScreen)
+    special(TurnOnOutskirtStandTVScreen)
     fadedefaultbgm
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(
+        walk_left * 6
 		walk_down * 3
 	))
     waitmovement(0)
-    special(RemoveCameraObject)
+    special(TurnOffOutskirtStandTVScreen)
     setvar(VAR_WILLIE_STATE, 1)
     releaseall
     end

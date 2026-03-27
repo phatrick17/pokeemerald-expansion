@@ -18,214 +18,238 @@ OldaleTown_Mart_SnaggHideoutBroadcast::
 	special TurnOnTVScreen
 # 13 "data/maps/OldaleTown_Mart/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, OldaleTown_Mart_SnaggHideoutBroadcast_Movement_0
-# 16 "data/maps/OldaleTown_Mart/scripts.pory"
-	waitmovement 0
 # 17 "data/maps/OldaleTown_Mart/scripts.pory"
-	playbgm MUS_ABNORMAL_WEATHER, FALSE
-# 18 "data/maps/OldaleTown_Mart/scripts.pory"
-	delay 30
-# 19 "data/maps/OldaleTown_Mart/scripts.pory"
-	msgbox OldaleTown_Mart_Text_SnaggHideoutReport, MSGBOX_DEFAULT
-# 20 "data/maps/OldaleTown_Mart/scripts.pory"
-	special TurnOffTVScreen
-# 21 "data/maps/OldaleTown_Mart/scripts.pory"
-	fadedefaultbgm
-# 22 "data/maps/OldaleTown_Mart/scripts.pory"
-	applymovement OBJ_EVENT_ID_CAMERA, OldaleTown_Mart_SnaggHideoutBroadcast_Movement_1
-# 25 "data/maps/OldaleTown_Mart/scripts.pory"
 	waitmovement 0
-# 26 "data/maps/OldaleTown_Mart/scripts.pory"
-	special RemoveCameraObject
+# 18 "data/maps/OldaleTown_Mart/scripts.pory"
+	playbgm MUS_ABNORMAL_WEATHER, FALSE
+# 19 "data/maps/OldaleTown_Mart/scripts.pory"
+	delay 30
+# 20 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox OldaleTown_Mart_Text_SnaggHideoutReport, MSGBOX_DEFAULT
+# 21 "data/maps/OldaleTown_Mart/scripts.pory"
+	special TurnOnOutskirtStandTVScreen
+# 22 "data/maps/OldaleTown_Mart/scripts.pory"
+	fadedefaultbgm
+# 23 "data/maps/OldaleTown_Mart/scripts.pory"
+	applymovement OBJ_EVENT_ID_CAMERA, OldaleTown_Mart_SnaggHideoutBroadcast_Movement_1
 # 27 "data/maps/OldaleTown_Mart/scripts.pory"
-	setvar VAR_WILLIE_STATE, 1
+	waitmovement 0
 # 28 "data/maps/OldaleTown_Mart/scripts.pory"
+	special TurnOffOutskirtStandTVScreen
+# 29 "data/maps/OldaleTown_Mart/scripts.pory"
+	setvar VAR_WILLIE_STATE, 1
+# 30 "data/maps/OldaleTown_Mart/scripts.pory"
 	releaseall
 	end
 
 
 InsideBuilding_EventScript_Willie::
-# 53 "data/maps/OldaleTown_Mart/scripts.pory"
+# 55 "data/maps/OldaleTown_Mart/scripts.pory"
 	lock
-# 54 "data/maps/OldaleTown_Mart/scripts.pory"
+# 56 "data/maps/OldaleTown_Mart/scripts.pory"
 	faceplayer
-# 57 "data/maps/OldaleTown_Mart/scripts.pory"
+# 59 "data/maps/OldaleTown_Mart/scripts.pory"
 	goto_if_set FLAG_DEFEATED_WILLIE, InsideBuilding_EventScript_Willie_2
-# 73 "data/maps/OldaleTown_Mart/scripts.pory"
+# 75 "data/maps/OldaleTown_Mart/scripts.pory"
 	msgbox InsideBuilding_EventScript_Willie_Text_1, MSGBOX_YESNO
-# 76 "data/maps/OldaleTown_Mart/scripts.pory"
+# 78 "data/maps/OldaleTown_Mart/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq InsideBuilding_EventScript_Willie_5
-# 89 "data/maps/OldaleTown_Mart/scripts.pory"
+# 91 "data/maps/OldaleTown_Mart/scripts.pory"
 	msgbox InsideBuilding_EventScript_Willie_Text_3, MSGBOX_DEFAULT
 InsideBuilding_EventScript_Willie_1:
-# 101 "data/maps/OldaleTown_Mart/scripts.pory"
+# 103 "data/maps/OldaleTown_Mart/scripts.pory"
 	release
 	end
 
 InsideBuilding_EventScript_Willie_2:
-# 59 "data/maps/OldaleTown_Mart/scripts.pory"
+# 61 "data/maps/OldaleTown_Mart/scripts.pory"
 	msgbox InsideBuilding_EventScript_Willie_Text_0, MSGBOX_DEFAULT
 	goto InsideBuilding_EventScript_Willie_1
 
 InsideBuilding_EventScript_Willie_5:
-# 78 "data/maps/OldaleTown_Mart/scripts.pory"
+# 80 "data/maps/OldaleTown_Mart/scripts.pory"
 	msgbox InsideBuilding_EventScript_Willie_Text_2, MSGBOX_DEFAULT
 	goto InsideBuilding_EventScript_Willie_1
 
 
-# 110 "data/maps/OldaleTown_Mart/scripts.pory"
-
-# 111 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_EventScript_Clerk::
 # 112 "data/maps/OldaleTown_Mart/scripts.pory"
-	lock
+
 # 113 "data/maps/OldaleTown_Mart/scripts.pory"
-	faceplayer
+OldaleTown_Mart_EventScript_Clerk::
 # 114 "data/maps/OldaleTown_Mart/scripts.pory"
-	message gText_HowMayIServeYou
-# 115 "data/maps/OldaleTown_Mart/scripts.pory"
-	waitmessage
-# 116 "data/maps/OldaleTown_Mart/scripts.pory"
-	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_ExpandedItems
-# 117 "data/maps/OldaleTown_Mart/scripts.pory"
-	pokemart OldaleTown_Mart_Pokemart_Basic
-# 118 "data/maps/OldaleTown_Mart/scripts.pory"
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-# 119 "data/maps/OldaleTown_Mart/scripts.pory"
-	release
-# 120 "data/maps/OldaleTown_Mart/scripts.pory"
-	end
-# 121 "data/maps/OldaleTown_Mart/scripts.pory"
-
-# 122 "data/maps/OldaleTown_Mart/scripts.pory"
-	.align 2
-# 123 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_Pokemart_Basic:
-# 124 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_MASTER_BALL
-# 125 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_ANTIDOTE
-# 126 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_PARALYZE_HEAL
-# 127 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_AWAKENING
-# 128 "data/maps/OldaleTown_Mart/scripts.pory"
-	pokemartlistend
-# 129 "data/maps/OldaleTown_Mart/scripts.pory"
-
-# 130 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_ExpandedItems::
-# 131 "data/maps/OldaleTown_Mart/scripts.pory"
-	pokemart OldaleTown_Mart_Pokemart_Expanded
-# 132 "data/maps/OldaleTown_Mart/scripts.pory"
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-# 133 "data/maps/OldaleTown_Mart/scripts.pory"
-	release
-# 134 "data/maps/OldaleTown_Mart/scripts.pory"
-	end
-# 135 "data/maps/OldaleTown_Mart/scripts.pory"
-
-# 136 "data/maps/OldaleTown_Mart/scripts.pory"
-	.align 2
-# 137 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_Pokemart_Expanded:
-# 138 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_POKE_BALL
-# 139 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_POTION
-# 140 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_ANTIDOTE
-# 141 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_PARALYZE_HEAL
-# 142 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_AWAKENING
-# 143 "data/maps/OldaleTown_Mart/scripts.pory"
-	pokemartlistend
-# 144 "data/maps/OldaleTown_Mart/scripts.pory"
-
-# 145 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_EventScript_Woman::
-# 146 "data/maps/OldaleTown_Mart/scripts.pory"
 	lock
-# 147 "data/maps/OldaleTown_Mart/scripts.pory"
+# 115 "data/maps/OldaleTown_Mart/scripts.pory"
 	faceplayer
+# 116 "data/maps/OldaleTown_Mart/scripts.pory"
+	message gText_HowMayIServeYou
+# 117 "data/maps/OldaleTown_Mart/scripts.pory"
+	waitmessage
+# 118 "data/maps/OldaleTown_Mart/scripts.pory"
+	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_ExpandedItems
+# 119 "data/maps/OldaleTown_Mart/scripts.pory"
+	pokemart OldaleTown_Mart_Pokemart_Basic
+# 120 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+# 121 "data/maps/OldaleTown_Mart/scripts.pory"
+	release
+# 122 "data/maps/OldaleTown_Mart/scripts.pory"
+	end
+# 123 "data/maps/OldaleTown_Mart/scripts.pory"
+
+# 124 "data/maps/OldaleTown_Mart/scripts.pory"
+	.align 2
+# 125 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_Pokemart_Basic:
+# 126 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_MASTER_BALL
+# 127 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_ANTIDOTE
+# 128 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_PARALYZE_HEAL
+# 129 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_AWAKENING
+# 130 "data/maps/OldaleTown_Mart/scripts.pory"
+	pokemartlistend
+# 131 "data/maps/OldaleTown_Mart/scripts.pory"
+
+# 132 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_ExpandedItems::
+# 133 "data/maps/OldaleTown_Mart/scripts.pory"
+	pokemart OldaleTown_Mart_Pokemart_Expanded
+# 134 "data/maps/OldaleTown_Mart/scripts.pory"
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+# 135 "data/maps/OldaleTown_Mart/scripts.pory"
+	release
+# 136 "data/maps/OldaleTown_Mart/scripts.pory"
+	end
+# 137 "data/maps/OldaleTown_Mart/scripts.pory"
+
+# 138 "data/maps/OldaleTown_Mart/scripts.pory"
+	.align 2
+# 139 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_Pokemart_Expanded:
+# 140 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_POKE_BALL
+# 141 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_POTION
+# 142 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_ANTIDOTE
+# 143 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_PARALYZE_HEAL
+# 144 "data/maps/OldaleTown_Mart/scripts.pory"
+	.2byte ITEM_AWAKENING
+# 145 "data/maps/OldaleTown_Mart/scripts.pory"
+	pokemartlistend
+# 146 "data/maps/OldaleTown_Mart/scripts.pory"
+
+# 147 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_EventScript_Woman::
 # 148 "data/maps/OldaleTown_Mart/scripts.pory"
-	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_PokeBallsInStock
+	lock
 # 149 "data/maps/OldaleTown_Mart/scripts.pory"
-	msgbox OldaleTown_Mart_Text_PokeBallsAreSoldOut, MSGBOX_DEFAULT
+	faceplayer
 # 150 "data/maps/OldaleTown_Mart/scripts.pory"
-	release
+	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_PokeBallsInStock
 # 151 "data/maps/OldaleTown_Mart/scripts.pory"
-	end
+	msgbox OldaleTown_Mart_Text_PokeBallsAreSoldOut, MSGBOX_DEFAULT
 # 152 "data/maps/OldaleTown_Mart/scripts.pory"
-
-# 153 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_EventScript_PokeBallsInStock::
-# 154 "data/maps/OldaleTown_Mart/scripts.pory"
-	msgbox OldaleTown_Mart_Text_ImGoingToBuyPokeBalls, MSGBOX_DEFAULT
-# 155 "data/maps/OldaleTown_Mart/scripts.pory"
 	release
+# 153 "data/maps/OldaleTown_Mart/scripts.pory"
+	end
+# 154 "data/maps/OldaleTown_Mart/scripts.pory"
+
+# 155 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_EventScript_PokeBallsInStock::
 # 156 "data/maps/OldaleTown_Mart/scripts.pory"
-	end
+	msgbox OldaleTown_Mart_Text_ImGoingToBuyPokeBalls, MSGBOX_DEFAULT
 # 157 "data/maps/OldaleTown_Mart/scripts.pory"
-
+	release
 # 158 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_EventScript_Boy::
-# 159 "data/maps/OldaleTown_Mart/scripts.pory"
-	msgbox OldaleTown_Mart_Text_RestoreHPWithPotion, MSGBOX_NPC
-# 160 "data/maps/OldaleTown_Mart/scripts.pory"
 	end
+# 159 "data/maps/OldaleTown_Mart/scripts.pory"
+
+# 160 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_EventScript_Boy::
 # 161 "data/maps/OldaleTown_Mart/scripts.pory"
-
+	msgbox OldaleTown_Mart_Text_RestoreHPWithPotion, MSGBOX_NPC
 # 162 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_Text_PokeBallsAreSoldOut:
+	end
 # 163 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "The clerk says they're all sold out.\n"
+
 # 164 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "I can't buy any POKé BALLS.$"
+OldaleTown_Mart_Text_PokeBallsAreSoldOut:
 # 165 "data/maps/OldaleTown_Mart/scripts.pory"
-
+	.string "The clerk says they're all sold out.\n"
 # 166 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_Text_ImGoingToBuyPokeBalls:
+	.string "I can't buy any POKé BALLS.$"
 # 167 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "I'm going to buy a bunch of POKé BALLS\n"
-# 168 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "and catch a bunch of POKéMON!$"
-# 169 "data/maps/OldaleTown_Mart/scripts.pory"
 
+# 168 "data/maps/OldaleTown_Mart/scripts.pory"
+OldaleTown_Mart_Text_ImGoingToBuyPokeBalls:
+# 169 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "I'm going to buy a bunch of POKé BALLS\n"
 # 170 "data/maps/OldaleTown_Mart/scripts.pory"
-OldaleTown_Mart_Text_RestoreHPWithPotion:
+	.string "and catch a bunch of POKéMON!$"
 # 171 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "If a POKéMON gets hurt and loses its HP\n"
+
 # 172 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "and faints, it won't be able to battle.\p"
+OldaleTown_Mart_Text_RestoreHPWithPotion:
 # 173 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "To prevent your POKéMON from fainting,\n"
+	.string "If a POKéMON gets hurt and loses its HP\n"
 # 174 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "and faints, it won't be able to battle.\p"
+# 175 "data/maps/OldaleTown_Mart/scripts.pory"
+	.string "To prevent your POKéMON from fainting,\n"
+# 176 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "restore its HP with a POTION.$"
 
 # 13 "data/maps/OldaleTown_Mart/scripts.pory"
 OldaleTown_Mart_SnaggHideoutBroadcast_Movement_0:
 # 14 "data/maps/OldaleTown_Mart/scripts.pory"
-	walk_up
+	walk_right
 # 14 "data/maps/OldaleTown_Mart/scripts.pory"
-	walk_up
+	walk_right
 # 14 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_right
+# 14 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_right
+# 14 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_right
+# 14 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_right
+# 15 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_up
+# 15 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_up
+# 15 "data/maps/OldaleTown_Mart/scripts.pory"
 	walk_up
 	step_end
 
-# 22 "data/maps/OldaleTown_Mart/scripts.pory"
+# 23 "data/maps/OldaleTown_Mart/scripts.pory"
 OldaleTown_Mart_SnaggHideoutBroadcast_Movement_1:
-# 23 "data/maps/OldaleTown_Mart/scripts.pory"
+# 24 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_left
+# 24 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_left
+# 24 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_left
+# 24 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_left
+# 24 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_left
+# 24 "data/maps/OldaleTown_Mart/scripts.pory"
+	walk_left
+# 25 "data/maps/OldaleTown_Mart/scripts.pory"
 	walk_down
-# 23 "data/maps/OldaleTown_Mart/scripts.pory"
+# 25 "data/maps/OldaleTown_Mart/scripts.pory"
 	walk_down
-# 23 "data/maps/OldaleTown_Mart/scripts.pory"
+# 25 "data/maps/OldaleTown_Mart/scripts.pory"
 	walk_down
 	step_end
 
 InsideBuilding_EventScript_Willie_Text_0:
-# 60 "data/maps/OldaleTown_Mart/scripts.pory"
+# 62 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "WILLIE: But, yeah, you're tough.\n"
 	.string "Real tough.\p"
 	.string "You did a real number on us.\p"
@@ -238,12 +262,12 @@ InsideBuilding_EventScript_Willie_Text_0:
 	.string "some battling in.$"
 
 InsideBuilding_EventScript_Willie_Text_1:
-# 74 "data/maps/OldaleTown_Mart/scripts.pory"
+# 76 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "You're a Pokémon Trainer too,\n"
 	.string "aren't you?$"
 
 InsideBuilding_EventScript_Willie_Text_2:
-# 79 "data/maps/OldaleTown_Mart/scripts.pory"
+# 81 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "Heh... I can tell. And you're\n"
 	.string "good. I can see it in your eyes.\l"
 	.string "I bet your POKéMON are impressive, too.\p"
@@ -253,7 +277,7 @@ InsideBuilding_EventScript_Willie_Text_2:
 	.string "any chance of beating you.$"
 
 InsideBuilding_EventScript_Willie_Text_3:
-# 90 "data/maps/OldaleTown_Mart/scripts.pory"
+# 92 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "Heh... I can tell. And you're\n"
 	.string "good. I can see it in your eyes.\l"
 	.string "I bet your POKéMON are impressive, too.\p"
@@ -263,7 +287,7 @@ InsideBuilding_EventScript_Willie_Text_3:
 	.string "any chance of beating you.$"
 
 OldaleTown_Mart_Text_SnaggHideoutReport::
-# 33 "data/maps/OldaleTown_Mart/scripts.pory"
+# 35 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "Authorities have made a stunning\n"
 	.string "announcement on the mysterious\l"
 	.string "building that exploded in Eclo Canyon.\l"
