@@ -9,7 +9,7 @@ mapscripts OldaleTown_Mart_MapScripts {
 script OldaleTown_Mart_SnaggHideoutBroadcast {
     lockall
     special(SpawnCameraObject)
-    special(TurnOnTVScreen)
+    special(TurnOnOutskirtStandTVScreen)
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(
         walk_right * 6
 		walk_up * 3
@@ -18,7 +18,6 @@ script OldaleTown_Mart_SnaggHideoutBroadcast {
     playbgm(MUS_ABNORMAL_WEATHER, FALSE)
     delay(30)
     msgbox(OldaleTown_Mart_Text_SnaggHideoutReport, MSGBOX_DEFAULT)
-    special(TurnOnOutskirtStandTVScreen)
     fadedefaultbgm
 	applymovement(OBJ_EVENT_ID_CAMERA, moves(
         walk_left * 6
@@ -26,6 +25,7 @@ script OldaleTown_Mart_SnaggHideoutBroadcast {
 	))
     waitmovement(0)
     special(TurnOffOutskirtStandTVScreen)
+    special(RemoveCameraObject)
     setvar(VAR_WILLIE_STATE, 1)
     releaseall
     end
@@ -108,6 +108,94 @@ script InsideBuilding_EventScript_Willie {
 
 //OldaleTown_Mart_MapScripts::
 //	.byte 0
+
+script OutskirtNPC1_Text { //NPC1
+    lock
+    faceplayer
+    	msgbox(
+        	format("Hey, do you know about Team Snaggem?"),
+        	MSGBOX_YESNO)
+    	if (var(VAR_RESULT) == NO) {
+        msgbox(
+            format("They're a bunch of heartless crooks.\n"
+                   "They rip off POKéMON from trainers\l"
+                   "without any hesitation.\p"
+                   "I hear they use something called\n"
+                   "a Snag Ball to catch POKéMON from\l"
+                   "their rightfult trainer in battle.\p"
+                   "I'm guessing that you're a trainer.\n"
+                   "You'd best be careful."),
+            MSGBOX_DEFAULT)
+        } else {
+        msgbox(
+            format("They're a seriously nasty lot!"
+                    "There's no telling how many trainers have suffered at their hands."),
+            MSGBOX_DEFAULT)
+        }
+	applymovement(OUTSKIRT_NPC1, moves(
+        face_up
+	))
+    waitmovement(0)
+    release
+    end
+}
+
+script Outskirt_Shop_Guy_TEXT {
+    lock
+    faceplayer
+    msgbox(
+        format(
+            "Oh?\n"
+            "I haven't seen your face around these\l"
+            "parts. A traveler, huh?\p"
+            "Not that it matters any.\n"
+            "I don't know where you might've come\l"
+            "from, but relax, stick around for a while.")
+        MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script OutskirtNPC2_Text { //NPC2
+    lock
+    faceplayer
+    msgbox(
+        format(
+            "You know, I don't quite understand\n"
+            "what happened, but having your hideout\l"
+            "blow up on you...\p"
+            "Crime doesn't pay I guess.\p"
+            "I live a crime-free life, so nothing's\n"
+            "going to blow up on me.\l"
+            "Wahaha!"
+        )
+        MSGBOX_DEFAULT)
+	applymovement(OUTSKIRT_NPC2, moves(
+        face_up
+	))
+    waitmovement
+    release
+    end
+}
+
+script OutskirtNPC3_Text { //NPC3
+    lock
+    faceplayer
+    msgbox(
+        format(
+            "There's no forgiving that Team\n"
+            "Snaggem.\l"
+            "They don't deserve it, not when they\l"
+            "steal POKéMON from other trainers!\p"
+            "Why, I'd give a hip hip hooray if\n"
+            "they were wiped out with their wrecked\l"
+            "hideout!"
+        )
+        MSGBOX_DEFAULT)
+    release
+    end
+}
+
 
 raw `
 OldaleTown_Mart_EventScript_Clerk::

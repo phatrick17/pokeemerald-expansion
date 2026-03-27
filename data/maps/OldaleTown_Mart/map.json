@@ -43,6 +43,7 @@
       "flag": "0"
     },
     {
+      "local_id": "OUTSKIRT_SHOP_GUY",
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
       "x": 5,
       "y": 5,
@@ -52,11 +53,12 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Outskirt_Shop_Guy_TEXT",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "local_id": "OUTSKIRT_NPC2",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
       "x": 11,
       "y": 9,
       "elevation": 0,
@@ -65,10 +67,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "OutskirtNPC2_Text",
       "flag": "0"
     },
     {
+      "local_id": "OUTSKIRT_NPC3",
       "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
       "x": 8,
       "y": 5,
@@ -78,7 +81,21 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "OutskirtNPC3_Text",
+      "flag": "0"
+    },
+    {
+      "local_id": "OUTSKIRT_NPC1",
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OutskirtNPC1_Text",
       "flag": "0"
     }
   ],
