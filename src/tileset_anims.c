@@ -44,6 +44,7 @@ static void TilesetAnim_BikeShop(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
 static void TilesetAnim_DesertPrimary(u16);
+static void TilesetAnim_OutskirtStandIndoor(u16);
 static void QueueAnimTiles_General_Flower(u16);
 static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
@@ -427,6 +428,18 @@ const u16 gTilesetAnims_Building_TvTurnedOn_Frame1[] = INCBIN_U16("data/tilesets
 const u16 *const gTilesetAnims_Building_TvTurnedOn[] = {
     gTilesetAnims_Building_TvTurnedOn_Frame0,
     gTilesetAnims_Building_TvTurnedOn_Frame1
+};
+
+const u16 gTilesetAnims_OutskirtStandIndoor_TV_Frame0[] = INCBIN_U16("data/tilesets/secondary/outskirt_stand_indoor/anim/tv/0.4bpp");
+const u16 gTilesetAnims_OutskirtStandIndoor_TV_Frame1[] = INCBIN_U16("data/tilesets/secondary/outskirt_stand_indoor/anim/tv/1.4bpp");
+const u16 gTilesetAnims_OutskirtStandIndoor_TV_Frame2[] = INCBIN_U16("data/tilesets/secondary/outskirt_stand_indoor/anim/tv/2.4bpp");
+const u16 gTilesetAnims_OutskirtStandIndoor_TV_Frame3[] = INCBIN_U16("data/tilesets/secondary/outskirt_stand_indoor/anim/tv/3.4bpp");
+
+const u16 *const gTilesetAnims_OutskirtStandIndoor_TV[] = {
+    gTilesetAnims_OutskirtStandIndoor_TV_Frame0,
+    gTilesetAnims_OutskirtStandIndoor_TV_Frame1,
+    gTilesetAnims_OutskirtStandIndoor_TV_Frame2,
+    gTilesetAnims_OutskirtStandIndoor_TV_Frame3,
 };
 
 const u16 gTilesetAnims_DesertPrimary_Water_Frame1[] = INCBIN_U16("data/tilesets/primary/desert_primary/anim/water/1.4bpp");
@@ -1216,4 +1229,23 @@ static void BlendAnimPalette_BattleDome_FloorLightsNoBlend(u16 timer)
         if (!--sSecondaryTilesetAnimCounterMax)
             sSecondaryTilesetAnimCallback = NULL;
     }
+}
+
+static void QueueAnimTiles_OutskirtStandIndoor_TV(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_OutskirtStandIndoor_TV);
+    AppendTilesetAnimToBuffer(gTilesetAnims_OutskirtStandIndoor_TV[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 0x1BD)), 2 * TILE_SIZE_4BPP);
+}
+
+static void TilesetAnim_OutskirtStandIndoor(u16 timer)
+{
+    if (timer % 30 == 0)
+        QueueAnimTiles_OutskirtStandIndoor_TV(timer / 30);
+}
+
+void InitTilesetAnim_OutskirtStandIndoor(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_OutskirtStandIndoor;
 }

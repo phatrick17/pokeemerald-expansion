@@ -81,6 +81,8 @@ gSpecials::
 	def_special ShowPokemonStorageSystemPC
 	def_special HasEnoughMonsForDoubleBattle
 	def_special TurnOffTVScreen
+	def_special TurnOffOutskirtStandTVScreen
+	def_special TurnOnOutskirtStandTVScreen
 	def_special DoTVShow
 	def_special DoPokeNews
 	def_special GetRandomActiveShowIdx
