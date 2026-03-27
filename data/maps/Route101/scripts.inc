@@ -823,6 +823,26 @@ OPEN_WORLD_MAP_ENTER_Left::
 	end
 
 
+OPEN_WORLD_MAP_ENTER_DOWN::
+# 570 "data/maps/Route101/scripts.pory"
+	lockall
+# 571 "data/maps/Route101/scripts.pory"
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+# 572 "data/maps/Route101/scripts.pory"
+	special Special_OpenCustomMap
+# 573 "data/maps/Route101/scripts.pory"
+	waitstate
+# 574 "data/maps/Route101/scripts.pory"
+	releaseall
+# 575 "data/maps/Route101/scripts.pory"
+	fadedefaultbgm
+# 576 "data/maps/Route101/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_DOWN_Movement_0
+# 579 "data/maps/Route101/scripts.pory"
+	waitmovement 0
+	end
+
+
 # 316 "data/maps/Route101/scripts.pory"
 Outskirt_Stand_Folley_Trudly_1_Movement_0:
 # 317 "data/maps/Route101/scripts.pory"
@@ -901,6 +921,12 @@ OPEN_WORLD_MAP_ENTER_Right_Movement_0:
 OPEN_WORLD_MAP_ENTER_Left_Movement_0:
 # 563 "data/maps/Route101/scripts.pory"
 	walk_right
+	step_end
+
+# 576 "data/maps/Route101/scripts.pory"
+OPEN_WORLD_MAP_ENTER_DOWN_Movement_0:
+# 577 "data/maps/Route101/scripts.pory"
+	walk_up
 	step_end
 
 Outskirt_Stand_Folley_Trudly_1_Text_0:

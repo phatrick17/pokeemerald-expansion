@@ -863,3 +863,14 @@ const struct Tileset gTileset_Desert_Primary =
     .metatileAttributes = gMetatileAttributes_Desert_Primary,
     .callback = InitTilesetAnim_DesertPrimary,
 };
+
+const struct Tileset gTileset_Outskirt_Stand_Indoor =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Outskirt_Stand_Indoor,
+    .palettes = gTilesetPalettes_Outskirt_Stand_Indoor,
+    .metatiles = gMetatiles_Outskirt_Stand_Indoor,
+    .metatileAttributes = gMetatileAttributes_Outskirt_Stand_Indoor,
+    .callback = NULL,
+};

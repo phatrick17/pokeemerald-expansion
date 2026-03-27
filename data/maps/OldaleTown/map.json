@@ -67,6 +67,88 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
+      "x": 43,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 20,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Left"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Left"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 25,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 27,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    }
+  ],
   "bg_events": []
 }

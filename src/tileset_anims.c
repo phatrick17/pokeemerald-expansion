@@ -677,7 +677,7 @@ static void TilesetAnim_DesertPrimary(u16 timer)
 static void QueueAnimTiles_DesertPrimary_Water(u16 timer)
 {
     u8 i = timer % ARRAY_COUNT(gTilesetAnims_DesertPrimary_Water);
-    AppendTilesetAnimToBuffer(gTilesetAnims_DesertPrimary_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x001)), 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_DesertPrimary_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x1E0)), 4 * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_General_Flower(u16 timer)
