@@ -31,10 +31,10 @@
     {
       "local_id": "LOCALID_WILLIE_INSIDE",
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
-      "x": 14,
+      "x": 18,
       "y": 7,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,8 +44,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
-      "x": 2,
-      "y": 2,
+      "x": 5,
+      "y": 5,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -58,15 +58,15 @@
   ],
   "warp_events": [
     {
-      "x": 4,
-      "y": 7,
+      "x": 5,
+      "y": 9,
       "elevation": 0,
       "dest_map": "MAP_ROUTE101",
       "dest_warp_id": "OUTSKIRT_STAND_OUTSIDE"
     },
     {
-      "x": 3,
-      "y": 7,
+      "x": 6,
+      "y": 9,
       "elevation": 0,
       "dest_map": "MAP_ROUTE101",
       "dest_warp_id": "OUTSKIRT_STAND_OUTSIDE"

@@ -565,3 +565,17 @@ script OPEN_WORLD_MAP_ENTER_Left {
     waitmovement(0)
     end
 }
+
+script OPEN_WORLD_MAP_ENTER_DOWN {
+    lockall
+    playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
+    special(Special_OpenCustomMap)
+    waitstate
+    releaseall
+    fadedefaultbgm
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_up
+	))
+    waitmovement(0)
+    end
+}

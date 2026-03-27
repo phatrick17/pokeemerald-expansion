@@ -634,10 +634,10 @@
     {
       "id": "LAYOUT_OLDALE_TOWN_MART",
       "name": "OldaleTown_Mart_Layout",
-      "width": 16,
-      "height": 8,
+      "width": 20,
+      "height": 12,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Shop",
+      "secondary_tileset": "gTileset_Outskirt_Stand_Indoor",
       "border_filepath": "data/layouts/OldaleTown_Mart/border.bin",
       "blockdata_filepath": "data/layouts/OldaleTown_Mart/map.bin"
     },
