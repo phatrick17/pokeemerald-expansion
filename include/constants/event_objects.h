@@ -382,6 +382,7 @@
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
 #define OBJ_EVENT_PAL_TAG_FOLLY_OW                0X1125
+#define OBJ_EVENT_PAL_TAG_TRUDLY_OW               0X1126
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla
