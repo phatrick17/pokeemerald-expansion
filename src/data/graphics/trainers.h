@@ -292,8 +292,8 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u16 gTrainerBackPicPalette_Red[] = INCBIN_U16("graphics/trainers/back_pics/red.gbapal");
 const u16 gTrainerBackPicPalette_Leaf[] = INCBIN_U16("graphics/trainers/back_pics/leaf.gbapal");
 
-const u32 gTrainerFrontPic_RiderM[] = INCBIN_U32("graphics/trainers/front_pics/rider_willie.4bpp.smol");
-const u16 gTrainerPalette_RiderM[] = INCBIN_U16("graphics/trainers/front_pics/rider_willie.gbapal");
+const u32 gTrainerFrontPic_RiderWillie[] = INCBIN_U32("graphics/trainers/front_pics/rider_willie.4bpp.smol");
+const u16 gTrainerPalette_RiderWillie[] = INCBIN_U16("graphics/trainers/palettes/rider_willie.gbapal");
 
 // The first two parameters invoke a front pic and palette by
 // calling a "TRAINER_PIC" constant (e.g. TRAINER_PIC_HIKER), and

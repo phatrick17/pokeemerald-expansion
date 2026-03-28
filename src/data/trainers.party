@@ -83,10 +83,10 @@ Double Battle: No
 
 === TRAINER_SAWYER_1 ===
 Name: Willie
-Class: Rider
+Class: Rider_W
 Pic: Rider_Willie
 Gender: Male
-Music: Rival
+Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
