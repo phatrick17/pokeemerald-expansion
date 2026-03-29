@@ -48,15 +48,15 @@ struct CustomMapTown {
 // The user should update these to match their actual map.
 static const struct CustomMapTown sCustomTowns[NUM_CUSTOM_TOWNS] = {
     { .x =  212, .y =  116, .mapSecId = MAPSEC_ROUTE_101,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
-    { .x =  164, .y =  116, .mapSecId = MAPSEC_OLDALE_TOWN,     .healLocationId = HEAL_LOCATION_OLDALE_TOWN },
-    { .x = 200, .y =  48, .mapSecId = MAPSEC_LILYCOVE_CITY,     .healLocationId = HEAL_LOCATION_LILYCOVE_CITY },
-    { .x =  24, .y =  96, .mapSecId = MAPSEC_PETALBURG_CITY,    .healLocationId = HEAL_LOCATION_PETALBURG_CITY },
-    { .x =  72, .y =  96, .mapSecId = MAPSEC_MAUVILLE_CITY,     .healLocationId = HEAL_LOCATION_MAUVILLE_CITY },
-    { .x =  56, .y = 128, .mapSecId = MAPSEC_LITTLEROOT_TOWN,   .healLocationId = HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F },
-    { .x = 104, .y = 128, .mapSecId = MAPSEC_SLATEPORT_CITY,    .healLocationId = HEAL_LOCATION_SLATEPORT_CITY },
-    { .x = 128, .y = 128, .mapSecId = MAPSEC_DEWFORD_TOWN,      .healLocationId = HEAL_LOCATION_DEWFORD_TOWN },
-    { .x = 168, .y = 128, .mapSecId = MAPSEC_MOSSDEEP_CITY,     .healLocationId = HEAL_LOCATION_MOSSDEEP_CITY },
-    { .x = 200, .y = 128, .mapSecId = MAPSEC_SOOTOPOLIS_CITY,   .healLocationId = HEAL_LOCATION_SOOTOPOLIS_CITY },
+    { .x =  164, .y =  116, .mapSecId = MAPSEC_OLDALE_TOWN,     .healLocationId = HEAL_LOCATION_OLDALE_TOWN, .flag = FLAG_MAP_UNLOCK_PHENAC },
+    { .x = 200, .y =  48, .mapSecId = MAPSEC_LILYCOVE_CITY,     .healLocationId = HEAL_LOCATION_LILYCOVE_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x =  24, .y =  96, .mapSecId = MAPSEC_PETALBURG_CITY,    .healLocationId = HEAL_LOCATION_PETALBURG_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x =  72, .y =  96, .mapSecId = MAPSEC_MAUVILLE_CITY,     .healLocationId = HEAL_LOCATION_MAUVILLE_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x =  56, .y = 128, .mapSecId = MAPSEC_LITTLEROOT_TOWN,   .healLocationId = HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, .flag = FLAG_UNUSED_0x2BB },
+    { .x = 104, .y = 128, .mapSecId = MAPSEC_SLATEPORT_CITY,    .healLocationId = HEAL_LOCATION_SLATEPORT_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x = 128, .y = 128, .mapSecId = MAPSEC_DEWFORD_TOWN,      .healLocationId = HEAL_LOCATION_DEWFORD_TOWN, .flag = FLAG_UNUSED_0x2BB },
+    { .x = 168, .y = 128, .mapSecId = MAPSEC_MOSSDEEP_CITY,     .healLocationId = HEAL_LOCATION_MOSSDEEP_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x = 200, .y = 128, .mapSecId = MAPSEC_SOOTOPOLIS_CITY,   .healLocationId = HEAL_LOCATION_SOOTOPOLIS_CITY, .flag = FLAG_UNUSED_0x2BB },
 };
 
 // ==================== Graphics Data ====================
