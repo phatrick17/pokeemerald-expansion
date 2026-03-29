@@ -261,6 +261,7 @@ static void Task_RivalNameChoice_AskIsOkay(u8);
 static void Task_RivalNameChoice_CreateIsOkayMenu(u8);
 static void Task_RivalNameChoice_ProcessIsOkay(u8);
 static void Task_RivalNameChoice_WaitFadeAndReturn(u8);
+static void Task_RivalNameChoice_FadeAndReturn(u8);
 static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
 static void MainMenu_FormatSavegameTime(void);

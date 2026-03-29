@@ -68,7 +68,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_PHENAC_FOLLY_1"
     },
     {
       "local_id": "PHENAC_FOLLY_1",
@@ -82,7 +82,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_PHENAC_FOLLY_1"
     },
     {
       "local_id": "PHENAC_RUI_IN_BAG",
@@ -96,7 +96,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_PHENAC_FOLLY_1"
     },
     {
       "local_id": "PHENAC_LADY_1",
@@ -110,7 +110,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_PHENAC_FOLLY_1"
     },
     {
       "local_id": "PHENAC_RUNNER_1",
@@ -124,7 +124,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_PHENAC_FOLLY_1"
     },
     {
       "local_id": "PHENAC_RUI",
@@ -138,7 +138,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_CAR_AND_BAG_OUTSKIRT"
     }
   ],
   "warp_events": [
