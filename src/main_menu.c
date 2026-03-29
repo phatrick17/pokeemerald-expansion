@@ -250,6 +250,15 @@ static void Task_NewGameCustom_ReturnShowTextbox(u8);
 static void Task_NewGameCustom_SoItsPlayerName(u8);
 static void Task_NewGameCustom_CreateNameYesNo(u8);
 static void Task_NewGameCustom_ProcessNameYesNoMenu(u8);
+static void CB2_RivalNameChoiceScreen(void);
+static void Task_RivalNameChoice_ShowMay(u8);
+static void Task_RivalNameChoice_WaitForFadeIn(u8);
+static void Task_RivalNameChoice_ShowNameMenu(u8);
+static void Task_RivalNameChoice_ProcessMenu(u8);
+static void Task_RivalNameChoice_FadeToNamingScreen(u8);
+static void Task_RivalNameChoice_StartNamingScreen(u8);
+static void Task_RivalNameChoice_FadeAndReturn(u8);
+static void Task_RivalNameChoice_WaitFadeAndReturn(u8);
 static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
 static void MainMenu_FormatSavegameTime(void);
@@ -502,6 +511,22 @@ static const u8 *const sCustomPresetNames[] = {
     sCustomName_Seth,
     sCustomName_Thomas
 };
+
+static const struct MenuAction sMenuActions_RivalName[] = {
+    {COMPOUND_STRING("NEW NAME"), {NULL}},
+    {COMPOUND_STRING("RUI"), {NULL}},
+    {COMPOUND_STRING("ANCA"), {NULL}},
+    {COMPOUND_STRING("YUKI"), {NULL}}
+};
+static const u8 sRivalPresetName_Rui[] = _("Rui");
+static const u8 sRivalPresetName_Anca[] = _("Anca");
+static const u8 sRivalPresetName_Yuki[] = _("Yuki");
+static const u8 *const sRivalPresetNames[] = {
+    sRivalPresetName_Rui,
+    sRivalPresetName_Anca,
+    sRivalPresetName_Yuki
+};
+static const u8 sText_RivalNameQuestion[] = _("Your rival's name?");
 
 static const u8 *const sMalePresetNames[] = {
     COMPOUND_STRING("STU"),
@@ -2567,3 +2592,208 @@ static void Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox(u8 taskId)
 }
 
 #undef tTimer
+
+// =========================================================
+// Rival Name Choice Screen
+// Shows the Birch speech background with May and a menu
+// to choose the rival's name (preset or custom).
+// Called via the DoRivalNameChoiceScreen special.
+// =========================================================
+
+#define tPlayerSpriteId data[2]
+#define tBG1HOFS        data[4]
+#define tIsDoneFadingSprites data[5]
+#define tTimer          data[7]
+#define tBirchSpriteId  data[8]
+#define tLotadSpriteId  data[9]
+#define tMaySpriteId    data[11]
+
+void DoRivalNameChoiceScreen(void)
+{
+    SetMainCallback2(CB2_RivalNameChoiceScreen);
+}
+
+static void CB2_RivalNameChoiceScreen(void)
+{
+    u8 taskId;
+    u16 savedIme;
+
+    ResetBgsAndClearDma3BusyFlags(0);
+    SetGpuReg(REG_OFFSET_DISPCNT, 0);
+    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+    InitBgsFromTemplates(0, sMainMenuBgTemplates, ARRAY_COUNT(sMainMenuBgTemplates));
+    InitBgFromTemplate(&sBirchBgTemplate);
+    SetVBlankCallback(NULL);
+    SetGpuReg(REG_OFFSET_BG2CNT, 0);
+    SetGpuReg(REG_OFFSET_BG1CNT, 0);
+    SetGpuReg(REG_OFFSET_BG0CNT, 0);
+    SetGpuReg(REG_OFFSET_BG2HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG2VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG1HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG1VOFS, 0);
+    SetGpuReg(REG_OFFSET_BG0HOFS, 0);
+    SetGpuReg(REG_OFFSET_BG0VOFS, 0);
+    DmaFill16(3, 0, VRAM, VRAM_SIZE);
+    DmaFill32(3, 0, OAM, OAM_SIZE);
+    DmaFill16(3, 0, PLTT, PLTT_SIZE);
+    ResetPaletteFade();
+    DecompressDataWithHeaderVram(sBirchSpeechShadowGfx, (u8 *)VRAM);
+    DecompressDataWithHeaderVram(sBirchSpeechBgMap, (u8 *)(BG_SCREEN_ADDR(7)));
+    LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+    LoadPalette(&sBirchSpeechBgGradientPal[1], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
+    ResetTasks();
+    taskId = CreateTask(Task_RivalNameChoice_ShowMay, 0);
+    gTasks[taskId].tTimer = 0x20;
+    gTasks[taskId].tBG1HOFS = 0;
+    ScanlineEffect_Stop();
+    ResetSpriteData();
+    FreeAllSpritePalettes();
+    ResetAllPicSprites();
+    AddBirchSpeechObjects(taskId);
+    gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+    SetGpuReg(REG_OFFSET_WIN0H, 0);
+    SetGpuReg(REG_OFFSET_WIN0V, 0);
+    SetGpuReg(REG_OFFSET_WININ, 0);
+    SetGpuReg(REG_OFFSET_WINOUT, 0);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0);
+    SetGpuReg(REG_OFFSET_BLDY, 0);
+    ShowBg(0);
+    ShowBg(1);
+    savedIme = REG_IME;
+    REG_IME = 0;
+    REG_IE |= 1;
+    REG_IME = savedIme;
+    SetVBlankCallback(VBlankCB_MainMenu);
+    SetMainCallback2(CB2_MainMenu);
+    InitWindows(sNewGameBirchSpeechTextWindows);
+    LoadMainMenuWindowFrameTiles(0, 0xF3);
+    LoadMessageBoxGfx(0, BIRCH_DLG_BASE_TILE_NUM, BG_PLTT_ID(15));
+    PutWindowTilemap(0);
+    CopyWindowToVram(0, COPYWIN_FULL);
+}
+
+static void Task_RivalNameChoice_ShowMay(u8 taskId)
+{
+    u8 spriteId;
+    if (gTasks[taskId].tTimer)
+    {
+        gTasks[taskId].tTimer--;
+    }
+    else
+    {
+        spriteId = gTasks[taskId].tMaySpriteId;
+        gSprites[spriteId].x = 136;
+        gSprites[spriteId].y = 60;
+        gSprites[spriteId].invisible = FALSE;
+        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
+        gTasks[taskId].tPlayerSpriteId = spriteId;
+        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 10);
+        NewGameBirchSpeech_StartFadePlatformOut(taskId, 20);
+        gTasks[taskId].tTimer = 80;
+        gTasks[taskId].func = Task_RivalNameChoice_WaitForFadeIn;
+    }
+}
+
+static void Task_RivalNameChoice_WaitForFadeIn(u8 taskId)
+{
+    if (gTasks[taskId].tIsDoneFadingSprites)
+    {
+        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+        if (gTasks[taskId].tTimer)
+        {
+            gTasks[taskId].tTimer--;
+        }
+        else
+        {
+            NewGameBirchSpeech_ShowDialogueWindow(0, 1);
+            PutWindowTilemap(0);
+            CopyWindowToVram(0, COPYWIN_GFX);
+            NewGameBirchSpeech_ClearWindow(0);
+            StringCopy(gStringVar4, sText_RivalNameQuestion);
+            AddTextPrinterForMessage(TRUE);
+            gTasks[taskId].func = Task_RivalNameChoice_ShowNameMenu;
+        }
+    }
+}
+
+static void Task_RivalNameChoice_ShowNameMenu(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        DrawMainMenuWindowBorder(&sNewGameBirchSpeechTextWindows[2], 0xF3);
+        FillWindowPixelBuffer(2, PIXEL_FILL(1));
+        PrintMenuTable(2, ARRAY_COUNT(sMenuActions_RivalName), sMenuActions_RivalName);
+        InitMenuInUpperLeftCornerNormal(2, ARRAY_COUNT(sMenuActions_RivalName), 0);
+        PutWindowTilemap(2);
+        CopyWindowToVram(2, COPYWIN_FULL);
+        gTasks[taskId].func = Task_RivalNameChoice_ProcessMenu;
+    }
+}
+
+static void Task_RivalNameChoice_ProcessMenu(u8 taskId)
+{
+    s8 selection = Menu_ProcessInputNoWrap();
+    u8 i;
+    const u8 *name;
+    switch (selection)
+    {
+        case 0: // NEW NAME - go to naming screen
+            PlaySE(SE_SELECT);
+            NewGameBirchSpeech_ClearGenderWindow(2, 1);
+            gTasks[taskId].func = Task_RivalNameChoice_FadeToNamingScreen;
+            break;
+        case 1: // RUI
+        case 2: // ANCA
+        case 3: // YUKI
+            PlaySE(SE_SELECT);
+            name = sRivalPresetNames[selection - 1];
+            for (i = 0; i < PLAYER_NAME_LENGTH; i++)
+                gSaveBlock2Ptr->rivalName[i] = name[i];
+            gSaveBlock2Ptr->rivalName[PLAYER_NAME_LENGTH] = EOS;
+            NewGameBirchSpeech_ClearGenderWindow(2, 1);
+            gTasks[taskId].func = Task_RivalNameChoice_FadeAndReturn;
+            break;
+    }
+}
+
+static void Task_RivalNameChoice_FadeToNamingScreen(u8 taskId)
+{
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    gTasks[taskId].func = Task_RivalNameChoice_StartNamingScreen;
+}
+
+static void Task_RivalNameChoice_StartNamingScreen(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        FreeAllWindowBuffers();
+        DestroyTask(taskId);
+        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, FEMALE, 0, 0, CB2_ReturnToFieldContinueScript);
+    }
+}
+
+static void Task_RivalNameChoice_WaitFadeAndReturn(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        FreeAllWindowBuffers();
+        DestroyTask(taskId);
+        SetMainCallback2(CB2_ReturnToFieldContinueScript);
+    }
+}
+
+static void Task_RivalNameChoice_FadeAndReturn(u8 taskId)
+{
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    gTasks[taskId].func = Task_RivalNameChoice_WaitFadeAndReturn;
+}
+
+#undef tPlayerSpriteId
+#undef tBG1HOFS
+#undef tIsDoneFadingSprites
+#undef tTimer
+#undef tBirchSpriteId
+#undef tLotadSpriteId
+#undef tMaySpriteId
