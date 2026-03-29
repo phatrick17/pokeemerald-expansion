@@ -1906,18 +1906,17 @@ void ExtractMonSkillEvData(struct Pokemon *mon, struct PokeSummary *sum)
 u32 GetRelearnMovesCount(enum MoveRelearnerStates state)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    u16 moves[MAX_RELEARNER_MOVES];
 
     switch (state)
     {
         case MOVE_RELEARNER_EGG_MOVES:
-            return GetRelearnerEggMoves(mon, moves);
+            return GetNumberOfEggMoves(mon);
         case MOVE_RELEARNER_TM_MOVES:
-            return GetRelearnerTMMoves(mon, moves);
+            return GetNumberOfTMMoves(mon);
         case MOVE_RELEARNER_TUTOR_MOVES:
-            return GetRelearnerTutorMoves(mon, moves);
+            return GetNumberOfTutorMoves(mon);
         case MOVE_RELEARNER_LEVEL_UP_MOVES:
-            return GetRelearnerLevelUpMoves(mon, moves);
+            return GetNumberOfLevelUpMoves(mon);
         default:
             return 0;
     }
@@ -4624,7 +4623,7 @@ static void SpriteCB_Pokemon(struct Sprite *sprite)
     {
         sprite->data[1] = IsMonSpriteNotFlipped(sprite->data[0]);
         PlayMonCry();
-        PokemonSummaryDoMonAnimation(sprite, sprite->data[0], FALSE);
+        PokemonSummaryDoMonAnimation(sprite, sprite->data[0], summary->isEgg, FALSE);
     }
 }
 
