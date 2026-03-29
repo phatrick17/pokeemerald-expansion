@@ -2250,7 +2250,15 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->teraType = GetMonData(mon, MON_DATA_TERA_TYPE);
         sum->isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
         sum->isShadow = GetMonData(mon, MON_DATA_IS_SHADOW);
-        sMonSummaryScreen->relearnableMovesNum = P_SUMMARY_SCREEN_MOVE_RELEARNER ? GetNumberOfLevelUpMoves(mon) : 0;
+        if (P_SUMMARY_SCREEN_MOVE_RELEARNER)
+        {
+            u16 moves[MAX_RELEARNER_MOVES];
+            sMonSummaryScreen->relearnableMovesNum = GetRelearnerLevelUpMoves(mon, moves);
+        }
+        else
+        {
+            sMonSummaryScreen->relearnableMovesNum = 0;
+        }
         return TRUE;
     }
     sMonSummaryScreen->switchCounter++;
@@ -3606,7 +3614,7 @@ static void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 line
 // need to be compressed more vertically
 static void PrintTextOnWindow_BW_Font(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId)
 {
-    PrintTextOnWindowWithFont(windowId, string, x, y, lineSpacing, colorId, FONT_BW_SUMMARY_SCREEN);
+    PrintTextOnWindowWithFont(windowId, string, x, y, lineSpacing, colorId, FONT_SHORT);
 }
 
 static void PrintTextOnWindowToFitPx(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 width)
@@ -4699,7 +4707,7 @@ static void PrintContestMoveDescription(u8 moveSlot)
     if (move != MOVE_NONE)
     {
         windowId = AddWindowFromTemplateList(sPageMovesTemplate, PSS_DATA_WINDOW_MOVE_DESCRIPTION);
-        FormatTextByWidth(desc, 119, FONT_BW_SUMMARY_SCREEN, gContestEffects[gMovesInfo[move].contestEffect].description, GetFontAttribute(FONT_BW_SUMMARY_SCREEN, FONTATTR_LETTER_SPACING));
+        FormatTextByWidth(desc, 119, FONT_SHORT, gContestEffects[gMovesInfo[move].contestEffect].description, GetFontAttribute(FONT_SHORT, FONTATTR_LETTER_SPACING));
         PrintTextOnWindow_BW_Font(windowId, desc, 2, 0, 0, 0);
     }
 }
@@ -4723,7 +4731,7 @@ static void PrintMoveDetails(u16 move)
                 if (gMovesInfo[move].effect != EFFECT_PLACEHOLDER)
                     FormatTextByWidth(desc, 119, FONT_BW_SUMMARY_SCREEN, gMovesInfo[move].description, GetFontAttribute(FONT_BW_SUMMARY_SCREEN, FONTATTR_LETTER_SPACING));
                 else
-                    FormatTextByWidth(desc, 119, FONT_BW_SUMMARY_SCREEN, gNotDoneYetDescription, GetFontAttribute(FONT_BW_SUMMARY_SCREEN, FONTATTR_LETTER_SPACING));
+                    FormatTextByWidth(desc, 119, FONT_SHORT, gNotDoneYetDescription, GetFontAttribute(FONT_SHORT, FONTATTR_LETTER_SPACING));
 
                 PrintTextOnWindow_BW_Font(windowId, desc, 2, 0, 0, 0);
             }
@@ -4741,7 +4749,7 @@ static void PrintMoveDetails(u16 move)
             HandleAppealJamTilemap(move);
             if (BW_SUMMARY_AUTO_FORMAT_MOVE_DESCRIPTIONS)
             {
-                FormatTextByWidth(desc, 119, FONT_BW_SUMMARY_SCREEN, gContestEffects[gMovesInfo[move].contestEffect].description, GetFontAttribute(FONT_BW_SUMMARY_SCREEN, FONTATTR_LETTER_SPACING));
+                FormatTextByWidth(desc, 119, FONT_SHORT, gContestEffects[gMovesInfo[move].contestEffect].description, GetFontAttribute(FONT_SHORT, FONTATTR_LETTER_SPACING));
                 PrintTextOnWindow_BW_Font(windowId, desc, 2, 0, 0, 0);
             }
             else
@@ -5196,7 +5204,7 @@ static void SpriteCB_Pokemon(struct Sprite *sprite)
         if (!sMonSummaryScreen->monAnimPlayed) // only play cry on the first time mon is animated
             PlayMonCry();
 
-        PokemonSummaryDoMonAnimation(sprite, sprite->sSpecies, summary->isEgg, sprite->sIsShadow);
+        PokemonSummaryDoMonAnimation(sprite, sprite->sSpecies, FALSE);
         sMonSummaryScreen->monAnimPlayed = TRUE;
     }
 }
