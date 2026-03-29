@@ -526,15 +526,51 @@ movement Outside_Movement_WillieExitDoor {
     step_end
 }
 
+//how to edit debug menu
+//main tree=src/data/script_menu.h "debug menu MAIN tree"
+//static const u8 = text string
+//static const struct MenuAction = Defining text string
+//static const struct MultichoiceListStruct = list of multichoices
+//include/constants/script_menu.h -> ID for poryscript
+//WatCH for CASE_senSITIVE
 
-script TEST_WILLIE_INVIS {
-    lockall
-    special(DoRivalNameChoiceScreen)
-	waitstate
-    releaseall
+script My_Debug_Menu {
+    lockall()
+	multichoice(0, 0, MULTI_DEBUG_MENU, FALSE)
+    switch(var(VAR_RESULT)) {
+        case 0:
+            setflag(FLAG_DEFEATED_WILLIE)
+			setflag(FLAG_ROUTE119_INTRO_DONE)
+			setflag(FLAG_TRUDLEY_FOLEY_SPRITE)
+			setflag(FLAG_CAR_AND_BAG_OUTSKIRT)
+			setflag(FLAG_PHENAC_FOLLY_1)
+			setflag(FLAG_MAP_UNLOCK_PHENAC) //map unlocks on different row on flags.h
+			setvar(VAR_WILLIE_STATE, 3) 
+			special(DoRivalNameChoiceScreen)
+    		waitstate()
+			createfollowernpc(OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL)
+            release
+			end
+        case 1:
+   			 multichoice(0, 0, MULTI_DEBUG_WARP, FALSE)
+   			 switch(var(VAR_RESULT)) {
+        		case 0:
+            		warp(MAP_ROUTE101, 30, 14)
+            		waitstate()
+       		 case 1:
+            		warp(MAP_OLDALE_TOWN, 25, 48)
+            		waitstate()
+        		case MULTI_B_PRESSED:
+            		releaseall()
+            		end
+    }
+        case MULTI_B_PRESSED:
+            releaseall()
+            end
+	}
+    releaseall()
     end
 }
-
 
 script OPEN_WORLD_MAP_ENTER_Right {
     lockall

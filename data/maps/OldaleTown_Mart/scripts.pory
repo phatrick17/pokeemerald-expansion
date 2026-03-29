@@ -36,8 +36,8 @@ text OldaleTown_Mart_Text_SnaggHideoutReport {
     format("Authorities have made a stunning\n"
            "announcement on the mysterious\l"
            "building that exploded in Eclo Canyon.\l"
-           "It was Team Snaggem's Hideout.\p"
-           "Team Snaggem is a gang of POKéMON\n"
+           "It was Team Snagem's Hideout.\p"
+           "Team Snagem is a gang of POKéMON\n"
            "abductors who have already been\l"
            "marked for arrest.\p"
            "The hideout was discovered only as\n"
@@ -113,7 +113,7 @@ script OutskirtNPC1_Text { //NPC1
     lock
     faceplayer
     	msgbox(
-        	format("Hey, do you know about Team Snaggem?"),
+        	format("Hey, do you know about Team Snagem?"),
         	MSGBOX_YESNO)
     	if (var(VAR_RESULT) == NO) {
         msgbox(
@@ -184,7 +184,7 @@ script OutskirtNPC3_Text { //NPC3
     msgbox(
         format(
             "There's no forgiving that Team\n"
-            "Snaggem.\l"
+            "Snagem.\l"
             "They don't deserve it, not when they\l"
             "steal POKéMON from other trainers!\p"
             "Why, I'd give a hip hip hooray if\n"

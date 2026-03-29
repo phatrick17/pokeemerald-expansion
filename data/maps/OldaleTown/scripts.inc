@@ -147,6 +147,8 @@ Script_PhenacCity_Intro::
 	playfanfare MUS_EVOLVED
 # 258 "data/maps/OldaleTown/scripts.pory"
 	waitfanfare
+# 259 "data/maps/OldaleTown/scripts.pory"
+	closemessage
 # 260 "data/maps/OldaleTown/scripts.pory"
 	playbgm MUS_B_ARENA, FALSE
 # 262 "data/maps/OldaleTown/scripts.pory"

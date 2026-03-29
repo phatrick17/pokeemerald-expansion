@@ -415,7 +415,12 @@ static void Task_AnimateDoor(u8 taskId)
     struct DoorGraphics *gfx = (struct DoorGraphics *)(tGfxHi << 16 | tGfxLo);
 
     if (AnimateDoorFrame(gfx, frames, gTasks[taskId].data) == FALSE)
+    {
+        if (frames == sDoorCloseAnimFrames || frames == sBigDoorCloseAnimFrames)
+        CopyMapTilesetsToVram(gMapHeader.mapLayout);
+
         DestroyTask(taskId);
+    }
 }
 
 static const struct DoorAnimFrame *GetLastDoorFrame(const struct DoorAnimFrame *frame, const void *unused)

@@ -783,6 +783,28 @@ static const struct MenuAction MultichoiceList_Exit[] =
     {gText_Exit},
 };
 
+//debug menu MAIN tree
+static const u8 sText_DebugMenu_Flags [] = _("Unlock all Flags and Vars");
+static const u8 sText_DebugMenu_MapList [] = _("Warp to Maps");
+
+static const struct MenuAction MultichoiceList_DebugMenu[] =
+{
+    {sText_DebugMenu_Flags},
+    {sText_DebugMenu_MapList},
+};
+
+
+//debug menu FLAG list
+static const u8 sText_DebugWarp_Outskirt_Stand[]  = _("Outskirt Stand");
+static const u8 sText_DebugWarp_Phenacy_City[] = _("Phenac City");
+
+
+static const struct MenuAction MultichoiceList_DebugWarp[] =
+{
+    {sText_DebugWarp_Outskirt_Stand},
+    {sText_DebugWarp_Phenacy_City},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -800,8 +822,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_BASE_PC_WITH_REGISTRY]      = MULTICHOICE(MultichoiceList_BasePCWithRegistry),
     [MULTI_REGISTER_MENU]              = MULTICHOICE(MultichoiceList_RegisterMenu),
     [MULTI_SSTIDAL_LILYCOVE]           = MULTICHOICE(MultichoiceList_Exit),
-    [MULTI_UNUSED_9]                   = MULTICHOICE(MultichoiceList_Exit),
-    [MULTI_UNUSED_10]                  = MULTICHOICE(MultichoiceList_Exit),
+    [MULTI_DEBUG_WARP]                 = MULTICHOICE(MultichoiceList_DebugWarp),
+    [MULTI_DEBUG_MENU]                 = MULTICHOICE(MultichoiceList_DebugMenu),
     [MULTI_FRONTIER_PASS_INFO]         = MULTICHOICE(MultichoiceList_FrontierPassInfo),
     [MULTI_BIKE]                       = MULTICHOICE(MultichoiceList_Bike),
     [MULTI_STATUS_INFO]                = MULTICHOICE(MultichoiceList_StatusInfo),

@@ -169,6 +169,7 @@ static void CB_HandleCustomMapInput(void);
 static void CB_ExitCustomMap(void);
 static void UpdateTownNameWindow(void);
 static void MoveCursorToTown(u8 townIdx);
+static u8 GetInitialSelectedTown(void);
 
 // Returns TRUE if this town is available for selection
 static bool8 IsTownAvailable(u8 townIdx)
@@ -177,6 +178,26 @@ static bool8 IsTownAvailable(u8 townIdx)
         return TRUE;
     return FlagGet(sCustomTowns[townIdx].flag);
 }
+
+static u8 GetInitialSelectedTown(void)
+{
+    mapsec_u16_t currentMapSec = gMapHeader.regionMapSectionId;
+
+    for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
+    {
+        if (sCustomTowns[i].mapSecId == currentMapSec && IsTownAvailable(i))
+            return i;
+    }
+
+    for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
+    {
+        if (IsTownAvailable(i))
+            return i;
+    }
+
+    return 0;
+}
+
 
 // ==================== Cursor Sprite Callback ====================
 // Gentle bounce animation
@@ -261,16 +282,9 @@ void CB2_OpenCustomMap(void)
         LoadCompressedSpriteSheet(&sheet);
         LoadSpritePalette(&pal);
 
-        // Create cursor sprite at first available town
-        sCustomMap->selectedTown = 0;
-        for (u8 i = 0; i < NUM_CUSTOM_TOWNS; i++)
-        {
-            if (IsTownAvailable(i))
-            {
-                sCustomMap->selectedTown = i;
-                break;
-            }
-        }
+        // Create cursor sprite at current map location when possible.
+        sCustomMap->selectedTown = GetInitialSelectedTown();
+    
         sCustomMap->cursorSpriteId = CreateSprite(
             &sCursorSpriteTemplate,
             sCustomTowns[sCustomMap->selectedTown].x,
