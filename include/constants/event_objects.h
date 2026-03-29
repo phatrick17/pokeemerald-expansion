@@ -383,6 +383,7 @@
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
 #define OBJ_EVENT_PAL_TAG_FOLLY_OW                0X1125
 #define OBJ_EVENT_PAL_TAG_TRUDLY_OW               0X1126
+#define OBJ_EVENT_PAL_TAG_WILLIE                  0X1127
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

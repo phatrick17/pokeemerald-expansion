@@ -450,7 +450,8 @@ script Outside_EventScript_WillieAmbush {
         // Player said Yes
         msgbox(
             format("WILLIE: Yeahah! That's the spirit!\n"
-                   "All right, all right."),
+                   "All right, all right.\p"
+				   "Over here, this way!"),
             MSGBOX_DEFAULT)
     } else {
         // Player said No - loop back
@@ -460,9 +461,19 @@ script Outside_EventScript_WillieAmbush {
             MSGBOX_DEFAULT)
         goto(Outside_EventScript_WillieAskBattle)
     }
-
-    // --- Pre-battle hype line ---
-    msgbox(
+	
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_down *2
+		walk_right * 1
+		face_left
+	))
+    applymovement(LOCALID_WILLIE_OUTSIDE, moves(
+		walk_down *3
+		face_right
+	))
+	waitmovement
+	msgbox(
         format("Yeeeeeeaaaah!\n"
                "I'm burning now! I'm on fire!\p"
                "It's full-throttle time!\n"

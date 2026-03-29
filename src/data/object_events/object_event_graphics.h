@@ -232,6 +232,7 @@ const u16 gObjectEventPal_Vigoroth[] = INCBIN_U16("graphics/object_events/palett
 const u32 gObjectEventPic_BirchsBag[] = INCBIN_U32("graphics/object_events/pics/misc/birchs_bag.4bpp");
 const u16 gObjectEventPal_FollyOW[] = INCBIN_U16("graphics/object_events/palettes/folly_OW.gbapal");
 const u16 gObjectEventPal_TrudlyOW[] = INCBIN_U16("graphics/trainers/palettes/trudly.gbapal");
+const u16 gObjectEventPal_Willie[] = INCBIN_U16("graphics/object_events/palettes/willie.gbapal");
 const u32 gObjectEventPic_EnemyZigzagoon[] = INCBIN_U32("graphics/object_events/pics/pokemon_old/enemy_zigzagoon.4bpp");
 const u16 gObjectEventPal_EnemyZigzagoon[] = INCBIN_U16("graphics/object_events/palettes/enemy_zigzagoon.gbapal");
 const u16 gObjectEventPal_Poochyena[] = INCBIN_U16("graphics/object_events/palettes/poochyena.gbapal");
