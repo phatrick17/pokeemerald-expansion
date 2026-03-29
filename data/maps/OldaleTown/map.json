@@ -57,7 +57,7 @@
       "flag": "FLAG_HIDE_OLDALE_TOWN_RIVAL"
     },
     {
-      "local_id": "TRUDLY_1",
+      "local_id": "PHENAC_TRUDLY_1",
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
       "x": 24,
       "y": 44,
@@ -71,7 +71,7 @@
       "flag": "0"
     },
     {
-      "local_id": "FOLLY_1",
+      "local_id": "PHENAC_FOLLY_1",
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
       "x": 26,
       "y": 44,
@@ -85,7 +85,7 @@
       "flag": "0"
     },
     {
-      "local_id": "RUI_IN_BAG",
+      "local_id": "PHENAC_RUI_IN_BAG",
       "graphics_id": "OBJ_EVENT_GFX_BIRCHS_BAG",
       "x": 25,
       "y": 44,
@@ -99,7 +99,7 @@
       "flag": "0"
     },
     {
-      "local_id": "LADY_1",
+      "local_id": "PHENAC_LADY_1",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
       "x": 28,
       "y": 42,
@@ -113,7 +113,7 @@
       "flag": "0"
     },
     {
-      "local_id": "RUNNER_1",
+      "local_id": "PHENAC_RUNNER_1",
       "graphics_id": "OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M",
       "x": 25,
       "y": 42,
@@ -127,7 +127,7 @@
       "flag": "0"
     },
     {
-      "local_id": "RUI",
+      "local_id": "PHENAC_RUI",
       "graphics_id": "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
       "x": 25,
       "y": 44,

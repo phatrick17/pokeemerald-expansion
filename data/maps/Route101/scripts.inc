@@ -789,62 +789,74 @@ Outside_Movement_WillieExitDoor:
 # 527 "data/maps/Route101/scripts.pory"
 	step_end
 
-OPEN_WORLD_MAP_ENTER_Right::
-# 548 "data/maps/Route101/scripts.pory"
+TEST_WILLIE_INVIS::
+# 532 "data/maps/Route101/scripts.pory"
 	lockall
-# 549 "data/maps/Route101/scripts.pory"
-	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
-# 550 "data/maps/Route101/scripts.pory"
-	special Special_OpenCustomMap
-# 551 "data/maps/Route101/scripts.pory"
+# 533 "data/maps/Route101/scripts.pory"
+	special DoRivalNameChoiceScreen
+# 534 "data/maps/Route101/scripts.pory"
 	waitstate
-# 552 "data/maps/Route101/scripts.pory"
+# 535 "data/maps/Route101/scripts.pory"
 	releaseall
-# 553 "data/maps/Route101/scripts.pory"
+	end
+
+
+OPEN_WORLD_MAP_ENTER_Right::
+# 541 "data/maps/Route101/scripts.pory"
+	lockall
+# 542 "data/maps/Route101/scripts.pory"
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+# 543 "data/maps/Route101/scripts.pory"
+	special Special_OpenCustomMap
+# 544 "data/maps/Route101/scripts.pory"
+	waitstate
+# 545 "data/maps/Route101/scripts.pory"
+	releaseall
+# 546 "data/maps/Route101/scripts.pory"
 	fadedefaultbgm
-# 554 "data/maps/Route101/scripts.pory"
+# 547 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_Right_Movement_0
-# 557 "data/maps/Route101/scripts.pory"
+# 550 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
 
 OPEN_WORLD_MAP_ENTER_Left::
-# 562 "data/maps/Route101/scripts.pory"
+# 555 "data/maps/Route101/scripts.pory"
 	lockall
-# 563 "data/maps/Route101/scripts.pory"
+# 556 "data/maps/Route101/scripts.pory"
 	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
-# 564 "data/maps/Route101/scripts.pory"
+# 557 "data/maps/Route101/scripts.pory"
 	special Special_OpenCustomMap
-# 565 "data/maps/Route101/scripts.pory"
+# 558 "data/maps/Route101/scripts.pory"
 	waitstate
-# 566 "data/maps/Route101/scripts.pory"
+# 559 "data/maps/Route101/scripts.pory"
 	releaseall
-# 567 "data/maps/Route101/scripts.pory"
+# 560 "data/maps/Route101/scripts.pory"
 	fadedefaultbgm
-# 568 "data/maps/Route101/scripts.pory"
+# 561 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_Left_Movement_0
-# 571 "data/maps/Route101/scripts.pory"
+# 564 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
 
 OPEN_WORLD_MAP_ENTER_DOWN::
-# 576 "data/maps/Route101/scripts.pory"
+# 569 "data/maps/Route101/scripts.pory"
 	lockall
-# 577 "data/maps/Route101/scripts.pory"
+# 570 "data/maps/Route101/scripts.pory"
 	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
-# 578 "data/maps/Route101/scripts.pory"
+# 571 "data/maps/Route101/scripts.pory"
 	special Special_OpenCustomMap
-# 579 "data/maps/Route101/scripts.pory"
+# 572 "data/maps/Route101/scripts.pory"
 	waitstate
-# 580 "data/maps/Route101/scripts.pory"
+# 573 "data/maps/Route101/scripts.pory"
 	releaseall
-# 581 "data/maps/Route101/scripts.pory"
+# 574 "data/maps/Route101/scripts.pory"
 	fadedefaultbgm
-# 582 "data/maps/Route101/scripts.pory"
+# 575 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_DOWN_Movement_0
-# 585 "data/maps/Route101/scripts.pory"
+# 578 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
@@ -945,21 +957,21 @@ Outside_EventScript_WillieAmbush_Movement_1:
 	face_right
 	step_end
 
-# 554 "data/maps/Route101/scripts.pory"
+# 547 "data/maps/Route101/scripts.pory"
 OPEN_WORLD_MAP_ENTER_Right_Movement_0:
-# 555 "data/maps/Route101/scripts.pory"
+# 548 "data/maps/Route101/scripts.pory"
 	walk_left
 	step_end
 
-# 568 "data/maps/Route101/scripts.pory"
+# 561 "data/maps/Route101/scripts.pory"
 OPEN_WORLD_MAP_ENTER_Left_Movement_0:
-# 569 "data/maps/Route101/scripts.pory"
+# 562 "data/maps/Route101/scripts.pory"
 	walk_right
 	step_end
 
-# 582 "data/maps/Route101/scripts.pory"
+# 575 "data/maps/Route101/scripts.pory"
 OPEN_WORLD_MAP_ENTER_DOWN_Movement_0:
-# 583 "data/maps/Route101/scripts.pory"
+# 576 "data/maps/Route101/scripts.pory"
 	walk_up
 	step_end
 

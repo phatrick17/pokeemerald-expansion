@@ -528,20 +528,13 @@ movement Outside_Movement_WillieExitDoor {
 }
 
 
-//script TEST_WILLIE_INVIS {
-//    lockall
-//    setflag(FLAG_HIDE_OUTSIDE_WILLIE)
-//	fadescreen(FADE_TO_BLACK)
-//    blackscreentext(format
-//    	("WILLIE FLAG SET DISAPPEAR."
-//		"THIS IS A TEST"
-//		"LINE 3"
-//		"LINE 4")
-//		)
-//	fadescreen(FADE_FROM_BLACK)
-//    releaseall
-//    end
-//}
+script TEST_WILLIE_INVIS {
+    lockall
+    special(DoRivalNameChoiceScreen)
+	waitstate
+    releaseall
+    end
+}
 
 
 script OPEN_WORLD_MAP_ENTER_Right {
