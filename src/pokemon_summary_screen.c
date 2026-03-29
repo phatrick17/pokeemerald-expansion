@@ -4618,8 +4618,6 @@ static u8 CreateMonSprite(struct Pokemon *unused)
 
 static void SpriteCB_Pokemon(struct Sprite *sprite)
 {
-    struct PokeSummary *summary = &sMonSummaryScreen->summary;
-
     if (!gPaletteFade.active && sprite->data[2] != 1)
     {
         sprite->data[1] = IsMonSpriteNotFlipped(sprite->data[0]);
