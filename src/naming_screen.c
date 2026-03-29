@@ -2105,7 +2105,7 @@ static void UNUSED Debug_NamingScreenNickname(void)
 
 void DoRivalNamingScreen(void)
 {
-    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_ReturnToFieldContinueScript);
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, FEMALE, 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
 //--------------------------------------------------
