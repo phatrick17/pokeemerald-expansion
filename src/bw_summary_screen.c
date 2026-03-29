@@ -5195,8 +5195,6 @@ static u8 CreateMonSprite(struct Pokemon *unused, bool32 isShadow)
 
 static void SpriteCB_Pokemon(struct Sprite *sprite)
 {
-    struct PokeSummary *summary = &sMonSummaryScreen->summary;
-
     if (!gPaletteFade.active && sprite->sDelayAnim != 1)
     {
         sprite->sDontFlip = TRUE;
