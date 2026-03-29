@@ -251,13 +251,15 @@ static void Task_NewGameCustom_SoItsPlayerName(u8);
 static void Task_NewGameCustom_CreateNameYesNo(u8);
 static void Task_NewGameCustom_ProcessNameYesNoMenu(u8);
 static void CB2_RivalNameChoiceScreen(void);
-static void Task_RivalNameChoice_ShowMay(u8);
-static void Task_RivalNameChoice_WaitForFadeIn(u8);
+static void CB2_RivalNameChoice_ReturnFromNaming(void);
+static void Task_RivalNameChoice_WaitFadeIn(u8);
 static void Task_RivalNameChoice_ShowNameMenu(u8);
 static void Task_RivalNameChoice_ProcessMenu(u8);
 static void Task_RivalNameChoice_FadeToNamingScreen(u8);
 static void Task_RivalNameChoice_StartNamingScreen(u8);
-static void Task_RivalNameChoice_FadeAndReturn(u8);
+static void Task_RivalNameChoice_AskIsOkay(u8);
+static void Task_RivalNameChoice_CreateIsOkayMenu(u8);
+static void Task_RivalNameChoice_ProcessIsOkay(u8);
 static void Task_RivalNameChoice_WaitFadeAndReturn(u8);
 static void MainMenu_FormatSavegamePlayer(void);
 static void MainMenu_FormatSavegamePokedex(void);
@@ -2600,22 +2602,22 @@ static void Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox(u8 taskId)
 // Called via the DoRivalNameChoiceScreen special.
 // =========================================================
 
-#define tPlayerSpriteId data[2]
-#define tBG1HOFS        data[4]
+#define tPlayerSpriteId      data[2]
+#define tBG1HOFS             data[4]
 #define tIsDoneFadingSprites data[5]
-#define tTimer          data[7]
-#define tBirchSpriteId  data[8]
-#define tLotadSpriteId  data[9]
-#define tMaySpriteId    data[11]
+#define tTimer               data[7]
+#define tBirchSpriteId       data[8]
+#define tLotadSpriteId       data[9]
+#define tMaySpriteId         data[11]
 
-void DoRivalNameChoiceScreen(void)
-{
-    SetMainCallback2(CB2_RivalNameChoiceScreen);
-}
+static const u8 sText_IsRivalOkay[] = _("Is {RIVAL} okay?");
 
-static void CB2_RivalNameChoiceScreen(void)
+// Shared helper: set up the Birch speech BG, sprites, and May position.
+// Returns the created task ID. Caller sets tTimer, initial task func.
+static u8 RivalNameChoice_SetupScreen(TaskFunc initialTask)
 {
     u8 taskId;
+    u8 spriteId;
     u16 savedIme;
 
     ResetBgsAndClearDma3BusyFlags(0);
@@ -2642,15 +2644,21 @@ static void CB2_RivalNameChoiceScreen(void)
     LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadPalette(&sBirchSpeechBgGradientPal[1], BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
     ResetTasks();
-    taskId = CreateTask(Task_RivalNameChoice_ShowMay, 0);
-    gTasks[taskId].tTimer = 0x20;
+    taskId = CreateTask(initialTask, 0);
     gTasks[taskId].tBG1HOFS = 0;
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetAllPicSprites();
     AddBirchSpeechObjects(taskId);
-    gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
+    // Make May visible immediately — no blend fade
+    spriteId = gTasks[taskId].tMaySpriteId;
+    gSprites[spriteId].x = 136;
+    gSprites[spriteId].y = 60;
+    gSprites[spriteId].invisible = FALSE;
+    gSprites[spriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+    gTasks[taskId].tPlayerSpriteId = spriteId;
+    // Fade in from black — May and background appear together
     BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     SetGpuReg(REG_OFFSET_WIN0H, 0);
     SetGpuReg(REG_OFFSET_WIN0V, 0);
@@ -2672,49 +2680,31 @@ static void CB2_RivalNameChoiceScreen(void)
     LoadMessageBoxGfx(0, BIRCH_DLG_BASE_TILE_NUM, BG_PLTT_ID(15));
     PutWindowTilemap(0);
     CopyWindowToVram(0, COPYWIN_FULL);
+    return taskId;
 }
 
-static void Task_RivalNameChoice_ShowMay(u8 taskId)
+void DoRivalNameChoiceScreen(void)
 {
-    u8 spriteId;
-    if (gTasks[taskId].tTimer)
-    {
-        gTasks[taskId].tTimer--;
-    }
-    else
-    {
-        spriteId = gTasks[taskId].tMaySpriteId;
-        gSprites[spriteId].x = 136;
-        gSprites[spriteId].y = 60;
-        gSprites[spriteId].invisible = FALSE;
-        gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
-        gTasks[taskId].tPlayerSpriteId = spriteId;
-        NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 10);
-        NewGameBirchSpeech_StartFadePlatformOut(taskId, 20);
-        gTasks[taskId].tTimer = 80;
-        gTasks[taskId].func = Task_RivalNameChoice_WaitForFadeIn;
-    }
+    SetMainCallback2(CB2_RivalNameChoiceScreen);
 }
 
-static void Task_RivalNameChoice_WaitForFadeIn(u8 taskId)
+static void CB2_RivalNameChoiceScreen(void)
 {
-    if (gTasks[taskId].tIsDoneFadingSprites)
+    RivalNameChoice_SetupScreen(Task_RivalNameChoice_WaitFadeIn);
+}
+ 
+// Wait for the palette fade-in to finish, then show the name question + menu
+static void Task_RivalNameChoice_WaitFadeIn(u8 taskId)
+{
+    if (!gPaletteFade.active)
     {
-        gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
-        if (gTasks[taskId].tTimer)
-        {
-            gTasks[taskId].tTimer--;
-        }
-        else
-        {
-            NewGameBirchSpeech_ShowDialogueWindow(0, 1);
+        NewGameBirchSpeech_ShowDialogueWindow(0, 1);
             PutWindowTilemap(0);
             CopyWindowToVram(0, COPYWIN_GFX);
             NewGameBirchSpeech_ClearWindow(0);
             StringCopy(gStringVar4, sText_RivalNameQuestion);
             AddTextPrinterForMessage(TRUE);
             gTasks[taskId].func = Task_RivalNameChoice_ShowNameMenu;
-        }
     }
 }
 
@@ -2770,9 +2760,62 @@ static void Task_RivalNameChoice_StartNamingScreen(u8 taskId)
     {
         FreeAllWindowBuffers();
         DestroyTask(taskId);
-        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, FEMALE, 0, 0, CB2_ReturnToFieldContinueScript);
+        DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock2Ptr->rivalName, FEMALE, 0, 0, CB2_RivalNameChoice_ReturnFromNaming);
     }
 }
+ 
+// ---- Return from custom naming screen ----
+ 
+static void CB2_RivalNameChoice_ReturnFromNaming(void)
+{
+    RivalNameChoice_SetupScreen(Task_RivalNameChoice_AskIsOkay);
+}
+ 
+// After fade-in: show "Is {RIVAL} okay?"
+static void Task_RivalNameChoice_AskIsOkay(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        NewGameBirchSpeech_ShowDialogueWindow(0, 1);
+        PutWindowTilemap(0);
+        CopyWindowToVram(0, COPYWIN_GFX);
+        NewGameBirchSpeech_ClearWindow(0);
+        StringExpandPlaceholders(gStringVar4, sText_IsRivalOkay);
+        AddTextPrinterForMessage(TRUE);
+        gTasks[taskId].func = Task_RivalNameChoice_CreateIsOkayMenu;
+    }
+}
+ 
+static void Task_RivalNameChoice_CreateIsOkayMenu(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        CreateYesNoMenuParameterized(2, 1, 0xF3, 0xDF, 2, 15);
+        gTasks[taskId].func = Task_RivalNameChoice_ProcessIsOkay;
+    }
+}
+
+static void Task_RivalNameChoice_ProcessIsOkay(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+        case 0: // YES - name confirmed, return to field
+            PlaySE(SE_SELECT);
+            gTasks[taskId].func = Task_RivalNameChoice_FadeAndReturn;
+            break;
+        case MENU_B_PRESSED:
+        case 1: // NO - go back to name menu
+            PlaySE(SE_SELECT);
+            NewGameBirchSpeech_ClearWindow(0);
+            StringCopy(gStringVar4, sText_RivalNameQuestion);
+            AddTextPrinterForMessage(TRUE);
+            gTasks[taskId].func = Task_RivalNameChoice_ShowNameMenu;
+            break;
+    }
+}
+ 
+// ---- Return to field ----
+ 
 
 static void Task_RivalNameChoice_WaitFadeAndReturn(u8 taskId)
 {
