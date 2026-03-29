@@ -9,7 +9,6 @@ Route101_OnTransition:
 	end
 
 Route101_OnFrame:
-	map_script_2 VAR_ROUTE101_STATE, 0, Route101_EventScript_HideMapNamePopup
 	.2byte 0
 
 Route101_EventScript_HideMapNamePopup::

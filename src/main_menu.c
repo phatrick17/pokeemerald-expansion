@@ -529,7 +529,7 @@ static const u8 *const sRivalPresetNames[] = {
     sRivalPresetName_Anca,
     sRivalPresetName_Yuki
 };
-static const u8 sText_RivalNameQuestion[] = _("What's her name?");
+static const u8 sText_RivalNameQuestion[] = _("What is her name?");
 
 static const u8 *const sMalePresetNames[] = {
     COMPOUND_STRING("STU"),

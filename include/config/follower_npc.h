@@ -8,6 +8,6 @@
 #define FNPC_NPC_FOLLOWER_WILD_BATTLE_VS_2        FALSE  // If set to TRUE, two wild Pokemon will show up to the partner battle instead of just one.
 #define FNPC_NPC_FOLLOWER_PARTY_PREVIEW           FALSE  // If set to TRUE, a preview of the player's and partner's teams will be shown before every trainer battle.
 #define FNPC_FACE_NPC_FOLLOWER_ON_DOOR_EXIT       FALSE  // If set to TRUE, the player will turn to face the follower when they exit a doorway.
-#define FNPC_NPC_FOLLOWER_SHOW_AFTER_LEAVE_ROUTE  TRUE  // If set to TRUE, the follower will reappear and walk out of the player after using Fly, Escape Rope, or Teleport.
+#define FNPC_NPC_FOLLOWER_SHOW_AFTER_LEAVE_ROUTE  FALSE  // If set to TRUE, the follower will reappear and walk out of the player after using Fly, Escape Rope, or Teleport.
 
 #endif // GUARD_FOLLOWER_NPC_OVERWORLD_H

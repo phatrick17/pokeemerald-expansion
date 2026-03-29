@@ -291,7 +291,7 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 
 const u16 gTrainerBackPicPalette_Red[] = INCBIN_U16("graphics/trainers/back_pics/red.gbapal");
 const u16 gTrainerBackPicPalette_Leaf[] = INCBIN_U16("graphics/trainers/back_pics/leaf.gbapal");
-
+//COPY PASTE BELOW FOR CUSTOM SPRITE INSERTION
 const u32 gTrainerFrontPic_RiderWillie[] = INCBIN_U32("graphics/trainers/front_pics/rider_willie.4bpp.smol");
 const u16 gTrainerPalette_RiderWillie[] = INCBIN_U16("graphics/trainers/palettes/rider_willie.gbapal");
 

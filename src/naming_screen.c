@@ -2169,7 +2169,7 @@ static const struct NamingScreenTemplate sCodeScreenTemplate =
     .title = sText_EnterCode,
 };
 
-static const u8 sText_RivalName[] = _("Rival's name?");
+static const u8 sText_RivalName[] = _("???'s name?");
 
 static const struct NamingScreenTemplate sRivalNamingScreenTemplate =
 {
