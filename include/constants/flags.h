@@ -51,7 +51,7 @@
 #define FLAG_TRUDLEY_FOLEY_SPRITE   0x25 // Trudley Foley sprites outskirt stand
 #define FLAG_CAR_AND_BAG_OUTSKIRT   0x26 // Outskirt Stand Intro Scene Flag. AlsoMakes outskirt stand intro sprites go away; hides RUI in phenac
 #define FLAG_PHENAC_FOLLY_1    0x27 // Phenac Intro + Folly Battle
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
+#define FLAG_DRIG1    0x28 // For Trainer Drig
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag

@@ -6128,6 +6128,8 @@ u16 GetBattleBGM(void)
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIDER_W:
             return MUS_VS_RIVAL;
+        case TRAINER_CLASS_OLD_MAN:
+            return MUS_VS_RIVAL;
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
