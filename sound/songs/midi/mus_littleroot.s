@@ -1007,9 +1007,10 @@ mus_littleroot_3_LOOP:
 mus_littleroot_4:
         .byte   KEYSH , mus_littleroot_key+0
 @ 000   ----------------------------------------
-        .byte           VOL   , 80
+        .byte           VOL   , 75
         .byte           VOICE , 40
         .byte           BENDR , 12
+        .byte           PAN   , c_v-30
         .byte   W24
 mus_littleroot_4_LOOP:
         .byte   W72
@@ -1036,137 +1037,152 @@ mus_littleroot_4_LOOP:
 @ 011   ----------------------------------------
         .byte   W96
 @ 012   ----------------------------------------
-        .byte           N12   , Cn4 , v102
+        .byte           N12   , Cn4 , v090
         .byte   W12
         .byte                   Dn4
         .byte   W12
-        .byte                   Gn4 , v100
-        .byte           N12   , Ds4 , v096
+        .byte                   Gn4 , v088
+        .byte           N12   , Ds4 , v082
         .byte   W12
-        .byte           N06   , Fn4 , v094
-        .byte           N05   , Cn4 , v088
+        .byte           N06   , Fn4 , v084
+        .byte           N05   , Cn4 , v076
         .byte   W06
-        .byte           N06   , Ds4 , v094
-        .byte           N06   , Cn4 , v088
+        .byte           N06   , Ds4 , v084
+        .byte           N06   , Cn4 , v076
         .byte   W06
-        .byte           N28   , Dn4 , v094
+        .byte           N28   , Dn4 , v084
+        .byte           MOD   , 3
         .byte   W36
-        .byte           N16   , Cn4 , v098
+        .byte           MOD   , 0
+        .byte           N16   , Cn4 , v086
         .byte   W12
 @ 013   ----------------------------------------
         .byte   W06
         .byte           N06   , Ds4
-        .byte           N05   , Cn4 , v088
+        .byte           N05   , Cn4 , v076
         .byte   W06
-        .byte           N06   , Fn4 , v098
-        .byte           N05   , Cn4 , v088
+        .byte           N06   , Fn4 , v086
+        .byte           N05   , Cn4 , v076
         .byte   W06
-        .byte           N06   , Gn4 , v098
-        .byte           N05   , Cn4 , v088
+        .byte           N06   , Gn4 , v086
+        .byte           N05   , Cn4 , v076
         .byte   W06
-        .byte           N32   , As4 , v094 , gtp3
-        .byte                   Fn4 , v088
+        .byte           N32   , As4 , v084 , gtp3
+        .byte                   Fn4 , v076
+        .byte           MOD   , 3
         .byte   W36
-        .byte           N28   , Cn5 , v094 , gtp1
-        .byte                   Gs4 , v088
+        .byte           N28   , Cn5 , v084 , gtp1
+        .byte                   Gs4 , v076
         .byte   W36
 @ 014   ----------------------------------------
-        .byte           N12   , As4 , v094
-        .byte           N12   , Fn4 , v088
+        .byte           MOD   , 0
+        .byte           N12   , As4 , v084
+        .byte           N12   , Fn4 , v076
         .byte   W12
-        .byte           N06   , Gn4 , v098
+        .byte           N06   , Gn4 , v086
         .byte   W06
         .byte                   Fn4
         .byte   W06
-        .byte           N36   , Ds4 , v094
-        .byte           N32   , Cn4 , v088 , gtp1
+        .byte           N36   , Ds4 , v084
+        .byte           N32   , Cn4 , v076 , gtp1
+        .byte           MOD   , 3
         .byte   W36
-        .byte           N32   , Cn4 , v102 , gtp3
+        .byte           N32   , Cn4 , v090 , gtp3
         .byte   W36
 @ 015   ----------------------------------------
-        .byte           N11   , Ds4 , v094
-        .byte           N11   , Cn4 , v088
+        .byte           MOD   , 0
+        .byte           N11   , Ds4 , v084
+        .byte           N11   , Cn4 , v076
         .byte   W12
-        .byte                   Fn4 , v094
-        .byte           N11   , Cn4 , v088
+        .byte                   Fn4 , v084
+        .byte           N11   , Cn4 , v076
         .byte   W12
-        .byte           N36   , As3 , v094
+        .byte           N36   , As3 , v084
+        .byte           MOD   , 3
         .byte   W36
-        .byte           N23   , Cs4 , v098
+        .byte           MOD   , 0
+        .byte           N23   , Cs4 , v086
         .byte   W24
-        .byte                   Fn4 , v094
-        .byte           N23   , Cs4 , v088
+        .byte                   Fn4 , v084
+        .byte           N23   , Cs4 , v076
         .byte   W12
 @ 016   ----------------------------------------
         .byte   W12
-        .byte           N10   , Gs4 , v094
-        .byte           N12   , Fn4 , v088
+        .byte           N10   , Gs4 , v084
+        .byte           N12   , Fn4 , v076
         .byte   W12
-        .byte           N16   , Ds5 , v104
+        .byte           N16   , Ds5 , v092
         .byte           N16   , Gs4
         .byte   W24
-        .byte           N76   , Cn5 , v094
-        .byte           N76   , Gs4 , v088
+        .byte           N76   , Cn5 , v084
+        .byte           N76   , Gs4 , v076
+        .byte           MOD   , 4
         .byte   W48
 @ 017   ----------------------------------------
         .byte   W40
-        .byte           N16   , Cn5 , v094
-        .byte           N14   , Gs4 , v088
+        .byte           MOD   , 0
+        .byte           N16   , Cn5 , v084
+        .byte           N14   , Gs4 , v076
         .byte   W16
-        .byte           N16   , Cs5 , v094
-        .byte           N16   , Gs4 , v088
+        .byte           N16   , Cs5 , v084
+        .byte           N16   , Gs4 , v076
         .byte   W16
-        .byte                   Ds5 , v094
+        .byte                   Ds5 , v084
         .byte           N16   , Cn5
         .byte   W16
         .byte           N15   , Cs5
-        .byte           N15   , Gs4 , v088
+        .byte           N15   , Gs4 , v076
         .byte   W08
 @ 018   ----------------------------------------
         .byte   W08
-        .byte                   Cn5 , v094
-        .byte           N15   , Gs4 , v088
+        .byte                   Cn5 , v084
+        .byte           N15   , Gs4 , v076
         .byte   W16
-        .byte           N06   , As4 , v114
-        .byte           N06   , Fn4 , v104
+        .byte           N06   , As4 , v100
+        .byte           N06   , Fn4 , v090
         .byte   W06
-        .byte           N05   , Cn5 , v108
-        .byte           N05   , Gs4 , v104
+        .byte           N05   , Cn5 , v096
+        .byte           N05   , Gs4 , v090
         .byte   W06
         .byte           N06   , As4
-        .byte           N05   , Fn4 , v100
+        .byte           N05   , Fn4 , v088
         .byte   W06
-        .byte           N80   , Gs4 , v094 , gtp2
-        .byte                   Ds4 , v088
+        .byte           N80   , Gs4 , v084 , gtp2
+        .byte                   Ds4 , v076
+        .byte           MOD   , 4
         .byte   W54
 @ 019   ----------------------------------------
         .byte   W48
-        .byte           N23   , Fn4 , v094
-        .byte           N23   , Cs4 , v088
+        .byte           MOD   , 0
+        .byte           N23   , Fn4 , v084
+        .byte           N23   , Cs4 , v076
         .byte   W24
-        .byte           N06   , Ds4 , v112
+        .byte           N06   , Ds4 , v100
         .byte   W06
-        .byte                   Fn4 , v100
+        .byte                   Fn4 , v088
         .byte           N05   , As3
         .byte   W06
-        .byte           N32   , Gn4 , v094 , gtp3
-        .byte                   As3 , v088
+        .byte           N32   , Gn4 , v084 , gtp3
+        .byte                   As3 , v076
+        .byte           MOD   , 3
         .byte   W12
 @ 020   ----------------------------------------
         .byte   W24
-        .byte           N72   , Fn4 , v094 , gtp3
-        .byte                   Cn4 , v088
+        .byte           N72   , Fn4 , v084 , gtp3
+        .byte                   Cn4 , v076
         .byte   W72
 @ 021   ----------------------------------------
+        .byte           MOD   , 0
         .byte   W12
-        .byte           N05   , Gn4 , v110
-        .byte           N05   , Cn4 , v106
+        .byte           N05   , Gn4 , v098
+        .byte           N05   , Cn4 , v092
         .byte   W06
-        .byte           N06   , Fn4 , v100
+        .byte           N06   , Fn4 , v088
         .byte           N05   , Cn4
         .byte   W06
-        .byte           N84   , En4 , v094 , gtp3
-        .byte                   Cn4 , v088
+        .byte           N84   , En4 , v084 , gtp3
+        .byte                   Cn4 , v076
+        .byte           MOD   , 4
         .byte   W72
 @ 022   ----------------------------------------
         .byte   W96
@@ -1200,6 +1216,7 @@ mus_littleroot_5:
         .byte           VOL   , 80
         .byte           VOICE , 20
         .byte           BENDR , 12
+        .byte           PAN   , c_v+30
         .byte   W24
 mus_littleroot_5_LOOP:
         .byte   W72
@@ -1293,6 +1310,7 @@ mus_littleroot_5_5:
         .byte           N11
         .byte   W01
 @ 012   ----------------------------------------
+        .byte           VOL   , 65
         .byte   W11
         .byte                   Dn5
         .byte   W84
@@ -1332,6 +1350,7 @@ mus_littleroot_5_5:
 @ 029   ----------------------------------------
         .byte   W96
 @ 030   ----------------------------------------
+        .byte           VOL   , 80
         .byte   W24
         .byte   GOTO
          .word  mus_littleroot_5_LOOP
@@ -1480,7 +1499,7 @@ mus_littleroot_7:
         .byte           VOL   , 70
         .byte   W24
 mus_littleroot_7_LOOP:
-        .byte           N12   , Cs2 , v127
+        .byte           N12   , Cs2 , v112
         .byte   W72
 @ 001   ----------------------------------------
         .byte   W96
