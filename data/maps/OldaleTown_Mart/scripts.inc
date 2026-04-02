@@ -361,7 +361,7 @@ InsideBuilding_EventScript_Willie_Text_3:
 
 OutskirtNPC1_Text_Text_0:
 # 116 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "Hey, do you know about Team Snaggem?$"
+	.string "Hey, do you know about Team Snagem?$"
 
 OutskirtNPC1_Text_Text_1:
 # 120 "data/maps/OldaleTown_Mart/scripts.pory"
@@ -403,7 +403,7 @@ OutskirtNPC2_Text_Text_0:
 OutskirtNPC3_Text_Text_0:
 # 186 "data/maps/OldaleTown_Mart/scripts.pory"
 	.string "There's no forgiving that Team\n"
-	.string "Snaggem.\l"
+	.string "Snagem.\l"
 	.string "They don't deserve it, not when they\l"
 	.string "steal POKéMON from other trainers!\p"
 	.string "Why, I'd give a hip hip hooray if\n"
@@ -415,8 +415,8 @@ OldaleTown_Mart_Text_SnaggHideoutReport::
 	.string "Authorities have made a stunning\n"
 	.string "announcement on the mysterious\l"
 	.string "building that exploded in Eclo Canyon.\l"
-	.string "It was Team Snaggem's Hideout.\p"
-	.string "Team Snaggem is a gang of POKéMON\n"
+	.string "It was Team Snagem's Hideout.\p"
+	.string "Team Snagem is a gang of POKéMON\n"
 	.string "abductors who have already been\l"
 	.string "marked for arrest.\p"
 	.string "The hideout was discovered only as\n"
