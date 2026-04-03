@@ -271,8 +271,10 @@ script Script_PhenacCity_Intro {
         walk_up * 1
     ))
     waitmovement(0)
+	removeobject(PHENAC_RUNNER_1_2)
     fadescreen(FADE_FROM_BLACK)
     setflag(FLAG_PHENAC_FOLLY_1)
+	setflag(FLAG_PHENAC_RUNNER)
     releaseall
     end
 }
@@ -300,7 +302,8 @@ script Script_AskEscortRival {
 // Phenac_Runner_1_Dialogue_1 (after Folly_1 defeat)
 // ---------------------------------------------------------
 script Phenac_Runner_1_Dialogue_1 {
-    lockall()
+    lock
+	faceplayer
     msgbox(format("You know, you two make one attractive\n"
         "couple! It makes me a little envious.\l"
         "Ahahaha!"), MSGBOX_DEFAULT)
@@ -311,10 +314,11 @@ script Phenac_Runner_1_Dialogue_1 {
 // ---------------------------------------------------------
 // Phenac_Runner_1_2_Dialogue_1 (after he despawns via flag)
 // ---------------------------------------------------------
-script Phenac_Runner_1_2_Dialogue_1 {
-    lockall()
-    msgbox(format("Hiya! If it's not the good-looking couple\n"
-        "from earlier!\p"
+script Phenac_Runner_1_Dialogue_2 {
+    lock
+	faceplayer
+    msgbox(format("Hiya! If it's not the good-looking\n"
+        "couple from earlier!\p"
         "So, what's up?\n"
         "Did you manage to find anything out?"),
         MSGBOX_YESNO)
@@ -323,8 +327,8 @@ script Phenac_Runner_1_2_Dialogue_1 {
             "Ahahaha!"), MSGBOX_DEFAULT)
     } else {
         msgbox(format("Is that right. That's got to be vexing.\p"
-            "I know! If it's about POKéMON,\n"
-            "there's the Pre Gym!\p"
+            "I know! If it's about POKéMON, there's\n"
+            "the Pre Gym!\p"
             "It's actually called Prestige\n"
             "Precept Center, but everyone just\l"
             "calls it Pre Gym.\p"
@@ -337,7 +341,7 @@ script Phenac_Runner_1_2_Dialogue_1 {
             "It's on the raised middle part of the town.\n"
             "You should visit there."), MSGBOX_DEFAULT)
     }
-    releaseall()
+    release
     end
 }
 
@@ -345,12 +349,13 @@ script Phenac_Runner_1_2_Dialogue_1 {
 // Phenac_Lady_1_Dialogue_1
 // ---------------------------------------------------------
 script Phenac_Lady_1_Dialogue_1 {
-    lockall()
+    lock
+	faceplayer
     msgbox(format("The Mayor's house is near the town\n"
         "square past here.\p"
         "Go up the stairs from the square, and\n"
         "it's on your left."), MSGBOX_DEFAULT)
-    releaseall()
+	release
     end
 }
 
@@ -358,12 +363,13 @@ script Phenac_Lady_1_Dialogue_1 {
 // Phenac_GuyCenter_Dialogue_1 (Guy in front of Center)
 // ---------------------------------------------------------
 script Phenac_GuyCenter_Dialogue_1 {
-    lockall()
+    lock
+	faceplayer
     msgbox(format("There was some ruckus going on\n"
         "near the town's entrance earlier.\p"
         "It'd better not be the goons again\n"
         "from the next town over."), MSGBOX_DEFAULT)
-    releaseall()
+    release
     end
 }
 
@@ -371,11 +377,14 @@ script Phenac_GuyCenter_Dialogue_1 {
 // Phenac_Azurill_Dialogue_1
 // ---------------------------------------------------------
 script Phenac_Azurill_Dialogue_1 {
-    lockall()
+    lock
+	faceplayer
+    playmoncry(SPECIES_MARILL, CRY_MODE_NORMAL)
     msgbox(format("Ruri rurii."), MSGBOX_DEFAULT)
-    playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
-    waitmoncry()
-    releaseall()
+    release
+	applymovement(PHENAC_MARILL, moves(
+        face_down
+	))
     end
 }
 
@@ -383,7 +392,8 @@ script Phenac_Azurill_Dialogue_1 {
 // Phenac_GuyMart_Dialogue_1 (Guy in front of mart)
 // ---------------------------------------------------------
 script Phenac_GuyMart_Dialogue_1 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("If you're still traveling, you should\n"
         "stock up on supplies at the shop there.\p"
         "I recommend it.\n"
@@ -391,7 +401,7 @@ script Phenac_GuyMart_Dialogue_1 {
         "Er... Ahem!\p"
         "Uh... Well, anyway, that shop has\n"
         "the best reputation around these parts!"), MSGBOX_DEFAULT)
-    releaseall()
+	release
     end
 }
 
@@ -400,12 +410,17 @@ script Phenac_GuyMart_Dialogue_1 {
 // Flag-gated: show this script pre-defeat, switch to post-defeat script after
 // ---------------------------------------------------------
 script Phenac_Drig1 {
-
+    if (flag(FLAG_DEFEAT_DRIG)) {
+		call(Phenac_OldManDrig_Dialogue_2)
+	} else {
+		call(Phenac_OldManDrig_Dialogue_1)
+	}
 }
 
 
 script Phenac_OldManDrig_Dialogue_1 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("What fine weather this is!\n"
         "It's truly a perfect sort of day for\l"
         "a POKéMON battle.\p"
@@ -424,17 +439,19 @@ script Phenac_OldManDrig_Dialogue_1 {
     msgbox(format("DRIG: Ah, yes.\n"
         "You're young, but you've got a bit\l"
         "of spine!"), MSGBOX_DEFAULT)
-    releaseall()
+	setflag(FLAG_DEFEAT_DRIG)
+	release
     end
 }
 
 // Post-defeat (use flag check to swap to this)
 script Phenac_OldManDrig_Dialogue_2 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("DRIG: Why, you're just like me when\n"
         "I was young!\l"
         "Well done, indeed."), MSGBOX_DEFAULT)
-    releaseall()
+	release
     end
 }
 
@@ -442,14 +459,15 @@ script Phenac_OldManDrig_Dialogue_2 {
 // Phenac_LadyTopRight_Dialogue_1 (Lady top right of bottom-right house)
 // ---------------------------------------------------------
 script Phenac_LadyTopRight_Dialogue_1 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("Oh, are you traveling?\n"
         "Aww, I envy you!\p"
         "Is it a journey to become an expert\n"
         "trainer?\l"
         "Or a quest to meet POKéMON?\l"
         "Either way, you make me jealous!"), MSGBOX_DEFAULT)
-    releaseall()
+	release
     end
 }
 
@@ -457,14 +475,15 @@ script Phenac_LadyTopRight_Dialogue_1 {
 // Phenac_DudeGym_Dialogue_1 (Dude in front of gym)
 // ---------------------------------------------------------
 script Phenac_DudeGym_Dialogue_1 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("Um ... I ...\n"
         "I really look up to Justy, the Leader\l"
         "of the Pregym.\p"
         "He's really cool!\n"
         "Of course, he's really a tough trainer\l"
         "at POKéMON battles, too!"), MSGBOX_DEFAULT)
-    releaseall()
+	release
     end
 }
 
@@ -472,13 +491,14 @@ script Phenac_DudeGym_Dialogue_1 {
 // Phenac_OldLadyMayor_Dialogue_1 (Old Lady in front of Mayor House)
 // ---------------------------------------------------------
 script Phenac_OldLadyMayor_Dialogue_1 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("That large house is the MAYOR's\n"
         "home.\p"
         "If something concerns you while\n"
         "you're traveling, you should visit\l"
         "the MAYOR for his advice."), MSGBOX_DEFAULT)
-    releaseall()
+	release
     end
 }
 
@@ -486,7 +506,8 @@ script Phenac_OldLadyMayor_Dialogue_1 {
 // Phenac_DudeStairs_Dialogue_1 (Dude top of stairs, next to right exit)
 // ---------------------------------------------------------
 script Phenac_DudeStairs_Dialogue_1 {
-    lockall()
+	lock
+	faceplayer
     msgbox(format("This town was peaceful before\n"
         "but lately, it's been turning rougher.\p"
         "It's because of the thugs that live\n"
@@ -497,7 +518,7 @@ script Phenac_DudeStairs_Dialogue_1 {
         "with them.\p"
         "Let sleeping dogs lie; that's what\n"
         "I say!"), MSGBOX_DEFAULT)
-    releaseall()
+release
     end
 }
 
@@ -505,22 +526,33 @@ script Phenac_DudeStairs_Dialogue_1 {
 // Phenac_Zigzagoon_Dialogue_1
 // ---------------------------------------------------------
 script Phenac_Zigzagoon_Dialogue_1 {
-    lockall()
-    msgbox(format("Gwonn!"), MSGBOX_DEFAULT)
+	lock
+	faceplayer
     playmoncry(SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
-    waitmoncry()
-    releaseall()
+    msgbox(format("Gwonn!"), MSGBOX_DEFAULT)
+	release
+	applymovement(PHENAC_ZIG_1, moves(
+        face_left
+	))
     end
 }
 
 // ---------------------------------------------------------
 // Phenac_SkaterKaib_Dialogue_1 (Skater top left)
 // ---------------------------------------------------------
+
+script Phenac_Kaib1 {
+    if (flag(FLAG_DEFEAT_KAIB)) {
+		call(Phenac_SkaterKaib_Dialogue_2)
+	} else {
+		call(Phenac_SkaterKaib_Dialogue_1)
+	}
+}
 script Phenac_SkaterKaib_Dialogue_1 {
-    lockall()
-    msgbox(format("I'm no good at schoolwork,\n"
-        "but I'm pretty hot stuff at POKéMON\l"
-        "battles.\p"
+	lock
+	faceplayer
+    msgbox(format("I'm no good at schoolwork, but I'm\n"
+        "pretty hot stuff at POKéMON battles.\p"
         "You're a trainer, too, aren't you?\n"
         "Let's duke it out!\l"
         "Let's battle!"), MSGBOX_YESNO)
@@ -529,8 +561,8 @@ script Phenac_SkaterKaib_Dialogue_1 {
         releaseall()
         end
     }
-    msgbox(format("All right!\n"
-        "Here we come, and there's no holding back!"),
+    msgbox(format("All right! Here we come,\n"
+        "and there's no holding back!"),
         MSGBOX_DEFAULT)
     trainerbattle_no_intro(TRAINER_GRUNT_AQUA_HIDEOUT_3,
         format("KAIB: Ouch, no!\n"
@@ -538,17 +570,19 @@ script Phenac_SkaterKaib_Dialogue_1 {
     msgbox(format("KAIB: Big guy, you're tough.\n"
         "I want you to have this since you're\l"
         "so good."), MSGBOX_DEFAULT)
-    giveitem(ITEM_TM_TORMENT)    // PLACEHOLDER: verify TM item constant
-    releaseall()
+    giveitem(ITEM_TM_TORMENT)
+	setflag(FLAG_DEFEAT_KAIB)
+    release
     end
 }
 
 // Post-defeat
 script Phenac_SkaterKaib_Dialogue_2 {
-    lockall()
+    lock
+	faceplayer
     msgbox(format("KAIB: Big guy, you're tough.\n"
         "I hope that TM comes in handy!"), MSGBOX_DEFAULT)
-    releaseall()
+    release
     end
 }
 
@@ -556,7 +590,8 @@ script Phenac_SkaterKaib_Dialogue_2 {
 // Phenac_GuyStadium_Dialogue_1 (Guy next to stadium)
 // ---------------------------------------------------------
 script Phenac_GuyStadium_Dialogue_1 {
-    lockall()
+    lock
+	faceplayer
     msgbox(format("Hi!\n"
         "Did you know?!"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
@@ -566,18 +601,36 @@ script Phenac_GuyStadium_Dialogue_1 {
             "hideout was blown up!\p"
             "Who could have done such a thing?"), MSGBOX_DEFAULT)
     }
-    releaseall()
+    release
+    end
+}
+
+script Phenac_Jigglypuff_Dialogue_1 {
+    lock
+	faceplayer
+    playmoncry(SPECIES_JIGGLYPUFF, CRY_MODE_NORMAL)
+    msgbox(format("Pururuun."), MSGBOX_DEFAULT)
+    release
+	applymovement(PHENAC_JIGGLY, moves(
+        face_down
+	))
     end
 }
 
 //END NPC SCRIPTS
 
+script Phenac_Show_Runner1 {
+	clearflag(FLAG_PHENAC_RUNNER)
+	release
+	end
+}
 
 
 
 //OldaleTown_MapScripts::
 //	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
 //	.byte 0
+
 raw `
 
 OldaleTown_MapScripts::

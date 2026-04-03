@@ -409,7 +409,7 @@
 #define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
 
 // gTileset_Phenac_City
-#define METATILE_Phenac_City_Door_PokeCenter      0x359
+#define METATILE_Phenac_City_Door_PokeCenter      0x354
 #define METATILE_Phenac_City_Door_PokeCenter_Top  0x351
 
 // gTileset_PokemonCenter

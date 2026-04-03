@@ -51,9 +51,9 @@
 #define FLAG_TRUDLEY_FOLEY_SPRITE   0x25 // Trudley Foley sprites outskirt stand
 #define FLAG_CAR_AND_BAG_OUTSKIRT   0x26 // Outskirt Stand Intro Scene Flag. AlsoMakes outskirt stand intro sprites go away; hides RUI in phenac
 #define FLAG_PHENAC_FOLLY_1    0x27 // Phenac Intro + Folly Battle
-#define FLAG_DRIG1    0x28 // For Trainer Drig
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
+#define FLAG_PHENAC_RUNNER    0x28 // For Phenac Runner
+#define FLAG_DEFEAT_DRIG    0x29 // Old Man Drig
+#define FLAG_DEFEAT_KAIB   0x2A // Skater Kaib
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
@@ -1054,7 +1054,9 @@
 #define FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
 
 // Item Ball Flags
-#define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8
+//USE Common_EventScript_FindItem
+//THEN ITEM_POTION      IN 'SIGHT RADIUS/ BERRY TREE ID'
+#define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8 // super potion phenac
 #define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
 #define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
 #define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
