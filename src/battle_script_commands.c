@@ -17186,7 +17186,7 @@ void BS_SetTeleportOutcome(void)
 void BS_PlayTrainerDefeatedMusic(void)
 {
     NATIVE_ARGS();
-    BtlController_EmitPlayFanfareOrBGM(gBattlerAttacker, B_COMM_TO_CONTROLLER, MUS_VICTORY_TRAINER, TRUE);
+    BtlController_EmitPlayFanfareOrBGM(gBattlerAttacker, B_COMM_TO_CONTROLLER, MUS_AWAKEN_LEGEND, FALSE);
     MarkBattlerForControllerExec(gBattlerAttacker);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
