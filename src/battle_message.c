@@ -409,7 +409,7 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_WALLYUSEDITEM]                        = COMPOUND_STRING("WALLY used {B_LAST_ITEM}!"), //no decapitalize until it is everywhere
     [STRINGID_TRAINERBLOCKEDBALL]                   = COMPOUND_STRING("The Trainer blocked your Poké Ball!"),
     [STRINGID_DONTBEATHIEF]                         = COMPOUND_STRING("Don't be a thief!"),
-    [STRINGID_SHADOWPOKEMONAPPEARED]               = COMPOUND_STRING("Oh! That's a Shadow Pokémon!\pIt can be caught by the Snag Machine."),
+    [STRINGID_SHADOWPOKEMONAPPEARED]               = COMPOUND_STRING("{B_RIVAL_NAME}: Oh! {B_PLAYER_NAME}! There's a Pokémon with a black aura!"),
     [STRINGID_ITDODGEDBALL]                         = COMPOUND_STRING("It dodged your thrown Poké Ball! This Pokémon can't be caught!"),
     [STRINGID_YOUMISSEDPKMN]                        = COMPOUND_STRING("You missed the Pokémon!"),
     [STRINGID_PKMNBROKEFREE]                        = COMPOUND_STRING("Oh no! The Pokémon broke free!"),
@@ -3172,6 +3172,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 break;
             case B_TXT_SCR_ACTIVE_NAME_WITH_PREFIX2:
                 HANDLE_NICKNAME_STRING_LOWERCASE(gBattleScripting.battler)
+                break;
+            case B_TXT_RIVAL_NAME:
+                if (gSaveBlock2Ptr->rivalName[0] != EOS && gSaveBlock2Ptr->rivalName[0] != 0)
+                    toCpy = gSaveBlock2Ptr->rivalName;
+                else
+                    toCpy = gText_ExpandedPlaceholder_May;
                 break;
             }
 
