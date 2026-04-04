@@ -4581,7 +4581,6 @@ BattleScript_HandleFaintedMonMultipleEnd::
 	end2
 
 BattleScript_LocalTrainerBattleWon::
-	waitfanfare
 	jumpifbattletype BATTLE_TYPE_TWO_OPPONENTS, BattleScript_LocalTwoTrainersDefeated
 	printstring STRINGID_PLAYERDEFEATEDTRAINER1
 	goto BattleScript_LocalBattleWonLoseTexts
@@ -4601,6 +4600,7 @@ BattleScript_LocalBattleWonReward::
 	getmoneyreward
 	printstring STRINGID_PLAYERGOTMONEY
 	waitmessage B_WAIT_TIME_LONG
+	waitfanfare
 BattleScript_PayDayMoneyAndPickUpItems::
 	givepaydaymoney
 	pickup
@@ -4691,7 +4691,6 @@ BattleScript_LinkBattleWonOrLostWaitEnd::
 
 BattleScript_TowerLinkBattleWon::
 	playtrainerdefeatedmusic
-	waitfanfare
 	printstring STRINGID_BATTLEEND
 	waitmessage B_WAIT_TIME_LONG
 	trainerslidein BS_OPPONENT1
@@ -4706,10 +4705,10 @@ BattleScript_TowerLinkBattleWon::
 	endlinkbattle
 BattleScript_TowerLinkBattleWonEnd::
 	waitmessage B_WAIT_TIME_LONG
+	waitfanfare
 	end2
 
 BattleScript_FrontierTrainerBattleWon::
-	waitfanfare
 	jumpifnotbattletype BATTLE_TYPE_TRAINER, BattleScript_PayDayMoneyAndPickUpItems
 	jumpifbattletype BATTLE_TYPE_TWO_OPPONENTS, BattleScript_FrontierTrainerBattleWon_TwoDefeated
 	printstring STRINGID_PLAYERDEFEATEDTRAINER1
@@ -4730,6 +4729,7 @@ BattleScript_TryPickUpItems:
 	jumpifnotbattletype BATTLE_TYPE_PYRAMID, BattleScript_FrontierTrainerBattleWon_End
 	pickup
 BattleScript_FrontierTrainerBattleWon_End:
+	waitfanfare
 	end2
 
 BattleScript_SmokeBallEscape::
