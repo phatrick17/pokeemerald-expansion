@@ -1554,6 +1554,8 @@ Phenac_Nascour_Encounter_1_Movement_2:
 	walk_left
 # 668 "data/maps/OldaleTown/scripts.pory"
 	walk_left
+# 668 "data/maps/OldaleTown/scripts.pory"
+	walk_left
 	step_end
 
 Script_PhenacCity_Intro_Text_0:

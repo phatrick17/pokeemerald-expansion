@@ -1,1 +1,30 @@
 mapscripts Phenac_Pre_Gym_MapScripts {}
+
+script Battlesim1 {
+    lock
+    faceplayer
+    msgbox(format("Welcome to the Pre Gym.\p"
+        "Are you interested in our Battle Simulator?\p"
+        "We are currently conducting testing\n"
+        "on our prototype.\p"
+        "Trainers and POKéMON are projected\n"
+        "using our Augmented Reality solution.\p"
+        "The system's knowledge model was\n"
+        "was trained by studying real\l"
+        "trainer battles.\p"
+        "Would you like to try?\n"
+        "Free of charge!"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        releaseall()
+        end
+    }
+    trainerbattle_no_intro(TRAINER_GRUNT_AQUA_HIDEOUT_4,
+        format("SIMULATION COMPLETED."))
+    special(HealPlayerParty)
+    msgbox(format
+        ("Your party is fully healed.\n"
+        "Well done!\p"
+        "We'll have more coming soon."), MSGBOX_DEFAULT)
+    releaseall
+    end
+}

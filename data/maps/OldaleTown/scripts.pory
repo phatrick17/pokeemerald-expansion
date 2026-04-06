@@ -665,7 +665,7 @@ script Phenac_Nascour_Encounter_1{
         "I have a feeling I may see you again\n"
         "somewhere."), MSGBOX_DEFAULT)
 	applymovement(PHENAC_NASCOUR_1, moves(
-		walk_left * 6
+		walk_left * 7
 	))
     waitmovement
     removeobject(PHENAC_NASCOUR_1)

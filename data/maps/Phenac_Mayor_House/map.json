@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "local_id": "PHENAC_ESCASCADE_1",
+      "local_id": "PHENAC_ESCADE_1",
       "graphics_id": "OBJ_EVENT_GFX_WATTSON",
       "x": 0,
       "y": 4,
@@ -25,8 +25,22 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Phenac_Mayor_House_Escade_Dialogue_1",
       "flag": "0"
+    },
+    {
+      "local_id": "PHENAC_MAYOR_HOUSE_RUI",
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_PHENAC_FOLLY_1"
     }
   ],
   "warp_events": [

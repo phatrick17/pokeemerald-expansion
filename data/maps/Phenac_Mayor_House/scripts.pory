@@ -1,1 +1,123 @@
-mapscripts Phenac_Mayor_House_MapScripts {}
+mapscripts Phenac_Mayor_House_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_PHENAC_CITY_STATE, 0: Phenac_Mayor_House_Escade_Encounter_1
+    ]
+}
+
+script Phenac_Mayor_House_Escade_Encounter_1 {
+    playbgm(MUS_B_DOME_LOBBY, FALSE)
+    lock
+    addobject(PHENAC_MAYOR_HOUSE_RUI)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_left
+		face_up
+	))
+    waitmovement
+    applymovement(PHENAC_ESCADE_1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse()
+    waitmovement(0)
+	applymovement(PHENAC_ESCADE_1, moves(
+		walk_right * 5
+		walk_down * 2
+	))
+    waitmovement
+    msgbox(format
+        ("Ah, you must be travelers!\n"
+        "Welcome to Phenac City!\p"
+        "I am Es Cade, the Mayor.\p"
+        "Es Cade: Now, you wanted to see me.\n"
+        "Is there something that I may be\l"
+        "able to assist you with?"), MSGBOX_DEFAULT)
+    
+	applymovement(PHENAC_MAYOR_HOUSE_RUI, moves(
+		walk_in_place_up * 1
+	))
+    waitmovement
+    msgbox(format
+        ("{RIVAL}: Um... Er...\p"
+        "Es Cade: Oh? What may I do for\n"
+        "a pretty young lady like you?\p"
+        "{RIVAL}: I... I saw it!\p"
+        "Es Cade: Saw it?\n"
+        "And what did you see?\p"
+        "{RIVAL}: I saw a peculiar POkéMON...\p"
+        "No, that's not quite right.\p"
+        "What I saw was a POkéMON that gave\n"
+        "off a black aura.\l"
+        "It was like a fighting machine!\l"
+        "And, that POkéMON would attack people!"), MSGBOX_DEFAULT)
+    applymovement(PHENAC_ESCADE_1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse
+    msgbox(format
+        ("Es Cade: O-o-o-oh, my!\n"
+        "POkéMON like a fighting machine?\l"
+        "And it attacks people?!\p"
+        "Now if that were true, that would\n"
+        "be truly frightening.\p"
+        "However, it is a little hard to believe.\p"
+        "{RIVAL}: It's true! It's true,\n"
+        "Mr Mayor! Because I saw that POkéMON,\l"
+        "I was made the prisoner of some\l"
+        "frightening men until just a little\l"
+        "while ago.\p"
+        "Es Cade: Hmm... I see. I understand\n"
+        "I will order an investigation at once.\p"
+        "{RIVAL}: You will? Thank you\n"
+        "Mr. Mayor!\p"
+        "Es Cade: Oh, no, no.\n"
+        "There is no need for thanks.\p"
+        "We mustn't allow thugs to do as\n"
+        "they wish.\p"
+        "Especially thugs that endanger a\n"
+        "a pretty young lady like you!\p"
+        "I'll ask that you give me a little time\n"
+        "on this matter.\p"
+        "I promise we will get some useful\n"
+        "information for you."
+        ), MSGBOX_DEFAULT)
+	applymovement(PHENAC_ESCADE_1, moves(
+		walk_in_place_down
+	))
+    waitmovement
+    msgbox(format
+        ("Es Cade: Oh yes.\p"
+        "You appear to be POkéMON trainers\n"
+        "yourselves.\p"
+        "If so, I urge you to visit our city's\n"
+        "pride and joy, our POkéMON Stadium.\p"
+        "It's a breathtakingly beautiful\n"
+        "stadium benefitting our oasis city!"
+        ), MSGBOX_DEFAULT)
+    setvar(VAR_PHENAC_CITY_STATE, 1)
+	applymovement(PHENAC_ESCADE_1, moves(
+		walk_up * 2
+		walk_left * 5
+        face_up
+	))
+    waitmovement
+	applymovement(PHENAC_MAYOR_HOUSE_RUI, moves(
+		walk_left * 1
+	))
+    waitmovement
+    removeobject(PHENAC_MAYOR_HOUSE_RUI)
+    releaseall
+    end
+    
+}
+
+script Phenac_Mayor_House_Escade_Dialogue_1 {
+    lockall
+    faceplayer
+    msgbox(format
+        ("Es Cade: I promise you, we will obtain\n"
+        "useful information about those\l"
+        "POkéMON.\p"
+        "While we do so, I heartily recommend\n"
+        "that you visit our POkéMON Stadium,\l"
+        "the symbol of our civic pride!"
+        ), MSGBOX_DEFAULT)
+    releaseall
+    end
+}
