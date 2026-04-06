@@ -317,7 +317,7 @@
 #define MUS_ENCOUNTER_SWIMMER       385 // MUS_SWIMEYE
 #define MUS_CAVE_OF_ORIGIN          386 // MUS_DAN03            // Also used in Meteor Falls.
 #define MUS_OBTAIN_BERRY            387 // MUS_ME_KINOMI
-#define MUS_AWAKEN_LEGEND           388 // MUS_ME_TAMA          //PHENAC CITY
+#define MUS_AWAKEN_LEGEND           388 //TRAINER VICTORY
 #define MUS_SLOTS_JACKPOT           389 // MUS_ME_B_BIG         // Also used in the Roulette.
 #define MUS_SLOTS_WIN               390 // MUS_ME_B_SMALL       // Also used in the Roulette.
 #define MUS_TOO_BAD                 391 // MUS_ME_ZANNEN
@@ -396,13 +396,13 @@
 #define MUS_RAYQUAZA_APPEARS        464 // MUS_REKKUU_KOURIN
 #define MUS_B_TOWER                 465 // MUS_SATTOWER
 #define MUS_OBTAIN_SYMBOL           466 // MUS_ME_SYMBOLGET
-#define MUS_B_DOME                  467 // MUS_B_DOME
+#define MUS_B_DOME                  467 // MUS_B_DOME // PRE GYM
 #define MUS_B_PIKE                  468 // MUS_B_TUBE
 #define MUS_B_FACTORY               469 // MUS_B_FACTORY
 #define MUS_VS_RAYQUAZA             470 // MUS_VS_REKKU         // Identical to MUS_VS_KYOGRE_GROUDON.
 #define MUS_VS_FRONTIER_BRAIN       471 // MUS_VS_FRONT
 #define MUS_VS_MEW                  472 // MUS_VS_MEW
-#define MUS_B_DOME_LOBBY            473 // MUS_B_DOME1
+#define MUS_B_DOME_LOBBY            473 // MUS_B_DOME1 //ES CASCADE MUSIC
 #define MUS_VS_WILD                 474 // MUS_BATTLE27
 #define MUS_VS_AQUA_MAGMA           475 // MUS_BATTLE31
 #define MUS_VS_TRAINER              476 // MUS_BATTLE20

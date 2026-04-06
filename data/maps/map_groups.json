@@ -106,7 +106,10 @@
     "OldaleTown_House2",
     "OldaleTown_PokemonCenter_1F",
     "OldaleTown_PokemonCenter_2F",
-    "OldaleTown_Mart"
+    "OldaleTown_Mart",
+    "PhenacMart",
+    "Phenac_Pre_Gym",
+    "Phenac_Mayor_House"
   ],
   "gMapGroup_IndoorDewford": [
     "DewfordTown_House1",

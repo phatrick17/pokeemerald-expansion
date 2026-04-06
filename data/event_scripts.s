@@ -1163,3 +1163,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/dexnav.inc"
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"
+
+	.include "data/maps/PhenacMart/scripts.inc"
+
+	.include "data/maps/Phenac_Pre_Gym/scripts.inc"
+
+	.include "data/maps/Phenac_Mayor_House/scripts.inc"

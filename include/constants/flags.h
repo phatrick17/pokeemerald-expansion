@@ -54,7 +54,7 @@
 #define FLAG_PHENAC_RUNNER    0x28 // For Phenac Runner
 #define FLAG_DEFEAT_DRIG    0x29 // Old Man Drig
 #define FLAG_DEFEAT_KAIB   0x2A // Skater Kaib
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
+#define FLAG_PHENAC_NASCOUR_1    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
@@ -88,7 +88,7 @@
 #define FLAG_UNUSED_0x04A    0x4A // Unused Flag
 #define FLAG_UNUSED_0x04B    0x4B // Unused Flag
 #define FLAG_UNUSED_0x04C    0x4C // Unused Flag
-#define FLAG_UNUSED_0x04D    0x4D // Unused Flag
+#define FLAG_UNLOCK_POKEBALL    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
 #define FLAG_UNUSED_0x04F    0x4F // Unused Flag
 
@@ -1057,7 +1057,7 @@
 //USE Common_EventScript_FindItem
 //THEN ITEM_POTION      IN 'SIGHT RADIUS/ BERRY TREE ID'
 #define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8 // super potion phenac
-#define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
+#define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9 // super potion phenac 2
 #define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
 #define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
 #define FLAG_ITEM_ROUTE_106_PROTEIN                                 0x3EC

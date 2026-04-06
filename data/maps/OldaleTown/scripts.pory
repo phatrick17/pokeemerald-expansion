@@ -626,6 +626,54 @@ script Phenac_Show_Runner1 {
 }
 
 
+//Nascour First Encounter
+script Phenac_Nascour_Encounter_1{
+    if (flag(FLAG_PHENAC_NASCOUR_1)) {
+        releaseall
+        end
+    }
+    lockall
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_NPC_FOLLOWER, Common_Movement_ExclamationMark)
+	waitse
+    waitmovement(0)
+    hidefollowernpc
+    delay(15)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_right
+		face_left
+	))
+    waitmovement(0)
+	addobject(PHENAC_NASCOUR_1)
+	playse(SE_EXIT)
+	applymovement(PHENAC_NASCOUR_1, moves(
+		walk_down * 1
+		face_right
+	))
+    waitmovement
+    delay(30)
+	applymovement(PHENAC_NASCOUR_1, moves(
+		face_right
+	))
+    waitmovement
+    msgbox(format("???: Hm?\n"
+        "I'd guess you're a traveling trainer?\p"
+        "Hm...\n"
+        "I like what I see in your expression.\l"
+        "Fufufu...\p"
+        "I have a feeling I may see you again\n"
+        "somewhere."), MSGBOX_DEFAULT)
+	applymovement(PHENAC_NASCOUR_1, moves(
+		walk_left * 6
+	))
+    waitmovement
+    removeobject(PHENAC_NASCOUR_1)
+    setflag(FLAG_PHENAC_NASCOUR_1)
+    releaseall
+    end
+
+}
 
 //OldaleTown_MapScripts::
 //	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition

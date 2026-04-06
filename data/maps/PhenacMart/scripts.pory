@@ -1,0 +1,68 @@
+mapscripts PhenacMart_MapScripts {}
+
+// ---------------------------------------------------------
+// Phenac_MartClerk_Dialogue_1
+// ---------------------------------------------------------
+script Phenac_Mart_Lady1 {
+    lock
+    faceplayer
+    msgbox(format
+        ("If your POKéMON's hurt and weakened,\n"
+        "you should use a Potion on it.\p"
+        "Every trainer should be carrying at\n"
+        "least a Potion or two.\p"
+        "It's not as if there's always going to\n"
+        "be a POKéMON Center when you need one.\l"
+        "That's why a Potion comes in handy."), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Phenac_MartClerk_Dialogue_1 {
+    lock
+    faceplayer
+    msgbox(format("Hello! Welcome to our POKéMON Mart!\n"
+        "How may I serve you?"), MSGBOX_DEFAULT)
+    if (flag(FLAG_UNLOCK_POKEBALL)) {  // PLACEHOLDER: replace flag name
+        goto(Phenac_MartClerk_ExpandedItems)
+    }
+    pokemart(Phenac_Mart_1)
+    msgbox(format("We look forward to your next visit!"), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Phenac_MartClerk_ExpandedItems {
+    pokemart(Phenac_Mart_2)
+    msgbox(format("We look forward to your next visit!"), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+mart Phenac_Mart_1 {
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_AWAKENING
+    ITEM_PARALYZE_HEAL
+    ITEM_FULL_HEAL
+}
+
+mart Phenac_Mart_2 {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_AWAKENING
+    ITEM_PARALYZE_HEAL
+    ITEM_FULL_HEAL
+}
+
+raw `
+`
