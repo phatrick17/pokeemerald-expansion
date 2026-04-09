@@ -90,6 +90,7 @@ script Phenac_Mayor_House_Escade_Encounter_1 {
         "It's a breathtakingly beautiful\n"
         "stadium benefitting our oasis city!"
         ), MSGBOX_DEFAULT)
+    closemessage
     setvar(VAR_PHENAC_CITY_STATE, 1)
 	applymovement(PHENAC_ESCADE_1, moves(
 		walk_up * 2

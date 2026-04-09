@@ -500,6 +500,7 @@ script Outside_EventScript_WillieAmbush {
                    "better than me there.\p"
                    "You should go out there and get\n"
                    "some battling in."), MSGBOX_DEFAULT)
+	closemessage
     setflag(FLAG_DEFEATED_WILLIE)       // Mark Willie as defeated
     setvar(VAR_WILLIE_STATE, 3)         // Prevent trigger from ever firing again
 	fadescreen(FADE_TO_BLACK)

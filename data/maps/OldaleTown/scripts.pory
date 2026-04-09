@@ -664,6 +664,7 @@ script Phenac_Nascour_Encounter_1{
         "Fufufu...\p"
         "I have a feeling I may see you again\n"
         "somewhere."), MSGBOX_DEFAULT)
+    closemessage
 	applymovement(PHENAC_NASCOUR_1, moves(
 		walk_left * 7
 	))

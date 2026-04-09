@@ -746,22 +746,24 @@ Outside_EventScript_WillieAmbush_1:
 # 494 "data/maps/Route101/scripts.pory"
 	msgbox Outside_EventScript_WillieAmbush_Text_6, MSGBOX_DEFAULT
 # 503 "data/maps/Route101/scripts.pory"
-	setflag FLAG_DEFEATED_WILLIE
+	closemessage
 # 504 "data/maps/Route101/scripts.pory"
-	setvar VAR_WILLIE_STATE, 3
+	setflag FLAG_DEFEATED_WILLIE
 # 505 "data/maps/Route101/scripts.pory"
-	fadescreen FADE_TO_BLACK
+	setvar VAR_WILLIE_STATE, 3
 # 506 "data/maps/Route101/scripts.pory"
-	playse SE_EXIT
+	fadescreen FADE_TO_BLACK
 # 507 "data/maps/Route101/scripts.pory"
-	removeobject LOCALID_WILLIE_OUTSIDE
+	playse SE_EXIT
 # 508 "data/maps/Route101/scripts.pory"
-	fadescreen FADE_FROM_BLACK
+	removeobject LOCALID_WILLIE_OUTSIDE
 # 509 "data/maps/Route101/scripts.pory"
-	setflag FLAG_HIDE_OUTSIDE_WILLIE
+	fadescreen FADE_FROM_BLACK
 # 510 "data/maps/Route101/scripts.pory"
-	setflag FLAG_MAP_UNLOCK_PHENAC
+	setflag FLAG_HIDE_OUTSIDE_WILLIE
 # 511 "data/maps/Route101/scripts.pory"
+	setflag FLAG_MAP_UNLOCK_PHENAC
+# 512 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
@@ -771,159 +773,159 @@ Outside_EventScript_WillieAmbush_2:
 	goto Outside_EventScript_WillieAmbush_1
 
 
-# 518 "data/maps/Route101/scripts.pory"
-Outside_Movement_PlayerStepDown:
 # 519 "data/maps/Route101/scripts.pory"
-	face_up
+Outside_Movement_PlayerStepDown:
 # 520 "data/maps/Route101/scripts.pory"
+	face_up
+# 521 "data/maps/Route101/scripts.pory"
 	step_end
 
-# 523 "data/maps/Route101/scripts.pory"
-Outside_Movement_WillieExitDoor:
 # 524 "data/maps/Route101/scripts.pory"
-	walk_down
+Outside_Movement_WillieExitDoor:
 # 525 "data/maps/Route101/scripts.pory"
-	face_player
+	walk_down
 # 526 "data/maps/Route101/scripts.pory"
+	face_player
+# 527 "data/maps/Route101/scripts.pory"
 	step_end
 
 My_Debug_Menu::
-# 538 "data/maps/Route101/scripts.pory"
-	lockall
 # 539 "data/maps/Route101/scripts.pory"
-	multichoice 0, 0, MULTI_DEBUG_MENU, FALSE
+	lockall
 # 540 "data/maps/Route101/scripts.pory"
-	switch VAR_RESULT
+	multichoice 0, 0, MULTI_DEBUG_MENU, FALSE
 # 541 "data/maps/Route101/scripts.pory"
+	switch VAR_RESULT
+# 542 "data/maps/Route101/scripts.pory"
 	case 0, My_Debug_Menu_3
-# 554 "data/maps/Route101/scripts.pory"
+# 555 "data/maps/Route101/scripts.pory"
 	case 1, My_Debug_Menu_4
-# 567 "data/maps/Route101/scripts.pory"
+# 568 "data/maps/Route101/scripts.pory"
 	case MULTI_B_PRESSED, My_Debug_Menu_5
 My_Debug_Menu_1:
-# 571 "data/maps/Route101/scripts.pory"
+# 572 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
 My_Debug_Menu_3:
-# 542 "data/maps/Route101/scripts.pory"
-	setflag FLAG_DEFEATED_WILLIE
 # 543 "data/maps/Route101/scripts.pory"
-	setflag FLAG_ROUTE119_INTRO_DONE
+	setflag FLAG_DEFEATED_WILLIE
 # 544 "data/maps/Route101/scripts.pory"
-	setflag FLAG_TRUDLEY_FOLEY_SPRITE
+	setflag FLAG_ROUTE119_INTRO_DONE
 # 545 "data/maps/Route101/scripts.pory"
-	setflag FLAG_CAR_AND_BAG_OUTSKIRT
+	setflag FLAG_TRUDLEY_FOLEY_SPRITE
 # 546 "data/maps/Route101/scripts.pory"
-	setflag FLAG_PHENAC_FOLLY_1
+	setflag FLAG_CAR_AND_BAG_OUTSKIRT
 # 547 "data/maps/Route101/scripts.pory"
-	setflag FLAG_MAP_UNLOCK_PHENAC
+	setflag FLAG_PHENAC_FOLLY_1
 # 548 "data/maps/Route101/scripts.pory"
-	setvar VAR_WILLIE_STATE, 3
+	setflag FLAG_MAP_UNLOCK_PHENAC
 # 549 "data/maps/Route101/scripts.pory"
-	special DoRivalNameChoiceScreen
+	setvar VAR_WILLIE_STATE, 3
 # 550 "data/maps/Route101/scripts.pory"
-	waitstate
+	special DoRivalNameChoiceScreen
 # 551 "data/maps/Route101/scripts.pory"
-	createfollowernpc OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL
+	waitstate
 # 552 "data/maps/Route101/scripts.pory"
+	createfollowernpc OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL
+# 553 "data/maps/Route101/scripts.pory"
 	release
 	end
 
 My_Debug_Menu_4:
-# 555 "data/maps/Route101/scripts.pory"
-	multichoice 0, 0, MULTI_DEBUG_WARP, FALSE
 # 556 "data/maps/Route101/scripts.pory"
-	switch VAR_RESULT
+	multichoice 0, 0, MULTI_DEBUG_WARP, FALSE
 # 557 "data/maps/Route101/scripts.pory"
+	switch VAR_RESULT
+# 558 "data/maps/Route101/scripts.pory"
 	case 0, My_Debug_Menu_7
-# 560 "data/maps/Route101/scripts.pory"
+# 561 "data/maps/Route101/scripts.pory"
 	case 1, My_Debug_Menu_8
-# 563 "data/maps/Route101/scripts.pory"
+# 564 "data/maps/Route101/scripts.pory"
 	case MULTI_B_PRESSED, My_Debug_Menu_9
 	goto My_Debug_Menu_1
 
 My_Debug_Menu_5:
-# 568 "data/maps/Route101/scripts.pory"
+# 569 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
 My_Debug_Menu_7:
-# 558 "data/maps/Route101/scripts.pory"
-	warp MAP_ROUTE101, 30, 14
 # 559 "data/maps/Route101/scripts.pory"
+	warp MAP_ROUTE101, 30, 14
+# 560 "data/maps/Route101/scripts.pory"
 	waitstate
 	goto My_Debug_Menu_1
 
 My_Debug_Menu_8:
-# 561 "data/maps/Route101/scripts.pory"
-	warp MAP_OLDALE_TOWN, 25, 48
 # 562 "data/maps/Route101/scripts.pory"
+	warp MAP_OLDALE_TOWN, 25, 48
+# 563 "data/maps/Route101/scripts.pory"
 	waitstate
 	goto My_Debug_Menu_1
 
 My_Debug_Menu_9:
-# 564 "data/maps/Route101/scripts.pory"
+# 565 "data/maps/Route101/scripts.pory"
 	releaseall
 	end
 
 
 OPEN_WORLD_MAP_ENTER_Right::
-# 576 "data/maps/Route101/scripts.pory"
-	lockall
 # 577 "data/maps/Route101/scripts.pory"
-	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+	lockall
 # 578 "data/maps/Route101/scripts.pory"
-	special Special_OpenCustomMap
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
 # 579 "data/maps/Route101/scripts.pory"
-	waitstate
+	special Special_OpenCustomMap
 # 580 "data/maps/Route101/scripts.pory"
-	releaseall
+	waitstate
 # 581 "data/maps/Route101/scripts.pory"
-	fadedefaultbgm
+	releaseall
 # 582 "data/maps/Route101/scripts.pory"
+	fadedefaultbgm
+# 583 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_Right_Movement_0
-# 585 "data/maps/Route101/scripts.pory"
+# 586 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
 
 OPEN_WORLD_MAP_ENTER_Left::
-# 590 "data/maps/Route101/scripts.pory"
-	lockall
 # 591 "data/maps/Route101/scripts.pory"
-	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+	lockall
 # 592 "data/maps/Route101/scripts.pory"
-	special Special_OpenCustomMap
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
 # 593 "data/maps/Route101/scripts.pory"
-	waitstate
+	special Special_OpenCustomMap
 # 594 "data/maps/Route101/scripts.pory"
-	releaseall
+	waitstate
 # 595 "data/maps/Route101/scripts.pory"
-	fadedefaultbgm
+	releaseall
 # 596 "data/maps/Route101/scripts.pory"
+	fadedefaultbgm
+# 597 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_Left_Movement_0
-# 599 "data/maps/Route101/scripts.pory"
+# 600 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
 
 OPEN_WORLD_MAP_ENTER_DOWN::
-# 604 "data/maps/Route101/scripts.pory"
-	lockall
 # 605 "data/maps/Route101/scripts.pory"
-	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+	lockall
 # 606 "data/maps/Route101/scripts.pory"
-	special Special_OpenCustomMap
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
 # 607 "data/maps/Route101/scripts.pory"
-	waitstate
+	special Special_OpenCustomMap
 # 608 "data/maps/Route101/scripts.pory"
-	releaseall
+	waitstate
 # 609 "data/maps/Route101/scripts.pory"
-	fadedefaultbgm
+	releaseall
 # 610 "data/maps/Route101/scripts.pory"
+	fadedefaultbgm
+# 611 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_DOWN_Movement_0
-# 613 "data/maps/Route101/scripts.pory"
+# 614 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
@@ -1024,21 +1026,21 @@ Outside_EventScript_WillieAmbush_Movement_1:
 	face_right
 	step_end
 
-# 582 "data/maps/Route101/scripts.pory"
-OPEN_WORLD_MAP_ENTER_Right_Movement_0:
 # 583 "data/maps/Route101/scripts.pory"
+OPEN_WORLD_MAP_ENTER_Right_Movement_0:
+# 584 "data/maps/Route101/scripts.pory"
 	walk_left
 	step_end
 
-# 596 "data/maps/Route101/scripts.pory"
-OPEN_WORLD_MAP_ENTER_Left_Movement_0:
 # 597 "data/maps/Route101/scripts.pory"
+OPEN_WORLD_MAP_ENTER_Left_Movement_0:
+# 598 "data/maps/Route101/scripts.pory"
 	walk_right
 	step_end
 
-# 610 "data/maps/Route101/scripts.pory"
-OPEN_WORLD_MAP_ENTER_DOWN_Movement_0:
 # 611 "data/maps/Route101/scripts.pory"
+OPEN_WORLD_MAP_ENTER_DOWN_Movement_0:
+# 612 "data/maps/Route101/scripts.pory"
 	walk_up
 	step_end
 

@@ -55,30 +55,32 @@ Phenac_Mayor_House_Escade_Encounter_1::
 # 84 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_3, MSGBOX_DEFAULT
 # 93 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setvar VAR_PHENAC_CITY_STATE, 1
+	closemessage
 # 94 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setvar VAR_PHENAC_CITY_STATE, 1
+# 95 "data/maps/Phenac_Mayor_House/scripts.pory"
 	applymovement PHENAC_ESCADE_1, Phenac_Mayor_House_Escade_Encounter_1_Movement_4
-# 99 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
 # 100 "data/maps/Phenac_Mayor_House/scripts.pory"
-	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
-# 103 "data/maps/Phenac_Mayor_House/scripts.pory"
 	waitmovement
+# 101 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
 # 104 "data/maps/Phenac_Mayor_House/scripts.pory"
-	removeobject PHENAC_MAYOR_HOUSE_RUI
+	waitmovement
 # 105 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_HOUSE_RUI
+# 106 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
 
 Phenac_Mayor_House_Escade_Dialogue_1::
-# 111 "data/maps/Phenac_Mayor_House/scripts.pory"
-	lockall
 # 112 "data/maps/Phenac_Mayor_House/scripts.pory"
-	faceplayer
+	lockall
 # 113 "data/maps/Phenac_Mayor_House/scripts.pory"
+	faceplayer
+# 114 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Dialogue_1_Text_0, MSGBOX_DEFAULT
-# 121 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 122 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
@@ -121,29 +123,29 @@ Phenac_Mayor_House_Escade_Encounter_1_Movement_3:
 	walk_in_place_down
 	step_end
 
-# 94 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 95 "data/maps/Phenac_Mayor_House/scripts.pory"
 Phenac_Mayor_House_Escade_Encounter_1_Movement_4:
-# 95 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_up
-# 95 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_up
 # 96 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_up
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_left
 # 97 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
 	face_up
 	step_end
 
-# 100 "data/maps/Phenac_Mayor_House/scripts.pory"
-Phenac_Mayor_House_Escade_Encounter_1_Movement_5:
 # 101 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Escade_Encounter_1_Movement_5:
+# 102 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_left
 	step_end
 
@@ -210,7 +212,7 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_3:
 	.string "stadium benefitting our oasis city!$"
 
 Phenac_Mayor_House_Escade_Dialogue_1_Text_0:
-# 114 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 115 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Es Cade: I promise you, we will obtain\n"
 	.string "useful information about those\l"
 	.string "POkéMON.\p"
