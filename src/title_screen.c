@@ -23,13 +23,12 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "pokemon.h"
+#include "trainer_pokemon_sprites.h"
 
 enum {
     TAG_VERSION = 1000,
     TAG_PRESS_START_COPYRIGHT,
     TAG_LOGO_SHINE,
-    TAG_ESPEON,
-    TAG_UMBREON,
 };
 
 #define VERSION_BANNER_RIGHT_TILEOFFSET 64
@@ -363,66 +362,6 @@ static const struct CompressedSpriteSheet sPokemonLogoShineSpriteSheet[] =
     {},
 };
 
-static const struct OamData sEspeonUmbreonOamData =
-{
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = FALSE,
-    .bpp = ST_OAM_8BPP,
-    .shape = SPRITE_SHAPE(64x64),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(64x64),
-    .tileNum = 0,
-    .priority = 2,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
- 
-static const union AnimCmd sEspeonAnimSequence[] =
-{
-    ANIMCMD_FRAME(0, 0),
-    ANIMCMD_END,
-};
- 
-static const union AnimCmd sUmbreonAnimSequence[] =
-{
-    ANIMCMD_FRAME(0, 0),
-    ANIMCMD_END,
-};
- 
-static const union AnimCmd *const sEspeonAnimTable[] =
-{
-    sEspeonAnimSequence,
-};
- 
-static const union AnimCmd *const sUmbreonAnimTable[] =
-{
-    sUmbreonAnimSequence,
-};
- 
-static const struct SpriteTemplate sEspeonSpriteTemplate =
-{
-    .tileTag = TAG_ESPEON,
-    .paletteTag = TAG_ESPEON,
-    .oam = &sEspeonUmbreonOamData,
-    .anims = sEspeonAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
-};
- 
-static const struct SpriteTemplate sUmbreonSpriteTemplate =
-{
-    .tileTag = TAG_UMBREON,
-    .paletteTag = TAG_UMBREON,
-    .oam = &sEspeonUmbreonOamData,
-    .anims = sUmbreonAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
-};
-
 // Task data for the main title screen tasks (Task_TitleScreenPhase#)
 #define tCounter    data[0]
 #define tSkipToNext data[1]
@@ -630,21 +569,12 @@ static void VBlankCB(void)
     SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
 }
 
-static void LoadTitleScreenPokemonSprite(u16 species, u16 tag, const struct SpriteTemplate *spriteTemplate, s16 x, s16 y)
-{
-    // Load front battle sprite graphics and palette
-    LoadCompressedSpriteSheet(&(struct CompressedSpriteSheet){
-        .data = gMonFrontPicTable[species],
-        .size = 0x800,
-        .tag = tag
-    });
- 
-    // Load palette
-    LoadSpritePaletteWithTag(GetMonSpritePalFromSpecies(species, FALSE, FALSE), tag);
- 
-    // Create the sprite
-    u8 spriteId = CreateSprite(spriteTemplate, x, y, 0);
-}
+//static void LoadTitleScreenPokemonSprite(u16 species, s16 x, s16 y)
+//{
+    // Create front battle sprite using the specialized function
+    // isFrontPic = TRUE, personality = 0, isShiny = FALSE
+//    CreateMonPicSprite(species, FALSE, 0, TRUE, x, y, 0, species);
+//}
 
 
 void CB2_InitTitleScreen(void)
@@ -700,8 +630,11 @@ void CB2_InitTitleScreen(void)
     case 2:
     {
             // Load Espeon and Umbreon sprites
-        LoadTitleScreenPokemonSprite(SPECIES_ESPEON, TAG_ESPEON, &sEspeonSpriteTemplate, 50, 100);
-        LoadTitleScreenPokemonSprite(SPECIES_UMBREON, TAG_UMBREON, &sUmbreonSpriteTemplate, 190, 100);
+        u16 espeonId = CreateMonPicSprite(SPECIES_ESPEON, FALSE, 0, TRUE, 50, 100, 0, SPECIES_ESPEON);
+        u16 umbreonId = CreateMonPicSprite(SPECIES_UMBREON, FALSE, 0, TRUE, 190, 100, 0, SPECIES_UMBREON);
+
+        // Horizontally flip Espeon
+        gSprites[espeonId].hFlip = TRUE;
  
         u8 taskId = CreateTask(Task_TitleScreenPhase1, 0);
 
