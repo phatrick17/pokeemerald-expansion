@@ -22,6 +22,7 @@
 #include "graphics.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "pokemon.h"
 
 enum {
     TAG_VERSION = 1000,
@@ -421,7 +422,6 @@ static const struct SpriteTemplate sUmbreonSpriteTemplate =
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
 };
- 
 
 // Task data for the main title screen tasks (Task_TitleScreenPhase#)
 #define tCounter    data[0]
