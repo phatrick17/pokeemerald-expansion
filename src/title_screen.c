@@ -629,13 +629,6 @@ void CB2_InitTitleScreen(void)
         break;
     case 2:
     {
-            // Load Espeon and Umbreon sprites
-        u16 espeonId = CreateMonPicSprite(SPECIES_ESPEON, FALSE, 0, TRUE, 50, 100, 0, SPECIES_ESPEON);
-        u16 umbreonId = CreateMonPicSprite(SPECIES_UMBREON, FALSE, 0, TRUE, 190, 100, 0, SPECIES_UMBREON);
-
-        // Horizontally flip Espeon
-        gSprites[espeonId].hFlip = TRUE;
- 
         u8 taskId = CreateTask(Task_TitleScreenPhase1, 0);
 
         gTasks[taskId].tCounter = 256;
@@ -682,7 +675,8 @@ void CB2_InitTitleScreen(void)
         if (!UpdatePaletteFade())
         {
             StartPokemonLogoShine(SHINE_MODE_SINGLE_NO_BG_COLOR);
-            ScanlineEffect_InitWave(0, DISPLAY_HEIGHT, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
+            ScanlineEffect_InitWave(0, 0, 4, 4, 0, SCANLINE_EFFECT_REG_BG1HOFS, TRUE);
+
             SetMainCallback2(MainCB2);
         }
         break;
@@ -767,12 +761,25 @@ static void Task_TitleScreenPhase2(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG0 | BLDCNT_TGT2_BD);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(6, 15));
         SetGpuReg(REG_OFFSET_BLDY, 0);
+
+
+        // Restrict the cloud layer (BG1) to the top 40 scanlines using WIN0.
+        // Inside WIN0 all BGs + OBJ are visible; outside, BG1 is excluded so
+        // the clouds only appear (and only scroll) in the top of the screen.
+        SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
+        SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 0));
+        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ);
+        SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ);
+
+
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_1
                                     | DISPCNT_OBJ_1D_MAP
                                     | DISPCNT_BG0_ON
                                     | DISPCNT_BG1_ON
                                     | DISPCNT_BG2_ON
-                                    | DISPCNT_OBJ_ON);
+                                    | DISPCNT_OBJ_ON
+                                    | DISPCNT_WIN0_ON);
+
         CreatePressStartBanner(START_BANNER_X, 108);
         CreateCopyrightBanner(START_BANNER_X, 148);
         gTasks[taskId].tBg1Y = 0;
@@ -796,6 +803,13 @@ static void Task_TitleScreenPhase2(u8 taskId)
 // Show Rayquaza silhouette and process main title screen input
 static void Task_TitleScreenPhase3(u8 taskId)
 {
+    // Load Espeon and Umbreon sprites
+    u16 espeonId = CreateMonPicSprite(SPECIES_ESPEON, FALSE, 0, TRUE, 20, 130, 0, SPECIES_ESPEON);
+    u16 umbreonId = CreateMonPicSprite(SPECIES_UMBREON, FALSE, 0, TRUE, 220, 130, 0, SPECIES_UMBREON);
+
+    // Horizontally flip Espeon
+    gSprites[espeonId].hFlip = TRUE;
+
     if (JOY_NEW(A_BUTTON) || JOY_NEW(START_BUTTON))
     {
         FadeOutBGM(4);
