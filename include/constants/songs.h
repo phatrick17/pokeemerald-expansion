@@ -386,7 +386,7 @@
 #define MUS_ENCOUNTER_CHAMPION      454 // MUS_DAIGO
 #define MUS_CREDITS                 455 // MUS_THANKFOR
 #define MUS_END                     456 // MUS_END
-#define MUS_B_FRONTIER              457 // MUS_B_FRONTIER
+#define MUS_B_FRONTIER              457 // Cipher Syndicate Theme
 #define MUS_B_ARENA                 458 // MUS_B_ARENA
 #define MUS_OBTAIN_B_POINTS         459 // MUS_ME_POINTGET
 #define MUS_REGISTER_MATCH_CALL     460 // MUS_ME_TORE_EYE

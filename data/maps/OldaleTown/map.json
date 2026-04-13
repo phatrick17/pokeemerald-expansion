@@ -60,7 +60,7 @@
       "local_id": "PHENAC_TRUDLY_1",
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
       "x": 24,
-      "y": 44,
+      "y": 45,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -74,7 +74,7 @@
       "local_id": "PHENAC_FOLLY_1",
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
       "x": 26,
-      "y": 44,
+      "y": 45,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -88,7 +88,7 @@
       "local_id": "PHENAC_RUI_IN_BAG",
       "graphics_id": "OBJ_EVENT_GFX_BIRCHS_BAG",
       "x": 25,
-      "y": 44,
+      "y": 45,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -102,7 +102,7 @@
       "local_id": "PHENAC_LADY_1",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
       "x": 28,
-      "y": 42,
+      "y": 43,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -116,7 +116,7 @@
       "local_id": "PHENAC_RUNNER_1",
       "graphics_id": "OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M",
       "x": 25,
-      "y": 42,
+      "y": 43,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -130,7 +130,7 @@
       "local_id": "PHENAC_RUI",
       "graphics_id": "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
       "x": 25,
-      "y": 44,
+      "y": 45,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -143,7 +143,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_4",
       "x": 13,
-      "y": 40,
+      "y": 41,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -157,7 +157,7 @@
       "local_id": "PHENAC_MARILL",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MARILL)",
       "x": 14,
-      "y": 40,
+      "y": 41,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -170,7 +170,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_2",
       "x": 18,
-      "y": 36,
+      "y": 37,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -183,7 +183,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "x": 33,
-      "y": 35,
+      "y": 36,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -196,7 +196,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
       "x": 33,
-      "y": 43,
+      "y": 44,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -209,7 +209,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 33,
-      "y": 16,
+      "y": 17,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -223,7 +223,7 @@
       "local_id": "PHENAC_RUNNER_1_2",
       "graphics_id": "OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M",
       "x": 26,
-      "y": 37,
+      "y": 38,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
       "movement_range_x": 2,
@@ -236,7 +236,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
       "x": 14,
-      "y": 23,
+      "y": 24,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -249,7 +249,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_3",
       "x": 27,
-      "y": 27,
+      "y": 28,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -262,7 +262,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 37,
-      "y": 25,
+      "y": 26,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -276,7 +276,7 @@
       "local_id": "PHENAC_ZIG_1",
       "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_1",
       "x": 38,
-      "y": 25,
+      "y": 26,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -289,7 +289,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
       "x": 22,
-      "y": 6,
+      "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -303,7 +303,7 @@
       "local_id": "PHENAC_JIGGLY",
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(JIGGLYPUFF)",
       "x": 22,
-      "y": 5,
+      "y": 7,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -317,7 +317,7 @@
       "local_id": "PHENAC_SUPER_POTION_1",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 14,
-      "y": 31,
+      "y": 32,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -331,7 +331,7 @@
       "local_id": "PHENAC_SUPER_POTION_2",
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
       "x": 40,
-      "y": 33,
+      "y": 35,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -345,7 +345,7 @@
       "local_id": "PHENAC_NASCOUR_1",
       "graphics_id": "OBJ_EVENT_GFX_MAXIE",
       "x": 12,
-      "y": 19,
+      "y": 20,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -360,57 +360,97 @@
     {
       "warp_id": "PHENAC_POKECENTER",
       "x": 11,
-      "y": 39,
+      "y": 40,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_TOWN_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
     },
     {
       "x": 37,
-      "y": 40,
+      "y": 41,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_TOWN_HOUSE1",
       "dest_warp_id": "0"
     },
     {
       "x": 39,
-      "y": 19,
+      "y": 20,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_TOWN_HOUSE2",
       "dest_warp_id": "0"
     },
     {
       "x": 15,
-      "y": 34,
+      "y": 35,
       "elevation": 0,
       "dest_map": "MAP_PHENAC_MART",
       "dest_warp_id": "0"
     },
     {
       "x": 25,
-      "y": 24,
+      "y": 25,
       "elevation": 0,
       "dest_map": "MAP_PHENAC_PRE_GYM",
       "dest_warp_id": "0"
     },
     {
       "x": 12,
-      "y": 19,
+      "y": 20,
       "elevation": 0,
       "dest_map": "MAP_PHENAC_MAYOR_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 22,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 23,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 24,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 25,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 26,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 28,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PHENAC_STADIUM",
       "dest_warp_id": "0"
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 43,
-      "y": 20,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Right"
-    },
     {
       "type": "trigger",
       "x": 43,
@@ -422,8 +462,17 @@
     },
     {
       "type": "trigger",
+      "x": 43,
+      "y": 22,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_Right"
+    },
+    {
+      "type": "trigger",
       "x": 7,
-      "y": 20,
+      "y": 21,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -432,7 +481,7 @@
     {
       "type": "trigger",
       "x": 7,
-      "y": 21,
+      "y": 22,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -441,7 +490,7 @@
     {
       "type": "trigger",
       "x": 23,
-      "y": 49,
+      "y": 50,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -450,7 +499,7 @@
     {
       "type": "trigger",
       "x": 24,
-      "y": 49,
+      "y": 50,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -459,7 +508,7 @@
     {
       "type": "trigger",
       "x": 25,
-      "y": 49,
+      "y": 50,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -468,7 +517,7 @@
     {
       "type": "trigger",
       "x": 26,
-      "y": 49,
+      "y": 50,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -477,7 +526,7 @@
     {
       "type": "trigger",
       "x": 27,
-      "y": 49,
+      "y": 50,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -513,7 +562,7 @@
     {
       "type": "trigger",
       "x": 12,
-      "y": 20,
+      "y": 21,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",

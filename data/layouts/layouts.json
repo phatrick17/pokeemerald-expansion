@@ -105,7 +105,7 @@
       "id": "LAYOUT_OLDALE_TOWN",
       "name": "OldaleTown_Layout",
       "width": 51,
-      "height": 54,
+      "height": 55,
       "primary_tileset": "gTileset_Desert_Primary",
       "secondary_tileset": "gTileset_Phenac_City",
       "border_filepath": "data/layouts/OldaleTown/border.bin",
@@ -4440,6 +4440,16 @@
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/Phenac_Mayor_House/border.bin",
       "blockdata_filepath": "data/layouts/Phenac_Mayor_House/map.bin"
+    },
+    {
+      "id": "LAYOUT_PHENAC_STADIUM",
+      "name": "Phenac_Stadium_Layout",
+      "width": 20,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SootopolisGym",
+      "border_filepath": "data/layouts/Phenac_Stadium/border.bin",
+      "blockdata_filepath": "data/layouts/Phenac_Stadium/map.bin"
     }
   ]
 }
