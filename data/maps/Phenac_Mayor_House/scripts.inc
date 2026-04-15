@@ -69,18 +69,20 @@ Phenac_Mayor_House_Escade_Encounter_1::
 # 105 "data/maps/Phenac_Mayor_House/scripts.pory"
 	removeobject PHENAC_MAYOR_HOUSE_RUI
 # 106 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setflag FLAG_PHENAC_VISITED_MAYOR_1
+# 107 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
 
 Phenac_Mayor_House_Escade_Dialogue_1::
-# 112 "data/maps/Phenac_Mayor_House/scripts.pory"
-	lockall
 # 113 "data/maps/Phenac_Mayor_House/scripts.pory"
-	faceplayer
+	lockall
 # 114 "data/maps/Phenac_Mayor_House/scripts.pory"
+	faceplayer
+# 115 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Dialogue_1_Text_0, MSGBOX_DEFAULT
-# 122 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 123 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
@@ -212,7 +214,7 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_3:
 	.string "stadium benefitting our oasis city!$"
 
 Phenac_Mayor_House_Escade_Dialogue_1_Text_0:
-# 115 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 116 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Es Cade: I promise you, we will obtain\n"
 	.string "useful information about those\l"
 	.string "POkéMON.\p"

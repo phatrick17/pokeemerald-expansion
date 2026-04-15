@@ -103,6 +103,7 @@ script Phenac_Mayor_House_Escade_Encounter_1 {
 	))
     waitmovement
     removeobject(PHENAC_MAYOR_HOUSE_RUI)
+    setflag(FLAG_PHENAC_VISITED_MAYOR_1)
     releaseall
     end
     

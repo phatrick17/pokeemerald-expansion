@@ -384,6 +384,7 @@
 #define OBJ_EVENT_PAL_TAG_FOLLY_OW                0X1125
 #define OBJ_EVENT_PAL_TAG_TRUDLY_OW               0X1126
 #define OBJ_EVENT_PAL_TAG_WILLIE                  0X1127
+#define OBJ_EVENT_PAL_TAG_AQUA_MEMBER_M           0X1128
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

@@ -392,7 +392,7 @@
 #define MUS_REGISTER_MATCH_CALL     460 // MUS_ME_TORE_EYE
 #define MUS_B_PYRAMID               461 // MUS_PYRAMID
 #define MUS_B_PYRAMID_TOP           462 // MUS_PYRAMID_TOP
-#define MUS_B_PALACE                463 // MUS_B_PALACE
+#define MUS_B_PALACE                463 // Team Snagem Hideout
 #define MUS_RAYQUAZA_APPEARS        464 // MUS_REKKUU_KOURIN
 #define MUS_B_TOWER                 465 // MUS_SATTOWER
 #define MUS_OBTAIN_SYMBOL           466 // MUS_ME_SYMBOLGET

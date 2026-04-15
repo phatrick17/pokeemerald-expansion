@@ -676,21 +676,32 @@ script Phenac_Nascour_Encounter_1{
 
 }
 
+script Phenac_Team_Snagem_First_Encounter_Stadium {
+    lockall
+    msgbox(format("TEST"), MSGBOX_DEFAULT)
+    releaseall
+    end
+}
+
+
+mapscripts OldaleTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: OldaleTown_OnTransition
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 1: OldaleTown_EventScript_RunPhenacIntro
+        VAR_PHENAC_CITY_STATE, 2: Phenac_Team_Snagem_First_Encounter_Stadium
+    ]
+}
+
 //OldaleTown_MapScripts::
+//	map_script MAP_SCRIPT_ON_FRAME_TABLE, OldaleTown_OnFrame
 //	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
 //	.byte 0
 
+//OldaleTown_OnFrame:
+//	map_script_2 VAR_TEMP_0, 1, OldaleTown_EventScript_RunPhenacIntro
+//	.2byte 0
+
 raw `
-
-OldaleTown_MapScripts::
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, OldaleTown_OnFrame
-	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
-	.byte 0
-
-OldaleTown_OnFrame:
-	map_script_2 VAR_TEMP_0, 1, OldaleTown_EventScript_RunPhenacIntro
-	.2byte 0
-
 
 OldaleTown_OnTransition:
 	call Common_EventScript_SetupRivalGfxId

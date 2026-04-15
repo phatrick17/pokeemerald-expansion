@@ -55,7 +55,7 @@
 #define FLAG_DEFEAT_DRIG    0x29 // Old Man Drig
 #define FLAG_DEFEAT_KAIB   0x2A // Skater Kaib
 #define FLAG_PHENAC_NASCOUR_1    0x2B // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
+#define FLAG_PHENAC_VISITED_MAYOR_1    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
