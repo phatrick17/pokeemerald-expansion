@@ -3,16 +3,42 @@ mapscripts Phenac_Pre_Gym_MapScripts {}
 script Battlesim1 {
     lock
     faceplayer
-    msgbox(format("Welcome to the Pre Gym.\p"
-        "Are you interested in our Battle Simulator?\p"
-        "We are currently conducting testing\n"
-        "on our prototype.\p"
-        "Trainers and POKéMON are projected\n"
-        "using our Augmented Reality solution.\p"
-        "The system's knowledge model was\n"
-        "was trained by studying real\l"
-        "trainer battles.\p"
-        "Would you like to try?\n"
+    msgbox(format("Hey there! Welcome to the Pre Gym.\n"
+        "My name is Professor Krane.\p"
+        
+        "Krane: I know - I'm not Justy -\n"
+        "the Pre Gym Leader.\p"
+
+        "Justy is actually training inside my\n"
+        "novel invention:\l"
+        "the Battle Simulator.\p"
+
+        "The Battle Simulator is a prototype\n"
+        "which projects you into an Augmented\l"
+        "Reality space to do its name:\p"
+
+        "Simulate battles!\p"
+
+        "Perfect for trainers to practice and simulate certain scenarios in order to become a better trainer.\p"
+
+        "I've been researching this invention\n"
+        "for the past 5 years.\p"
+
+        "I brought it to Justy's gym as\n"
+        "he offered to test it out!\p"
+
+        "You look like a strong trainer.\n"
+        "Were you planning to undergo Justy's\l"
+        "challenge?\p"
+
+        "...\p"
+
+        "You were! I see.\n"
+        "Well I have a proposition for you.\p"
+
+        "Why don't you try out my battle\n"
+        "simulator while you're waiting?\p"
+
         "Free of charge!"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
         releaseall()

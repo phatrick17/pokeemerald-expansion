@@ -4424,8 +4424,8 @@
     {
       "id": "LAYOUT_PHENAC_PRE_GYM",
       "name": "Phenac_Pre_Gym_Layout",
-      "width": 23,
-      "height": 11,
+      "width": 38,
+      "height": 38,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_TrainerHill",
       "border_filepath": "data/layouts/Phenac_Pre_Gym/border.bin",

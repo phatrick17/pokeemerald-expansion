@@ -15490,6 +15490,23 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_SNAG_MACHINE] =
+    {
+        .name = ITEM_NAME("Snag Machine"),
+        .pluralName = ITEM_PLURAL_NAME("Snag Machines"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A machine designed\n"
+            "to steal others'\n"
+            "POKéMON in battle."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SnagMachine,
+        .iconPalette = gItemIconPalette_SnagMachine,
+    },
 };
 
 #undef ITEM_NAME

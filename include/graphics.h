@@ -1486,6 +1486,8 @@ extern const u32 gItemIcon_SuperRod[];
 extern const u16 gItemIconPalette_SuperRod[];
 extern const u32 gItemIcon_DowsingMachine[];
 extern const u16 gItemIconPalette_DowsingMachine[];
+extern const u32 gItemIcon_SnagMachine[];
+extern const u16 gItemIconPalette_SnagMachine[];
 extern const u32 gItemIcon_TownMap[];
 extern const u16 gItemIconPalette_TownMap[];
 extern const u32 gItemIcon_VsSeeker[];

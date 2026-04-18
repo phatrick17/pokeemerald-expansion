@@ -559,7 +559,7 @@ script My_Debug_Menu {
             		warp(MAP_ROUTE101, 30, 14)
             		waitstate()
        		 case 1:
-            		warp(MAP_OLDALE_TOWN, 25, 48)
+            		warp(MAP_OLDALE_TOWN, 25, 49)
             		waitstate()
         		case MULTI_B_PRESSED:
             		releaseall()
@@ -573,7 +573,7 @@ script My_Debug_Menu {
     end
 }
 
-script OPEN_WORLD_MAP_ENTER_Right {
+script OPEN_WORLD_MAP_ENTER_RIGHT {
     lockall
     playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
     special(Special_OpenCustomMap)
@@ -587,7 +587,7 @@ script OPEN_WORLD_MAP_ENTER_Right {
     end
 }
 
-script OPEN_WORLD_MAP_ENTER_Left {
+script OPEN_WORLD_MAP_ENTER_LEFT {
     lockall
     playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
     special(Special_OpenCustomMap)
@@ -610,6 +610,20 @@ script OPEN_WORLD_MAP_ENTER_DOWN {
     fadedefaultbgm
 	applymovement(OBJ_EVENT_ID_PLAYER, moves(
 		walk_up
+	))
+    waitmovement(0)
+    end
+}
+
+script OPEN_WORLD_MAP_ENTER_UP {
+    lockall
+    playbgm(MUS_AQUA_MAGMA_HIDEOUT, FALSE)
+    special(Special_OpenCustomMap)
+    waitstate
+    releaseall
+    fadedefaultbgm
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_down
 	))
     waitmovement(0)
     end

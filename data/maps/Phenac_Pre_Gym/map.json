@@ -17,7 +17,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_NOLAND",
       "x": 20,
-      "y": 4,
+      "y": 33,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -31,14 +31,14 @@
   "warp_events": [
     {
       "x": 7,
-      "y": 10,
+      "y": 37,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_TOWN",
       "dest_warp_id": "4"
     },
     {
-      "x": 8,
-      "y": 10,
+      "x": 6,
+      "y": 37,
       "elevation": 0,
       "dest_map": "MAP_OLDALE_TOWN",
       "dest_warp_id": "4"

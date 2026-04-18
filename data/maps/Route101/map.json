@@ -282,7 +282,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Right"
+      "script": "OPEN_WORLD_MAP_ENTER_RIGHT"
     },
     {
       "type": "trigger",
@@ -291,7 +291,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Right"
+      "script": "OPEN_WORLD_MAP_ENTER_RIGHT"
     },
     {
       "type": "trigger",
@@ -300,7 +300,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Right"
+      "script": "OPEN_WORLD_MAP_ENTER_RIGHT"
     },
     {
       "type": "trigger",
@@ -309,7 +309,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Right"
+      "script": "OPEN_WORLD_MAP_ENTER_RIGHT"
     },
     {
       "type": "trigger",
@@ -318,7 +318,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Left"
+      "script": "OPEN_WORLD_MAP_ENTER_LEFT"
     },
     {
       "type": "trigger",
@@ -327,7 +327,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Left"
+      "script": "OPEN_WORLD_MAP_ENTER_LEFT"
     },
     {
       "type": "trigger",
@@ -336,7 +336,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Left"
+      "script": "OPEN_WORLD_MAP_ENTER_LEFT"
     },
     {
       "type": "trigger",
@@ -345,7 +345,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "OPEN_WORLD_MAP_ENTER_Left"
+      "script": "OPEN_WORLD_MAP_ENTER_LEFT"
     }
   ],
   "bg_events": [

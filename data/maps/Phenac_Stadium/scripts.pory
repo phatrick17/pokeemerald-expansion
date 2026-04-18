@@ -1,6 +1,20 @@
 mapscripts Phenac_Stadium_MapScripts {}
 
 script Phenac_Stadium_Receptionist_1{
+    if (flag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1)) {
+        lockall
+        msgbox(format("Welcome to Phenac Stadium.\p"
+            "This is where we register trainers\n"
+            "for challenges.\p"
+            "However, the current challenge has\n"
+            "already started.\p"
+            "So, we are no longer accepting trainers\n"
+            "for this challenge.\p"
+            "Please come back and enter the next\n"
+            "challenge."), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     if (flag(FLAG_PHENAC_VISITED_MAYOR_1)) {
         lockall
         msgbox(format("Welcome to Phenac Stadium.\p"

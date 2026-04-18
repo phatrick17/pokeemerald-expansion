@@ -677,8 +677,170 @@ script Phenac_Nascour_Encounter_1{
 }
 
 script Phenac_Team_Snagem_First_Encounter_Stadium {
+    fadescreen(FADE_TO_BLACK)
+    setobjectxy(PHENAC_JIGGLY, 11, 0)
+    setobjectxy(PHENAC_FISHER_GUY, 11, 0)
+    removeobject(PHENAC_JIGGLY)
+    removeobject(PHENAC_FISHER_GUY)
     lockall
-    msgbox(format("TEST"), MSGBOX_DEFAULT)
+	addobject(PHENAC_RUI_STADIUM_1)
+	addobject(PHENAC_SNAGEM_GRUNT_1)
+	addobject(PHENAC_SNAGEM_GRUNT_2)
+	addobject(PHENAC_SNAGEM_GRUNT_3)
+    playbgm(MUS_B_PALACE, FALSE)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		walk_down
+	))
+    fadescreen(FADE_FROM_BLACK)
+	applymovement(PHENAC_SNAGEM_GRUNT_2, moves(
+		walk_up * 5
+	))
+	applymovement(PHENAC_SNAGEM_GRUNT_3, moves(
+		walk_up * 5
+	))
+	applymovement(PHENAC_SNAGEM_GRUNT_1, moves(
+		walk_up * 5
+	))
+    waitmovement
+    msgbox(format("Hey, {PLAYER}!\n"
+        "We finally found you!\l"
+        "You filthy, double-crossing traitor!\p"
+        "Wrecking the Hideout wasn't good\n"
+        "enough for you?\p"
+        "So you rip off the Snag Machine?\n"
+        "You've got some nerve!"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(PHENAC_RUI_STADIUM_1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse
+	applymovement(PHENAC_RUI_STADIUM_1, moves(
+		walk_left
+        walk_down
+	))
+    waitmovement
+    msgbox(format("{RIVAL}: Who are these people?\n"
+        "Huh?\l"
+        "Are they Team Snagem?\p"
+        "{RIVAL}: And what did they mean\n"
+        "by traitor?\p"
+        "{PLAYER}...\n"
+        "You mean...\p"
+        "Grunt: That's right, pretty lady!\n"
+        "He's from Team Snagem, just like us!\p"
+        "But he's no ordinary member.\n"
+        "He's a Snagger.\l"
+        "He's the best in Team Snagem at\l"
+        "snagging POKéMON without fail!"), MSGBOX_DEFAULT)
+    closemessage
+	applymovement(PHENAC_RUI_STADIUM_1, moves(
+		face_right
+	))
+    waitmovement
+    msgbox(format("{RIVAL}: No way! {PLAYER}?!\n"
+        "Is that true?\p"
+        "...\p"
+        "{RIVAL}: So it is true!\n"
+        "That's a little shocking!"), MSGBOX_DEFAULT)
+    closemessage
+	applymovement(PHENAC_RUI_STADIUM_1, moves(
+		face_down
+	))
+	applymovement(PHENAC_SNAGEM_GRUNT_2, moves(
+		walk_in_place_up
+	))
+    waitmovement
+    msgbox(format("Grunt: Hey, {PLAYER}!\n"
+        "Come on, hand it over!\p"
+        "Give back the Snag Machine you ripped\n"
+        "off from the Hideout!\p"
+        "{RIVAL}: Snag Machine?\p"
+        "{PLAYER}, do you really have\n"
+        "something like that?"), MSGBOX_DEFAULT)
+    closemessage
+	applymovement(PHENAC_SNAGEM_GRUNT_2, moves(
+		walk_in_place_up
+	))
+    waitmovement
+    msgbox(format("Grunt: The Snag Machine was built\n"
+        "for trainers.\p"
+        "When a trainer puts the\n"
+        "Snag Machine on, their Poké Balls are\l"
+        "converted.\p"
+        "Ordinary Poké Balls are turned into\n"
+        "Snag Balls that can steal POKéMON\l"
+        "from their trainers in battle."), MSGBOX_DEFAULT)
+    closemessage
+	applymovement(PHENAC_SNAGEM_GRUNT_3, moves(
+		walk_in_place_left
+	))
+    msgbox(format("Grunt: Hey you blabbermouth!\n"
+        "Keep that stuff secret!\p"
+        "{RIVAL}: I get it, {PLAYER}.\n"
+        "That's why these creeps are chasing\l"
+        "after you."), MSGBOX_DEFAULT)
+    closemessage
+	applymovement(PHENAC_SNAGEM_GRUNT_3, moves(
+		walk_in_place_up
+	))
+    waitmovement
+    msgbox(format("Grunt: Creeps? What do you mean\n"
+        "by creeps!\p"
+        "Gah, this is getting us nowhere!\n"
+        "If you won't give it up willingly,\l"
+        "we'll take it back by force!"), MSGBOX_DEFAULT)
+    trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_1,
+        format("Wakin: No!\n"
+               "I'm not good enough?!"))
+    playbgm(MUS_B_ARENA, FALSE)
+    msgbox(format("Wakin: Blast you {PLAYER}!\n"
+        "Don't think this is over!\p"
+        "We're going to get that Snag Machine\n"
+        "back. Just you wait!"), MSGBOX_DEFAULT)
+    closemessage
+	applymovement(PHENAC_SNAGEM_GRUNT_2, moves(
+		walk_down * 6
+	))
+	applymovement(PHENAC_SNAGEM_GRUNT_3, moves(
+		walk_down * 6
+	))
+	applymovement(PHENAC_SNAGEM_GRUNT_1, moves(
+		walk_down * 6
+	))
+    waitmovement
+	applymovement(PHENAC_RUI_STADIUM_1, moves(
+		face_right
+	))
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		face_left
+	))
+    waitmovement
+	removeobject(PHENAC_SNAGEM_GRUNT_1)
+	removeobject(PHENAC_SNAGEM_GRUNT_2)
+	removeobject(PHENAC_SNAGEM_GRUNT_3)
+    msgbox(format("{RIVAL}: Well what do you know,\n"
+        "{PLAYER}!\p"
+        "So you're from Team Snagem.\p"
+        "Oh right. To be accurate, I should\n"
+        "say former Team Snagem.\p"
+        "It's okay. {PLAYER}, it doesn't matter\n"
+        "to me who you are.\p"
+        "After all, you're my gallant prince\n"
+        "who rescued me when I was in trouble.\p"
+        "So, it doesn't matter.\n"
+        "Besides, I thought up something after\l"
+        "listening to those creeps.\p"
+        "Listen, {PLAYER}, we should\n"
+        "go shopping for some Poké Balls."), MSGBOX_DEFAULT)
+	applymovement(PHENAC_RUI_STADIUM_1, moves(
+		walk_right
+	))
+    waitmovement
+	removeobject(PHENAC_RUI_STADIUM_1)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		face_down
+	))
+    setvar(VAR_PHENAC_CITY_STATE, 3)
+    setflag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1)
     releaseall
     end
 }

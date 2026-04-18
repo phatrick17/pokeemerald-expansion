@@ -9,46 +9,61 @@ Battlesim1::
 	faceplayer
 # 6 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	msgbox Battlesim1_Text_0, MSGBOX_YESNO
-# 17 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 43 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	compare VAR_RESULT, NO
 	goto_if_eq Battlesim1_2
-# 21 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 47 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	trainerbattle_no_intro TRAINER_GRUNT_AQUA_HIDEOUT_4, Battlesim1_Text_1
-# 23 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 49 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	special HealPlayerParty
-# 24 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 50 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	msgbox Battlesim1_Text_2, MSGBOX_DEFAULT
-# 28 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 54 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	releaseall
 	end
 
 Battlesim1_2:
-# 18 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 44 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	releaseall
 	end
 
 
 Battlesim1_Text_0:
 # 6 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	.string "Welcome to the Pre Gym.\p"
-	.string "Are you interested in our Battle\n"
-	.string "Simulator?\p"
-	.string "We are currently conducting testing\n"
-	.string "on our prototype.\p"
-	.string "Trainers and POKéMON are projected\n"
-	.string "using our Augmented Reality solution.\p"
-	.string "The system's knowledge model was\n"
-	.string "was trained by studying real\l"
-	.string "trainer battles.\p"
-	.string "Would you like to try?\n"
+	.string "Hey there! Welcome to the Pre Gym.\n"
+	.string "My name is Professor Krane.\p"
+	.string "Krane: I know - I'm not Justy -\n"
+	.string "the Pre Gym Leader.\p"
+	.string "Justy is actually training inside my\n"
+	.string "novel invention:\l"
+	.string "the Battle Simulator.\p"
+	.string "The Battle Simulator is a prototype\n"
+	.string "which projects you into an Augmented\l"
+	.string "Reality space to do its name:\p"
+	.string "Simulate battles!\p"
+	.string "Perfect for trainers to practice and\n"
+	.string "simulate certain scenarios in order to\l"
+	.string "become a better trainer.\p"
+	.string "I've been researching this invention\n"
+	.string "for the past 5 years.\p"
+	.string "I brought it to Justy's gym as\n"
+	.string "he offered to test it out!\p"
+	.string "You look like a strong trainer.\n"
+	.string "Were you planning to undergo Justy's\l"
+	.string "challenge?\p"
+	.string "...\p"
+	.string "You were! I see.\n"
+	.string "Well I have a proposition for you.\p"
+	.string "Why don't you try out my battle\n"
+	.string "simulator while you're waiting?\p"
 	.string "Free of charge!$"
 
 Battlesim1_Text_1:
-# 22 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 48 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "SIMULATION COMPLETED.$"
 
 Battlesim1_Text_2:
-# 25 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 51 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "Your party is fully healed.\n"
 	.string "Well done!\p"
 	.string "We'll have more coming soon.$"

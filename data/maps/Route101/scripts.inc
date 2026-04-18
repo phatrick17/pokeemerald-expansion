@@ -859,7 +859,7 @@ My_Debug_Menu_7:
 
 My_Debug_Menu_8:
 # 562 "data/maps/Route101/scripts.pory"
-	warp MAP_OLDALE_TOWN, 25, 48
+	warp MAP_OLDALE_TOWN, 25, 49
 # 563 "data/maps/Route101/scripts.pory"
 	waitstate
 	goto My_Debug_Menu_1
@@ -870,7 +870,7 @@ My_Debug_Menu_9:
 	end
 
 
-OPEN_WORLD_MAP_ENTER_Right::
+OPEN_WORLD_MAP_ENTER_RIGHT::
 # 577 "data/maps/Route101/scripts.pory"
 	lockall
 # 578 "data/maps/Route101/scripts.pory"
@@ -884,13 +884,13 @@ OPEN_WORLD_MAP_ENTER_Right::
 # 582 "data/maps/Route101/scripts.pory"
 	fadedefaultbgm
 # 583 "data/maps/Route101/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_Right_Movement_0
+	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_RIGHT_Movement_0
 # 586 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
 
-OPEN_WORLD_MAP_ENTER_Left::
+OPEN_WORLD_MAP_ENTER_LEFT::
 # 591 "data/maps/Route101/scripts.pory"
 	lockall
 # 592 "data/maps/Route101/scripts.pory"
@@ -904,7 +904,7 @@ OPEN_WORLD_MAP_ENTER_Left::
 # 596 "data/maps/Route101/scripts.pory"
 	fadedefaultbgm
 # 597 "data/maps/Route101/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_Left_Movement_0
+	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_LEFT_Movement_0
 # 600 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
@@ -926,6 +926,26 @@ OPEN_WORLD_MAP_ENTER_DOWN::
 # 611 "data/maps/Route101/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_DOWN_Movement_0
 # 614 "data/maps/Route101/scripts.pory"
+	waitmovement 0
+	end
+
+
+OPEN_WORLD_MAP_ENTER_UP::
+# 619 "data/maps/Route101/scripts.pory"
+	lockall
+# 620 "data/maps/Route101/scripts.pory"
+	playbgm MUS_AQUA_MAGMA_HIDEOUT, FALSE
+# 621 "data/maps/Route101/scripts.pory"
+	special Special_OpenCustomMap
+# 622 "data/maps/Route101/scripts.pory"
+	waitstate
+# 623 "data/maps/Route101/scripts.pory"
+	releaseall
+# 624 "data/maps/Route101/scripts.pory"
+	fadedefaultbgm
+# 625 "data/maps/Route101/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, OPEN_WORLD_MAP_ENTER_UP_Movement_0
+# 628 "data/maps/Route101/scripts.pory"
 	waitmovement 0
 	end
 
@@ -1027,13 +1047,13 @@ Outside_EventScript_WillieAmbush_Movement_1:
 	step_end
 
 # 583 "data/maps/Route101/scripts.pory"
-OPEN_WORLD_MAP_ENTER_Right_Movement_0:
+OPEN_WORLD_MAP_ENTER_RIGHT_Movement_0:
 # 584 "data/maps/Route101/scripts.pory"
 	walk_left
 	step_end
 
 # 597 "data/maps/Route101/scripts.pory"
-OPEN_WORLD_MAP_ENTER_Left_Movement_0:
+OPEN_WORLD_MAP_ENTER_LEFT_Movement_0:
 # 598 "data/maps/Route101/scripts.pory"
 	walk_right
 	step_end
@@ -1042,6 +1062,12 @@ OPEN_WORLD_MAP_ENTER_Left_Movement_0:
 OPEN_WORLD_MAP_ENTER_DOWN_Movement_0:
 # 612 "data/maps/Route101/scripts.pory"
 	walk_up
+	step_end
+
+# 625 "data/maps/Route101/scripts.pory"
+OPEN_WORLD_MAP_ENTER_UP_Movement_0:
+# 626 "data/maps/Route101/scripts.pory"
+	walk_down
 	step_end
 
 Outskirt_Stand_Folley_Trudly_1_Text_0:
