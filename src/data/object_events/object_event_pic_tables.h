@@ -1364,3 +1364,7 @@ static const struct SpriteFrameImage sPicTable_ApricornTree[] = {
 static const struct SpriteFrameImage sPicTable_MirorB[] = {
     overworld_ascending_frames(gObjectEventPic_MirorB, 2, 4),
 };
+
+static const struct SpriteFrameImage sPicTable_Bluno[] = {
+    overworld_ascending_frames(gObjectEventPic_Bluno, 2, 4),
+};

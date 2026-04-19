@@ -400,6 +400,12 @@ const u16 gObjectEventPaletteNeonLight[] = INCBIN_U16("graphics/object_events/pa
 const u32 gObjectEventPic_MirorB[] = INCBIN_U32("graphics/object_events/pics/people/miror_b.4bpp");
 const u16 gObjectEventPal_MirorB[] = INCBIN_U16("graphics/object_events/palettes/miror_b.gbapal");
 
+const u32 gObjectEventPic_Bluno[] = INCBIN_U32("graphics/object_events/pics/people/bluno.4bpp");
+const u16 gObjectEventPal_Bluno[]  = INCBIN_U16("graphics/object_events/palettes/bluno.gbapal");
+const u16 gObjectEventPal_Rosso[]   = INCBIN_U16("graphics/object_events/palettes/rosso.gbapal");
+const u16 gObjectEventPal_Verde[] = INCBIN_U16("graphics/object_events/palettes/verde.gbapal");
+
+
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");
 const u32 gObjectEventPic_UltraBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_ultra.4bpp");
