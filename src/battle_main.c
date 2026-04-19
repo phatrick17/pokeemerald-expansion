@@ -3942,7 +3942,11 @@ static void TryDoEventsBeforeFirstTurn(void)
             {
                 gDisableStructs[battler].shadowMessageDone = TRUE;
                 gBattlerAttacker = battler;
-                BattleScriptExecute(BattleScript_ShadowPokemonAppearedEnd2);
+                if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_GRUNT_SEAFLOOR_CAVERN_3
+                 && FlagGet(FLAG_TEMP_5))
+                    BattleScriptExecute(BattleScript_PhenacRuiShadowWarningEnd2);
+                else
+                    BattleScriptExecute(BattleScript_ShadowPokemonAppearedEnd2);
                 return;
             }
         }

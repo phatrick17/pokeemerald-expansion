@@ -203,12 +203,16 @@ Phenac_Mayor_House_Miror_B_Encounter::
 # 249 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_6, MSGBOX_DEFAULT
 # 251 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setflag FLAG_TEMP_5
+# 252 "data/maps/Phenac_Mayor_House/scripts.pory"
 	trainerbattle_no_intro TRAINER_GRUNT_SEAFLOOR_CAVERN_3, Phenac_Mayor_House_Miror_B_Encounter_Text_7
 # 255 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setvar VAR_PHENAC_CITY_STATE, 6
-# 256 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setflag FLAG_PHENAC_CITY_MAYOR_MIRORB
+	clearflag FLAG_TEMP_5
 # 257 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setvar VAR_PHENAC_CITY_STATE, 6
+# 258 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setflag FLAG_PHENAC_CITY_MAYOR_MIRORB
+# 259 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
@@ -511,6 +515,6 @@ Phenac_Mayor_House_Miror_B_Encounter_Text_6:
 	.string "I'm not going to end up like Folly!$"
 
 Phenac_Mayor_House_Miror_B_Encounter_Text_7:
-# 252 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 253 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Trudly: Wh-What?!\n"
 	.string "My POKeMON!$"

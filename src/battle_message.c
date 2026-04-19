@@ -875,6 +875,21 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_POWERCONSTRUCTTRANSFORM]              = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} transformed into its Complete Forme!"),
     [STRINGID_ABILITYSHIELDPROTECTS]                = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX}'s Ability is protected by the effects of its {B_LAST_ITEM}!"),
     [STRINGID_GOTCHAPKMNCAUGHTNOBGM]                = COMPOUND_STRING("Gotcha!\n{B_OPPONENT_MON1_NAME} was caught!{WAIT_SE}{RESUME_MUSIC}\p"),
+    [STRINGID_PHENACRUISHADOWWARNING]               = COMPOUND_STRING(
+        "{B_RIVAL_NAME}: {B_PLAYER_NAME}!\n"
+        "It's that one! That Pokémon!\p"
+        "Those jerks captured me because\n"
+        "I saw that Pokémon.\p"
+        "I can see a black aura coming from it.\n"
+        "They must have done something to that Pokémon!\p"
+        "{B_PLAYER_NAME}, be careful!\n"
+        "This Pokémon isn't afraid to attack people!\p"
+        "I know, {B_PLAYER_NAME}!\n"
+        "I hate to say this, but there's no other choice.\p"
+        "Get that Pokémon back from the bad guys!\n"
+        "Please, you have to!\p"
+        "You can…\n"
+        "Actually, only you can do it!\p"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =

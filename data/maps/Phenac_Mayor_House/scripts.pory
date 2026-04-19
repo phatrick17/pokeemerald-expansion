@@ -248,9 +248,11 @@ script Phenac_Mayor_House_Miror_B_Encounter {
     waitmovement
     msgbox(format("Trudley: My turn now!\p"
     "I'm not going to end up like Folly!"), MSGBOX_DEFAULT)
+    setflag(FLAG_TEMP_5)
     trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_3,
         format("Trudly: Wh-What?!\n"
         "My POKeMON!"))
+    clearflag(FLAG_TEMP_5)
 
     setvar(VAR_PHENAC_CITY_STATE, 6)
     setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)

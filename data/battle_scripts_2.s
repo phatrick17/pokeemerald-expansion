@@ -265,6 +265,20 @@ BattleScript_ShadowPokemonAppearedEnd2::
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
+BattleScript_PhenacRuiShadowWarning::
+	playanimation BS_ATTACKER, B_ANIM_SHADOW_GLOW
+	waitanimation
+	printstring STRINGID_PHENACRUISHADOWWARNING
+	waitmessage B_WAIT_TIME_LONG
+	return
+
+BattleScript_PhenacRuiShadowWarningEnd2::
+	playanimation BS_ATTACKER, B_ANIM_SHADOW_GLOW
+	waitanimation
+	printstring STRINGID_PHENACRUISHADOWWARNING
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
 BattleScript_RunByUsingItem::
 	playse SE_FLEE
 	setbyte gBattleOutcome, B_OUTCOME_RAN
