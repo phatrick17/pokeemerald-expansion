@@ -56,6 +56,24 @@ static const u8* const sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT][TRAINER_
 {
     [DIFFICULTY_NORMAL] =
     {
+        [TRAINER_GRUNT_SEAFLOOR_CAVERN_3] =
+        {
+            [TRAINER_SLIDE_LAST_SWITCHIN] = COMPOUND_STRING(
+                "{B_RIVAL_NAME}: {B_PLAYER_NAME}!\n"
+                "It's that one! That Pokémon!{PAUSE_UNTIL_PRESS}"
+                "Those jerks captured me because\n"
+                "I saw that Pokémon.{PAUSE_UNTIL_PRESS}"
+                "I can see a black aura coming from it.\n"
+                "They must have done something to that Pokémon!{PAUSE_UNTIL_PRESS}"
+                "{B_PLAYER_NAME}, be careful!\n"
+                "This Pokémon isn't afraid to attack people!{PAUSE_UNTIL_PRESS}"
+                "I know, {B_PLAYER_NAME}!\n"
+                "I hate to say this, but there's no other choice.{PAUSE_UNTIL_PRESS}"
+                "Get that Pokémon back from the bad guys!\n"
+                "Please, you have to!{PAUSE_UNTIL_PRESS}"
+                "You can…\n"
+                "Actually, only you can do it!{PAUSE_UNTIL_PRESS}"),
+        },
     },
 };
 
