@@ -72,9 +72,9 @@
     },
     {
       "local_id": "PHENAC_MAYOR_HOUSE_MIROR",
-      "graphics_id": "OBJ_EVENT_GFX_BRENDAN_NORMAL",
+      "graphics_id": "OBJ_EVENT_GFX_MIROR_B",
       "x": 6,
-      "y": 4,
+      "y": 5,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
