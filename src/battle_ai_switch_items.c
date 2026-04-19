@@ -1941,6 +1941,11 @@ static u32 GetBattleMonTypeMatchup(struct BattlePokemon opposingBattleMon, struc
     // Check type matchup
     u32 typeEffectiveness1 = UQ_4_12(1.0), typeEffectiveness2 = UQ_4_12(1.0);
     enum Type atkType1 = opposingBattleMon.types[0], atkType2 = opposingBattleMon.types[1];
+
+    // Shadow Pokémon resist all non-Shadow incoming moves — treat the matchup
+    // as universally halved so the AI doesn't erroneously switch them out.
+    if (battleMon.isShadow && atkType1 != TYPE_SHADOW && atkType2 != TYPE_SHADOW)
+        return UQ_4_12(0.5) + UQ_4_12(0.5);
     enum Type defType1 = battleMon.types[0], defType2 = battleMon.types[1];
 
     // Add each independent defensive type matchup together
