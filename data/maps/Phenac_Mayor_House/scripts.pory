@@ -1,6 +1,7 @@
 mapscripts Phenac_Mayor_House_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_PHENAC_CITY_STATE, 0: Phenac_Mayor_House_Escade_Encounter_1
+        VAR_PHENAC_CITY_STATE, 5: Phenac_Mayor_House_Miror_B_Encounter
     ]
 }
 
@@ -122,6 +123,137 @@ script Phenac_Mayor_House_Escade_Dialogue_1 {
         "the symbol of our civic pride!\p"
         "Head all the way north and you can't miss it!"
         ), MSGBOX_DEFAULT)
+    releaseall
+    end
+}
+
+script Phenac_Mayor_House_Miror_B_Encounter {
+    lockall
+    playbgm(MUS_B_FRONTIER , FALSE)
+    addobject(PHENAC_MAYOR_HOUSE_RUI)
+	applymovement(PHENAC_MAYOR_HOUSE_RUI, moves(
+		walk_right
+		face_up
+	))
+    waitmovement
+    applymovement(PHENAC_MAYOR_HOUSE_FOLLY, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse()
+    msgbox(format
+        ("Folly: Master Miror B.!\n"
+        "It's...It's him!\p"
+        "He's the one that took the girl from us!"), MSGBOX_DEFAULT)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		face_down
+	))
+    msgbox(format
+        ("Miror B.: Oh, now aren't you boys frightfully pathetic?\p"
+        "You mean to tell me you were bested by these darling infants?\p"
+        "Darling, did you say your name was {PLAYER} or something?\p"
+        "I so don't like saying this, but we're not at liberty to keep your lady friend at liberty.\p"
+        "That sweet young thing, she can see things that ordinary people aren't supposed to see.\p"
+        "That just will not do for what we're planning to do. No, it just won't do at all.\p"
+        "If you don't like pain, like most people, you can avoid the pain by keeping your nose out of places it needn't be."), MSGBOX_DEFAULT)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		face_up
+	))
+    msgbox(format
+        ("Boys! Oh Boys!\p"
+        "Folly: Yes! Yes, we will!\n"
+        "Trudly: Yes! Yes, we will!\p"
+        "Miror B.: Boys, I shall make my return to Pyrite now.\p"
+        "Do remember that I will be waiting for you to return with the little lady.\p"
+        "Am I making myself clear?\n"
+        "I won't accept failure from you again, boys.\p"
+        "Fuhohoho..."), MSGBOX_DEFAULT)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		face_down
+	))
+    msgbox(format("Let the music spin! Let's get it on!"), MSGBOX_DEFAULT)
+    playbgm(MUS_B_PIKE, FALSE)
+    delay(240)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		face_up
+	))
+    waitmovement
+    delay(30)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		face_down
+	))
+    waitmovement
+    delay(30)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		walk_in_place_down
+	))
+    waitmovement
+    delay(30)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+        walk_in_place_left
+	))
+    waitmovement
+    delay(30)
+	applymovement(PHENAC_MAYOR_HOUSE_MIROR, moves(
+		walk_left
+        walk_down * 2
+	))
+    waitmovement
+    delay(30)
+    removeobject(PHENAC_MAYOR_HOUSE_MIROR)
+    playse(SE_EXIT)
+	applymovement(PHENAC_MAYOR_VERDE, moves(
+		walk_in_place_down * 4
+	))
+	applymovement(PHENAC_MAYOR_ROSSO, moves(
+		walk_in_place_down * 4
+	))
+	applymovement(PHENAC_MAYOR_BLUNO, moves(
+		walk_in_place_down * 4
+	))
+    waitmovement
+    applymovement(PHENAC_MAYOR_BLUNO, moves(
+		walk_right *2
+        walk_down *2
+	))
+    waitmovement
+    removeobject(PHENAC_MAYOR_BLUNO)
+    applymovement(PHENAC_MAYOR_ROSSO, moves(
+        walk_down
+		walk_right *2
+        walk_down *2
+	))
+    waitmovement
+    removeobject(PHENAC_MAYOR_ROSSO)
+    applymovement(PHENAC_MAYOR_VERDE, moves(
+        walk_down * 2
+		walk_right *2
+        walk_down *2
+	))
+    waitmovement
+    removeobject(PHENAC_MAYOR_VERDE)
+    applymovement(PHENAC_MAYOR_HOUSE_FOLLY, moves(
+		walk_down *2
+    ))
+    waitmovement
+    fadenewbgm(MUS_NONE)
+    msgbox(format("Folly: You, you, you!\p"
+    "The last time, you caught me off guard!\n"
+    "That's not gonna happen again!"), MSGBOX_DEFAULT)
+    trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_2,
+        format("Folly: Awwww, blast it!\n"
+        "I got tripped up again!"))
+    playbgm(MUS_NONE, FALSE)
+    applymovement(PHENAC_MAYOR_HOUSE_TRUDLY, moves(
+		walk_down *2
+    ))
+    waitmovement
+    msgbox(format("Trudley: My turn now!\p"
+    "I'm not going to end up like Folly!"), MSGBOX_DEFAULT)
+    trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_3,
+        format("Trudly: Wh-What?!\n"
+        "My POKeMON!"))
+
+    setvar(VAR_PHENAC_CITY_STATE, 6)
+    setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
     releaseall
     end
 }

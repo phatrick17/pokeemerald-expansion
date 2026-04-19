@@ -298,6 +298,10 @@ const u16 gTrainerPalette_RiderWillie[] = INCBIN_U16("graphics/trainers/palettes
 const u32 gTrainerFrontPic_Folly[] = INCBIN_U32("graphics/trainers/front_pics/folly.4bpp.smol");
 const u16 gTrainerPalette_Folly[]  = INCBIN_U16("graphics/trainers/palettes/folly.gbapal");
 
+const u32 gTrainerFrontPic_Trudly[] = INCBIN_U32("graphics/trainers/front_pics/trudly.4bpp.smol");
+const u16 gTrainerPalette_Trudly[]  = INCBIN_U16("graphics/trainers/palettes/trudly.gbapal");
+
+
 const u16 gTrainerPalette_TeamSnagem[] = INCBIN_U16("graphics/trainers/palettes/team_snagem_front_sprite.gbapal");
 
 // The first two parameters invoke a front pic and palette by
@@ -411,6 +415,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_RS_MAY, gTrainerFrontPic_RubySapphireMay, gTrainerPalette_RubySapphireMay),
     TRAINER_SPRITE(TRAINER_PIC_RIDER_WILLIE, gTrainerFrontPic_RiderWillie, gTrainerPalette_RiderWillie),
     TRAINER_SPRITE(TRAINER_PIC_FOLLY, gTrainerFrontPic_Folly, gTrainerPalette_Folly),
+    TRAINER_SPRITE(TRAINER_PIC_TRUDLY, gTrainerFrontPic_Trudly, gTrainerPalette_Trudly),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

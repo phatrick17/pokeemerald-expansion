@@ -6,153 +6,377 @@ Phenac_Mayor_House_MapScripts::
 Phenac_Mayor_House_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 # 3 "data/maps/Phenac_Mayor_House/scripts.pory"
 	map_script_2 VAR_PHENAC_CITY_STATE, 0, Phenac_Mayor_House_Escade_Encounter_1
+# 4 "data/maps/Phenac_Mayor_House/scripts.pory"
+	map_script_2 VAR_PHENAC_CITY_STATE, 5, Phenac_Mayor_House_Miror_B_Encounter
 	.2byte 0
 
 
 Phenac_Mayor_House_Escade_Encounter_1::
-# 8 "data/maps/Phenac_Mayor_House/scripts.pory"
-	playbgm MUS_B_DOME_LOBBY, FALSE
 # 9 "data/maps/Phenac_Mayor_House/scripts.pory"
-	lock
+	playbgm MUS_B_DOME_LOBBY, FALSE
 # 10 "data/maps/Phenac_Mayor_House/scripts.pory"
-	addobject PHENAC_MAYOR_HOUSE_RUI
+	lock
 # 11 "data/maps/Phenac_Mayor_House/scripts.pory"
+	addobject PHENAC_MAYOR_HOUSE_RUI
+# 12 "data/maps/Phenac_Mayor_House/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Phenac_Mayor_House_Escade_Encounter_1_Movement_0
-# 15 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
 # 16 "data/maps/Phenac_Mayor_House/scripts.pory"
-	applymovement PHENAC_ESCADE_1, Common_Movement_ExclamationMark
+	waitmovement
 # 17 "data/maps/Phenac_Mayor_House/scripts.pory"
-	playse SE_PIN
-# 18 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitse
-# 19 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement 0
-# 20 "data/maps/Phenac_Mayor_House/scripts.pory"
-	applymovement PHENAC_ESCADE_1, Phenac_Mayor_House_Escade_Encounter_1_Movement_1
-# 24 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
-# 25 "data/maps/Phenac_Mayor_House/scripts.pory"
-	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_0, MSGBOX_DEFAULT
-# 33 "data/maps/Phenac_Mayor_House/scripts.pory"
-	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_2
-# 36 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
-# 37 "data/maps/Phenac_Mayor_House/scripts.pory"
-	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_1, MSGBOX_DEFAULT
-# 50 "data/maps/Phenac_Mayor_House/scripts.pory"
 	applymovement PHENAC_ESCADE_1, Common_Movement_ExclamationMark
-# 51 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 18 "data/maps/Phenac_Mayor_House/scripts.pory"
 	playse SE_PIN
-# 52 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 19 "data/maps/Phenac_Mayor_House/scripts.pory"
 	waitse
+# 20 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement 0
+# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_ESCADE_1, Phenac_Mayor_House_Escade_Encounter_1_Movement_1
+# 25 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 26 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_0, MSGBOX_DEFAULT
+# 34 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_2
+# 37 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 38 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_1, MSGBOX_DEFAULT
+# 51 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_ESCADE_1, Common_Movement_ExclamationMark
+# 52 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playse SE_PIN
 # 53 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitse
+# 54 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_2, MSGBOX_DEFAULT
-# 80 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 81 "data/maps/Phenac_Mayor_House/scripts.pory"
 	applymovement PHENAC_ESCADE_1, Phenac_Mayor_House_Escade_Encounter_1_Movement_3
-# 83 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
 # 84 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 85 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_3, MSGBOX_DEFAULT
-# 94 "data/maps/Phenac_Mayor_House/scripts.pory"
-	closemessage
 # 95 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setvar VAR_PHENAC_CITY_STATE, 1
+	closemessage
 # 96 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setvar VAR_PHENAC_CITY_STATE, 1
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
 	applymovement PHENAC_ESCADE_1, Phenac_Mayor_House_Escade_Encounter_1_Movement_4
-# 101 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
 # 102 "data/maps/Phenac_Mayor_House/scripts.pory"
-	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
-# 105 "data/maps/Phenac_Mayor_House/scripts.pory"
 	waitmovement
+# 103 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
 # 106 "data/maps/Phenac_Mayor_House/scripts.pory"
-	removeobject PHENAC_MAYOR_HOUSE_RUI
+	waitmovement
 # 107 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setflag FLAG_PHENAC_VISITED_MAYOR_1
+	removeobject PHENAC_MAYOR_HOUSE_RUI
 # 108 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setflag FLAG_PHENAC_VISITED_MAYOR_1
+# 109 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
 
 Phenac_Mayor_House_Escade_Dialogue_1::
-# 114 "data/maps/Phenac_Mayor_House/scripts.pory"
-	lockall
 # 115 "data/maps/Phenac_Mayor_House/scripts.pory"
-	faceplayer
+	lockall
 # 116 "data/maps/Phenac_Mayor_House/scripts.pory"
+	faceplayer
+# 117 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Dialogue_1_Text_0, MSGBOX_DEFAULT
-# 125 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 126 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
 
-# 11 "data/maps/Phenac_Mayor_House/scripts.pory"
-Phenac_Mayor_House_Escade_Encounter_1_Movement_0:
+Phenac_Mayor_House_Miror_B_Encounter::
+# 131 "data/maps/Phenac_Mayor_House/scripts.pory"
+	lockall
+# 132 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playbgm MUS_B_FRONTIER, FALSE
+# 133 "data/maps/Phenac_Mayor_House/scripts.pory"
+	addobject PHENAC_MAYOR_HOUSE_RUI
+# 134 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Miror_B_Encounter_Movement_0
+# 138 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 139 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_FOLLY, Common_Movement_ExclamationMark
+# 140 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playse SE_PIN
+# 141 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitse
+# 142 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_0, MSGBOX_DEFAULT
+# 146 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_1
+# 149 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_1, MSGBOX_DEFAULT
+# 157 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_2
+# 160 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_2, MSGBOX_DEFAULT
+# 169 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_1
+# 172 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_3, MSGBOX_DEFAULT
+# 173 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playbgm MUS_B_PIKE, FALSE
+# 174 "data/maps/Phenac_Mayor_House/scripts.pory"
+	delay 240
+# 175 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_2
+# 178 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 179 "data/maps/Phenac_Mayor_House/scripts.pory"
+	delay 30
+# 180 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_1
+# 183 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 184 "data/maps/Phenac_Mayor_House/scripts.pory"
+	delay 30
+# 185 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Escade_Encounter_1_Movement_3
+# 188 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 189 "data/maps/Phenac_Mayor_House/scripts.pory"
+	delay 30
+# 190 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_3
+# 193 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 194 "data/maps/Phenac_Mayor_House/scripts.pory"
+	delay 30
+# 195 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_MIROR, Phenac_Mayor_House_Miror_B_Encounter_Movement_4
+# 199 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 200 "data/maps/Phenac_Mayor_House/scripts.pory"
+	delay 30
+# 201 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_HOUSE_MIROR
+# 202 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playse SE_EXIT
+# 203 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_VERDE, Phenac_Mayor_House_Miror_B_Encounter_Movement_5
+# 206 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_ROSSO, Phenac_Mayor_House_Miror_B_Encounter_Movement_5
+# 209 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_BLUNO, Phenac_Mayor_House_Miror_B_Encounter_Movement_5
+# 212 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 213 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_BLUNO, Phenac_Mayor_House_Miror_B_Encounter_Movement_6
+# 217 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 218 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_BLUNO
+# 219 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_ROSSO, Phenac_Mayor_House_Miror_B_Encounter_Movement_7
+# 224 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 225 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_ROSSO
+# 226 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_VERDE, Phenac_Mayor_House_Miror_B_Encounter_Movement_8
+# 231 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 232 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_VERDE
+# 233 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_FOLLY, Phenac_Mayor_House_Miror_B_Encounter_Movement_9
+# 236 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 237 "data/maps/Phenac_Mayor_House/scripts.pory"
+	fadenewbgm MUS_NONE
+# 238 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_4, MSGBOX_DEFAULT
+# 241 "data/maps/Phenac_Mayor_House/scripts.pory"
+	trainerbattle_no_intro TRAINER_GRUNT_SEAFLOOR_CAVERN_2, Phenac_Mayor_House_Miror_B_Encounter_Text_5
+# 244 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playbgm MUS_NONE, FALSE
+# 245 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_TRUDLY, Phenac_Mayor_House_Miror_B_Encounter_Movement_9
+# 248 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 249 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_6, MSGBOX_DEFAULT
+# 251 "data/maps/Phenac_Mayor_House/scripts.pory"
+	trainerbattle_no_intro TRAINER_GRUNT_SEAFLOOR_CAVERN_3, Phenac_Mayor_House_Miror_B_Encounter_Text_7
+# 255 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setvar VAR_PHENAC_CITY_STATE, 6
+# 256 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setflag FLAG_PHENAC_CITY_MAYOR_MIRORB
+# 257 "data/maps/Phenac_Mayor_House/scripts.pory"
+	releaseall
+	end
+
+
 # 12 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
+Phenac_Mayor_House_Escade_Encounter_1_Movement_0:
 # 13 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 14 "data/maps/Phenac_Mayor_House/scripts.pory"
 	face_up
 	step_end
 
-# 20 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
 Phenac_Mayor_House_Escade_Encounter_1_Movement_1:
-# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_right
-# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_right
-# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_right
-# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_right
-# 21 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 22 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_right
 # 22 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 22 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 22 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 22 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 23 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_down
-# 22 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 23 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_down
 	step_end
 
-# 33 "data/maps/Phenac_Mayor_House/scripts.pory"
-Phenac_Mayor_House_Escade_Encounter_1_Movement_2:
 # 34 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Escade_Encounter_1_Movement_2:
+# 35 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_in_place_up
 	step_end
 
-# 80 "data/maps/Phenac_Mayor_House/scripts.pory"
-Phenac_Mayor_House_Escade_Encounter_1_Movement_3:
 # 81 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Escade_Encounter_1_Movement_3:
+# 82 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_in_place_down
 	step_end
 
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
 Phenac_Mayor_House_Escade_Encounter_1_Movement_4:
-# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_up
-# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_up
 # 98 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_up
+# 99 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_left
 # 99 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 99 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 99 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 99 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 100 "data/maps/Phenac_Mayor_House/scripts.pory"
 	face_up
 	step_end
 
-# 102 "data/maps/Phenac_Mayor_House/scripts.pory"
-Phenac_Mayor_House_Escade_Encounter_1_Movement_5:
 # 103 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Escade_Encounter_1_Movement_5:
+# 104 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_left
 	step_end
 
+# 134 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_0:
+# 135 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 136 "data/maps/Phenac_Mayor_House/scripts.pory"
+	face_up
+	step_end
+
+# 146 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_1:
+# 147 "data/maps/Phenac_Mayor_House/scripts.pory"
+	face_down
+	step_end
+
+# 157 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_2:
+# 158 "data/maps/Phenac_Mayor_House/scripts.pory"
+	face_up
+	step_end
+
+# 190 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_3:
+# 191 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_in_place_left
+	step_end
+
+# 195 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_4:
+# 196 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 197 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 197 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+	step_end
+
+# 203 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_5:
+# 204 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_in_place_down
+# 204 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_in_place_down
+# 204 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_in_place_down
+# 204 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_in_place_down
+	step_end
+
+# 213 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_6:
+# 214 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 214 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 215 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 215 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+	step_end
+
+# 219 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_7:
+# 220 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 221 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 221 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 222 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 222 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+	step_end
+
+# 226 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_8:
+# 227 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 227 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 228 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 228 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_right
+# 229 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 229 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+	step_end
+
+# 233 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_9:
+# 234 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+# 234 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_down
+	step_end
+
 Phenac_Mayor_House_Escade_Encounter_1_Text_0:
-# 26 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 27 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Ah, you must be travelers!\n"
 	.string "Welcome to Phenac City!\p"
 	.string "I am Es Cade, the Mayor.\p"
@@ -161,7 +385,7 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_0:
 	.string "able to assist you with?$"
 
 Phenac_Mayor_House_Escade_Encounter_1_Text_1:
-# 38 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 39 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "{RIVAL}: Um... Er...\p"
 	.string "Es Cade: Oh? What may I do for\n"
 	.string "a pretty young lady like you?\p"
@@ -176,7 +400,7 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_1:
 	.string "And, that POkéMON would attack people!$"
 
 Phenac_Mayor_House_Escade_Encounter_1_Text_2:
-# 54 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 55 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Es Cade: O-o-o-oh, my!\n"
 	.string "POkéMON like a fighting machine?\l"
 	.string "And it attacks people?!\p"
@@ -204,7 +428,7 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_2:
 	.string "information for you.$"
 
 Phenac_Mayor_House_Escade_Encounter_1_Text_3:
-# 85 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 86 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Es Cade: Oh yes.\p"
 	.string "You appear to be POkéMON trainers\n"
 	.string "yourselves.\p"
@@ -215,7 +439,7 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_3:
 	.string "stadium benefitting our oasis city!$"
 
 Phenac_Mayor_House_Escade_Dialogue_1_Text_0:
-# 117 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 118 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Es Cade: I promise you, we will obtain\n"
 	.string "useful information about those\l"
 	.string "POkéMON.\p"
@@ -224,3 +448,69 @@ Phenac_Mayor_House_Escade_Dialogue_1_Text_0:
 	.string "the symbol of our civic pride!\p"
 	.string "Head all the way north and you can't\n"
 	.string "miss it!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_0:
+# 143 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Folly: Master Miror B.!\n"
+	.string "It's...It's him!\p"
+	.string "He's the one that took the girl from us!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_1:
+# 150 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Miror B.: Oh, now aren't you boys\n"
+	.string "frightfully pathetic?\p"
+	.string "You mean to tell me you were bested by\n"
+	.string "these darling infants?\p"
+	.string "Darling, did you say your name was\n"
+	.string "{PLAYER} or something?\p"
+	.string "I so don't like saying this, but we're\n"
+	.string "not at liberty to keep your lady friend\l"
+	.string "at liberty.\p"
+	.string "That sweet young thing, she can see\n"
+	.string "things that ordinary people aren't\l"
+	.string "supposed to see.\p"
+	.string "That just will not do for what we're\n"
+	.string "planning to do. No, it just won't do at\l"
+	.string "all.\p"
+	.string "If you don't like pain, like most people,\n"
+	.string "you can avoid the pain by keeping your\l"
+	.string "nose out of places it needn't be.$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_2:
+# 161 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Boys! Oh Boys!\p"
+	.string "Folly: Yes! Yes, we will!\n"
+	.string "Trudly: Yes! Yes, we will!\p"
+	.string "Miror B.: Boys, I shall make my return to\n"
+	.string "Pyrite now.\p"
+	.string "Do remember that I will be waiting for\n"
+	.string "you to return with the little lady.\p"
+	.string "Am I making myself clear?\n"
+	.string "I won't accept failure from you again,\l"
+	.string "boys.\p"
+	.string "Fuhohoho...$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_3:
+# 172 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Let the music spin! Let's get it on!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_4:
+# 238 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Folly: You, you, you!\p"
+	.string "The last time, you caught me off guard!\n"
+	.string "That's not gonna happen again!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_5:
+# 242 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Folly: Awwww, blast it!\n"
+	.string "I got tripped up again!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_6:
+# 249 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Trudley: My turn now!\p"
+	.string "I'm not going to end up like Folly!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_7:
+# 252 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Trudly: Wh-What?!\n"
+	.string "My POKeMON!$"

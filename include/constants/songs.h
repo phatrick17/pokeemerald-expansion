@@ -397,7 +397,7 @@
 #define MUS_B_TOWER                 465 // MUS_SATTOWER
 #define MUS_OBTAIN_SYMBOL           466 // MUS_ME_SYMBOLGET
 #define MUS_B_DOME                  467 // MUS_B_DOME // PRE GYM
-#define MUS_B_PIKE                  468 // MUS_B_TUBE
+#define MUS_B_PIKE                  468 // MIROR B
 #define MUS_B_FACTORY               469 // BATTLE SIM
 #define MUS_VS_RAYQUAZA             470 // MUS_VS_REKKU         // Identical to MUS_VS_KYOGRE_GROUDON.
 #define MUS_VS_FRONTIER_BRAIN       471 // MUS_VS_FRONT
