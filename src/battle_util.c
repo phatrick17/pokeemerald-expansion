@@ -8800,6 +8800,22 @@ static inline void MulByTypeEffectiveness(struct DamageContext *ctx, uq4_12_t *m
     *modifier = uq4_12_multiply(*modifier, mod);
 }
 
+static inline bool32 IsBattlerShadowPokemon(u32 battler)
+{
+    struct Pokemon *mon = GetBattlerMon(battler);
+
+    return gSpeciesInfo[gBattleMons[battler].species].isShadow
+        || GetMonData(mon, MON_DATA_IS_SHADOW) == TRUE;
+}
+
+static inline uq4_12_t ApplyShadowTypeEffectivenessRules(enum Type moveType, bool32 isDefenderShadow, uq4_12_t modifier)
+{
+    if (moveType == TYPE_SHADOW)
+        return isDefenderShadow ? UQ_4_12(0.5) : UQ_4_12(2.0);
+
+    return modifier;
+}
+
 static inline void TryNoticeIllusionInTypeEffectiveness(u32 move, enum Type moveType, u32 battlerAtk, u32 battlerDef, uq4_12_t resultingModifier, u32 illusionSpecies)
 {
     // Check if the type effectiveness would've been different if the pokemon really had the types as the disguise.
@@ -8852,6 +8868,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct DamageCont
 {
     u32 illusionSpecies;
     enum Type types[3];
+    bool32 isDefenderShadow = IsBattlerShadowPokemon(ctx->battlerDef);
     GetBattlerTypes(ctx->battlerDef, FALSE, types);
 
     MulByTypeEffectiveness(ctx, &modifier, types[0]);
@@ -8922,6 +8939,8 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct DamageCont
         }
     }
 
+    modifier = ApplyShadowTypeEffectivenessRules(ctx->moveType, isDefenderShadow, modifier);
+
     if (ctx->updateFlags)
         TryInitializeFirstSTABMoveTrainerSlide(ctx->battlerDef, ctx->battlerAtk, ctx->moveType);
 
@@ -8951,6 +8970,7 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, enum 
 {
     uq4_12_t modifier = UQ_4_12(1.0);
     enum Type moveType = GetBattleMoveType(move);
+    bool32 isDefenderShadow = gSpeciesInfo[speciesDef].isShadow;
 
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
@@ -8968,6 +8988,8 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, enum 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && GetMovePower(move) != 0)
             modifier = UQ_4_12(0.0);
+
+        modifier = ApplyShadowTypeEffectivenessRules(moveType, isDefenderShadow, modifier);
     }
 
     return modifier;
@@ -8993,6 +9015,7 @@ uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, enum Type moveType)
     uq4_12_t modifier = UQ_4_12(1.0);
     enum Ability abilityDef = GetMonAbility(mon);
     u16 speciesDef = GetMonData(mon, MON_DATA_SPECIES);
+    bool32 isDefenderShadow = gSpeciesInfo[speciesDef].isShadow || GetMonData(mon, MON_DATA_IS_SHADOW) == TRUE;
     enum Type type1 = GetSpeciesType(speciesDef, 0);
     enum Type type2 = GetSpeciesType(speciesDef, 1);
 
@@ -9011,6 +9034,8 @@ uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, enum Type moveType)
     if ((modifier <= UQ_4_12(1.0) && abilityDef == ABILITY_WONDER_GUARD)
      || CanAbilityAbsorbMove(0, 0, abilityDef, MOVE_NONE, moveType, CHECK_TRIGGER))
         modifier = UQ_4_12(0.0);
+
+    modifier = ApplyShadowTypeEffectivenessRules(moveType, isDefenderShadow, modifier);
 
     return modifier;
 }
