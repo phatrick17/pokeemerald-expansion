@@ -3655,8 +3655,7 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->types[1] = GetSpeciesType(dst->species, 1);
     dst->types[2] = TYPE_MYSTERY;
     dst->isShiny = IsMonShiny(src);
-    // Shadow if the individual mon was flagged OR its species is always a shadow species.
-    dst->isShadow = GetMonData(src, MON_DATA_IS_SHADOW, NULL) || gSpeciesInfo[dst->species].isShadow;
+    dst->isShadow = GetMonData(src, MON_DATA_IS_SHADOW, NULL);
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(dst->nickname, nickname);
