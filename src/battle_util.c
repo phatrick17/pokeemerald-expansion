@@ -8908,14 +8908,14 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct DamageCont
     }
 
     // Shadow-type damage rules (Pokémon XD: Gale of Darkness).
-    // Shadow moves hit every non-Shadow Pokémon super effectively and are resisted by Shadow Pokémon.
-    // Shadow Pokémon resist every non-Shadow move regardless of their normal types.
+    // Shadow moves hit every non-Shadow Pokémon super effectively; Shadow Pokémon resist Shadow moves.
+    // Non-Shadow damaging moves deal neutral damage to Shadow Pokémon regardless of their normal types.
     if (GetMoveCategory(ctx->move) != DAMAGE_CATEGORY_STATUS)
     {
         if (ctx->moveType == TYPE_SHADOW)
             modifier = gBattleMons[ctx->battlerDef].isShadow ? UQ_4_12(0.5) : UQ_4_12(2.0);
         else if (gBattleMons[ctx->battlerDef].isShadow)
-            modifier = UQ_4_12(0.5);
+            modifier = UQ_4_12(1.0);
     }
 
     if (((ctx->abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0))
