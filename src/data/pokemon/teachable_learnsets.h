@@ -14264,6 +14264,10 @@ static const u16 sHariyamaTeachableLearnset[] = {
     MOVE_TOXIC,
     MOVE_UNAVAILABLE,
 };
+
+static const u16 sMakuhitaShadowTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
 #endif //P_FAMILY_MAKUHITA
 
 #if P_FAMILY_NOSEPASS

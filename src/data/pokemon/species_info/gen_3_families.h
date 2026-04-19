@@ -4315,8 +4315,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gOverworldPalette_Makuhita,
             gShinyOverworldPalette_Makuhita
         )
-        .levelUpLearnset = sMakuhitaLevelUpLearnset,
-        .teachableLearnset = sMakuhitaTeachableLearnset,
+        .levelUpLearnset = sMakuhitaShadowLevelUpLearnset,
+        .teachableLearnset = sMakuhitaShadowTeachableLearnset,
         .eggMoveLearnset = sMakuhitaEggMoveLearnset,
         .isShadow = TRUE,
     },

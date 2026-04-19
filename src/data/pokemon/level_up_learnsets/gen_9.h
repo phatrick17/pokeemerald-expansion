@@ -7873,6 +7873,11 @@ static const struct LevelUpMove sHariyamaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(60, MOVE_HEADLONG_RUSH),
     LEVEL_UP_END
 };
+
+static const struct LevelUpMove sMakuhitaShadowLevelUpLearnset[] = {
+    LEVEL_UP_END
+};
+
 #endif //P_FAMILY_MAKUHITA
 
 #if P_FAMILY_NOSEPASS
