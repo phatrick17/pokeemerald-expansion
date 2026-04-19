@@ -134,6 +134,7 @@ script Route119_EventScript_IntroCutscene {
 	additem(ITEM_SNAG_MACHINE)
 	setflag(FLAG_TRUDLEY_FOLEY_SPRITE)
 	setflag(FLAG_WILLIE_APPEAR_1)
+	setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
     clearflag(FLAG_HIDE_MAP_NAME_POPUP)
     warp(MAP_ROUTE101, 33, 15)
     waitstate

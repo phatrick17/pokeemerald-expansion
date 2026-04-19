@@ -99,7 +99,7 @@ Phenac_Mart_2:
 	.2byte ITEM_FULL_HEAL
 	.2byte ITEM_NONE
 
-# 79 "data/maps/PhenacMart/scripts.pory"
+# 80 "data/maps/PhenacMart/scripts.pory"
 
 
 Phenac_Mart_Lady1_Text_0:

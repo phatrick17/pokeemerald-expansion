@@ -40,7 +40,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "InsideBuilding_EventScript_Willie",
-      "flag": "FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1"
+      "flag": "FLAG_PHENAC_FOLLY_1"
     },
     {
       "local_id": "OUTSKIRT_SHOP_GUY",
@@ -87,7 +87,7 @@
     {
       "local_id": "OUTSKIRT_NPC1",
       "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
-      "x": 4,
+      "x": 2,
       "y": 7,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",

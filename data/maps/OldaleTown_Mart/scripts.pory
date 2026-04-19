@@ -116,8 +116,6 @@ script OutskirtNPC1_Text { //NPC1
         lockall
         msgbox(format("Recently, there's been nothing but bad news.\p"
             "I wish there'd be a good piece of news that would brighten up the day for everyone."), MSGBOX_DEFAULT)
-	    applymovement(OUTSKIRT_NPC1, moves(
-            face_up	))
         releaseall
         end
     }
@@ -152,6 +150,48 @@ script OutskirtNPC1_Text { //NPC1
 script Outskirt_Shop_Guy_TEXT {
     lock
     faceplayer
+    if (flag(FLAG_POKEBALLS_UNLOCKED)) {
+        msgbox(format("Listen, pal. If you're intending to travel some more, you might want to stock up on supplies here."
+        ), MSGBOX_DEFAULT)
+        pokemart(Outskirt_Mart_1)
+        releaseall
+        end
+    }
+    if (flag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1)) {
+        msgbox(format("Listen, pal. If you're intending to travel some more, you might want to stock up on supplies here."), MSGBOX_DEFAULT)
+        applymovement(OBJ_EVENT_ID_NPC_FOLLOWER, moves(
+        face_up
+	    ))
+        waitmovement
+        applymovement(OBJ_EVENT_ID_NPC_FOLLOWER, Common_Movement_ExclamationMark)
+        playse(SE_PIN)
+        waitse
+        msgbox(format("{RIVAL}: Hi, can I ask you something?\p"
+            "Don't you sell any Poké Balls?"), MSGBOX_DEFAULT)
+	    applymovement(OUTSKIRT_SHOP_GUY, moves(
+            face_up
+	    ))
+        waitmovement
+        msgbox(format("Huh? Poké Balls, you say?\n"
+            "There's no call for those things around these parts...\p"
+            "Where'd I put them now?\p"
+            "Oh, yeah, here they are!\n"
+            "A little dusty, I'm afraid, but otherwise perfectly useable."), MSGBOX_DEFAULT)
+	    applymovement(OUTSKIRT_SHOP_GUY, moves(
+            face_down
+	    ))
+        waitmovement
+        msgbox(format("Here! Take these. I'll let you have them for free."), MSGBOX_DEFAULT)
+        giveitem(ITEM_POKE_BALL, 5)
+        setflag(FLAG_POKEBALLS_UNLOCKED)
+        setvar(VAR_PHENAC_CITY_STATE, 4)
+        clearflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
+        msgbox(format("Well, since I found them, I may just as well put them out with the rest of my merchandise.\p"
+        "If you need some more, well, how about buying them from me?"), MSGBOX_DEFAULT)
+        pokemart(Outskirt_Mart_1)
+        releaseall
+        end
+    }
     msgbox(
         format(
             "Oh?\n"
@@ -165,6 +205,17 @@ script Outskirt_Shop_Guy_TEXT {
     end
 }
 
+mart Outskirt_Mart_1 {
+    ITEM_ANTIDOTE
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_AWAKENING
+    ITEM_PARALYZE_HEAL
+    ITEM_GREAT_BALL
+    ITEM_POKE_BALL
+    ITEM_FULL_HEAL
+}
+
 script OutskirtNPC2_Text { //NPC2
     lock
     faceplayer
@@ -172,8 +223,6 @@ script OutskirtNPC2_Text { //NPC2
         lockall
         msgbox(format("Ah, so you've been to Phenac City.\p"
             "Oh, my! I'm quite surprised! You've already gotten yourself a girlfriend!"), MSGBOX_DEFAULT)
-	    applymovement(OUTSKIRT_NPC2, moves(
-            face_up	))
         releaseall
         end
     }

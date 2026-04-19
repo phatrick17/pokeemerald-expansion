@@ -449,9 +449,8 @@ script Outside_EventScript_WillieAmbush {
         // Player said Yes
         msgbox(
             format("WILLIE: Yeahah! That's the spirit!\n"
-                   "All right, all right.\p"
-				   "Over here, this way!"),
-            MSGBOX_DEFAULT)
+			"All right, all right.\p"
+			"Over here, this way!"),MSGBOX_DEFAULT)
     } else {
         // Player said No - loop back
         msgbox(
@@ -505,11 +504,11 @@ script Outside_EventScript_WillieAmbush {
     setvar(VAR_WILLIE_STATE, 3)         // Prevent trigger from ever firing again
 	fadescreen(FADE_TO_BLACK)
 	playse(SE_EXIT)
-    removeobject(LOCALID_WILLIE_OUTSIDE)
+	removeobject(LOCALID_WILLIE_OUTSIDE)
 	fadescreen(FADE_FROM_BLACK)
 	setflag(FLAG_HIDE_OUTSIDE_WILLIE)
 	setflag(FLAG_MAP_UNLOCK_PHENAC)
-    releaseall
+	releaseall
     end
 }
 
@@ -524,8 +523,6 @@ script Outskirt_Stand_Willie_Outside_1 {
     releaseall
     end
 }
-
-
 
 // =============================================================
 // MOVEMENT DATA
@@ -558,14 +555,18 @@ script My_Debug_Menu {
 			setflag(FLAG_ROUTE119_INTRO_DONE)
 			setflag(FLAG_TRUDLEY_FOLEY_SPRITE)
 			setflag(FLAG_CAR_AND_BAG_OUTSKIRT)
+			setvar(VAR_WILLIE_STATE, 3) 
 			setflag(FLAG_PHENAC_FOLLY_1)
 			setflag(FLAG_PHENAC_NASCOUR_1) //Nascour encounter script
 			setflag(FLAG_PHENAC_VISITED_MAYOR_1) //Mayor Visit 1
 			setflag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1) //Defeat Snagem Outside Stadium
-			setvar(VAR_PHENAC_CITY_STATE, 3)
+			setvar(VAR_PHENAC_CITY_STATE, 3) // prevents snagem event happen again
 			clearflag(FLAG_WILLIE_APPEAR_1)
+        	setflag(FLAG_POKEBALLS_UNLOCKED)// changes phenac dialogue
+		    setvar(VAR_PHENAC_CITY_STATE, 4) //for phenac lady script when walking in
+			clearflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
+
 			setflag(FLAG_MAP_UNLOCK_PHENAC) //map unlocks on different row on flags.h
-			setvar(VAR_WILLIE_STATE, 3) 
 			special(DoRivalNameChoiceScreen)
     		waitstate()
 			createfollowernpc(OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL)

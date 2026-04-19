@@ -275,6 +275,7 @@ script Script_PhenacCity_Intro {
     fadescreen(FADE_FROM_BLACK)
     setflag(FLAG_PHENAC_FOLLY_1)
 	setflag(FLAG_PHENAC_RUNNER)
+    clearflag(FLAG_WILLIE_APPEAR_1)
     releaseall
     end
 }
@@ -317,6 +318,14 @@ script Phenac_Runner_1_Dialogue_1 {
 script Phenac_Runner_1_Dialogue_2 {
     lock
 	faceplayer
+    if (flag(FLAG_POKEBALLS_UNLOCKED)) {
+        msgbox(format("Hey, you two! There's serious trouble!\p"
+        "Those thugs came back with help!\n"
+        "I think they went off towards what we call the Pre Gym!"
+        ), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(format("Hiya! If it's not the good-looking\n"
         "couple from earlier!\p"
         "So, what's up?\n"
@@ -351,6 +360,15 @@ script Phenac_Runner_1_Dialogue_2 {
 script Phenac_Lady_1_Dialogue_1 {
     lock
 	faceplayer
+    if (flag(FLAG_POKEBALLS_UNLOCKED)) {
+        msgbox(format("Something terrible's happening!\p"
+        "A whole lot of scary men came here!\n"
+        "I think I even saw those two creeps\l"
+        "who took off in the truck earlier!"
+        ), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(format("The Mayor's house is near the town\n"
         "square past here.\p"
         "Go up the stairs from the square, and\n"
@@ -365,6 +383,13 @@ script Phenac_Lady_1_Dialogue_1 {
 script Phenac_GuyCenter_Dialogue_1 {
     lock
 	faceplayer
+    if (flag(FLAG_POKEBALLS_UNLOCKED)) {
+        msgbox(format("What? What?\p"
+        "Is something serious going on?"
+        ), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(format("There was some ruckus going on\n"
         "near the town's entrance earlier.\p"
         "It'd better not be the goons again\n"
@@ -477,6 +502,14 @@ script Phenac_LadyTopRight_Dialogue_1 {
 script Phenac_DudeGym_Dialogue_1 {
 	lock
 	faceplayer
+    if (flag(FLAG_POKEBALLS_UNLOCKED)) {
+        msgbox(format("I saw a bunch of scary-looking people going towards the Mayor's house.\p"
+        "But it won't matter if those guys do something bad.\p"
+        "I'm sure Justy won't let them get away with anything!"
+        ), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(format("Um ... I ...\n"
         "I really look up to Justy, the Leader\l"
         "of the Pregym.\p"
@@ -493,6 +526,13 @@ script Phenac_DudeGym_Dialogue_1 {
 script Phenac_OldLadyMayor_Dialogue_1 {
 	lock
 	faceplayer
+    if (flag(FLAG_POKEBALLS_UNLOCKED)) {
+        msgbox(format("My goodness! It's terrible!\p"
+        "A big group of shady looking men marched into the MAYOR's house!"
+        ), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(format("That large house is the MAYOR's\n"
         "home.\p"
         "If something concerns you while\n"
@@ -841,7 +881,35 @@ script Phenac_Team_Snagem_First_Encounter_Stadium {
 	))
     setvar(VAR_PHENAC_CITY_STATE, 3)
     setflag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1)
-    clearflag(FLAG_WILLIE_APPEAR_1)
+    releaseall
+    end
+}
+
+script Phenac_City_Lady_Needs_Help_1 {
+    lock
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+    face_up
+	))
+    applymovement(PHENAC_LADY_1, moves(
+	walk_fast_left * 3
+    walk_fast_down * 5
+	))
+    waitmovement
+    msgbox(format("Oh! It's you two!\n"
+    "Something terrible's happening!\p"
+    "A whole lot of scary men came here!\n"
+    "I think I even saw those two creeps\l"
+    "who took off in the truck earlier!"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(PHENAC_LADY_1, moves(
+	walk_up * 3
+    face_down
+    ))
+    waitmovement
+    setvar(VAR_PHENAC_CITY_STATE, 5)
     releaseall
     end
 }
@@ -851,6 +919,7 @@ mapscripts OldaleTown_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_TEMP_0, 1: OldaleTown_EventScript_RunPhenacIntro
         VAR_PHENAC_CITY_STATE, 2: Phenac_Team_Snagem_First_Encounter_Stadium
+        VAR_PHENAC_CITY_STATE, 4: Phenac_City_Lady_Needs_Help_1
     ]
 }
 

@@ -58,8 +58,8 @@
 #define FLAG_PHENAC_VISITED_MAYOR_1    0x2C // Allows VAR to be set in Phenac Stadium w/ receptionist
 #define FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1    0x2D // Creates new dialogues & allows pokeball purchase at outskirt
 #define FLAG_WILLIE_APPEAR_1    0x2E // Makes TRUE NPC Willie appear outside outskirt stand
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
+#define FLAG_POKEBALLS_UNLOCKED    0x2F // Unused Flag
+#define FLAG_PHENAC_CITY_MAYOR_MIRORB    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag
 #define FLAG_UNUSED_0x033    0x33 // Unused Flag
