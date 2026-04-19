@@ -4246,6 +4246,81 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sHariyamaLevelUpLearnset,
         .teachableLearnset = sHariyamaTeachableLearnset,
     },
+
+    [SPECIES_MAKUHITA_SHADOW] =
+    {
+        .baseHP        = 72,
+        .baseAttack    = 60,
+        .baseDefense   = 30,
+        .baseSpeed     = 25,
+        .baseSpAttack  = 20,
+        .baseSpDefense = 30,
+        .types = MON_TYPES(TYPE_FIGHTING),
+        .catchRate = 180,
+        .expYield = 0,
+        .evYield_HP = 0,
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FLUCTUATING,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_SHEER_FORCE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Makuhita"),
+        .cryId = CRY_MAKUHITA,
+        .natDexNum = NATIONAL_DEX_MAKUHITA,
+        .categoryName = _("Guts"),
+        .height = 10,
+        .weight = 864,
+        .description = COMPOUND_STRING(
+            "It loves to toughen up its body above all\n"
+            "else. If you hear quaking rumbles in a cave,\n"
+            "it is the sound of Makuhita undertaking\n"
+            "strenuous training."),
+        .pokemonScale = 256,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Makuhita,
+        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(48, 40) : MON_COORDS_SIZE(48, 48),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 12 : 8,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 7),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 22),
+        ),
+        .frontAnimId = P_GBA_STYLE_SPECIES_GFX ? ANIM_SWING_CONCAVE : ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Makuhita,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(56, 48) : MON_COORDS_SIZE(56, 56),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 11 : 8,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
+        .palette = gMonPalette_Makuhita,
+        .shinyPalette = gMonShinyPalette_Makuhita,
+        .iconSprite = gMonIcon_Makuhita,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 2 : 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 5, SHADOW_SIZE_M)
+        FOOTPRINT(Makuhita)
+        OVERWORLD(
+            sPicTable_Makuhita,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Makuhita,
+            gShinyOverworldPalette_Makuhita
+        )
+        .levelUpLearnset = sMakuhitaLevelUpLearnset,
+        .teachableLearnset = sMakuhitaTeachableLearnset,
+        .eggMoveLearnset = sMakuhitaEggMoveLearnset,
+        .isShadow = TRUE,
+    },
 #endif //P_FAMILY_MAKUHITA
 
 #if P_FAMILY_NOSEPASS
