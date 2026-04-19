@@ -1665,7 +1665,10 @@
 #define SPECIES_DRAMPA_MEGA                             1548
 #define SPECIES_FALINKS_MEGA                            1549
 
-#define SPECIES_EGG                                     (SPECIES_FALINKS_MEGA + 1)
+// Custom Shadow Pokémon
+#define SPECIES_MAKUHITA_SHADOW                         1550
+
+#define SPECIES_EGG                                     (SPECIES_MAKUHITA_SHADOW + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 
