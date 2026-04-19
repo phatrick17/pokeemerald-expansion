@@ -177,10 +177,9 @@ Level: 26
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_1 ===
 Name: Wakin
-Class: Team Aqua
+Class: TEAM_SNAGEM
 Pic: Aqua Grunt M
 Gender: Male
-Music: Aqua
 Double Battle: Yes
 AI: Check Bad Move
 

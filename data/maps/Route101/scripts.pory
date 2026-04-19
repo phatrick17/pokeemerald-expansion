@@ -513,6 +513,20 @@ script Outside_EventScript_WillieAmbush {
     end
 }
 
+script Outskirt_Stand_Willie_Outside_1 {
+    lockall
+    faceplayer
+    msgbox(format("WILLIE: Oh, hey, it's you!\n"
+        "I was worried about you.\p"
+        "Some rough-looking characters came around asking about you.\p"
+        "It made me worried.\p"
+        "Those guys, they looked like they're from Team Snagem."), MSGBOX_DEFAULT)
+    releaseall
+    end
+}
+
+
+
 // =============================================================
 // MOVEMENT DATA
 // =============================================================
@@ -545,6 +559,11 @@ script My_Debug_Menu {
 			setflag(FLAG_TRUDLEY_FOLEY_SPRITE)
 			setflag(FLAG_CAR_AND_BAG_OUTSKIRT)
 			setflag(FLAG_PHENAC_FOLLY_1)
+			setflag(FLAG_PHENAC_NASCOUR_1) //Nascour encounter script
+			setflag(FLAG_PHENAC_VISITED_MAYOR_1) //Mayor Visit 1
+			setflag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1) //Defeat Snagem Outside Stadium
+			setvar(VAR_PHENAC_CITY_STATE, 3)
+			clearflag(FLAG_WILLIE_APPEAR_1)
 			setflag(FLAG_MAP_UNLOCK_PHENAC) //map unlocks on different row on flags.h
 			setvar(VAR_WILLIE_STATE, 3) 
 			special(DoRivalNameChoiceScreen)

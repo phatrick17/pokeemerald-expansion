@@ -163,27 +163,27 @@ Route119_EventScript_IntroCutscene::
 # 135 "data/maps/Route119/scripts.pory"
 	setflag FLAG_TRUDLEY_FOLEY_SPRITE
 # 136 "data/maps/Route119/scripts.pory"
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
+	setflag FLAG_WILLIE_APPEAR_1
 # 137 "data/maps/Route119/scripts.pory"
-	warp MAP_ROUTE101, 33, 15
+	clearflag FLAG_HIDE_MAP_NAME_POPUP
 # 138 "data/maps/Route119/scripts.pory"
+	warp MAP_ROUTE101, 33, 15
+# 139 "data/maps/Route119/scripts.pory"
 	waitstate
-# 140 "data/maps/Route119/scripts.pory"
+# 141 "data/maps/Route119/scripts.pory"
 	releaseall
 	end
 
 
-# 148 "data/maps/Route119/scripts.pory"
-SNAGGEM_LOOK_BEHIND:
 # 149 "data/maps/Route119/scripts.pory"
-	face_up
+SNAGGEM_LOOK_BEHIND:
 # 150 "data/maps/Route119/scripts.pory"
+	face_up
+# 151 "data/maps/Route119/scripts.pory"
 	step_end
 
-# 154 "data/maps/Route119/scripts.pory"
-Route119_Movement_CameraPanDown:
 # 155 "data/maps/Route119/scripts.pory"
-	walk_fast_down
+Route119_Movement_CameraPanDown:
 # 156 "data/maps/Route119/scripts.pory"
 	walk_fast_down
 # 157 "data/maps/Route119/scripts.pory"
@@ -203,12 +203,12 @@ Route119_Movement_CameraPanDown:
 # 164 "data/maps/Route119/scripts.pory"
 	walk_fast_down
 # 165 "data/maps/Route119/scripts.pory"
+	walk_fast_down
+# 166 "data/maps/Route119/scripts.pory"
 	step_end
 
-# 169 "data/maps/Route119/scripts.pory"
-Route119_Movement_CameraPanUp:
 # 170 "data/maps/Route119/scripts.pory"
-	walk_up
+Route119_Movement_CameraPanUp:
 # 171 "data/maps/Route119/scripts.pory"
 	walk_up
 # 172 "data/maps/Route119/scripts.pory"
@@ -224,12 +224,12 @@ Route119_Movement_CameraPanUp:
 # 177 "data/maps/Route119/scripts.pory"
 	walk_up
 # 178 "data/maps/Route119/scripts.pory"
+	walk_up
+# 179 "data/maps/Route119/scripts.pory"
 	step_end
 
-# 182 "data/maps/Route119/scripts.pory"
-Route119_Movement_WesRideLeft:
 # 183 "data/maps/Route119/scripts.pory"
-	walk_fast_left
+Route119_Movement_WesRideLeft:
 # 184 "data/maps/Route119/scripts.pory"
 	walk_fast_left
 # 185 "data/maps/Route119/scripts.pory"
@@ -251,464 +251,464 @@ Route119_Movement_WesRideLeft:
 # 193 "data/maps/Route119/scripts.pory"
 	walk_fast_left
 # 194 "data/maps/Route119/scripts.pory"
+	walk_fast_left
+# 195 "data/maps/Route119/scripts.pory"
 	step_end
 
-# 207 "data/maps/Route119/scripts.pory"
-Route119_OnResume:
 # 208 "data/maps/Route119/scripts.pory"
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Route119_EventScript_TryRemoveKecleon
+Route119_OnResume:
 # 209 "data/maps/Route119/scripts.pory"
-	end
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Route119_EventScript_TryRemoveKecleon
 # 210 "data/maps/Route119/scripts.pory"
-
-# 211 "data/maps/Route119/scripts.pory"
-Route119_EventScript_TryRemoveKecleon::
-# 212 "data/maps/Route119/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
-# 213 "data/maps/Route119/scripts.pory"
-	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
-# 214 "data/maps/Route119/scripts.pory"
-	removeobject VAR_LAST_TALKED
-# 215 "data/maps/Route119/scripts.pory"
-	return
-# 216 "data/maps/Route119/scripts.pory"
-
-# 217 "data/maps/Route119/scripts.pory"
-Route119_OnTransition:
-# 218 "data/maps/Route119/scripts.pory"
-	call Common_EventScript_SetupRivalGfxId
-# 219 "data/maps/Route119/scripts.pory"
-	call Common_EventScript_SetupRivalOnBikeGfxId
-# 220 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
-# 221 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_ROUTE119_INTRO_STATE, 0, Route119_EventScript_SetupIntroObjects
-# 222 "data/maps/Route119/scripts.pory"
 	end
-# 223 "data/maps/Route119/scripts.pory"
+# 211 "data/maps/Route119/scripts.pory"
 
-# 224 "data/maps/Route119/scripts.pory"
-Route119_EventScript_SetupIntroObjects::
-# 225 "data/maps/Route119/scripts.pory"
-	setflag FLAG_HIDE_SNAGGEM_INTRO
-# 226 "data/maps/Route119/scripts.pory"
+# 212 "data/maps/Route119/scripts.pory"
+Route119_EventScript_TryRemoveKecleon::
+# 213 "data/maps/Route119/scripts.pory"
+	specialvar VAR_RESULT, GetBattleOutcome
+# 214 "data/maps/Route119/scripts.pory"
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+# 215 "data/maps/Route119/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 216 "data/maps/Route119/scripts.pory"
 	return
-# 227 "data/maps/Route119/scripts.pory"
+# 217 "data/maps/Route119/scripts.pory"
 
+# 218 "data/maps/Route119/scripts.pory"
+Route119_OnTransition:
+# 219 "data/maps/Route119/scripts.pory"
+	call Common_EventScript_SetupRivalGfxId
+# 220 "data/maps/Route119/scripts.pory"
+	call Common_EventScript_SetupRivalOnBikeGfxId
+# 221 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
+# 222 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_ROUTE119_INTRO_STATE, 0, Route119_EventScript_SetupIntroObjects
+# 223 "data/maps/Route119/scripts.pory"
+	end
+# 224 "data/maps/Route119/scripts.pory"
+
+# 225 "data/maps/Route119/scripts.pory"
+Route119_EventScript_SetupIntroObjects::
+# 226 "data/maps/Route119/scripts.pory"
+	setflag FLAG_HIDE_SNAGGEM_INTRO
+# 227 "data/maps/Route119/scripts.pory"
+	return
 # 228 "data/maps/Route119/scripts.pory"
 
 # 229 "data/maps/Route119/scripts.pory"
-Route119_EventScript_MoveInstituteWorkersDownstairs::
+
 # 230 "data/maps/Route119/scripts.pory"
-	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
+Route119_EventScript_MoveInstituteWorkersDownstairs::
 # 231 "data/maps/Route119/scripts.pory"
-	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
+	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS
 # 232 "data/maps/Route119/scripts.pory"
-	setvar VAR_WEATHER_INSTITUTE_STATE, 2
+	clearflag FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS
 # 233 "data/maps/Route119/scripts.pory"
-	return
+	setvar VAR_WEATHER_INSTITUTE_STATE, 2
 # 234 "data/maps/Route119/scripts.pory"
-
+	return
 # 235 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalTrigger1::
+
 # 236 "data/maps/Route119/scripts.pory"
-	setvar VAR_TEMP_1, 1
+Route119_EventScript_RivalTrigger1::
 # 237 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_RivalEncounter
+	setvar VAR_TEMP_1, 1
 # 238 "data/maps/Route119/scripts.pory"
-	end
-# 239 "data/maps/Route119/scripts.pory"
-
-# 240 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalTrigger2::
-# 241 "data/maps/Route119/scripts.pory"
-	setvar VAR_TEMP_1, 2
-# 242 "data/maps/Route119/scripts.pory"
 	goto Route119_EventScript_RivalEncounter
+# 239 "data/maps/Route119/scripts.pory"
+	end
+# 240 "data/maps/Route119/scripts.pory"
+
+# 241 "data/maps/Route119/scripts.pory"
+Route119_EventScript_RivalTrigger2::
+# 242 "data/maps/Route119/scripts.pory"
+	setvar VAR_TEMP_1, 2
 # 243 "data/maps/Route119/scripts.pory"
-	end
+	goto Route119_EventScript_RivalEncounter
 # 244 "data/maps/Route119/scripts.pory"
-
+	end
 # 245 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalEncounter::
+
 # 246 "data/maps/Route119/scripts.pory"
-	lockall
+Route119_EventScript_RivalEncounter::
 # 247 "data/maps/Route119/scripts.pory"
-	addobject LOCALID_ROUTE119_RIVAL_ON_BIKE
+	lockall
 # 248 "data/maps/Route119/scripts.pory"
-	checkplayergender
-# 249 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_RESULT, MALE, Route119_EventScript_PlayMayMusic
-# 250 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_RESULT, FEMALE, Route119_EventScript_PlayBrendanMusic
-# 251 "data/maps/Route119/scripts.pory"
-	delay 65
-# 252 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_RivalEnter1
-# 253 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_RivalEnter2
-# 254 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
-# 255 "data/maps/Route119/scripts.pory"
-	waitmovement 0
-# 256 "data/maps/Route119/scripts.pory"
-	delay 30
-# 257 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_SetRivalPos1
-# 258 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_SetRivalPos2
-# 259 "data/maps/Route119/scripts.pory"
-	removeobject LOCALID_ROUTE119_RIVAL_ON_BIKE
-# 260 "data/maps/Route119/scripts.pory"
-	addobject LOCALID_ROUTE119_RIVAL
-# 261 "data/maps/Route119/scripts.pory"
-	delay 30
-# 262 "data/maps/Route119/scripts.pory"
-	checkplayergender
-# 263 "data/maps/Route119/scripts.pory"
-	goto_if_eq VAR_RESULT, MALE, Route119_EventScript_BattleMay
-# 264 "data/maps/Route119/scripts.pory"
-	goto_if_eq VAR_RESULT, FEMALE, Route119_EventScript_BattleBrendan
-# 265 "data/maps/Route119/scripts.pory"
-	releaseall
-# 266 "data/maps/Route119/scripts.pory"
-	end
-# 267 "data/maps/Route119/scripts.pory"
-
-# 268 "data/maps/Route119/scripts.pory"
-Route119_EventScript_PlayMayMusic::
-# 269 "data/maps/Route119/scripts.pory"
-	playbgm MUS_ENCOUNTER_MAY, TRUE
-# 270 "data/maps/Route119/scripts.pory"
-	return
-# 271 "data/maps/Route119/scripts.pory"
-
-# 272 "data/maps/Route119/scripts.pory"
-Route119_EventScript_PlayBrendanMusic::
-# 273 "data/maps/Route119/scripts.pory"
-	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
-# 274 "data/maps/Route119/scripts.pory"
-	return
-# 275 "data/maps/Route119/scripts.pory"
-
-# 276 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleMay::
-# 277 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_MayIntro, MSGBOX_DEFAULT
-# 278 "data/maps/Route119/scripts.pory"
-	switch VAR_STARTER_MON
-# 279 "data/maps/Route119/scripts.pory"
-	case 0, Route119_EventScript_BattleMayTreecko
-# 280 "data/maps/Route119/scripts.pory"
-	case 1, Route119_EventScript_BattleMayTorchic
-# 281 "data/maps/Route119/scripts.pory"
-	case 2, Route119_EventScript_BattleMayMudkip
-# 282 "data/maps/Route119/scripts.pory"
-	end
-# 283 "data/maps/Route119/scripts.pory"
-
-# 284 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleMayTreecko::
-# 285 "data/maps/Route119/scripts.pory"
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TREECKO, Route119_Text_MayDefeat
-# 286 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_DefeatedMay
-# 287 "data/maps/Route119/scripts.pory"
-	end
-# 288 "data/maps/Route119/scripts.pory"
-
-# 289 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleMayTorchic::
-# 290 "data/maps/Route119/scripts.pory"
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TORCHIC, Route119_Text_MayDefeat
-# 291 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_DefeatedMay
-# 292 "data/maps/Route119/scripts.pory"
-	end
-# 293 "data/maps/Route119/scripts.pory"
-
-# 294 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleMayMudkip::
-# 295 "data/maps/Route119/scripts.pory"
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_MUDKIP, Route119_Text_MayDefeat
-# 296 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_DefeatedMay
-# 297 "data/maps/Route119/scripts.pory"
-	end
-# 298 "data/maps/Route119/scripts.pory"
-
-# 299 "data/maps/Route119/scripts.pory"
-Route119_EventScript_DefeatedMay::
-# 300 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_MayPresentForYou, MSGBOX_DEFAULT
-# 301 "data/maps/Route119/scripts.pory"
-	call Route119_EventScript_GiveFlyHM
-# 302 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_MayExplainFly, MSGBOX_DEFAULT
-# 303 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_RivalExitScottArrive
-# 304 "data/maps/Route119/scripts.pory"
-	end
-# 305 "data/maps/Route119/scripts.pory"
-
-# 306 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleBrendan::
-# 307 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_BrendanIntro, MSGBOX_DEFAULT
-# 308 "data/maps/Route119/scripts.pory"
-	switch VAR_STARTER_MON
-# 309 "data/maps/Route119/scripts.pory"
-	case 0, Route119_EventScript_BattleBrendanTreecko
-# 310 "data/maps/Route119/scripts.pory"
-	case 1, Route119_EventScript_BattleBrendanTorchic
-# 311 "data/maps/Route119/scripts.pory"
-	case 2, Route119_EventScript_BattleBrendanMudkip
-# 312 "data/maps/Route119/scripts.pory"
-	end
-# 313 "data/maps/Route119/scripts.pory"
-
-# 314 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleBrendanTreecko::
-# 315 "data/maps/Route119/scripts.pory"
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TREECKO, Route119_Text_BrendanDefeat
-# 316 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_DefeatedBrendan
-# 317 "data/maps/Route119/scripts.pory"
-	end
-# 318 "data/maps/Route119/scripts.pory"
-
-# 319 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleBrendanTorchic::
-# 320 "data/maps/Route119/scripts.pory"
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TORCHIC, Route119_Text_BrendanDefeat
-# 321 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_DefeatedBrendan
-# 322 "data/maps/Route119/scripts.pory"
-	end
-# 323 "data/maps/Route119/scripts.pory"
-
-# 324 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BattleBrendanMudkip::
-# 325 "data/maps/Route119/scripts.pory"
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_MUDKIP, Route119_Text_BrendanDefeat
-# 326 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_DefeatedBrendan
-# 327 "data/maps/Route119/scripts.pory"
-	end
-# 328 "data/maps/Route119/scripts.pory"
-
-# 329 "data/maps/Route119/scripts.pory"
-Route119_EventScript_DefeatedBrendan::
-# 330 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_BrendanIllGiveYouThis, MSGBOX_DEFAULT
-# 331 "data/maps/Route119/scripts.pory"
-	call Route119_EventScript_GiveFlyHM
-# 332 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_BrendanExplainFly, MSGBOX_DEFAULT
-# 333 "data/maps/Route119/scripts.pory"
-	goto Route119_EventScript_RivalExitScottArrive
-# 334 "data/maps/Route119/scripts.pory"
-	end
-# 335 "data/maps/Route119/scripts.pory"
-
-# 336 "data/maps/Route119/scripts.pory"
-Route119_EventScript_GiveFlyHM::
-# 337 "data/maps/Route119/scripts.pory"
-	giveitem ITEM_HM_FLY
-# 338 "data/maps/Route119/scripts.pory"
-	setflag FLAG_RECEIVED_HM_FLY
-# 339 "data/maps/Route119/scripts.pory"
-	return
-# 340 "data/maps/Route119/scripts.pory"
-
-# 341 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalExitScottArrive::
-# 342 "data/maps/Route119/scripts.pory"
-	closemessage
-# 343 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_SetRivalPos1
-# 344 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_SetRivalPos2
-# 345 "data/maps/Route119/scripts.pory"
-	removeobject LOCALID_ROUTE119_RIVAL
-# 346 "data/maps/Route119/scripts.pory"
 	addobject LOCALID_ROUTE119_RIVAL_ON_BIKE
-# 347 "data/maps/Route119/scripts.pory"
+# 249 "data/maps/Route119/scripts.pory"
+	checkplayergender
+# 250 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_RESULT, MALE, Route119_EventScript_PlayMayMusic
+# 251 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_RESULT, FEMALE, Route119_EventScript_PlayBrendanMusic
+# 252 "data/maps/Route119/scripts.pory"
+	delay 65
+# 253 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_RivalEnter1
+# 254 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_RivalEnter2
+# 255 "data/maps/Route119/scripts.pory"
+	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+# 256 "data/maps/Route119/scripts.pory"
+	waitmovement 0
+# 257 "data/maps/Route119/scripts.pory"
 	delay 30
-# 348 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_RivalExit1
-# 349 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_RivalExit2
-# 350 "data/maps/Route119/scripts.pory"
+# 258 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_SetRivalPos1
+# 259 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_SetRivalPos2
+# 260 "data/maps/Route119/scripts.pory"
 	removeobject LOCALID_ROUTE119_RIVAL_ON_BIKE
-# 351 "data/maps/Route119/scripts.pory"
-	setvar VAR_ROUTE119_STATE, 1
-# 352 "data/maps/Route119/scripts.pory"
-	savebgm MUS_DUMMY
-# 353 "data/maps/Route119/scripts.pory"
-	fadedefaultbgm
-# 354 "data/maps/Route119/scripts.pory"
-	delay 60
-# 355 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_SetScottPos1
-# 356 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_SetScottPos2
-# 357 "data/maps/Route119/scripts.pory"
-	addobject LOCALID_ROUTE119_SCOTT
-# 358 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_SCOTT, Route119_Movement_ScottEnter
-# 359 "data/maps/Route119/scripts.pory"
-	waitmovement 0
-# 360 "data/maps/Route119/scripts.pory"
-	addvar VAR_SCOTT_STATE, 1
-# 361 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_ScottWayToGoBeSeeingYou, MSGBOX_DEFAULT
-# 362 "data/maps/Route119/scripts.pory"
-	closemessage
-# 363 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_ScottExit1
-# 364 "data/maps/Route119/scripts.pory"
-	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_ScottExit2
-# 365 "data/maps/Route119/scripts.pory"
-	removeobject LOCALID_ROUTE119_SCOTT
-# 366 "data/maps/Route119/scripts.pory"
+# 261 "data/maps/Route119/scripts.pory"
+	addobject LOCALID_ROUTE119_RIVAL
+# 262 "data/maps/Route119/scripts.pory"
+	delay 30
+# 263 "data/maps/Route119/scripts.pory"
+	checkplayergender
+# 264 "data/maps/Route119/scripts.pory"
+	goto_if_eq VAR_RESULT, MALE, Route119_EventScript_BattleMay
+# 265 "data/maps/Route119/scripts.pory"
+	goto_if_eq VAR_RESULT, FEMALE, Route119_EventScript_BattleBrendan
+# 266 "data/maps/Route119/scripts.pory"
 	releaseall
-# 367 "data/maps/Route119/scripts.pory"
+# 267 "data/maps/Route119/scripts.pory"
 	end
+# 268 "data/maps/Route119/scripts.pory"
+
+# 269 "data/maps/Route119/scripts.pory"
+Route119_EventScript_PlayMayMusic::
+# 270 "data/maps/Route119/scripts.pory"
+	playbgm MUS_ENCOUNTER_MAY, TRUE
+# 271 "data/maps/Route119/scripts.pory"
+	return
+# 272 "data/maps/Route119/scripts.pory"
+
+# 273 "data/maps/Route119/scripts.pory"
+Route119_EventScript_PlayBrendanMusic::
+# 274 "data/maps/Route119/scripts.pory"
+	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+# 275 "data/maps/Route119/scripts.pory"
+	return
+# 276 "data/maps/Route119/scripts.pory"
+
+# 277 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleMay::
+# 278 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_MayIntro, MSGBOX_DEFAULT
+# 279 "data/maps/Route119/scripts.pory"
+	switch VAR_STARTER_MON
+# 280 "data/maps/Route119/scripts.pory"
+	case 0, Route119_EventScript_BattleMayTreecko
+# 281 "data/maps/Route119/scripts.pory"
+	case 1, Route119_EventScript_BattleMayTorchic
+# 282 "data/maps/Route119/scripts.pory"
+	case 2, Route119_EventScript_BattleMayMudkip
+# 283 "data/maps/Route119/scripts.pory"
+	end
+# 284 "data/maps/Route119/scripts.pory"
+
+# 285 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleMayTreecko::
+# 286 "data/maps/Route119/scripts.pory"
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TREECKO, Route119_Text_MayDefeat
+# 287 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_DefeatedMay
+# 288 "data/maps/Route119/scripts.pory"
+	end
+# 289 "data/maps/Route119/scripts.pory"
+
+# 290 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleMayTorchic::
+# 291 "data/maps/Route119/scripts.pory"
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TORCHIC, Route119_Text_MayDefeat
+# 292 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_DefeatedMay
+# 293 "data/maps/Route119/scripts.pory"
+	end
+# 294 "data/maps/Route119/scripts.pory"
+
+# 295 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleMayMudkip::
+# 296 "data/maps/Route119/scripts.pory"
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_MUDKIP, Route119_Text_MayDefeat
+# 297 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_DefeatedMay
+# 298 "data/maps/Route119/scripts.pory"
+	end
+# 299 "data/maps/Route119/scripts.pory"
+
+# 300 "data/maps/Route119/scripts.pory"
+Route119_EventScript_DefeatedMay::
+# 301 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_MayPresentForYou, MSGBOX_DEFAULT
+# 302 "data/maps/Route119/scripts.pory"
+	call Route119_EventScript_GiveFlyHM
+# 303 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_MayExplainFly, MSGBOX_DEFAULT
+# 304 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_RivalExitScottArrive
+# 305 "data/maps/Route119/scripts.pory"
+	end
+# 306 "data/maps/Route119/scripts.pory"
+
+# 307 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleBrendan::
+# 308 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_BrendanIntro, MSGBOX_DEFAULT
+# 309 "data/maps/Route119/scripts.pory"
+	switch VAR_STARTER_MON
+# 310 "data/maps/Route119/scripts.pory"
+	case 0, Route119_EventScript_BattleBrendanTreecko
+# 311 "data/maps/Route119/scripts.pory"
+	case 1, Route119_EventScript_BattleBrendanTorchic
+# 312 "data/maps/Route119/scripts.pory"
+	case 2, Route119_EventScript_BattleBrendanMudkip
+# 313 "data/maps/Route119/scripts.pory"
+	end
+# 314 "data/maps/Route119/scripts.pory"
+
+# 315 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleBrendanTreecko::
+# 316 "data/maps/Route119/scripts.pory"
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TREECKO, Route119_Text_BrendanDefeat
+# 317 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_DefeatedBrendan
+# 318 "data/maps/Route119/scripts.pory"
+	end
+# 319 "data/maps/Route119/scripts.pory"
+
+# 320 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleBrendanTorchic::
+# 321 "data/maps/Route119/scripts.pory"
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TORCHIC, Route119_Text_BrendanDefeat
+# 322 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_DefeatedBrendan
+# 323 "data/maps/Route119/scripts.pory"
+	end
+# 324 "data/maps/Route119/scripts.pory"
+
+# 325 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BattleBrendanMudkip::
+# 326 "data/maps/Route119/scripts.pory"
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_MUDKIP, Route119_Text_BrendanDefeat
+# 327 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_DefeatedBrendan
+# 328 "data/maps/Route119/scripts.pory"
+	end
+# 329 "data/maps/Route119/scripts.pory"
+
+# 330 "data/maps/Route119/scripts.pory"
+Route119_EventScript_DefeatedBrendan::
+# 331 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_BrendanIllGiveYouThis, MSGBOX_DEFAULT
+# 332 "data/maps/Route119/scripts.pory"
+	call Route119_EventScript_GiveFlyHM
+# 333 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_BrendanExplainFly, MSGBOX_DEFAULT
+# 334 "data/maps/Route119/scripts.pory"
+	goto Route119_EventScript_RivalExitScottArrive
+# 335 "data/maps/Route119/scripts.pory"
+	end
+# 336 "data/maps/Route119/scripts.pory"
+
+# 337 "data/maps/Route119/scripts.pory"
+Route119_EventScript_GiveFlyHM::
+# 338 "data/maps/Route119/scripts.pory"
+	giveitem ITEM_HM_FLY
+# 339 "data/maps/Route119/scripts.pory"
+	setflag FLAG_RECEIVED_HM_FLY
+# 340 "data/maps/Route119/scripts.pory"
+	return
+# 341 "data/maps/Route119/scripts.pory"
+
+# 342 "data/maps/Route119/scripts.pory"
+Route119_EventScript_RivalExitScottArrive::
+# 343 "data/maps/Route119/scripts.pory"
+	closemessage
+# 344 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_SetRivalPos1
+# 345 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_SetRivalPos2
+# 346 "data/maps/Route119/scripts.pory"
+	removeobject LOCALID_ROUTE119_RIVAL
+# 347 "data/maps/Route119/scripts.pory"
+	addobject LOCALID_ROUTE119_RIVAL_ON_BIKE
+# 348 "data/maps/Route119/scripts.pory"
+	delay 30
+# 349 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_RivalExit1
+# 350 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_RivalExit2
+# 351 "data/maps/Route119/scripts.pory"
+	removeobject LOCALID_ROUTE119_RIVAL_ON_BIKE
+# 352 "data/maps/Route119/scripts.pory"
+	setvar VAR_ROUTE119_STATE, 1
+# 353 "data/maps/Route119/scripts.pory"
+	savebgm MUS_DUMMY
+# 354 "data/maps/Route119/scripts.pory"
+	fadedefaultbgm
+# 355 "data/maps/Route119/scripts.pory"
+	delay 60
+# 356 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_SetScottPos1
+# 357 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_SetScottPos2
+# 358 "data/maps/Route119/scripts.pory"
+	addobject LOCALID_ROUTE119_SCOTT
+# 359 "data/maps/Route119/scripts.pory"
+	applymovement LOCALID_ROUTE119_SCOTT, Route119_Movement_ScottEnter
+# 360 "data/maps/Route119/scripts.pory"
+	waitmovement 0
+# 361 "data/maps/Route119/scripts.pory"
+	addvar VAR_SCOTT_STATE, 1
+# 362 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_ScottWayToGoBeSeeingYou, MSGBOX_DEFAULT
+# 363 "data/maps/Route119/scripts.pory"
+	closemessage
+# 364 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 1, Route119_EventScript_ScottExit1
+# 365 "data/maps/Route119/scripts.pory"
+	call_if_eq VAR_TEMP_1, 2, Route119_EventScript_ScottExit2
+# 366 "data/maps/Route119/scripts.pory"
+	removeobject LOCALID_ROUTE119_SCOTT
+# 367 "data/maps/Route119/scripts.pory"
+	releaseall
 # 368 "data/maps/Route119/scripts.pory"
-
+	end
 # 369 "data/maps/Route119/scripts.pory"
-Route119_EventScript_SetScottPos1::
+
 # 370 "data/maps/Route119/scripts.pory"
-	setobjectxyperm LOCALID_ROUTE119_SCOTT, 27, 25
+Route119_EventScript_SetScottPos1::
 # 371 "data/maps/Route119/scripts.pory"
-	return
+	setobjectxyperm LOCALID_ROUTE119_SCOTT, 27, 25
 # 372 "data/maps/Route119/scripts.pory"
-
+	return
 # 373 "data/maps/Route119/scripts.pory"
-Route119_EventScript_SetScottPos2::
+
 # 374 "data/maps/Route119/scripts.pory"
-	setobjectxyperm LOCALID_ROUTE119_SCOTT, 28, 25
+Route119_EventScript_SetScottPos2::
 # 375 "data/maps/Route119/scripts.pory"
-	return
+	setobjectxyperm LOCALID_ROUTE119_SCOTT, 28, 25
 # 376 "data/maps/Route119/scripts.pory"
-
+	return
 # 377 "data/maps/Route119/scripts.pory"
-Route119_EventScript_ScottExit1::
+
 # 378 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_SCOTT, Route119_Movement_ScottExit1
+Route119_EventScript_ScottExit1::
 # 379 "data/maps/Route119/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE119_SCOTT, Route119_Movement_ScottExit1
 # 380 "data/maps/Route119/scripts.pory"
-	return
+	waitmovement 0
 # 381 "data/maps/Route119/scripts.pory"
-
+	return
 # 382 "data/maps/Route119/scripts.pory"
-Route119_EventScript_ScottExit2::
+
 # 383 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_SCOTT, Route119_Movement_ScottExit2
+Route119_EventScript_ScottExit2::
 # 384 "data/maps/Route119/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE119_SCOTT, Route119_Movement_ScottExit2
 # 385 "data/maps/Route119/scripts.pory"
-	return
+	waitmovement 0
 # 386 "data/maps/Route119/scripts.pory"
-
+	return
 # 387 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalEnter1::
+
 # 388 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalEnter1
+Route119_EventScript_RivalEnter1::
 # 389 "data/maps/Route119/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalEnter1
 # 390 "data/maps/Route119/scripts.pory"
-	return
+	waitmovement 0
 # 391 "data/maps/Route119/scripts.pory"
-
+	return
 # 392 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalEnter2::
+
 # 393 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalEnter2
+Route119_EventScript_RivalEnter2::
 # 394 "data/maps/Route119/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalEnter2
 # 395 "data/maps/Route119/scripts.pory"
-	return
+	waitmovement 0
 # 396 "data/maps/Route119/scripts.pory"
-
+	return
 # 397 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalExit1::
+
 # 398 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_PLAYER, Route119_Movement_PlayerWatchRivalExit1
+Route119_EventScript_RivalExit1::
 # 399 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalExit1
+	applymovement LOCALID_PLAYER, Route119_Movement_PlayerWatchRivalExit1
 # 400 "data/maps/Route119/scripts.pory"
-	waitmovement 0
+	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalExit1
 # 401 "data/maps/Route119/scripts.pory"
-	return
-# 402 "data/maps/Route119/scripts.pory"
-
-# 403 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RivalExit2::
-# 404 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_PLAYER, Route119_Movement_PlayerWatchRivalExit2
-# 405 "data/maps/Route119/scripts.pory"
-	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalExit2
-# 406 "data/maps/Route119/scripts.pory"
 	waitmovement 0
+# 402 "data/maps/Route119/scripts.pory"
+	return
+# 403 "data/maps/Route119/scripts.pory"
+
+# 404 "data/maps/Route119/scripts.pory"
+Route119_EventScript_RivalExit2::
+# 405 "data/maps/Route119/scripts.pory"
+	applymovement LOCALID_PLAYER, Route119_Movement_PlayerWatchRivalExit2
+# 406 "data/maps/Route119/scripts.pory"
+	applymovement LOCALID_ROUTE119_RIVAL_ON_BIKE, Route119_Movement_RivalExit2
 # 407 "data/maps/Route119/scripts.pory"
-	return
+	waitmovement 0
 # 408 "data/maps/Route119/scripts.pory"
-
+	return
 # 409 "data/maps/Route119/scripts.pory"
-Route119_EventScript_SetRivalPos1::
+
 # 410 "data/maps/Route119/scripts.pory"
-	setobjectxyperm LOCALID_ROUTE119_RIVAL, 25, 32
+Route119_EventScript_SetRivalPos1::
 # 411 "data/maps/Route119/scripts.pory"
-	setobjectxyperm LOCALID_ROUTE119_RIVAL_ON_BIKE, 25, 32
+	setobjectxyperm LOCALID_ROUTE119_RIVAL, 25, 32
 # 412 "data/maps/Route119/scripts.pory"
-	return
+	setobjectxyperm LOCALID_ROUTE119_RIVAL_ON_BIKE, 25, 32
 # 413 "data/maps/Route119/scripts.pory"
-
-# 414 "data/maps/Route119/scripts.pory"
-Route119_EventScript_SetRivalPos2::
-# 415 "data/maps/Route119/scripts.pory"
-	setobjectxyperm LOCALID_ROUTE119_RIVAL, 26, 32
-# 416 "data/maps/Route119/scripts.pory"
-	setobjectxyperm LOCALID_ROUTE119_RIVAL_ON_BIKE, 26, 32
-# 417 "data/maps/Route119/scripts.pory"
 	return
+# 414 "data/maps/Route119/scripts.pory"
+
+# 415 "data/maps/Route119/scripts.pory"
+Route119_EventScript_SetRivalPos2::
+# 416 "data/maps/Route119/scripts.pory"
+	setobjectxyperm LOCALID_ROUTE119_RIVAL, 26, 32
+# 417 "data/maps/Route119/scripts.pory"
+	setobjectxyperm LOCALID_ROUTE119_RIVAL_ON_BIKE, 26, 32
 # 418 "data/maps/Route119/scripts.pory"
-
+	return
 # 419 "data/maps/Route119/scripts.pory"
-Route119_Movement_PlayerWatchRivalExit1:
+
 # 420 "data/maps/Route119/scripts.pory"
-	delay_16
+Route119_Movement_PlayerWatchRivalExit1:
 # 421 "data/maps/Route119/scripts.pory"
-	walk_in_place_faster_right
-# 422 "data/maps/Route119/scripts.pory"
-	delay_8
-# 423 "data/maps/Route119/scripts.pory"
-	walk_in_place_faster_up
-# 424 "data/maps/Route119/scripts.pory"
-	step_end
-# 425 "data/maps/Route119/scripts.pory"
-
-# 426 "data/maps/Route119/scripts.pory"
-Route119_Movement_PlayerWatchRivalExit2:
-# 427 "data/maps/Route119/scripts.pory"
 	delay_16
-# 428 "data/maps/Route119/scripts.pory"
-	walk_in_place_faster_left
-# 429 "data/maps/Route119/scripts.pory"
+# 422 "data/maps/Route119/scripts.pory"
+	walk_in_place_faster_right
+# 423 "data/maps/Route119/scripts.pory"
 	delay_8
-# 430 "data/maps/Route119/scripts.pory"
+# 424 "data/maps/Route119/scripts.pory"
 	walk_in_place_faster_up
-# 431 "data/maps/Route119/scripts.pory"
+# 425 "data/maps/Route119/scripts.pory"
 	step_end
-# 432 "data/maps/Route119/scripts.pory"
+# 426 "data/maps/Route119/scripts.pory"
 
+# 427 "data/maps/Route119/scripts.pory"
+Route119_Movement_PlayerWatchRivalExit2:
+# 428 "data/maps/Route119/scripts.pory"
+	delay_16
+# 429 "data/maps/Route119/scripts.pory"
+	walk_in_place_faster_left
+# 430 "data/maps/Route119/scripts.pory"
+	delay_8
+# 431 "data/maps/Route119/scripts.pory"
+	walk_in_place_faster_up
+# 432 "data/maps/Route119/scripts.pory"
+	step_end
 # 433 "data/maps/Route119/scripts.pory"
-Route119_Movement_RivalEnter1:
+
 # 434 "data/maps/Route119/scripts.pory"
-	walk_fast_right
+Route119_Movement_RivalEnter1:
 # 435 "data/maps/Route119/scripts.pory"
 	walk_fast_right
 # 436 "data/maps/Route119/scripts.pory"
@@ -724,15 +724,15 @@ Route119_Movement_RivalEnter1:
 # 441 "data/maps/Route119/scripts.pory"
 	walk_fast_right
 # 442 "data/maps/Route119/scripts.pory"
-	walk_fast_up
-# 443 "data/maps/Route119/scripts.pory"
-	step_end
-# 444 "data/maps/Route119/scripts.pory"
-
-# 445 "data/maps/Route119/scripts.pory"
-Route119_Movement_RivalEnter2:
-# 446 "data/maps/Route119/scripts.pory"
 	walk_fast_right
+# 443 "data/maps/Route119/scripts.pory"
+	walk_fast_up
+# 444 "data/maps/Route119/scripts.pory"
+	step_end
+# 445 "data/maps/Route119/scripts.pory"
+
+# 446 "data/maps/Route119/scripts.pory"
+Route119_Movement_RivalEnter2:
 # 447 "data/maps/Route119/scripts.pory"
 	walk_fast_right
 # 448 "data/maps/Route119/scripts.pory"
@@ -750,25 +750,25 @@ Route119_Movement_RivalEnter2:
 # 454 "data/maps/Route119/scripts.pory"
 	walk_fast_right
 # 455 "data/maps/Route119/scripts.pory"
-	walk_fast_up
-# 456 "data/maps/Route119/scripts.pory"
-	step_end
-# 457 "data/maps/Route119/scripts.pory"
-
-# 458 "data/maps/Route119/scripts.pory"
-Route119_Movement_RivalExit1:
-# 459 "data/maps/Route119/scripts.pory"
 	walk_fast_right
-# 460 "data/maps/Route119/scripts.pory"
+# 456 "data/maps/Route119/scripts.pory"
 	walk_fast_up
+# 457 "data/maps/Route119/scripts.pory"
+	step_end
+# 458 "data/maps/Route119/scripts.pory"
+
+# 459 "data/maps/Route119/scripts.pory"
+Route119_Movement_RivalExit1:
+# 460 "data/maps/Route119/scripts.pory"
+	walk_fast_right
 # 461 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 462 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 463 "data/maps/Route119/scripts.pory"
-	walk_fast_right
-# 464 "data/maps/Route119/scripts.pory"
 	walk_fast_up
+# 464 "data/maps/Route119/scripts.pory"
+	walk_fast_right
 # 465 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 466 "data/maps/Route119/scripts.pory"
@@ -776,25 +776,25 @@ Route119_Movement_RivalExit1:
 # 467 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 468 "data/maps/Route119/scripts.pory"
-	step_end
-# 469 "data/maps/Route119/scripts.pory"
-
-# 470 "data/maps/Route119/scripts.pory"
-Route119_Movement_RivalExit2:
-# 471 "data/maps/Route119/scripts.pory"
-	walk_fast_left
-# 472 "data/maps/Route119/scripts.pory"
 	walk_fast_up
+# 469 "data/maps/Route119/scripts.pory"
+	step_end
+# 470 "data/maps/Route119/scripts.pory"
+
+# 471 "data/maps/Route119/scripts.pory"
+Route119_Movement_RivalExit2:
+# 472 "data/maps/Route119/scripts.pory"
+	walk_fast_left
 # 473 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 474 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 475 "data/maps/Route119/scripts.pory"
-	walk_fast_right
+	walk_fast_up
 # 476 "data/maps/Route119/scripts.pory"
 	walk_fast_right
 # 477 "data/maps/Route119/scripts.pory"
-	walk_fast_up
+	walk_fast_right
 # 478 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 479 "data/maps/Route119/scripts.pory"
@@ -802,13 +802,13 @@ Route119_Movement_RivalExit2:
 # 480 "data/maps/Route119/scripts.pory"
 	walk_fast_up
 # 481 "data/maps/Route119/scripts.pory"
-	step_end
+	walk_fast_up
 # 482 "data/maps/Route119/scripts.pory"
-
+	step_end
 # 483 "data/maps/Route119/scripts.pory"
-Route119_Movement_ScottEnter:
+
 # 484 "data/maps/Route119/scripts.pory"
-	walk_down
+Route119_Movement_ScottEnter:
 # 485 "data/maps/Route119/scripts.pory"
 	walk_down
 # 486 "data/maps/Route119/scripts.pory"
@@ -816,25 +816,25 @@ Route119_Movement_ScottEnter:
 # 487 "data/maps/Route119/scripts.pory"
 	walk_down
 # 488 "data/maps/Route119/scripts.pory"
-	walk_left
+	walk_down
 # 489 "data/maps/Route119/scripts.pory"
 	walk_left
 # 490 "data/maps/Route119/scripts.pory"
-	walk_down
+	walk_left
 # 491 "data/maps/Route119/scripts.pory"
-	step_end
+	walk_down
 # 492 "data/maps/Route119/scripts.pory"
-
+	step_end
 # 493 "data/maps/Route119/scripts.pory"
-Route119_Movement_ScottExit1:
+
 # 494 "data/maps/Route119/scripts.pory"
-	walk_up
+Route119_Movement_ScottExit1:
 # 495 "data/maps/Route119/scripts.pory"
-	walk_right
+	walk_up
 # 496 "data/maps/Route119/scripts.pory"
 	walk_right
 # 497 "data/maps/Route119/scripts.pory"
-	walk_up
+	walk_right
 # 498 "data/maps/Route119/scripts.pory"
 	walk_up
 # 499 "data/maps/Route119/scripts.pory"
@@ -844,17 +844,17 @@ Route119_Movement_ScottExit1:
 # 501 "data/maps/Route119/scripts.pory"
 	walk_up
 # 502 "data/maps/Route119/scripts.pory"
-	step_end
+	walk_up
 # 503 "data/maps/Route119/scripts.pory"
-
+	step_end
 # 504 "data/maps/Route119/scripts.pory"
-Route119_Movement_ScottExit2:
+
 # 505 "data/maps/Route119/scripts.pory"
-	walk_up
+Route119_Movement_ScottExit2:
 # 506 "data/maps/Route119/scripts.pory"
-	walk_right
-# 507 "data/maps/Route119/scripts.pory"
 	walk_up
+# 507 "data/maps/Route119/scripts.pory"
+	walk_right
 # 508 "data/maps/Route119/scripts.pory"
 	walk_up
 # 509 "data/maps/Route119/scripts.pory"
@@ -864,614 +864,616 @@ Route119_Movement_ScottExit2:
 # 511 "data/maps/Route119/scripts.pory"
 	walk_up
 # 512 "data/maps/Route119/scripts.pory"
-	step_end
+	walk_up
 # 513 "data/maps/Route119/scripts.pory"
-
+	step_end
 # 514 "data/maps/Route119/scripts.pory"
-Route119_EventScript_CyclingTriathleteM::
+
 # 515 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_TallGrassSnaresBikeTires, MSGBOX_NPC
+Route119_EventScript_CyclingTriathleteM::
 # 516 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_TallGrassSnaresBikeTires, MSGBOX_NPC
 # 517 "data/maps/Route119/scripts.pory"
-
+	end
 # 518 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RouteSignFortree::
+
 # 519 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_RouteSignFortree, MSGBOX_SIGN
+Route119_EventScript_RouteSignFortree::
 # 520 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_RouteSignFortree, MSGBOX_SIGN
 # 521 "data/maps/Route119/scripts.pory"
-
+	end
 # 522 "data/maps/Route119/scripts.pory"
-Route119_EventScript_WeatherInstituteSign::
+
 # 523 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_WeatherInstitute, MSGBOX_SIGN
+Route119_EventScript_WeatherInstituteSign::
 # 524 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_WeatherInstitute, MSGBOX_SIGN
 # 525 "data/maps/Route119/scripts.pory"
-
+	end
 # 526 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Brent::
+
 # 527 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_BRENT, Route119_Text_BrentIntro, Route119_Text_BrentDefeat
+Route119_EventScript_Brent::
 # 528 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_BrentPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_BRENT, Route119_Text_BrentIntro, Route119_Text_BrentDefeat
 # 529 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_BrentPostBattle, MSGBOX_AUTOCLOSE
 # 530 "data/maps/Route119/scripts.pory"
-
+	end
 # 531 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Donald::
+
 # 532 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_DONALD, Route119_Text_DonaldIntro, Route119_Text_DonaldDefeat
+Route119_EventScript_Donald::
 # 533 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_DonaldPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_DONALD, Route119_Text_DonaldIntro, Route119_Text_DonaldDefeat
 # 534 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_DonaldPostBattle, MSGBOX_AUTOCLOSE
 # 535 "data/maps/Route119/scripts.pory"
-
+	end
 # 536 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Taylor::
+
 # 537 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_TAYLOR, Route119_Text_TaylorIntro, Route119_Text_TaylorDefeat
+Route119_EventScript_Taylor::
 # 538 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_TaylorPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_TAYLOR, Route119_Text_TaylorIntro, Route119_Text_TaylorDefeat
 # 539 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_TaylorPostBattle, MSGBOX_AUTOCLOSE
 # 540 "data/maps/Route119/scripts.pory"
-
+	end
 # 541 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Doug::
+
 # 542 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_DOUG, Route119_Text_DougIntro, Route119_Text_DougDefeat
+Route119_EventScript_Doug::
 # 543 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_DougPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_DOUG, Route119_Text_DougIntro, Route119_Text_DougDefeat
 # 544 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_DougPostBattle, MSGBOX_AUTOCLOSE
 # 545 "data/maps/Route119/scripts.pory"
-
+	end
 # 546 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Greg::
+
 # 547 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_GREG, Route119_Text_GregIntro, Route119_Text_GregDefeat
+Route119_EventScript_Greg::
 # 548 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_GregPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_GREG, Route119_Text_GregIntro, Route119_Text_GregDefeat
 # 549 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_GregPostBattle, MSGBOX_AUTOCLOSE
 # 550 "data/maps/Route119/scripts.pory"
-
+	end
 # 551 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Kent::
+
 # 552 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_KENT, Route119_Text_KentIntro, Route119_Text_KentDefeat
+Route119_EventScript_Kent::
 # 553 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_KentPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_KENT, Route119_Text_KentIntro, Route119_Text_KentDefeat
 # 554 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_KentPostBattle, MSGBOX_AUTOCLOSE
 # 555 "data/maps/Route119/scripts.pory"
-
+	end
 # 556 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Jackson::
+
 # 557 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_JACKSON_1, Route119_Text_JacksonIntro, Route119_Text_JacksonDefeat, Route119_EventScript_RegisterJackson
+Route119_EventScript_Jackson::
 # 558 "data/maps/Route119/scripts.pory"
-	specialvar VAR_RESULT, ShouldTryRematchBattle
+	trainerbattle_single TRAINER_JACKSON_1, Route119_Text_JacksonIntro, Route119_Text_JacksonDefeat, Route119_EventScript_RegisterJackson
 # 559 "data/maps/Route119/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, Route119_EventScript_RematchJackson
-# 560 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_JacksonPostBattle, MSGBOX_DEFAULT
-# 561 "data/maps/Route119/scripts.pory"
-	release
-# 562 "data/maps/Route119/scripts.pory"
-	end
-# 563 "data/maps/Route119/scripts.pory"
-
-# 564 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RegisterJackson::
-# 565 "data/maps/Route119/scripts.pory"
-	special PlayerFaceTrainerAfterBattle
-# 566 "data/maps/Route119/scripts.pory"
-	waitmovement 0
-# 567 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_JacksonRegister, MSGBOX_DEFAULT
-# 568 "data/maps/Route119/scripts.pory"
-	register_matchcall TRAINER_JACKSON_1
-# 569 "data/maps/Route119/scripts.pory"
-	release
-# 570 "data/maps/Route119/scripts.pory"
-	end
-# 571 "data/maps/Route119/scripts.pory"
-
-# 572 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RematchJackson::
-# 573 "data/maps/Route119/scripts.pory"
-	trainerbattle_rematch TRAINER_JACKSON_1, Route119_Text_JacksonRematchIntro, Route119_Text_JacksonRematchDefeat
-# 574 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_JacksonPostRematch, MSGBOX_AUTOCLOSE
-# 575 "data/maps/Route119/scripts.pory"
-	end
-# 576 "data/maps/Route119/scripts.pory"
-
-# 577 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Catherine::
-# 578 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_CATHERINE_1, Route119_Text_CatherineIntro, Route119_Text_CatherineDefeat, Route119_EventScript_RegisterCatherine
-# 579 "data/maps/Route119/scripts.pory"
 	specialvar VAR_RESULT, ShouldTryRematchBattle
-# 580 "data/maps/Route119/scripts.pory"
-	goto_if_eq VAR_RESULT, TRUE, Route119_EventScript_RematchCatherine
-# 581 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_CatherinePostBattle, MSGBOX_DEFAULT
-# 582 "data/maps/Route119/scripts.pory"
+# 560 "data/maps/Route119/scripts.pory"
+	goto_if_eq VAR_RESULT, TRUE, Route119_EventScript_RematchJackson
+# 561 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_JacksonPostBattle, MSGBOX_DEFAULT
+# 562 "data/maps/Route119/scripts.pory"
 	release
-# 583 "data/maps/Route119/scripts.pory"
+# 563 "data/maps/Route119/scripts.pory"
 	end
-# 584 "data/maps/Route119/scripts.pory"
+# 564 "data/maps/Route119/scripts.pory"
 
-# 585 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RegisterCatherine::
-# 586 "data/maps/Route119/scripts.pory"
+# 565 "data/maps/Route119/scripts.pory"
+Route119_EventScript_RegisterJackson::
+# 566 "data/maps/Route119/scripts.pory"
 	special PlayerFaceTrainerAfterBattle
+# 567 "data/maps/Route119/scripts.pory"
+	waitmovement 0
+# 568 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_JacksonRegister, MSGBOX_DEFAULT
+# 569 "data/maps/Route119/scripts.pory"
+	register_matchcall TRAINER_JACKSON_1
+# 570 "data/maps/Route119/scripts.pory"
+	release
+# 571 "data/maps/Route119/scripts.pory"
+	end
+# 572 "data/maps/Route119/scripts.pory"
+
+# 573 "data/maps/Route119/scripts.pory"
+Route119_EventScript_RematchJackson::
+# 574 "data/maps/Route119/scripts.pory"
+	trainerbattle_rematch TRAINER_JACKSON_1, Route119_Text_JacksonRematchIntro, Route119_Text_JacksonRematchDefeat
+# 575 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_JacksonPostRematch, MSGBOX_AUTOCLOSE
+# 576 "data/maps/Route119/scripts.pory"
+	end
+# 577 "data/maps/Route119/scripts.pory"
+
+# 578 "data/maps/Route119/scripts.pory"
+Route119_EventScript_Catherine::
+# 579 "data/maps/Route119/scripts.pory"
+	trainerbattle_single TRAINER_CATHERINE_1, Route119_Text_CatherineIntro, Route119_Text_CatherineDefeat, Route119_EventScript_RegisterCatherine
+# 580 "data/maps/Route119/scripts.pory"
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+# 581 "data/maps/Route119/scripts.pory"
+	goto_if_eq VAR_RESULT, TRUE, Route119_EventScript_RematchCatherine
+# 582 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_CatherinePostBattle, MSGBOX_DEFAULT
+# 583 "data/maps/Route119/scripts.pory"
+	release
+# 584 "data/maps/Route119/scripts.pory"
+	end
+# 585 "data/maps/Route119/scripts.pory"
+
+# 586 "data/maps/Route119/scripts.pory"
+Route119_EventScript_RegisterCatherine::
 # 587 "data/maps/Route119/scripts.pory"
-	waitmovement 0
+	special PlayerFaceTrainerAfterBattle
 # 588 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_CatherineRegister, MSGBOX_DEFAULT
+	waitmovement 0
 # 589 "data/maps/Route119/scripts.pory"
-	register_matchcall TRAINER_CATHERINE_1
+	msgbox Route119_Text_CatherineRegister, MSGBOX_DEFAULT
 # 590 "data/maps/Route119/scripts.pory"
-	release
+	register_matchcall TRAINER_CATHERINE_1
 # 591 "data/maps/Route119/scripts.pory"
-	end
+	release
 # 592 "data/maps/Route119/scripts.pory"
-
+	end
 # 593 "data/maps/Route119/scripts.pory"
-Route119_EventScript_RematchCatherine::
+
 # 594 "data/maps/Route119/scripts.pory"
-	trainerbattle_rematch TRAINER_CATHERINE_1, Route119_Text_CatherineRematchIntro, Route119_Text_CatherineRematchDefeat
+Route119_EventScript_RematchCatherine::
 # 595 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_CatherinePostRematch, MSGBOX_AUTOCLOSE
+	trainerbattle_rematch TRAINER_CATHERINE_1, Route119_Text_CatherineRematchIntro, Route119_Text_CatherineRematchDefeat
 # 596 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_CatherinePostRematch, MSGBOX_AUTOCLOSE
 # 597 "data/maps/Route119/scripts.pory"
-
+	end
 # 598 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Hugh::
+
 # 599 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_HUGH, Route119_Text_HughIntro, Route119_Text_HughDefeat
+Route119_EventScript_Hugh::
 # 600 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_HughPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_HUGH, Route119_Text_HughIntro, Route119_Text_HughDefeat
 # 601 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_HughPostBattle, MSGBOX_AUTOCLOSE
 # 602 "data/maps/Route119/scripts.pory"
-
+	end
 # 603 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Phil::
+
 # 604 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_PHIL, Route119_Text_PhilIntro, Route119_Text_PhilDefeat
+Route119_EventScript_Phil::
 # 605 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_PhilPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PHIL, Route119_Text_PhilIntro, Route119_Text_PhilDefeat
 # 606 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_PhilPostBattle, MSGBOX_AUTOCLOSE
 # 607 "data/maps/Route119/scripts.pory"
-
+	end
 # 608 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Yasu::
+
 # 609 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_YASU, Route119_Text_YasuIntro, Route119_Text_YasuDefeat
+Route119_EventScript_Yasu::
 # 610 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_YasuPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_YASU, Route119_Text_YasuIntro, Route119_Text_YasuDefeat
 # 611 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_YasuPostBattle, MSGBOX_AUTOCLOSE
 # 612 "data/maps/Route119/scripts.pory"
-
+	end
 # 613 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Takashi::
+
 # 614 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_TAKASHI, Route119_Text_TakashiIntro, Route119_Text_TakashiDefeat
+Route119_EventScript_Takashi::
 # 615 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_TakashiPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_TAKASHI, Route119_Text_TakashiIntro, Route119_Text_TakashiDefeat
 # 616 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_TakashiPostBattle, MSGBOX_AUTOCLOSE
 # 617 "data/maps/Route119/scripts.pory"
-
+	end
 # 618 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Hideo::
+
 # 619 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_HIDEO, Route119_Text_HideoIntro, Route119_Text_HideoDefeat
+Route119_EventScript_Hideo::
 # 620 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_HideoPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_HIDEO, Route119_Text_HideoIntro, Route119_Text_HideoDefeat
 # 621 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_HideoPostBattle, MSGBOX_AUTOCLOSE
 # 622 "data/maps/Route119/scripts.pory"
-
+	end
 # 623 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Chris::
+
 # 624 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_CHRIS, Route119_Text_ChrisIntro, Route119_Text_ChrisDefeat
+Route119_EventScript_Chris::
 # 625 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_ChrisPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_CHRIS, Route119_Text_ChrisIntro, Route119_Text_ChrisDefeat
 # 626 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_ChrisPostBattle, MSGBOX_AUTOCLOSE
 # 627 "data/maps/Route119/scripts.pory"
-
+	end
 # 628 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Fabian::
+
 # 629 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_FABIAN, Route119_Text_FabianIntro, Route119_Text_FabianDefeat
+Route119_EventScript_Fabian::
 # 630 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_FabianPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_FABIAN, Route119_Text_FabianIntro, Route119_Text_FabianDefeat
 # 631 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_FabianPostBattle, MSGBOX_AUTOCLOSE
 # 632 "data/maps/Route119/scripts.pory"
-
+	end
 # 633 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Dayton::
+
 # 634 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_DAYTON, Route119_Text_DaytonIntro, Route119_Text_DaytonDefeat
+Route119_EventScript_Dayton::
 # 635 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_DaytonPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_DAYTON, Route119_Text_DaytonIntro, Route119_Text_DaytonDefeat
 # 636 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_DaytonPostBattle, MSGBOX_AUTOCLOSE
 # 637 "data/maps/Route119/scripts.pory"
-
+	end
 # 638 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Rachel::
+
 # 639 "data/maps/Route119/scripts.pory"
-	trainerbattle_single TRAINER_RACHEL, Route119_Text_RachelIntro, Route119_Text_RachelDefeat
+Route119_EventScript_Rachel::
 # 640 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_RachelPostBattle, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_RACHEL, Route119_Text_RachelIntro, Route119_Text_RachelDefeat
 # 641 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_RachelPostBattle, MSGBOX_AUTOCLOSE
 # 642 "data/maps/Route119/scripts.pory"
-
+	end
 # 643 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BridgeAquaGrunt1::
+
 # 644 "data/maps/Route119/scripts.pory"
-	lock
+Route119_EventScript_BridgeAquaGrunt1::
 # 645 "data/maps/Route119/scripts.pory"
-	faceplayer
-# 646 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_StayAwayFromWeatherInstitute, MSGBOX_DEFAULT
-# 647 "data/maps/Route119/scripts.pory"
-	closemessage
-# 648 "data/maps/Route119/scripts.pory"
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-# 649 "data/maps/Route119/scripts.pory"
-	waitmovement 0
-# 650 "data/maps/Route119/scripts.pory"
-	release
-# 651 "data/maps/Route119/scripts.pory"
-	end
-# 652 "data/maps/Route119/scripts.pory"
-
-# 653 "data/maps/Route119/scripts.pory"
-Route119_EventScript_BridgeAquaGrunt2::
-# 654 "data/maps/Route119/scripts.pory"
 	lock
-# 655 "data/maps/Route119/scripts.pory"
+# 646 "data/maps/Route119/scripts.pory"
 	faceplayer
-# 656 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_DontGoNearWeatherInstitute, MSGBOX_DEFAULT
-# 657 "data/maps/Route119/scripts.pory"
+# 647 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_StayAwayFromWeatherInstitute, MSGBOX_DEFAULT
+# 648 "data/maps/Route119/scripts.pory"
 	closemessage
-# 658 "data/maps/Route119/scripts.pory"
+# 649 "data/maps/Route119/scripts.pory"
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-# 659 "data/maps/Route119/scripts.pory"
+# 650 "data/maps/Route119/scripts.pory"
 	waitmovement 0
-# 660 "data/maps/Route119/scripts.pory"
+# 651 "data/maps/Route119/scripts.pory"
 	release
+# 652 "data/maps/Route119/scripts.pory"
+	end
+# 653 "data/maps/Route119/scripts.pory"
+
+# 654 "data/maps/Route119/scripts.pory"
+Route119_EventScript_BridgeAquaGrunt2::
+# 655 "data/maps/Route119/scripts.pory"
+	lock
+# 656 "data/maps/Route119/scripts.pory"
+	faceplayer
+# 657 "data/maps/Route119/scripts.pory"
+	msgbox Route119_Text_DontGoNearWeatherInstitute, MSGBOX_DEFAULT
+# 658 "data/maps/Route119/scripts.pory"
+	closemessage
+# 659 "data/maps/Route119/scripts.pory"
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+# 660 "data/maps/Route119/scripts.pory"
+	waitmovement 0
 # 661 "data/maps/Route119/scripts.pory"
-	end
+	release
 # 662 "data/maps/Route119/scripts.pory"
-
+	end
 # 663 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Boy1::
+
 # 664 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_ThoughtFlyByCatchingBirdMons, MSGBOX_NPC
+Route119_EventScript_Boy1::
 # 665 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_ThoughtFlyByCatchingBirdMons, MSGBOX_NPC
 # 666 "data/maps/Route119/scripts.pory"
-
+	end
 # 667 "data/maps/Route119/scripts.pory"
-Route119_EventScript_Boy2::
+
 # 668 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_CanYourMonMakeSecretBase, MSGBOX_NPC
+Route119_EventScript_Boy2::
 # 669 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_CanYourMonMakeSecretBase, MSGBOX_NPC
 # 670 "data/maps/Route119/scripts.pory"
-
+	end
 # 671 "data/maps/Route119/scripts.pory"
-Route119_EventScript_TrainerTipsDecoration::
+
 # 672 "data/maps/Route119/scripts.pory"
-	msgbox Route119_Text_TrainerTipsDecoration, MSGBOX_SIGN
+Route119_EventScript_TrainerTipsDecoration::
 # 673 "data/maps/Route119/scripts.pory"
-	end
+	msgbox Route119_Text_TrainerTipsDecoration, MSGBOX_SIGN
 # 674 "data/maps/Route119/scripts.pory"
-
-# 675 "data/maps/Route119/scripts.pory"
-Route119_EventScript_ScottWonAtFortreeGymCall::
-# 676 "data/maps/Route119/scripts.pory"
-	lockall
-# 677 "data/maps/Route119/scripts.pory"
-	pokenavcall Route119_Text_ScottYouWonAtFortreeGym
-# 678 "data/maps/Route119/scripts.pory"
-	waitmessage
-# 679 "data/maps/Route119/scripts.pory"
-	clearflag FLAG_SCOTT_CALL_FORTREE_GYM
-# 680 "data/maps/Route119/scripts.pory"
-	addvar VAR_SCOTT_STATE, 1
-# 681 "data/maps/Route119/scripts.pory"
-	releaseall
-# 682 "data/maps/Route119/scripts.pory"
 	end
+# 675 "data/maps/Route119/scripts.pory"
+
+# 676 "data/maps/Route119/scripts.pory"
+Route119_EventScript_ScottWonAtFortreeGymCall::
+# 677 "data/maps/Route119/scripts.pory"
+	lockall
+# 678 "data/maps/Route119/scripts.pory"
+	pokenavcall Route119_Text_ScottYouWonAtFortreeGym
+# 679 "data/maps/Route119/scripts.pory"
+	waitmessage
+# 680 "data/maps/Route119/scripts.pory"
+	clearflag FLAG_SCOTT_CALL_FORTREE_GYM
+# 681 "data/maps/Route119/scripts.pory"
+	addvar VAR_SCOTT_STATE, 1
+# 682 "data/maps/Route119/scripts.pory"
+	releaseall
 # 683 "data/maps/Route119/scripts.pory"
-
+	end
 # 684 "data/maps/Route119/scripts.pory"
-Route119_Text_MayIntro:
+
 # 685 "data/maps/Route119/scripts.pory"
-	.string "MAY: {PLAYER}{KUN}!\n"
+Route119_Text_MayIntro:
 # 686 "data/maps/Route119/scripts.pory"
-	.string "Where were you? I was looking for you!\p"
+	.string "MAY: {PLAYER}{KUN}!\n"
 # 687 "data/maps/Route119/scripts.pory"
-	.string "How much stronger have you gotten?\n"
+	.string "Where were you? I was looking for you!\p"
 # 688 "data/maps/Route119/scripts.pory"
-	.string "Let me check for you!\p"
+	.string "How much stronger have you gotten?\n"
 # 689 "data/maps/Route119/scripts.pory"
-	.string "Ready with your POKéMON?\n"
+	.string "Let me check for you!\p"
 # 690 "data/maps/Route119/scripts.pory"
-	.string "Of course you are! Go!$"
+	.string "Ready with your POKéMON?\n"
 # 691 "data/maps/Route119/scripts.pory"
-
+	.string "Of course you are! Go!$"
 # 692 "data/maps/Route119/scripts.pory"
-Route119_Text_MayDefeat:
+
 # 693 "data/maps/Route119/scripts.pory"
-	.string "Achah!\n"
+Route119_Text_MayDefeat:
 # 694 "data/maps/Route119/scripts.pory"
-	.string "{PLAYER}{KUN}, you're strong!\p"
+	.string "Achah!\n"
 # 695 "data/maps/Route119/scripts.pory"
-	.string "I was worried that you might be\n"
+	.string "{PLAYER}{KUN}, you're strong!\p"
 # 696 "data/maps/Route119/scripts.pory"
-	.string "struggling with your training.$"
+	.string "I was worried that you might be\n"
 # 697 "data/maps/Route119/scripts.pory"
-
+	.string "struggling with your training.$"
 # 698 "data/maps/Route119/scripts.pory"
-Route119_Text_MayPresentForYou:
+
 # 699 "data/maps/Route119/scripts.pory"
-	.string "MAY: But I had absolutely nothing to\n"
+Route119_Text_MayPresentForYou:
 # 700 "data/maps/Route119/scripts.pory"
-	.string "worry about! Keep it up!\p"
+	.string "MAY: But I had absolutely nothing to\n"
 # 701 "data/maps/Route119/scripts.pory"
-	.string "And, here! I have a present for you.$"
+	.string "worry about! Keep it up!\p"
 # 702 "data/maps/Route119/scripts.pory"
-
+	.string "And, here! I have a present for you.$"
 # 703 "data/maps/Route119/scripts.pory"
-Route119_Text_MayExplainFly:
+
 # 704 "data/maps/Route119/scripts.pory"
-	.string "MAY: Use FLY, and your POKéMON will\n"
+Route119_Text_MayExplainFly:
 # 705 "data/maps/Route119/scripts.pory"
-	.string "instantly carry you to any town you've\l"
+	.string "MAY: Use FLY, and your POKéMON will\n"
 # 706 "data/maps/Route119/scripts.pory"
-	.string "already visited.\p"
+	.string "instantly carry you to any town you've\l"
 # 707 "data/maps/Route119/scripts.pory"
-	.string "But, to use FLY, you have to get\n"
+	.string "already visited.\p"
 # 708 "data/maps/Route119/scripts.pory"
-	.string "the GYM BADGE from FORTREE CITY.\l"
+	.string "But, to use FLY, you have to get\n"
 # 709 "data/maps/Route119/scripts.pory"
-	.string "That's important, so don't forget.\p"
+	.string "the GYM BADGE from FORTREE CITY.\l"
 # 710 "data/maps/Route119/scripts.pory"
-	.string "You should FLY home and visit\n"
+	.string "That's important, so don't forget.\p"
 # 711 "data/maps/Route119/scripts.pory"
-	.string "LITTLEROOT for a change.\p"
+	.string "You should FLY home and visit\n"
 # 712 "data/maps/Route119/scripts.pory"
-	.string "I bet your mom's worried about you,\n"
+	.string "LITTLEROOT for a change.\p"
 # 713 "data/maps/Route119/scripts.pory"
-	.string "{PLAYER}{KUN}.\p"
+	.string "I bet your mom's worried about you,\n"
 # 714 "data/maps/Route119/scripts.pory"
-	.string "Well, let's meet again somewhere!$"
+	.string "{PLAYER}{KUN}.\p"
 # 715 "data/maps/Route119/scripts.pory"
-
+	.string "Well, let's meet again somewhere!$"
 # 716 "data/maps/Route119/scripts.pory"
-Route119_Text_BrendanIntro:
+
 # 717 "data/maps/Route119/scripts.pory"
-	.string "BRENDAN: {PLAYER}! So this is where\n"
+Route119_Text_BrendanIntro:
 # 718 "data/maps/Route119/scripts.pory"
-	.string "you've been looking for POKéMON?\p"
+	.string "BRENDAN: {PLAYER}! So this is where\n"
 # 719 "data/maps/Route119/scripts.pory"
-	.string "Let me see how good you got.\n"
+	.string "you've been looking for POKéMON?\p"
 # 720 "data/maps/Route119/scripts.pory"
-	.string "I'll test you!\p"
+	.string "Let me see how good you got.\n"
 # 721 "data/maps/Route119/scripts.pory"
-	.string "Now!\n"
+	.string "I'll test you!\p"
 # 722 "data/maps/Route119/scripts.pory"
-	.string "It's a battle, so battle!$"
+	.string "Now!\n"
 # 723 "data/maps/Route119/scripts.pory"
-
+	.string "It's a battle, so battle!$"
 # 724 "data/maps/Route119/scripts.pory"
-Route119_Text_BrendanDefeat:
+
 # 725 "data/maps/Route119/scripts.pory"
-	.string "Hmm…\n"
+Route119_Text_BrendanDefeat:
 # 726 "data/maps/Route119/scripts.pory"
-	.string "You've gotten pretty darn decent.$"
+	.string "Hmm…\n"
 # 727 "data/maps/Route119/scripts.pory"
-
+	.string "You've gotten pretty darn decent.$"
 # 728 "data/maps/Route119/scripts.pory"
-Route119_Text_BrendanIllGiveYouThis:
+
 # 729 "data/maps/Route119/scripts.pory"
-	.string "BRENDAN: I'd say you're good enough\n"
+Route119_Text_BrendanIllGiveYouThis:
 # 730 "data/maps/Route119/scripts.pory"
-	.string "to search for POKéMON anywhere.\p"
+	.string "BRENDAN: I'd say you're good enough\n"
 # 731 "data/maps/Route119/scripts.pory"
-	.string "Here, I'll give you this.\n"
+	.string "to search for POKéMON anywhere.\p"
 # 732 "data/maps/Route119/scripts.pory"
-	.string "Try it out.$"
+	.string "Here, I'll give you this.\n"
 # 733 "data/maps/Route119/scripts.pory"
-
+	.string "Try it out.$"
 # 734 "data/maps/Route119/scripts.pory"
-Route119_Text_BrendanExplainFly:
+
 # 735 "data/maps/Route119/scripts.pory"
-	.string "BRENDAN: Use FLY, and your POKéMON\n"
+Route119_Text_BrendanExplainFly:
 # 736 "data/maps/Route119/scripts.pory"
-	.string "instantly carries you to any town\l"
+	.string "BRENDAN: Use FLY, and your POKéMON\n"
 # 737 "data/maps/Route119/scripts.pory"
-	.string "you've already visited.\p"
+	.string "instantly carries you to any town\l"
 # 738 "data/maps/Route119/scripts.pory"
-	.string "But you need the FORTREE GYM BADGE \n"
+	.string "you've already visited.\p"
 # 739 "data/maps/Route119/scripts.pory"
-	.string "to do that.\p"
+	.string "But you need the FORTREE GYM BADGE \n"
 # 740 "data/maps/Route119/scripts.pory"
-	.string "Anyway, I have to move along.$"
+	.string "to do that.\p"
 # 741 "data/maps/Route119/scripts.pory"
-
+	.string "Anyway, I have to move along.$"
 # 742 "data/maps/Route119/scripts.pory"
-Route119_Text_ScottWayToGoBeSeeingYou:
-# 743 "data/maps/Route119/scripts.pory"
-	.string "SCOTT: Hahahah!\n"
-# 744 "data/maps/Route119/scripts.pory"
-	.string "Way to go, {PLAYER}{KUN}!\p"
-# 745 "data/maps/Route119/scripts.pory"
-	.string "I just passed by a TRAINER riding\n"
-# 746 "data/maps/Route119/scripts.pory"
-	.string "a BIKE.\p"
-# 747 "data/maps/Route119/scripts.pory"
-	.string "You just beat that TRAINER, didn't you?\n"
-# 748 "data/maps/Route119/scripts.pory"
-	.string "It was pretty obvious that you did.\p"
-# 749 "data/maps/Route119/scripts.pory"
-	.string "The kid looked really upset with\n"
-# 750 "data/maps/Route119/scripts.pory"
-	.string "a face all red from anger.\p"
-# 751 "data/maps/Route119/scripts.pory"
-	.string "I sure seem to run into you often.\n"
-# 752 "data/maps/Route119/scripts.pory"
-	.string "Are you off to FORTREE GYM next?\p"
-# 753 "data/maps/Route119/scripts.pory"
-	.string "I expect that you'll do well at the GYM.\n"
-# 754 "data/maps/Route119/scripts.pory"
-	.string "Well, I'll be seeing you!$"
-# 755 "data/maps/Route119/scripts.pory"
 
+# 743 "data/maps/Route119/scripts.pory"
+Route119_Text_ScottWayToGoBeSeeingYou:
+# 744 "data/maps/Route119/scripts.pory"
+	.string "SCOTT: Hahahah!\n"
+# 745 "data/maps/Route119/scripts.pory"
+	.string "Way to go, {PLAYER}{KUN}!\p"
+# 746 "data/maps/Route119/scripts.pory"
+	.string "I just passed by a TRAINER riding\n"
+# 747 "data/maps/Route119/scripts.pory"
+	.string "a BIKE.\p"
+# 748 "data/maps/Route119/scripts.pory"
+	.string "You just beat that TRAINER, didn't you?\n"
+# 749 "data/maps/Route119/scripts.pory"
+	.string "It was pretty obvious that you did.\p"
+# 750 "data/maps/Route119/scripts.pory"
+	.string "The kid looked really upset with\n"
+# 751 "data/maps/Route119/scripts.pory"
+	.string "a face all red from anger.\p"
+# 752 "data/maps/Route119/scripts.pory"
+	.string "I sure seem to run into you often.\n"
+# 753 "data/maps/Route119/scripts.pory"
+	.string "Are you off to FORTREE GYM next?\p"
+# 754 "data/maps/Route119/scripts.pory"
+	.string "I expect that you'll do well at the GYM.\n"
+# 755 "data/maps/Route119/scripts.pory"
+	.string "Well, I'll be seeing you!$"
 # 756 "data/maps/Route119/scripts.pory"
 
 # 757 "data/maps/Route119/scripts.pory"
-Route119_Text_ScottYouWonAtFortreeGym:
+
 # 758 "data/maps/Route119/scripts.pory"
-	.string "… … … … … …\n"
+Route119_Text_ScottYouWonAtFortreeGym:
 # 759 "data/maps/Route119/scripts.pory"
-	.string "… … … … … Beep!\p"
-# 760 "data/maps/Route119/scripts.pory"
-	.string "SCOTT: Hiya, {PLAYER}{KUN}, it's me!\p"
-# 761 "data/maps/Route119/scripts.pory"
-	.string "Just as I thought, you won at\n"
-# 762 "data/maps/Route119/scripts.pory"
-	.string "the FORTREE GYM.\p"
-# 763 "data/maps/Route119/scripts.pory"
-	.string "Your strength…\n"
-# 764 "data/maps/Route119/scripts.pory"
-	.string "Perhaps you really are the TRAINER\l"
-# 765 "data/maps/Route119/scripts.pory"
-	.string "that I've been searching for.\p"
-# 766 "data/maps/Route119/scripts.pory"
-	.string "Remember, you have a fan in me.\n"
-# 767 "data/maps/Route119/scripts.pory"
-	.string "I'll be cheering from the sidelines.\l"
-# 768 "data/maps/Route119/scripts.pory"
-	.string "Keep up the great work!\p"
-# 769 "data/maps/Route119/scripts.pory"
 	.string "… … … … … …\n"
+# 760 "data/maps/Route119/scripts.pory"
+	.string "… … … … … Beep!\p"
+# 761 "data/maps/Route119/scripts.pory"
+	.string "SCOTT: Hiya, {PLAYER}{KUN}, it's me!\p"
+# 762 "data/maps/Route119/scripts.pory"
+	.string "Just as I thought, you won at\n"
+# 763 "data/maps/Route119/scripts.pory"
+	.string "the FORTREE GYM.\p"
+# 764 "data/maps/Route119/scripts.pory"
+	.string "Your strength…\n"
+# 765 "data/maps/Route119/scripts.pory"
+	.string "Perhaps you really are the TRAINER\l"
+# 766 "data/maps/Route119/scripts.pory"
+	.string "that I've been searching for.\p"
+# 767 "data/maps/Route119/scripts.pory"
+	.string "Remember, you have a fan in me.\n"
+# 768 "data/maps/Route119/scripts.pory"
+	.string "I'll be cheering from the sidelines.\l"
+# 769 "data/maps/Route119/scripts.pory"
+	.string "Keep up the great work!\p"
 # 770 "data/maps/Route119/scripts.pory"
-	.string "… … … … … Click!$"
+	.string "… … … … … …\n"
 # 771 "data/maps/Route119/scripts.pory"
-
+	.string "… … … … … Click!$"
 # 772 "data/maps/Route119/scripts.pory"
-Route119_Text_StayAwayFromWeatherInstitute:
+
 # 773 "data/maps/Route119/scripts.pory"
-	.string "We're standing lookout here.\p"
+Route119_Text_StayAwayFromWeatherInstitute:
 # 774 "data/maps/Route119/scripts.pory"
-	.string "Hey, you! Stay away from the WEATHER\n"
+	.string "We're standing lookout here.\p"
 # 775 "data/maps/Route119/scripts.pory"
-	.string "INSTITUTE. It's not safe.$"
+	.string "Hey, you! Stay away from the WEATHER\n"
 # 776 "data/maps/Route119/scripts.pory"
-
+	.string "INSTITUTE. It's not safe.$"
 # 777 "data/maps/Route119/scripts.pory"
-Route119_Text_DontGoNearWeatherInstitute:
+
 # 778 "data/maps/Route119/scripts.pory"
-	.string "Lookout duty is surprisingly boring.\p"
+Route119_Text_DontGoNearWeatherInstitute:
 # 779 "data/maps/Route119/scripts.pory"
-	.string "Hey, you! Please don't go near the\n"
+	.string "Lookout duty is surprisingly boring.\p"
 # 780 "data/maps/Route119/scripts.pory"
-	.string "WEATHER INSTITUTE.$"
+	.string "Hey, you! Please don't go near the\n"
 # 781 "data/maps/Route119/scripts.pory"
-
+	.string "WEATHER INSTITUTE.$"
 # 782 "data/maps/Route119/scripts.pory"
-Route119_Text_ThoughtFlyByCatchingBirdMons:
+
 # 783 "data/maps/Route119/scripts.pory"
-	.string "I thought you FLY by catching a whole\n"
+Route119_Text_ThoughtFlyByCatchingBirdMons:
 # 784 "data/maps/Route119/scripts.pory"
-	.string "flock of BIRD POKéMON, and then\l"
+	.string "I thought you FLY by catching a whole\n"
 # 785 "data/maps/Route119/scripts.pory"
-	.string "hanging on to them somehow.\p"
+	.string "flock of BIRD POKéMON, and then\l"
 # 786 "data/maps/Route119/scripts.pory"
-	.string "But it turns out there's an HM move\n"
+	.string "hanging on to them somehow.\p"
 # 787 "data/maps/Route119/scripts.pory"
-	.string "called FLY!\p"
+	.string "But it turns out there's an HM move\n"
 # 788 "data/maps/Route119/scripts.pory"
-	.string "I wish I'd known about that a long\n"
+	.string "called FLY!\p"
 # 789 "data/maps/Route119/scripts.pory"
-	.string "time ago…$"
+	.string "I wish I'd known about that a long\n"
 # 790 "data/maps/Route119/scripts.pory"
-
+	.string "time ago…$"
 # 791 "data/maps/Route119/scripts.pory"
-Route119_Text_TallGrassSnaresBikeTires:
+
 # 792 "data/maps/Route119/scripts.pory"
-	.string "Tch…\n"
+Route119_Text_TallGrassSnaresBikeTires:
 # 793 "data/maps/Route119/scripts.pory"
-	.string "It's a no-go…\p"
+	.string "Tch…\n"
 # 794 "data/maps/Route119/scripts.pory"
-	.string "The tall grass snares BIKE tires.\n"
+	.string "It's a no-go…\p"
 # 795 "data/maps/Route119/scripts.pory"
-	.string "There's no way you can cycle here.$"
+	.string "The tall grass snares BIKE tires.\n"
 # 796 "data/maps/Route119/scripts.pory"
-
+	.string "There's no way you can cycle here.$"
 # 797 "data/maps/Route119/scripts.pory"
-Route119_Text_CanYourMonMakeSecretBase:
+
 # 798 "data/maps/Route119/scripts.pory"
-	.string "Can your POKéMON use its SECRET POWER\n"
+Route119_Text_CanYourMonMakeSecretBase:
 # 799 "data/maps/Route119/scripts.pory"
-	.string "on a big pile of grass and make a\l"
+	.string "Can your POKéMON use its SECRET POWER\n"
 # 800 "data/maps/Route119/scripts.pory"
-	.string "SECRET BASE?$"
+	.string "on a big pile of grass and make a\l"
 # 801 "data/maps/Route119/scripts.pory"
-
+	.string "SECRET BASE?$"
 # 802 "data/maps/Route119/scripts.pory"
-Route119_Text_RouteSignFortree:
+
 # 803 "data/maps/Route119/scripts.pory"
-	.string "ROUTE 119\n"
+Route119_Text_RouteSignFortree:
 # 804 "data/maps/Route119/scripts.pory"
-	.string "{RIGHT_ARROW} FORTREE CITY$"
+	.string "ROUTE 119\n"
 # 805 "data/maps/Route119/scripts.pory"
-
+	.string "{RIGHT_ARROW} FORTREE CITY$"
 # 806 "data/maps/Route119/scripts.pory"
-Route119_Text_WeatherInstitute:
-# 807 "data/maps/Route119/scripts.pory"
-	.string "WEATHER INSTITUTE$"
-# 808 "data/maps/Route119/scripts.pory"
 
+# 807 "data/maps/Route119/scripts.pory"
+Route119_Text_WeatherInstitute:
+# 808 "data/maps/Route119/scripts.pory"
+	.string "WEATHER INSTITUTE$"
 # 809 "data/maps/Route119/scripts.pory"
-Route119_Text_TrainerTipsDecoration:
+
 # 810 "data/maps/Route119/scripts.pory"
-	.string "TRAINER TIPS\p"
+Route119_Text_TrainerTipsDecoration:
 # 811 "data/maps/Route119/scripts.pory"
-	.string "Up to sixteen decorations and\n"
+	.string "TRAINER TIPS\p"
 # 812 "data/maps/Route119/scripts.pory"
-	.string "furniture items can be placed in\l"
+	.string "Up to sixteen decorations and\n"
 # 813 "data/maps/Route119/scripts.pory"
-	.string "a SECRET BASE.\p"
+	.string "furniture items can be placed in\l"
 # 814 "data/maps/Route119/scripts.pory"
-	.string "Pick your favorite items and create\n"
+	.string "a SECRET BASE.\p"
 # 815 "data/maps/Route119/scripts.pory"
-	.string "your very own SECRET BASE exactly the\l"
+	.string "Pick your favorite items and create\n"
 # 816 "data/maps/Route119/scripts.pory"
+	.string "your very own SECRET BASE exactly the\l"
+# 817 "data/maps/Route119/scripts.pory"
 	.string "way you want.$"
 
 Route119_EventScript_IntroCutscene_Text_0:

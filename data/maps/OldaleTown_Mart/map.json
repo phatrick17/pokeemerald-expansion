@@ -40,7 +40,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "InsideBuilding_EventScript_Willie",
-      "flag": "0"
+      "flag": "FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1"
     },
     {
       "local_id": "OUTSKIRT_SHOP_GUY",

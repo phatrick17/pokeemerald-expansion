@@ -43,3 +43,35 @@ script Phenac_Stadium_Receptionist_1{
     releaseall
     end
 }
+
+script Phenac_Stadium_Guy1 {
+    lockall
+    faceplayer
+    msgbox(format("Hi!\p"
+    "Are you here to take part in the challenge, too?"), MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO) {
+        msgbox(format("Oh, so you must be here to watch the battles.\p"
+            "It's great to see some awesome POKeMON moves in a live setting.\p"
+            "The winner gets cash and a TM, which is short for Technical Machine.\p"
+            "A TM is used for teaching a move to a POKéMON, so it's important."
+            ), MSGBOX_DEFAULT)
+        releaseall()
+        end
+    }
+    msgbox(format("Oh, yeah? Well, me, too. I came here hoping to participate in the challenge.\p"
+        "But I was disappointed. By the time I arrived, the challenge had already started.\p"
+        "The winner gets cash and a TM, which is short for Technical Machine.\p"
+        "I wanted to win this knockout challenge. I would've liked to win the cash prize and the TM."
+        ), MSGBOX_DEFAULT)
+    releaseall
+    end
+}
+
+script Phenac_Stadium_Lady1 {
+    lockall
+    faceplayer
+    msgbox(format("Isn't this city's Stadium Amazing?\p"
+    "Oh, I wish I could soon battle at a Stadium as fabulous as this one!"), MSGBOX_DEFAULT)
+    releaseall
+    end
+}

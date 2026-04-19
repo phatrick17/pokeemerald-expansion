@@ -54,35 +54,35 @@ Phenac_Mayor_House_Escade_Encounter_1::
 	waitmovement
 # 84 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Encounter_1_Text_3, MSGBOX_DEFAULT
-# 93 "data/maps/Phenac_Mayor_House/scripts.pory"
-	closemessage
 # 94 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setvar VAR_PHENAC_CITY_STATE, 1
+	closemessage
 # 95 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setvar VAR_PHENAC_CITY_STATE, 1
+# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
 	applymovement PHENAC_ESCADE_1, Phenac_Mayor_House_Escade_Encounter_1_Movement_4
-# 100 "data/maps/Phenac_Mayor_House/scripts.pory"
-	waitmovement
 # 101 "data/maps/Phenac_Mayor_House/scripts.pory"
-	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
-# 104 "data/maps/Phenac_Mayor_House/scripts.pory"
 	waitmovement
+# 102 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
 # 105 "data/maps/Phenac_Mayor_House/scripts.pory"
-	removeobject PHENAC_MAYOR_HOUSE_RUI
+	waitmovement
 # 106 "data/maps/Phenac_Mayor_House/scripts.pory"
-	setflag FLAG_PHENAC_VISITED_MAYOR_1
+	removeobject PHENAC_MAYOR_HOUSE_RUI
 # 107 "data/maps/Phenac_Mayor_House/scripts.pory"
+	setflag FLAG_PHENAC_VISITED_MAYOR_1
+# 108 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
 
 Phenac_Mayor_House_Escade_Dialogue_1::
-# 113 "data/maps/Phenac_Mayor_House/scripts.pory"
-	lockall
 # 114 "data/maps/Phenac_Mayor_House/scripts.pory"
-	faceplayer
+	lockall
 # 115 "data/maps/Phenac_Mayor_House/scripts.pory"
+	faceplayer
+# 116 "data/maps/Phenac_Mayor_House/scripts.pory"
 	msgbox Phenac_Mayor_House_Escade_Dialogue_1_Text_0, MSGBOX_DEFAULT
-# 123 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 125 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
@@ -125,29 +125,29 @@ Phenac_Mayor_House_Escade_Encounter_1_Movement_3:
 	walk_in_place_down
 	step_end
 
-# 95 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
 Phenac_Mayor_House_Escade_Encounter_1_Movement_4:
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_up
-# 96 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_up
 # 97 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
-	walk_left
-# 97 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_up
+# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_left
 # 98 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 98 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_left
+# 99 "data/maps/Phenac_Mayor_House/scripts.pory"
 	face_up
 	step_end
 
-# 101 "data/maps/Phenac_Mayor_House/scripts.pory"
-Phenac_Mayor_House_Escade_Encounter_1_Movement_5:
 # 102 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Escade_Encounter_1_Movement_5:
+# 103 "data/maps/Phenac_Mayor_House/scripts.pory"
 	walk_left
 	step_end
 
@@ -210,14 +210,17 @@ Phenac_Mayor_House_Escade_Encounter_1_Text_3:
 	.string "yourselves.\p"
 	.string "If so, I urge you to visit our city's\n"
 	.string "pride and joy, our POkéMON Stadium.\p"
+	.string "It's all the way at the top of our city.\p"
 	.string "It's a breathtakingly beautiful\n"
 	.string "stadium benefitting our oasis city!$"
 
 Phenac_Mayor_House_Escade_Dialogue_1_Text_0:
-# 116 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 117 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Es Cade: I promise you, we will obtain\n"
 	.string "useful information about those\l"
 	.string "POkéMON.\p"
 	.string "While we do so, I heartily recommend\n"
 	.string "that you visit our POkéMON Stadium,\l"
-	.string "the symbol of our civic pride!$"
+	.string "the symbol of our civic pride!\p"
+	.string "Head all the way north and you can't\n"
+	.string "miss it!$"

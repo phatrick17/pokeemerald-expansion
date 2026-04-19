@@ -298,6 +298,8 @@ const u16 gTrainerPalette_RiderWillie[] = INCBIN_U16("graphics/trainers/palettes
 const u32 gTrainerFrontPic_Folly[] = INCBIN_U32("graphics/trainers/front_pics/folly.4bpp.smol");
 const u16 gTrainerPalette_Folly[]  = INCBIN_U16("graphics/trainers/palettes/folly.gbapal");
 
+const u16 gTrainerPalette_TeamSnagem[] = INCBIN_U16("graphics/trainers/palettes/team_snagem_front_sprite.gbapal");
+
 // The first two parameters invoke a front pic and palette by
 // calling a "TRAINER_PIC" constant (e.g. TRAINER_PIC_HIKER), and
 // gTrainerFrontPic/gTrainerPalette pointers, (e.g "gTrainerFrontPic_Hiker" and "gTrainerPalette_Hiker").
@@ -322,7 +324,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_COLLECTOR, gTrainerFrontPic_Collector, gTrainerPalette_Collector),
     TRAINER_SPRITE(TRAINER_PIC_AQUA_GRUNT_F, gTrainerFrontPic_AquaGruntF, gTrainerPalette_AquaGruntF),
     TRAINER_SPRITE(TRAINER_PIC_SWIMMER_M, gTrainerFrontPic_SwimmerM, gTrainerPalette_SwimmerM),
-    TRAINER_SPRITE(TRAINER_PIC_MAGMA_GRUNT_M, gTrainerFrontPic_MagmaGruntM, gTrainerPalette_MagmaGruntM),
+    TRAINER_SPRITE(TRAINER_PIC_MAGMA_GRUNT_M, gTrainerFrontPic_MagmaGruntM, gTrainerPalette_TeamSnagem),
     TRAINER_SPRITE(TRAINER_PIC_EXPERT_M, gTrainerFrontPic_ExpertM, gTrainerPalette_ExpertM),
     TRAINER_SPRITE(TRAINER_PIC_AQUA_ADMIN_M, gTrainerFrontPic_AquaAdminM, gTrainerPalette_AquaAdminM),
     TRAINER_SPRITE(TRAINER_PIC_BLACK_BELT, gTrainerFrontPic_BlackBelt, gTrainerPalette_BlackBelt),

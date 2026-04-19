@@ -693,6 +693,8 @@ Phenac_Team_Snagem_First_Encounter_Stadium::
 # 843 "data/maps/OldaleTown/scripts.pory"
 	setflag FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1
 # 844 "data/maps/OldaleTown/scripts.pory"
+	clearflag FLAG_WILLIE_APPEAR_1
+# 845 "data/maps/OldaleTown/scripts.pory"
 	releaseall
 	end
 

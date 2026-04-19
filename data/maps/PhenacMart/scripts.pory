@@ -6,6 +6,18 @@ mapscripts PhenacMart_MapScripts {}
 script Phenac_Mart_Lady1 {
     lock
     faceplayer
+    if (flag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1)) {
+        lockall
+        msgbox(format("Huh? Poké Balls?\p"
+            "Come to think of it, I haven't seen any being sold in this town.\p"
+            "Oh, wait...\p"
+            "I think I heard someone saying that they sell Poké Balls at the Outskirt Stand.\p"
+            "It's east from here, Phenac.\n"
+            "It's modeled after a locomotive, so you won't have any trouble finding it.\l"
+            "I think."), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(format
         ("If your POKéMON's hurt and weakened,\n"
         "you should use a Potion on it.\p"
@@ -23,9 +35,9 @@ script Phenac_MartClerk_Dialogue_1 {
     faceplayer
     msgbox(format("Hello! Welcome to our POKéMON Mart!\n"
         "How may I serve you?"), MSGBOX_DEFAULT)
-    if (flag(FLAG_UNLOCK_POKEBALL)) {  // PLACEHOLDER: replace flag name
-        goto(Phenac_MartClerk_ExpandedItems)
-    }
+//    if (flag(FLAG_UNLOCK_POKEBALL)) {  // PLACEHOLDER: replace flag name
+//        goto(Phenac_MartClerk_ExpandedItems)
+//    }
     pokemart(Phenac_Mart_1)
     msgbox(format("We look forward to your next visit!"), MSGBOX_DEFAULT)
     release

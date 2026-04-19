@@ -43,7 +43,7 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_HIDE_OUTSIDE_WILLIE    0x20 // Hides Willie Outside
+#define FLAG_HIDE_OUTSIDE_WILLIE    0x20 // Hides CUSTCENE Willie Outside
 #define FLAG_DEFEATED_WILLIE      0x21 // Flag set when Willie Defeated
 #define FLAG_HIDE_UMBREON_ESPEON_WES    0x22 // Hides Umbreon/Espeon/Wes in Intro
 #define FLAG_HIDE_SNAGGEM_INTRO    0x23 // Hide Team Snaggem Intro
@@ -54,10 +54,10 @@
 #define FLAG_PHENAC_RUNNER    0x28 // For Phenac Runner
 #define FLAG_DEFEAT_DRIG    0x29 // Old Man Drig
 #define FLAG_DEFEAT_KAIB   0x2A // Skater Kaib
-#define FLAG_PHENAC_NASCOUR_1    0x2B // Unused Flag
-#define FLAG_PHENAC_VISITED_MAYOR_1    0x2C // Unused Flag
-#define FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
+#define FLAG_PHENAC_NASCOUR_1    0x2B //
+#define FLAG_PHENAC_VISITED_MAYOR_1    0x2C // Allows VAR to be set in Phenac Stadium w/ receptionist
+#define FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1    0x2D // Creates new dialogues & allows pokeball purchase at outskirt
+#define FLAG_WILLIE_APPEAR_1    0x2E // Makes TRUE NPC Willie appear outside outskirt stand
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag

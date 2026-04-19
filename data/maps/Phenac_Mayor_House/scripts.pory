@@ -87,6 +87,7 @@ script Phenac_Mayor_House_Escade_Encounter_1 {
         "yourselves.\p"
         "If so, I urge you to visit our city's\n"
         "pride and joy, our POkéMON Stadium.\p"
+        "It's all the way at the top of our city.\p"
         "It's a breathtakingly beautiful\n"
         "stadium benefitting our oasis city!"
         ), MSGBOX_DEFAULT)
@@ -118,7 +119,8 @@ script Phenac_Mayor_House_Escade_Dialogue_1 {
         "POkéMON.\p"
         "While we do so, I heartily recommend\n"
         "that you visit our POkéMON Stadium,\l"
-        "the symbol of our civic pride!"
+        "the symbol of our civic pride!\p"
+        "Head all the way north and you can't miss it!"
         ), MSGBOX_DEFAULT)
     releaseall
     end

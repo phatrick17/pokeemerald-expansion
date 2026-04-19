@@ -841,10 +841,10 @@ script Phenac_Team_Snagem_First_Encounter_Stadium {
 	))
     setvar(VAR_PHENAC_CITY_STATE, 3)
     setflag(FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1)
+    clearflag(FLAG_WILLIE_APPEAR_1)
     releaseall
     end
 }
-
 
 mapscripts OldaleTown_MapScripts {
     MAP_SCRIPT_ON_TRANSITION: OldaleTown_OnTransition

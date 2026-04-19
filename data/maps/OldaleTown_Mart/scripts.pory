@@ -112,11 +112,20 @@ script InsideBuilding_EventScript_Willie {
 script OutskirtNPC1_Text { //NPC1
     lock
     faceplayer
-    	msgbox(
-        	format("Hey, do you know about Team Snagem?"),
-        	MSGBOX_YESNO)
+    if (flag(FLAG_PHENAC_FOLLY_1)) {
+        lockall
+        msgbox(format("Recently, there's been nothing but bad news.\p"
+            "I wish there'd be a good piece of news that would brighten up the day for everyone."), MSGBOX_DEFAULT)
+	    applymovement(OUTSKIRT_NPC1, moves(
+            face_up	))
+        releaseall
+        end
+    }
+    msgbox(
+        format("Hey, do you know about Team Snagem?"),
+        MSGBOX_YESNO)
     	if (var(VAR_RESULT) == NO) {
-        msgbox(
+            msgbox(
             format("They're a bunch of heartless crooks.\n"
                    "They rip off POKéMON from trainers\l"
                    "without any hesitation.\p"
@@ -127,7 +136,7 @@ script OutskirtNPC1_Text { //NPC1
                    "You'd best be careful."),
             MSGBOX_DEFAULT)
         } else {
-        msgbox(
+            msgbox(
             format("They're a seriously nasty lot!"
                     "There's no telling how many trainers have suffered at their hands."),
             MSGBOX_DEFAULT)
@@ -159,6 +168,15 @@ script Outskirt_Shop_Guy_TEXT {
 script OutskirtNPC2_Text { //NPC2
     lock
     faceplayer
+    if (flag(FLAG_PHENAC_FOLLY_1)) {
+        lockall
+        msgbox(format("Ah, so you've been to Phenac City.\p"
+            "Oh, my! I'm quite surprised! You've already gotten yourself a girlfriend!"), MSGBOX_DEFAULT)
+	    applymovement(OUTSKIRT_NPC2, moves(
+            face_up	))
+        releaseall
+        end
+    }
     msgbox(
         format(
             "You know, I don't quite understand\n"
@@ -181,6 +199,14 @@ script OutskirtNPC2_Text { //NPC2
 script OutskirtNPC3_Text { //NPC3
     lock
     faceplayer
+    if (flag(FLAG_PHENAC_FOLLY_1)) {
+        lockall
+        msgbox(format("Oh, so some thugs gave you a rough time?\p"
+            "There wasn't anyone like that in the old days.\p"
+            "Isn't it terrible?"), MSGBOX_DEFAULT)
+        releaseall
+        end
+    }
     msgbox(
         format(
             "There's no forgiving that Team\n"
