@@ -208,11 +208,49 @@ Phenac_Mayor_House_Miror_B_Encounter::
 	trainerbattle_no_intro TRAINER_GRUNT_SEAFLOOR_CAVERN_3, Phenac_Mayor_House_Miror_B_Encounter_Text_7
 # 255 "data/maps/Phenac_Mayor_House/scripts.pory"
 	clearflag FLAG_TEMP_5
-# 257 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 256 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_8, MSGBOX_DEFAULT
+# 269 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_TRUDLY, Phenac_Mayor_House_Miror_B_Encounter_Movement_10
+# 272 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 273 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_HOUSE_TRUDLY
+# 274 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playse SE_EXIT
+# 275 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitse
+# 276 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_FOLLY, Phenac_Mayor_House_Miror_B_Encounter_Movement_11
+# 280 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 281 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_HOUSE_FOLLY
+# 282 "data/maps/Phenac_Mayor_House/scripts.pory"
+	playse SE_EXIT
+# 283 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitse
+# 284 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Phenac_Mayor_House_Miror_B_Encounter_Movement_12
+# 287 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Miror_B_Encounter_Movement_13
+# 290 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 291 "data/maps/Phenac_Mayor_House/scripts.pory"
+	msgbox Phenac_Mayor_House_Miror_B_Encounter_Text_9, MSGBOX_DEFAULT
+# 295 "data/maps/Phenac_Mayor_House/scripts.pory"
+	closemessage
+# 296 "data/maps/Phenac_Mayor_House/scripts.pory"
+	applymovement PHENAC_MAYOR_HOUSE_RUI, Phenac_Mayor_House_Escade_Encounter_1_Movement_5
+# 299 "data/maps/Phenac_Mayor_House/scripts.pory"
+	waitmovement
+# 300 "data/maps/Phenac_Mayor_House/scripts.pory"
+	removeobject PHENAC_MAYOR_HOUSE_RUI
+# 301 "data/maps/Phenac_Mayor_House/scripts.pory"
 	setvar VAR_PHENAC_CITY_STATE, 6
-# 258 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 302 "data/maps/Phenac_Mayor_House/scripts.pory"
 	setflag FLAG_PHENAC_CITY_MAYOR_MIRORB
-# 259 "data/maps/Phenac_Mayor_House/scripts.pory"
+# 303 "data/maps/Phenac_Mayor_House/scripts.pory"
 	releaseall
 	end
 
@@ -379,6 +417,36 @@ Phenac_Mayor_House_Miror_B_Encounter_Movement_9:
 	walk_down
 	step_end
 
+# 269 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_10:
+# 270 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_fast_down
+# 270 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_fast_down
+	step_end
+
+# 276 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_11:
+# 277 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_fast_left
+# 278 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_fast_down
+# 278 "data/maps/Phenac_Mayor_House/scripts.pory"
+	walk_fast_down
+	step_end
+
+# 284 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_12:
+# 285 "data/maps/Phenac_Mayor_House/scripts.pory"
+	face_right
+	step_end
+
+# 287 "data/maps/Phenac_Mayor_House/scripts.pory"
+Phenac_Mayor_House_Miror_B_Encounter_Movement_13:
+# 288 "data/maps/Phenac_Mayor_House/scripts.pory"
+	face_left
+	step_end
+
 Phenac_Mayor_House_Escade_Encounter_1_Text_0:
 # 27 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Ah, you must be travelers!\n"
@@ -518,3 +586,28 @@ Phenac_Mayor_House_Miror_B_Encounter_Text_7:
 # 253 "data/maps/Phenac_Mayor_House/scripts.pory"
 	.string "Trudly: Wh-What?!\n"
 	.string "My POKeMON!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_8:
+# 256 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "Trudley: Darn it, but you're good!\n"
+	.string "You Snagged my POKeMON!\p"
+	.string "Folly: Hey, what are you saying?\n"
+	.string "You're not supposed to be impressed!\p"
+	.string "Oh, man ...\n"
+	.string "What are we supposed to do?\p"
+	.string "We got flattened again.\n"
+	.string "Miror B.'s going to chew us out!\p"
+	.string "Trudley: What do we do?\n"
+	.string "What is there to do?\p"
+	.string "...\n"
+	.string "...\p"
+	.string "Run away!!$"
+
+Phenac_Mayor_House_Miror_B_Encounter_Text_9:
+# 291 "data/maps/Phenac_Mayor_House/scripts.pory"
+	.string "{RIVAL}: You did it, {PLAYER}!\p"
+	.string "You Snagged that POKeMON from that\n"
+	.string "goon!\p"
+	.string "But I'm sure there are others like it.\p"
+	.string "Let's get all of them back from the bad\n"
+	.string "guys!$"

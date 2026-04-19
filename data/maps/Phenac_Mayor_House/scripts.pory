@@ -236,8 +236,8 @@ script Phenac_Mayor_House_Miror_B_Encounter {
     waitmovement
     fadenewbgm(MUS_NONE)
     msgbox(format("Folly: You, you, you!\p"
-    "The last time, you caught me off guard!\n"
-    "That's not gonna happen again!"), MSGBOX_DEFAULT)
+        "The last time, you caught me off guard!\n"
+        "That's not gonna happen again!"), MSGBOX_DEFAULT)
     trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_2,
         format("Folly: Awwww, blast it!\n"
         "I got tripped up again!"))
@@ -247,13 +247,57 @@ script Phenac_Mayor_House_Miror_B_Encounter {
     ))
     waitmovement
     msgbox(format("Trudley: My turn now!\p"
-    "I'm not going to end up like Folly!"), MSGBOX_DEFAULT)
+        "I'm not going to end up like Folly!"), MSGBOX_DEFAULT)
     setflag(FLAG_TEMP_5)
     trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_3,
         format("Trudly: Wh-What?!\n"
         "My POKeMON!"))
     clearflag(FLAG_TEMP_5)
-
+    msgbox(format("Trudley: Darn it, but you're good!\n"
+        "You Snagged my POKeMON!\p"
+        "Folly: Hey, what are you saying?\n"
+        "You're not supposed to be impressed!\p"
+        "Oh, man ...\n"
+        "What are we supposed to do?\p"
+        "We got flattened again.\n"
+        "Miror B.'s going to chew us out!\p"
+        "Trudley: What do we do?\n"
+        "What is there to do?\p"
+        "...\n"
+        "...\p"
+        "Run away!!"), MSGBOX_DEFAULT)
+    applymovement(PHENAC_MAYOR_HOUSE_TRUDLY, moves(
+		walk_fast_down *2
+    ))
+    waitmovement
+    removeobject(PHENAC_MAYOR_HOUSE_TRUDLY)
+    playse(SE_EXIT)
+    waitse
+    applymovement(PHENAC_MAYOR_HOUSE_FOLLY, moves(
+		walk_fast_left
+        walk_fast_down *2
+    ))
+    waitmovement
+    removeobject(PHENAC_MAYOR_HOUSE_FOLLY)
+    playse(SE_EXIT)
+    waitse
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		face_right
+    ))
+    applymovement(PHENAC_MAYOR_HOUSE_RUI, moves(
+		face_left
+    ))
+    waitmovement
+    msgbox(format("{RIVAL}: You did it, {PLAYER}!\p"
+    "You Snagged that POKeMON from that goon!\p"
+    "But I'm sure there are others like it.\p"
+    "Let's get all of them back from the bad guys!"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(PHENAC_MAYOR_HOUSE_RUI, moves(
+		walk_left
+    ))
+    waitmovement
+    removeobject(PHENAC_MAYOR_HOUSE_RUI)
     setvar(VAR_PHENAC_CITY_STATE, 6)
     setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
     releaseall

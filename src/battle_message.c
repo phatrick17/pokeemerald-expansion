@@ -877,19 +877,22 @@ const u8 *const gBattleStringsTable[STRINGID_COUNT] =
     [STRINGID_GOTCHAPKMNCAUGHTNOBGM]                = COMPOUND_STRING("Gotcha!\n{B_OPPONENT_MON1_NAME} was caught!{WAIT_SE}{RESUME_MUSIC}\p"),
     [STRINGID_PHENACRUISHADOWWARNING]               = COMPOUND_STRING(
         "{B_RIVAL_NAME}: {B_PLAYER_NAME}!\n"
-        "It's that one! That Pokémon!\p"
+        "It's that one! That POKéMON!\p"
         "Those jerks captured me because\n"
-        "I saw that Pokémon.\p"
+        "I saw that POKéMON.\p"
         "I can see a black aura coming from it.\n"
-        "They must have done something to that Pokémon!\p"
+        "They must have done something!\p"
         "{B_PLAYER_NAME}, be careful!\n"
-        "This Pokémon isn't afraid to attack people!\p"
+        "It isn't afraid to attack people!\p"
         "I know, {B_PLAYER_NAME}!\n"
-        "I hate to say this, but there's no other choice.\p"
-        "Get that Pokémon back from the bad guys!\n"
-        "Please, you have to!\p"
-        "You can…\n"
-        "Actually, only you can do it!\p"),
+        "I hate to say this...\p"
+        "but there's no other choice.\p"
+        "Get that POKéMON back from the bad\n"
+        "guys! Please, you have to!\p"
+        "You can...\n"
+        "Actually, only you can do it!\p"
+        "Use the Snag Machine and throw a\n"
+        "Poké Ball!"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =
