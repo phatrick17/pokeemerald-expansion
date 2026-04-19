@@ -6,6 +6,10 @@ static const struct LevelUpMove sNoneLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
+static const struct LevelUpMove sShadowMonLevelUpLearnset[] = {
+    LEVEL_UP_END
+};
+
 #if P_FAMILY_BULBASAUR
 static const struct LevelUpMove sBulbasaurLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
@@ -7871,10 +7875,6 @@ static const struct LevelUpMove sHariyamaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_REVERSAL),
     LEVEL_UP_MOVE(54, MOVE_HEAVY_SLAM),
     LEVEL_UP_MOVE(60, MOVE_HEADLONG_RUSH),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sMakuhitaShadowLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
@@ -22318,4 +22318,3 @@ static const struct LevelUpMove sPecharuntLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 #endif //P_FAMILY_PECHARUNT
-

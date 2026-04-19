@@ -5998,18 +5998,18 @@ AI: Check Bad Move
 
 Makuhita-Shadow
 Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 29 Spe
 - Focus Energy
 - Vital Throw
 - Cross Chop
 - Shadow Rush
 
-Makuhita
+Makuhita-Shadow
 Level: 1
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Lugia
-Level: 5
+Makuhita-Shadow
+Level: 1
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Poochyena
