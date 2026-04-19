@@ -6005,12 +6005,20 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 29 Spe
 - Shadow Rush
 
 Makuhita-Shadow
-Level: 1
+Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Focus Energy
+- Vital Throw
+- Cross Chop
+- Shadow Rush
 
 Makuhita-Shadow
-Level: 1
+Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Focus Energy
+- Vital Throw
+- Cross Chop
+- Shadow Rush
 
 Poochyena
 Level: 1

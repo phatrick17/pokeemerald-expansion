@@ -570,6 +570,7 @@ script My_Debug_Menu {
 			special(DoRivalNameChoiceScreen)
     		waitstate()
 			createfollowernpc(OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL)
+			additem(ITEM_MASTER_BALL, 999)
             release
 			end
         case 1:
