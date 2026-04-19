@@ -247,6 +247,8 @@ extern const u8 BattleScript_ShakeBallThrow[];
 extern const u8 BattleScript_TrainerBallBlock[];
 extern const u8 BattleScript_ShadowPokemonAppeared[];
 extern const u8 BattleScript_ShadowPokemonAppearedEnd2[];
+extern const u8 BattleScript_PhenacRuiShadowWarning[];
+extern const u8 BattleScript_PhenacRuiShadowWarningEnd2[];
 extern const u8 BattleScript_RunByUsingItem[];
 extern const u8 BattleScript_ActionWatchesCarefully[];
 extern const u8 BattleScript_ActionGetNear[];

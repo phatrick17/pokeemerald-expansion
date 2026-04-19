@@ -8016,7 +8016,10 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
     {
         gDisableStructs[battler].shadowMessageDone = TRUE;
         gBattlerAttacker = battler;
-        BattleScriptCall(BattleScript_ShadowPokemonAppeared);
+        if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_GRUNT_SEAFLOOR_CAVERN_3)
+            BattleScriptCall(BattleScript_PhenacRuiShadowWarning);
+        else
+            BattleScriptCall(BattleScript_ShadowPokemonAppeared);
         return TRUE;
     }
 
