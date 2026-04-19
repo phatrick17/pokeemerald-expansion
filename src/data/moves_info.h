@@ -21292,6 +21292,25 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .battleAnimScript = gBattleAnimMove_MalignantChain,
     },
 
+    // Shadow moves (Pokémon XD: Gale of Darkness)
+    [MOVE_SHADOW_RUSH] =
+    {
+        .name = COMPOUND_STRING("Shadow Rush"),
+        .description = COMPOUND_STRING(
+            "A tackle performed while\n"
+            "exuding a shadowy aura."),
+        .effect = EFFECT_HIT,
+        .power = 55,
+        .type = TYPE_SHADOW,
+        .accuracy = 100,
+        .pp = 15,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .makesContact = TRUE,
+        .battleAnimScript = gBattleAnimMove_Tackle,
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
