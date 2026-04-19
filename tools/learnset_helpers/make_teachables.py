@@ -120,7 +120,23 @@ def prepare_output(all_learnables: dict[str, set[str]], repo_teachables: set[str
             cursor = match_e + 1
             continue
 
-        repo_species_teachables = filter(lambda m: m in repo_teachables, all_learnables[species_upper])
+#custom Code
+        # For species not in the upstream JSON (e.g. custom shadow forms), fall
+        # back to the base species so they inherit the same TM/tutor learnset.
+        lookup_key = species_upper
+        if lookup_key not in all_learnables:
+            base_key = lookup_key.removesuffix("_SHADOW")
+            if base_key in all_learnables:
+                lookup_key = base_key
+            else:
+                # Completely unknown species — keep the existing entry unchanged.
+                new += old[cursor:match_e + 1]
+                cursor = match_e + 1
+                continue
+
+        repo_species_teachables = filter(lambda m: m in repo_teachables, all_learnables[lookup_key])
+#End Custom Code
+
 
         new += old[cursor:match_b]
         new += "\n".join([
