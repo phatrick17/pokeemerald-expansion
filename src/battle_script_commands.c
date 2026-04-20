@@ -14099,6 +14099,35 @@ static void Cmd_givecaughtmon(void)
     {
         u32 caughtBattler = GetCatchingBattler();
         struct Pokemon *caughtMon = GetBattlerMon(caughtBattler);
+        // Snagged shadow Pokémon roll their own nature, IVs, and shiny chance
+        // instead of inheriting them from the trainer's party data, matching
+        // Pokémon Colosseum/XD behavior.
+        if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+         && gSpeciesInfo[GetMonData(caughtMon, MON_DATA_SPECIES, NULL)].isShadow)
+        {
+            u32 personality = Random32();
+            u32 ivRandom = Random32();
+            u16 ivLo = (u16)ivRandom;
+            u16 ivHi = (u16)(ivRandom >> 16);
+            u32 iv;
+
+            SetMonData(caughtMon, MON_DATA_PERSONALITY, &personality);
+
+            iv = ivLo & MAX_IV_MASK;
+            SetMonData(caughtMon, MON_DATA_HP_IV, &iv);
+            iv = (ivLo & (MAX_IV_MASK << 5)) >> 5;
+            SetMonData(caughtMon, MON_DATA_ATK_IV, &iv);
+            iv = (ivLo & (MAX_IV_MASK << 10)) >> 10;
+            SetMonData(caughtMon, MON_DATA_DEF_IV, &iv);
+            iv = ivHi & MAX_IV_MASK;
+            SetMonData(caughtMon, MON_DATA_SPEED_IV, &iv);
+            iv = (ivHi & (MAX_IV_MASK << 5)) >> 5;
+            SetMonData(caughtMon, MON_DATA_SPATK_IV, &iv);
+            iv = (ivHi & (MAX_IV_MASK << 10)) >> 10;
+            SetMonData(caughtMon, MON_DATA_SPDEF_IV, &iv);
+
+            CalculateMonStats(caughtMon);
+        }
         if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9)
         {
             u16 lostItem = gBattleStruct->itemLost[B_SIDE_OPPONENT][gBattlerPartyIndexes[GetCatchingBattler()]].originalItem;
