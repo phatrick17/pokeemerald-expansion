@@ -14101,30 +14101,35 @@ static void Cmd_givecaughtmon(void)
         struct Pokemon *caughtMon = GetBattlerMon(caughtBattler);
         // Snagged shadow Pokémon roll their own nature, IVs, and shiny chance
         // instead of inheriting them from the trainer's party data, matching
-        // Pokémon Colosseum/XD behavior.
+        // Pokémon Colosseum/XD behavior. We override via MON_DATA_HIDDEN_NATURE
+        // and MON_DATA_IS_SHINY (unencrypted modifier fields) so the personality
+        // stays intact — changing personality here would reshuffle the encrypted
+        // substruct layout and produce a bad egg.
         if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
          && gSpeciesInfo[GetMonData(caughtMon, MON_DATA_SPECIES, NULL)].isShadow)
         {
-            u32 personality = Random32();
             u32 ivRandom = Random32();
             u16 ivLo = (u16)ivRandom;
             u16 ivHi = (u16)(ivRandom >> 16);
             u32 iv;
-
-            SetMonData(caughtMon, MON_DATA_PERSONALITY, &personality);
+            bool32 isShiny = (Random() & 0xFFFF) < SHINY_ODDS;
+            u32 hiddenNature = Random() % NUM_NATURES;
 
             iv = ivLo & MAX_IV_MASK;
             SetMonData(caughtMon, MON_DATA_HP_IV, &iv);
-            iv = (ivLo & (MAX_IV_MASK << 5)) >> 5;
+            iv = (ivLo >> 5) & MAX_IV_MASK;
             SetMonData(caughtMon, MON_DATA_ATK_IV, &iv);
-            iv = (ivLo & (MAX_IV_MASK << 10)) >> 10;
+            iv = (ivLo >> 10) & MAX_IV_MASK;
             SetMonData(caughtMon, MON_DATA_DEF_IV, &iv);
             iv = ivHi & MAX_IV_MASK;
             SetMonData(caughtMon, MON_DATA_SPEED_IV, &iv);
-            iv = (ivHi & (MAX_IV_MASK << 5)) >> 5;
+            iv = (ivHi >> 5) & MAX_IV_MASK;
             SetMonData(caughtMon, MON_DATA_SPATK_IV, &iv);
-            iv = (ivHi & (MAX_IV_MASK << 10)) >> 10;
+            iv = (ivHi >> 10) & MAX_IV_MASK;
             SetMonData(caughtMon, MON_DATA_SPDEF_IV, &iv);
+
+            SetMonData(caughtMon, MON_DATA_IS_SHINY, &isShiny);
+            SetMonData(caughtMon, MON_DATA_HIDDEN_NATURE, &hiddenNature);
 
             CalculateMonStats(caughtMon);
         }
