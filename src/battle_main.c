@@ -1942,7 +1942,18 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[monIndex].species);
             else if (partyData[monIndex].gender == TRAINER_MON_RANDOM_GENDER)
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(Random() & 1 ? MON_MALE : MON_FEMALE, partyData[monIndex].species);
-            ModifyPersonalityForNature(&personalityValue, partyData[monIndex].nature);
+//            ModifyPersonalityForNature(&personalityValue, partyData[monIndex].nature);
+
+            if (gSpeciesInfo[partyData[monIndex].species].isShadow)
+            {
+                u32 randomIvs = Random32() & 0x3FFFFFFF;
+                SetMonData(&party[i], MON_DATA_IVS, &randomIvs);
+            }
+            else
+            {
+                SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            }
+
             if (partyData[monIndex].isShiny)
             {
                 otIdType = OT_ID_PRESET;
@@ -1952,7 +1963,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
-            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+//            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+
+            if (gSpeciesInfo[partyData[monIndex].species].isShadow)
+            {
+                u32 randomIvs = Random32() & 0x3FFFFFF;
+                SetMonData(&party[i], MON_DATA_IVS, &randomIvs);
+            }
+            else
+            {
+                SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            }
+
+
             if (partyData[monIndex].ev != NULL)
             {
                 SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));
