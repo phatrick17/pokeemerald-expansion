@@ -14135,29 +14135,19 @@ static void Cmd_givecaughtmon(void)
         gSelectedMonPartyId = PARTY_SIZE;
         gBattleCommunication[MULTIUSE_STATE] = 0;
 
+        if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_NO_MESSSAGE_SKIP)
+            gBattlescriptCurrInstr = cmd->passInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            // Shadow snag catches always continue into the fainted-mon handler so
-            // the caught enemy slot is treated like a normal faint: HITMARKER_FAINTED
-            // is set so checkteamslost sees the empty slot, a replacement is picked,
-            // and the throw-ball state is cleared so the next turn's action selection
-            // doesn't spin on a stale half-dead battler.
+            // Shadow snag catches continue into the fainted-mon handler. Ensure the
+            // handler points at the caught enemy battler, otherwise it may try to
+            // replace the player's active mon instead.
             gBattlerFainted = caughtBattler;
             gBattleMons[caughtBattler].hp = 0;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[caughtBattler]], MON_DATA_HP, &gBattleMons[caughtBattler].hp);
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[caughtBattler]);
-            gHitMarker |= HITMARKER_FAINTED(caughtBattler);
-            gSpecialStatuses[caughtBattler].faintedHasReplacement = FALSE;
-            gBattleStruct->throwingPokeBall = FALSE;
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        }
-        else if (gBattleCommunication[MULTISTRING_CHOOSER] == B_MSG_NO_MESSSAGE_SKIP)
-        {
-            gBattlescriptCurrInstr = cmd->passInstr;
-        }
-        else
-        {
-            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         break;
     }
