@@ -234,71 +234,79 @@ Level: 30
 - Focus Energy
 - Vital Throw
 - Cross Chop
-- Shadow Rush
+- Shadow Blitz
 
 === TRAINER_GABRIELLE_1 ===
-Name: GABRIELLE
-Class: Pkmn Breeder
-Pic: Pokemon Breeder F
-Gender: Female
-Music: Female
-Double Battle: No
+Name: Verde
+Class: MYSTERY_TROOP
+Pic: Verde
+Double Battle: Yes
 AI: Check Bad Move
 
-Skitty
+Grimer
 Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Screech
+- Sludge
 
-Poochyena
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Spoink
+Level: 24
+- Psywave
+- Torment
 
-Zigzagoon
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Lotad
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Seedot
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Taillow
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Bayleef-Shadow @ Miracle Seed
+Level: 30
+- Shadow Blitz
+- Synthesis
+- Razor Leaf
+- Body Slam
 
 === TRAINER_GRUNT_PETALBURG_WOODS ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
+Name: Rosso
+Class: MYSTERY_TROOP
+Pic: Rosso
+Double Battle: Yes
 AI: Check Bad Move
 
-Poochyena
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Grimer
+Level: 26
+- Screech
+- Sludge
+
+Spoink
+Level: 24
+- Psywave
+- Torment
+
+Quilava-Shadow @ Charcoal
+Level: 30
+- Shadow Wave
+- Smokescreen
+- Dig
+- Flame Wheel
 
 === TRAINER_MARCEL ===
-Name: MARCEL
-Class: Cooltrainer
-Pic: Cooltrainer M
-Gender: Male
-Music: Cool
-Items: Hyper Potion
-Double Battle: No
-AI: Basic Trainer
+Name: Bluno
+Class: MYSTERY_TROOP
+Pic: Bluno
+Double Battle: Yes
+AI: Check Bad Move
 
-Manectric
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Grimer
+Level: 26
+- Screech
+- Sludge
 
-Shiftry
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Spoink
+Level: 24
+- Psywave
+- Torment
+
+Croconaw-Shadow @ Mystic Water
+Level: 30
+- Shadow Blitz
+- Scary Face
+- Bite
+- Bubble Beam
 
 === TRAINER_ALBERTO ===
 Name: ALBERTO
@@ -5996,42 +6004,28 @@ Music: Male
 Double Battle: Yes
 AI: Check Bad Move
 
-Makuhita-Shadow
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 29 Spe
-- Focus Energy
-- Vital Throw
-- Cross Chop
-- Shadow Rush
+Bayleef-Shadow
+Level: 30
+- Shadow Blitz
+- Synthesis
+- Razor Leaf
+- Body Slam
 
-Makuhita-Shadow
-Level: 5
+Quilava-Shadow
+Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Focus Energy
-- Vital Throw
-- Cross Chop
-- Shadow Rush
+- Shadow Wave
+- Smokescreen
+- Dig
+- Flame Wheel
 
-Makuhita-Shadow
-Level: 5
+Croconaw-Shadow
+Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Focus Energy
-- Vital Throw
-- Cross Chop
-- Shadow Rush
-
-Poochyena
-Level: 1
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Poochyena
-Level: 1
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Poochyena
-Level: 1
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+- Shadow Blitz
+- Scary Face
+- Bite
+- Bubble Beam
 
 === TRAINER_BILLY ===
 Name: BILLY

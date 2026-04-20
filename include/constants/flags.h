@@ -59,8 +59,8 @@
 #define FLAG_PHENAC_PHENAC_SNAGEM_DEFEATED_1    0x2D // Creates new dialogues & allows pokeball purchase at outskirt
 #define FLAG_WILLIE_APPEAR_1    0x2E // Makes TRUE NPC Willie appear outside outskirt stand
 #define FLAG_POKEBALLS_UNLOCKED    0x2F // Unused Flag
-#define FLAG_PHENAC_CITY_MAYOR_MIRORB    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
+#define FLAG_PHENAC_CITY_MAYOR_MIRORB    0x30 // For First encounter w miror B
+#define FLAG_PHENAC_CITY_CIPHER_TRIO    0x31 // Russo Bluno Verde Visibility
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag
 #define FLAG_UNUSED_0x033    0x33 // Unused Flag
 #define FLAG_UNUSED_0x034    0x34 // Unused Flag
@@ -740,7 +740,7 @@
 //OW Map Unlocks
 
 #define FLAG_MAP_UNLOCK_PHENAC  0x2B3 // Unlock Phenac City
-#define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
+#define FLAG_MAP_UNLOCK_PYRITE  0x2B4 // Unused Flag
 #define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
 #define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
 #define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag

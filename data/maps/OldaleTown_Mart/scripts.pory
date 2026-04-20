@@ -182,7 +182,7 @@ script Outskirt_Shop_Guy_TEXT {
 	    ))
         waitmovement
         msgbox(format("Here! Take these. I'll let you have them for free."), MSGBOX_DEFAULT)
-        giveitem(ITEM_POKE_BALL, 5)
+        giveitem(ITEM_POKE_BALL, 10)
         setflag(FLAG_POKEBALLS_UNLOCKED)
         setvar(VAR_PHENAC_CITY_STATE, 4)
         clearflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)

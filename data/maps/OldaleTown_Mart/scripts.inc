@@ -163,7 +163,7 @@ Outskirt_Shop_Guy_TEXT_5:
 # 184 "data/maps/OldaleTown_Mart/scripts.pory"
 	msgbox Outskirt_Shop_Guy_TEXT_Text_3, MSGBOX_DEFAULT
 # 185 "data/maps/OldaleTown_Mart/scripts.pory"
-	giveitem ITEM_POKE_BALL, 5
+	giveitem ITEM_POKE_BALL, 10
 # 186 "data/maps/OldaleTown_Mart/scripts.pory"
 	setflag FLAG_POKEBALLS_UNLOCKED
 # 187 "data/maps/OldaleTown_Mart/scripts.pory"

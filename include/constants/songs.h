@@ -391,7 +391,7 @@
 #define MUS_OBTAIN_B_POINTS         459 // MUS_ME_POINTGET
 #define MUS_REGISTER_MATCH_CALL     460 // MUS_ME_TORE_EYE
 #define MUS_B_PYRAMID               461 // MUS_PYRAMID
-#define MUS_B_PYRAMID_TOP           462 // MUS_PYRAMID_TOP
+#define MUS_B_PYRAMID_TOP           462 // VS Cipher Peon
 #define MUS_B_PALACE                463 // Team Snagem Hideout
 #define MUS_RAYQUAZA_APPEARS        464 // MUS_REKKUU_KOURIN
 #define MUS_B_TOWER                 465 // MUS_SATTOWER

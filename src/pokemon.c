@@ -6127,11 +6127,12 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_CHAMPION:
             return MUS_VS_CHAMPION;
         case TRAINER_CLASS_RIDER_W:
-            return MUS_VS_RIVAL;
         case TRAINER_CLASS_OLD_MAN:
             return MUS_VS_RIVAL;
         case TRAINER_CLASS_BATTLE_SIM_M:
             return MUS_B_FACTORY;
+        case TRAINER_CLASS_MYSTERY_TROOP:
+            return MUS_B_PYRAMID_TOP;
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;

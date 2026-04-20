@@ -141,6 +141,74 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_MEGANIUM}),
     },
 
+    [SPECIES_BAYLEEF_SHADOW] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 62,
+        .baseDefense   = 80,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 63,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_GRASS),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 142 : 141,
+        .evYield_Defense = 1,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Bayleef"),
+        .cryId = CRY_BAYLEEF,
+        .natDexNum = NATIONAL_DEX_BAYLEEF,
+        .categoryName = _("Leaf"),
+        .height = 12,
+        .weight = 158,
+        .description = COMPOUND_STRING(
+            "A Bayleef's neck is ringed by curled-up\n"
+            "leaves. Inside each leaf is a small tree\n"
+            "shoot. The fragrance of this shoot\n"
+            "makes people peppy."),
+        .pokemonScale = 296,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Bayleef,
+        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(56, 56) : MON_COORDS_SIZE(48, 64),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 4 : 3,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 20),
+        ),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Bayleef,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(48, 48) : MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 8 : 5,
+        .backAnimId = BACK_ANIM_H_SLIDE,
+        .palette = gMonPalette_Bayleef,
+        .shinyPalette = gMonShinyPalette_Bayleef,
+        .iconSprite = gMonIcon_Bayleef,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-1, 10, SHADOW_SIZE_M)
+        FOOTPRINT(Bayleef)
+        OVERWORLD(
+            sPicTable_Bayleef,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Bayleef,
+            gShinyOverworldPalette_Bayleef
+        )
+        .levelUpLearnset = sShadowMonLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
+        .isShadow = TRUE,
+    },
+
     [SPECIES_MEGANIUM] =
     {
         .baseHP        = 80,
@@ -426,6 +494,74 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
                                 {EVO_LEVEL, 36, SPECIES_TYPHLOSION_HISUI, CONDITIONS({IF_REGION, REGION_HISUI})}),
     },
 
+    [SPECIES_QUILAVA_SHADOW] =
+    {
+        .baseHP        = 58,
+        .baseAttack    = 64,
+        .baseDefense   = 58,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 65,
+        .types = MON_TYPES(TYPE_FIRE),
+        .catchRate = 45,
+        .expYield = 142,
+        .evYield_Speed = 1,
+        .evYield_SpAttack = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_FLASH_FIRE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Quilava"),
+        .cryId = CRY_QUILAVA,
+        .natDexNum = NATIONAL_DEX_QUILAVA,
+        .categoryName = _("Volcano"),
+        .height = 9,
+        .weight = 190,
+        .description = COMPOUND_STRING(
+            "It intimidates foes with intense gusts of\n"
+            "flames and superheated air. Its quick\n"
+            "nimbleness lets it dodge attacks even\n"
+            "while scorching an enemy."),
+        .pokemonScale = 329,
+        .pokemonOffset = 11,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Quilava,
+        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(56, 48) : MON_COORDS_SIZE(64, 48),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 8 : 9,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 20),
+        ),
+        .frontAnimId = P_GBA_STYLE_SPECIES_GFX ? ANIM_V_STRETCH : ANIM_H_STRETCH,
+        .backPic = gMonBackPic_Quilava,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(64, 56) : MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 4 : 0,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
+        .palette = gMonPalette_Quilava,
+        .shinyPalette = gMonShinyPalette_Quilava,
+        .iconSprite = gMonIcon_Quilava,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 1 : 3,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 2, SHADOW_SIZE_M)
+        FOOTPRINT(Quilava)
+        OVERWORLD(
+            sPicTable_Quilava,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Quilava,
+            gShinyOverworldPalette_Quilava
+        )
+        .levelUpLearnset = sShadowMonLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
+        .isShadow = TRUE,
+    },
+
     [SPECIES_TYPHLOSION] =
     {
         .baseHP        = 78,
@@ -708,6 +844,75 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sCroconawLevelUpLearnset,
         .teachableLearnset = sCroconawTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_FERALIGATR}),
+    },
+
+    [SPECIES_CROCONAW_SHADOW] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 80,
+        .baseDefense   = 80,
+        .baseSpeed     = 58,
+        .baseSpAttack  = 59,
+        .baseSpDefense = 63,
+        .types = MON_TYPES(TYPE_WATER),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 142 : 143,
+        .evYield_Attack = 1,
+        .evYield_Defense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = TRUE,
+        .speciesName = _("Croconaw"),
+        .cryId = CRY_CROCONAW,
+        .natDexNum = NATIONAL_DEX_CROCONAW,
+        .categoryName = _("Big Jaw"),
+        .height = 11,
+        .weight = 250,
+        .description = COMPOUND_STRING(
+            "Once its jaws clamp down on its foe, it will\n"
+            "absolutely not let go. Because the tips of\n"
+            "its fangs are forked back like fishhooks,\n"
+            "they become irremovably embedded."),
+        .pokemonScale = 378,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Croconaw,
+        .frontPicSize = MON_COORDS_SIZE(48, 56),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 6 : 5,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_H_SHAKE,
+        .backPic = gMonBackPic_Croconaw,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(48, 56) : MON_COORDS_SIZE(56, 64),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 7 : 2,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
+        .palette = gMonPalette_Croconaw,
+        .shinyPalette = gMonShinyPalette_Croconaw,
+        .iconSprite = gMonIcon_Croconaw,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 2 : 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(2, 8, SHADOW_SIZE_M)
+        FOOTPRINT(Croconaw)
+        OVERWORLD(
+            sPicTable_Croconaw,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Croconaw,
+            gShinyOverworldPalette_Croconaw
+        )
+        .levelUpLearnset = sShadowMonLevelUpLearnset,
+        .teachableLearnset = sNoneTeachableLearnset,
+        .isShadow = TRUE,
     },
 
     [SPECIES_FERALIGATR] =

@@ -200,6 +200,7 @@ script Phenac_Mayor_House_Miror_B_Encounter {
     delay(30)
     removeobject(PHENAC_MAYOR_HOUSE_MIROR)
     playse(SE_EXIT)
+    closemessage
 	applymovement(PHENAC_MAYOR_VERDE, moves(
 		walk_in_place_down * 4
 	))
@@ -298,6 +299,7 @@ script Phenac_Mayor_House_Miror_B_Encounter {
     ))
     waitmovement
     removeobject(PHENAC_MAYOR_HOUSE_RUI)
+    clearflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
     setvar(VAR_PHENAC_CITY_STATE, 6)
     setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
     releaseall

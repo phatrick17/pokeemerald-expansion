@@ -911,9 +911,10 @@
 #define MOVES_COUNT_GEN9 848
 
 // Shadow moves (Pokémon XD: Gale of Darkness)
-#define MOVE_SHADOW_RUSH 848
+#define MOVE_SHADOW_BLITZ 848
+#define MOVE_SHADOW_WAVE 849
 
-#define MOVES_COUNT_SHADOW 849
+#define MOVES_COUNT_SHADOW 850
 
 #define MOVES_COUNT         MOVES_COUNT_SHADOW
 

@@ -375,6 +375,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_BATTLE_SIM_M]     = { _("Battle Sim"), 1 },
     [TRAINER_CLASS_TEAM_SNAGEM]     = { _("Team Snagem"), 1 },
     [TRAINER_CLASS_MIRROR_B_PEON]     = { _("Miror B Peon"), 1 },
+    [TRAINER_CLASS_MYSTERY_TROOP]     = { _("??? Troop"), 1 },
     
 };
 

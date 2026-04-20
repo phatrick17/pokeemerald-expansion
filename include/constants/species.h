@@ -1666,7 +1666,10 @@
 #define SPECIES_FALINKS_MEGA                            1549
 
 // Custom Shadow Pokémon
-#define SPECIES_MAKUHITA_SHADOW                         1550
+#define SPECIES_BAYLEEF_SHADOW                          1550
+#define SPECIES_QUILAVA_SHADOW                          1551
+#define SPECIES_CROCONAW_SHADOW                         1552
+#define SPECIES_MAKUHITA_SHADOW                         1553
 
 #define SPECIES_EGG                                     (SPECIES_MAKUHITA_SHADOW + 1)
 
