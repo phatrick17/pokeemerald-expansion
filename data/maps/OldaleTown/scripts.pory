@@ -308,7 +308,7 @@ script Phenac_Runner_1_Dialogue_1 {
     msgbox(format("You know, you two make one attractive\n"
         "couple! It makes me a little envious.\l"
         "Ahahaha!"), MSGBOX_DEFAULT)
-    releaseall
+    release
     end
 }
 
@@ -371,23 +371,19 @@ script Phenac_Lady_1_Dialogue_1 {
     lock
 	faceplayer
     if (flag(FLAG_MAP_UNLOCK_PYRITE)) {
-        lock
-	    faceplayer
         msgbox(format("Isn't this awful?\n"
             "What are all these horrible people\l"
             "doing here?"), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     if (flag(FLAG_POKEBALLS_UNLOCKED)) {
-        lock
-	    faceplayer
         msgbox(format("Something terrible's happening!\p"
             "A whole lot of scary men came here!\n"
             "I think I even saw those two creeps\l"
             "who took off in the truck earlier!"
         ), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("The Mayor's house is near the town\n"
