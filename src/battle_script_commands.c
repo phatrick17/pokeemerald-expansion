@@ -14137,15 +14137,17 @@ static void Cmd_givecaughtmon(void)
 
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            // Shadow snag: mark the caught battler as fainted so checkteamslost and
-            // faint-replacement logic see the empty slot correctly. Always route to
-            // the snag handler (nextInstr) — never to BattleScript_SuccessBallThrowEnd,
-            // which would incorrectly set gBattleOutcome and end the trainer battle.
+            // Shadow snag: route to the faint handler so the trainer sends in a
+            // replacement.  Do NOT set HITMARKER_FAINTED here — that would make
+            // checkteamslost count this slot alongside any player-side deferred
+            // faint and prematurely jump to BattleScript_HandleFaintedMonMultiple,
+            // which forces the player's replacement mid-turn and causes a freeze.
+            // BattleScript_HandleFaintedMon reaches the trainer's openpartyscreen
+            // via gBattlerFainted, not HITMARKER_FAINTED, so it still works.
             gBattlerFainted = caughtBattler;
             gBattleMons[caughtBattler].hp = 0;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[caughtBattler]], MON_DATA_HP, &gBattleMons[caughtBattler].hp);
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[caughtBattler]);
-            gHitMarker |= HITMARKER_FAINTED(caughtBattler);
             gSpecialStatuses[caughtBattler].faintedHasReplacement = FALSE;
             gBattleStruct->throwingPokeBall = FALSE;
             gBattlescriptCurrInstr = cmd->nextInstr;
