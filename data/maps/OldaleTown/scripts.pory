@@ -308,7 +308,7 @@ script Phenac_Runner_1_Dialogue_1 {
     msgbox(format("You know, you two make one attractive\n"
         "couple! It makes me a little envious.\l"
         "Ahahaha!"), MSGBOX_DEFAULT)
-    releaseall
+    release
     end
 }
 
@@ -323,7 +323,7 @@ script Phenac_Runner_1_Dialogue_2 {
         faceplayer
         msgbox(format("This town's been the very picture of peace, but now the mood is tense and nervous.\p"
         "There must be something terrible afoot."), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     if (flag(FLAG_POKEBALLS_UNLOCKED)) {
@@ -333,7 +333,7 @@ script Phenac_Runner_1_Dialogue_2 {
         "Those thugs came back with help!\n"
         "I think they went off towards what we call the Pre Gym!"
         ), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("Hiya! If it's not the good-looking\n"
@@ -376,7 +376,7 @@ script Phenac_Lady_1_Dialogue_1 {
         msgbox(format("Isn't this awful?\n"
             "What are all these horrible people\l"
             "doing here?"), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     if (flag(FLAG_POKEBALLS_UNLOCKED)) {
@@ -387,7 +387,7 @@ script Phenac_Lady_1_Dialogue_1 {
             "I think I even saw those two creeps\l"
             "who took off in the truck earlier!"
         ), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("The Mayor's house is near the town\n"
@@ -410,7 +410,7 @@ script Phenac_GuyCenter_Dialogue_1 {
         msgbox(format("What? What?\p"
         "Is something serious going on?"
         ), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("There was some ruckus going on\n"
@@ -478,7 +478,7 @@ script Phenac_OldManDrig_Dialogue_1 {
         msgbox(format("Oh? How boring.\n"
             "You young people today…\l"
             "You have no gumption, I say."), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("All right!"), MSGBOX_DEFAULT)
@@ -532,7 +532,7 @@ script Phenac_DudeGym_Dialogue_1 {
         "But it won't matter if those guys do something bad.\p"
         "I'm sure Justy won't let them get away with anything!"
         ), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("Um ... I ...\n"
@@ -555,14 +555,14 @@ script Phenac_OldLadyMayor_Dialogue_1 {
         msgbox(format(
             "Oh? You were safe?\n"
             "The MAYOR wasn't home, either, I hear. All's well that ends well!"), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     if (flag(FLAG_POKEBALLS_UNLOCKED)) {
         msgbox(format("My goodness! It's terrible!\p"
             "A big group of shady looking men marched into the MAYOR's house!"
         ), MSGBOX_DEFAULT)
-        releaseall
+        release
         end
     }
     msgbox(format("That large house is the MAYOR's\n"
@@ -630,7 +630,7 @@ script Phenac_SkaterKaib_Dialogue_1 {
         "Let's battle!"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
         msgbox(format("Awww, you cheapskate!"), MSGBOX_DEFAULT)
-        releaseall()
+        release
         end
     }
     msgbox(format("All right! Here we come,\n"
@@ -675,7 +675,7 @@ script Phenac_GuyStadium_Dialogue_1 {
                 "That's terrifying! I must be careful!\p"
                 "I mustn't let them steal away my precious POKéMON!"), MSGBOX_DEFAULT)
         }
-        releaseall
+        release
         end
     }
     msgbox(format("Hi!\n"
@@ -715,7 +715,7 @@ script Phenac_Show_Runner1 {
 //Nascour First Encounter
 script Phenac_Nascour_Encounter_1{
     if (flag(FLAG_PHENAC_NASCOUR_1)) {
-        releaseall
+        release
         end
     }
     lockall
@@ -956,7 +956,7 @@ script Phenac_City_Lady_Needs_Help_1 {
     ))
     waitmovement
     setvar(VAR_PHENAC_CITY_STATE, 5)
-    releaseall
+    release
     end
 }
 

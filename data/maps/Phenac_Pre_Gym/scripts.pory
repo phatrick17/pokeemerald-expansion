@@ -51,6 +51,13 @@ script Battlesim1 {
         ("Your party is fully healed.\n"
         "Well done!\p"
         "We'll have more coming soon."), MSGBOX_DEFAULT)
-    releaseall
+    release
+    end
+}
+
+script GiveShadowMonTest {
+    createmon(0, PARTY_SIZE, SPECIES_QUILAVA_SHADOW, 100)
+    createmon(0, PARTY_SIZE, SPECIES_BAYLEEF_SHADOW, 100)
+    release
     end
 }

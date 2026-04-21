@@ -19,12 +19,22 @@ Battlesim1::
 # 50 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	msgbox Battlesim1_Text_2, MSGBOX_DEFAULT
 # 54 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	releaseall
+	release
 	end
 
 Battlesim1_2:
 # 44 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	releaseall
+	end
+
+
+GiveShadowMonTest::
+# 59 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	createmon 0, PARTY_SIZE, SPECIES_QUILAVA_SHADOW, 100
+# 60 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	createmon 0, PARTY_SIZE, SPECIES_BAYLEEF_SHADOW, 100
+# 61 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	release
 	end
 
 

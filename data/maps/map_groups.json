@@ -110,7 +110,8 @@
     "PhenacMart",
     "Phenac_Pre_Gym",
     "Phenac_Mayor_House",
-    "Phenac_Stadium"
+    "Phenac_Stadium",
+    "Phenac_Mayor_House_Upstaris"
   ],
   "gMapGroup_IndoorDewford": [
     "DewfordTown_House1",

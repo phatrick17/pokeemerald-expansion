@@ -1,0 +1,11 @@
+script Phenac_Mayor_House_Upstiars_Lady {
+    lock
+    faceplayer
+    msgbox(format("Oh, hi. Aren't you a cute guy?\p"
+        "Giggle...\n"
+        "It must be nice to travel with a cute girlfriend."), MSGBOX_DEFAULT)
+    release
+    end
+}
+
+mapscripts Phenac_Mayor_House_Upstaris_MapScripts {}

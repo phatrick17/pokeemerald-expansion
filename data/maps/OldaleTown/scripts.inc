@@ -200,7 +200,7 @@ Phenac_Runner_1_Dialogue_1::
 # 308 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_Runner_1_Dialogue_1_Text_0, MSGBOX_DEFAULT
 # 311 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -233,7 +233,7 @@ Phenac_Runner_1_Dialogue_2_2:
 # 324 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_Runner_1_Dialogue_2_Text_0, MSGBOX_DEFAULT
 # 326 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 Phenac_Runner_1_Dialogue_2_5:
@@ -244,7 +244,7 @@ Phenac_Runner_1_Dialogue_2_5:
 # 332 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_Runner_1_Dialogue_2_Text_1, MSGBOX_DEFAULT
 # 336 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 Phenac_Runner_1_Dialogue_2_8:
@@ -276,7 +276,7 @@ Phenac_Lady_1_Dialogue_1_2:
 # 376 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_Lady_1_Dialogue_1_Text_0, MSGBOX_DEFAULT
 # 379 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 Phenac_Lady_1_Dialogue_1_5:
@@ -287,7 +287,7 @@ Phenac_Lady_1_Dialogue_1_5:
 # 385 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_Lady_1_Dialogue_1_Text_1, MSGBOX_DEFAULT
 # 390 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -312,7 +312,7 @@ Phenac_GuyCenter_Dialogue_1_2:
 # 410 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_GuyCenter_Dialogue_1_Text_0, MSGBOX_DEFAULT
 # 413 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -383,7 +383,7 @@ Phenac_OldManDrig_Dialogue_1_2:
 # 478 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_OldManDrig_Dialogue_1_Text_1, MSGBOX_DEFAULT
 # 481 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -432,7 +432,7 @@ Phenac_DudeGym_Dialogue_1_2:
 # 531 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_DudeGym_Dialogue_1_Text_0, MSGBOX_DEFAULT
 # 535 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -455,14 +455,14 @@ Phenac_OldLadyMayor_Dialogue_1_2:
 # 555 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_OldLadyMayor_Dialogue_1_Text_0, MSGBOX_DEFAULT
 # 558 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 Phenac_OldLadyMayor_Dialogue_1_5:
 # 562 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_OldLadyMayor_Dialogue_1_Text_1, MSGBOX_DEFAULT
 # 565 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -535,7 +535,7 @@ Phenac_SkaterKaib_Dialogue_1_2:
 # 632 "data/maps/OldaleTown/scripts.pory"
 	msgbox Phenac_SkaterKaib_Dialogue_1_Text_1, MSGBOX_DEFAULT
 # 633 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -580,7 +580,7 @@ Phenac_GuyStadium_Dialogue_1_2:
 	msgbox Phenac_GuyStadium_Dialogue_1_Text_2, MSGBOX_DEFAULT
 Phenac_GuyStadium_Dialogue_1_8:
 # 678 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 Phenac_GuyStadium_Dialogue_1_5:
@@ -673,7 +673,7 @@ Phenac_Nascour_Encounter_1::
 
 Phenac_Nascour_Encounter_1_2:
 # 718 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 
@@ -841,7 +841,7 @@ Phenac_City_Lady_Needs_Help_1::
 # 958 "data/maps/OldaleTown/scripts.pory"
 	setvar VAR_PHENAC_CITY_STATE, 5
 # 959 "data/maps/OldaleTown/scripts.pory"
-	releaseall
+	release
 	end
 
 

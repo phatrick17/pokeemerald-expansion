@@ -1171,3 +1171,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Phenac_Mayor_House/scripts.inc"
 
 	.include "data/maps/Phenac_Stadium/scripts.inc"
+
+	.include "data/maps/Phenac_Mayor_House_Upstaris/scripts.inc"

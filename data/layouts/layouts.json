@@ -4450,6 +4450,16 @@
       "secondary_tileset": "gTileset_SootopolisGym",
       "border_filepath": "data/layouts/Phenac_Stadium/border.bin",
       "blockdata_filepath": "data/layouts/Phenac_Stadium/map.bin"
+    },
+    {
+      "id": "LAYOUT_PHENAC_MAYOR_HOUSE_UPSTARIS",
+      "name": "Phenac_Mayor_House_Upstaris_Layout",
+      "width": 12,
+      "height": 7,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Phenac_Mayor_House_Upstaris/border.bin",
+      "blockdata_filepath": "data/layouts/Phenac_Mayor_House_Upstaris/map.bin"
     }
   ]
 }
