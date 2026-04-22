@@ -26,6 +26,7 @@
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "script.h"
+#include "seagallop.h"
 #include "sound.h"
 #include "sprite.h"
 #include "task.h"
@@ -4002,16 +4003,18 @@ static void CustomFlyOut_Wait(struct Task *task)
 
 static void CustomFlyOut_FadeOut(struct Task *task)
 {
-    WarpFadeOutScreen();
+    // Hand off to the Seagallop scene; it runs its own fade/animation and then
+    // warps to the destination set earlier via SetWarpDestinationToHealLocation.
+    // ResetTasks() inside the scene's init wipes this task and Task_UseCustomFly.
+    StartSeagallopScene();
     task->tState++;
 }
 
 static void CustomFlyOut_End(struct Task *task)
 {
-    if (!gPaletteFade.active)
-    {
-        DestroyTask(FindTaskIdByFunc(Task_CustomFlyOut));
-    }
+    // Unreachable in practice: the Seagallop scene's CB2 swap + ResetTasks()
+    // tear down this task before the next frame runs. Kept as a guard.
+    DestroyTask(FindTaskIdByFunc(Task_CustomFlyOut));
 }
 
 // -- Custom Fly In --
