@@ -1,7 +1,7 @@
 mapscripts Phenac_Pre_Gym_MapScripts {}
 
 script Battlesim1 {
-    lock
+    lockall
     faceplayer
     msgbox(format("Hey there! Welcome to the Pre Gym.\n"
         "My name is Professor Krane.\p"
@@ -10,8 +10,7 @@ script Battlesim1 {
         "the Pre Gym Leader.\p"
 
         "Justy is actually training inside my\n"
-        "novel invention:\l"
-        "the Battle Simulator.\p"
+        "novel invention: the Battle Simulator.\p"
 
         "The Battle Simulator is a prototype\n"
         "which projects you into an Augmented\l"
@@ -19,7 +18,7 @@ script Battlesim1 {
 
         "Simulate battles!\p"
 
-        "Perfect for trainers to practice and simulate certain scenarios in order to become a better trainer.\p"
+        "Perfect for trainers to practice and simulate certain scenarios in order to improve fast.\p"
 
         "I've been researching this invention\n"
         "for the past 5 years.\p"
@@ -37,21 +36,81 @@ script Battlesim1 {
         "Well I have a proposition for you.\p"
 
         "Why don't you try out my battle\n"
-        "simulator while you're waiting?\p"
+        "simulator while you're waiting for Justy to come back?\p"
 
-        "Free of charge!"), MSGBOX_YESNO)
+        "You can get some training in while helping my cause!"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
-        releaseall()
+        release
         end
     }
+    msgbox(format(
+        "Krane: Great! Give me one second to\n"
+        "program the battle...\p"
+        "I'll start with beginner difficulty...\p"
+        "Okay! We're locked in. I'll just have you step onto the platform to you right."
+    ), MSGBOX_DEFAULT)
+    fadescreen(FADE_TO_BLACK)
+    playse(SE_CLICK)
+    waitse
+    playse(SE_CLICK)
+    waitse
+    special(SpawnCameraObject)
+    applymovement(OBJ_EVENT_ID_CAMERA, moves(
+		walk_faster_right * 5
+	))
+    waitmovement
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 27, 33)
+    applymovement(PHENAC_PRE_GYM_KRANE, moves(
+		face_player
+	))
+	applymovement(OBJ_EVENT_ID_NPC_FOLLOWER, moves(
+		face_player
+	))
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		face_down
+	))
+    waitmovement
+	delay (30)
+    fadescreen(FADE_FROM_BLACK)
+    fadenewbgm(MUS_NONE)
+    msgbox(format(
+        "Krane: Alright! Initiating protocol.\n"
+        "challenger entering simulation in...\p"
+        "3...\p"
+        "2...\p"
+        "1..."
+    ), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+        walk_in_place_slow_down
+    ))
+    waitmovement
+    hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM)
+    playse(SE_WARP_IN)
+    waitse
+	delay (60)
     trainerbattle_no_intro(TRAINER_GRUNT_AQUA_HIDEOUT_4,
-        format("SIMULATION COMPLETED."))
+        format("Simulation completed. Battle success."))
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    showobjectat(OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM)
+    playse(SE_WARP_IN)
+    waitse
+    playse(MUS_HEAL)
+    waitse
+    fadescreen(FADE_FROM_BLACK)
     special(HealPlayerParty)
     msgbox(format
-        ("Your party is fully healed.\n"
+        ("Krane: Your party is fully healed.\n"
         "Well done!\p"
-        "We'll have more coming soon."), MSGBOX_DEFAULT)
-    release
+        "You cruised through that simulation no problem!\p"
+        "...What's that? No sign of Justy in there?...\p"
+        "Well he's training in a different, erm, I guess level compared to you. He might be a while so you might want to check back in later.\p"
+        "Why don't you check back in a little bit? He'll definitely be here when you get back.\p"
+        "Alright, see you next time!"), MSGBOX_DEFAULT)
+    closemessage
+    warp(MAP_OLDALE_TOWN, 25, 29)
+    releaseall
     end
 }
 
