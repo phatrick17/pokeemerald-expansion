@@ -4003,22 +4003,18 @@ static void CustomFlyOut_Wait(struct Task *task)
 
 static void CustomFlyOut_FadeOut(struct Task *task)
 {
-    // Fade the overworld to black before launching the Seagallop scene.
-    // The scene expects the hardware palette to already be black on entry -
-    // otherwise BG3 would briefly render with whatever palette was in hardware
-    // (the overworld's), causing a one-frame color flash.
-    WarpFadeOutScreen();
+    // Hand off to the Seagallop scene; it runs its own fade/animation and then
+    // warps to the destination set earlier via SetWarpDestinationToHealLocation.
+    // ResetTasks() inside the scene's init wipes this task and Task_UseCustomFly.
+    StartSeagallopScene();
     task->tState++;
 }
 
 static void CustomFlyOut_End(struct Task *task)
 {
-    if (!gPaletteFade.active)
-    {
-        // Screen is fully black now. Hand off to Seagallop; its ResetTasks()
-        // will wipe this task and Task_UseCustomFly.
-        StartSeagallopScene();
-    }
+    // Unreachable in practice: the Seagallop scene's CB2 swap + ResetTasks()
+    // tear down this task before the next frame runs. Kept as a guard.
+    DestroyTask(FindTaskIdByFunc(Task_CustomFlyOut));
 }
 
 // -- Custom Fly In --
