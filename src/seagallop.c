@@ -28,7 +28,7 @@
 #define SCENE_DURATION_FRAMES  140
 #define FERRY_START_X          240
 #define FERRY_Y                 80
-#define FERRY_DRIFT_SPEED      -48   // signed; negative = leftward
+#define FERRY_DRIFT_SPEED      -32   // signed; negative = leftward
 
 static EWRAM_DATA void *sBg3TilemapBuffer = NULL;
 
@@ -134,7 +134,7 @@ static void CB2_SetUpSeagallopScene(void)
         SetGpuReg(REG_OFFSET_WININ,  WININ_WIN0_BG3 | WININ_WIN0_OBJ | WININ_WIN0_CLR);
         SetGpuReg(REG_OFFSET_WINOUT, 0);
         SetGpuReg(REG_OFFSET_WIN0H,  WIN_RANGE(0, DISPLAY_WIDTH));
-        SetGpuReg(REG_OFFSET_WIN0V,  WIN_RANGE(DISPLAY_HEIGHT / 4, DISPLAY_HEIGHT - DISPLAY_HEIGHT / 4));
+        SetGpuReg(REG_OFFSET_WIN0V,  WIN_RANGE(20, 140)); //DISPLAY_HEIGHT / 4, DISPLAY_HEIGHT - DISPLAY_HEIGHT / 4
         SetVBlankCallback(VBlankCB_SeaGallop);
         PlaySE(SE_SHIP);
         CreateFerrySprite();
