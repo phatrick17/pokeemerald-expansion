@@ -81,6 +81,10 @@ static void CB2_SetUpSeagallopScene(void)
     {
     case 0:
         SetVBlankCallback(NULL);
+        // Caller must have faded the screen to black before calling us.
+        // With DISPCNT=0, only the backdrop (palette[0]) shows, which is
+        // also black from the fade. No BG renders until state 8 enables it,
+        // so stale palette tiles never get a chance to flash.
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
         SetGpuReg(REG_OFFSET_BG0HOFS, 0);
         SetGpuReg(REG_OFFSET_BG0VOFS, 0);
@@ -114,7 +118,9 @@ static void CB2_SetUpSeagallopScene(void)
     case 4:
         if (!IsDma3ManagerBusyWithBgCopy())
         {
-            ShowBg(3);
+            // Deliberately do NOT ShowBg(3) here. DISPCNT stays at 0 until
+            // state 8 so BG3 never renders before the water palette has
+            // actually reached hardware.
             CopyBgTilemapBufferToVram(3);
             gMain.state++;
         }
@@ -128,14 +134,19 @@ static void CB2_SetUpSeagallopScene(void)
         gMain.state++;
         break;
     case 7:
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG3_ON | DISPCNT_OBJ_ON);
-        // Letterbox via WIN0: show BG3 + OBJ in a horizontal band, black outside.
-        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
+        // Install VBlank callback first; it will run on the next vblank and
+        // transfer the all-black palette buffer to hardware before we unblank.
+        SetVBlankCallback(VBlankCB_SeaGallop);
+        gMain.state++;
+        break;
+    case 8:
+        // Palette is now black in hardware. Safe to clear forced-blank and
+        // enable BG3 + OBJ. WIN0 letterbox shows BG3+OBJ in a band.
+        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG3_ON | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON);
         SetGpuReg(REG_OFFSET_WININ,  WININ_WIN0_BG3 | WININ_WIN0_OBJ | WININ_WIN0_CLR);
         SetGpuReg(REG_OFFSET_WINOUT, 0);
         SetGpuReg(REG_OFFSET_WIN0H,  WIN_RANGE(0, DISPLAY_WIDTH));
         SetGpuReg(REG_OFFSET_WIN0V,  WIN_RANGE(DISPLAY_HEIGHT / 4, DISPLAY_HEIGHT - DISPLAY_HEIGHT / 4));
-        SetVBlankCallback(VBlankCB_SeaGallop);
         PlaySE(SE_SHIP);
         CreateFerrySprite();
         CreateTask(Task_Seagallop_0, 8);
