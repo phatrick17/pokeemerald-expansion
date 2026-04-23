@@ -81,13 +81,25 @@ static void CB2_SetUpSeagallopScene(void)
     {
     case 0:
         SetVBlankCallback(NULL);
+        DmaClearLarge16(3, (void *)VRAM, VRAM_SIZE, 0x1000);
+        DmaClear32(3, (void *)OAM, OAM_SIZE);
+        DmaClear16(3, (void *)PLTT, PLTT_SIZE);
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
+        SetGpuReg(REG_OFFSET_BG0CNT, 0);
+        SetGpuReg(REG_OFFSET_BG1CNT, 0);
+        SetGpuReg(REG_OFFSET_BG2CNT, 0);
+        SetGpuReg(REG_OFFSET_BG3CNT, 0);
         SetGpuReg(REG_OFFSET_BG0HOFS, 0);
         SetGpuReg(REG_OFFSET_BG0VOFS, 0);
         SetGpuReg(REG_OFFSET_BG3HOFS, 0);
         SetGpuReg(REG_OFFSET_BG3VOFS, 0);
+        SetGpuReg(REG_OFFSET_WIN0H, 0);
+        SetGpuReg(REG_OFFSET_WIN0V, 0);
+        SetGpuReg(REG_OFFSET_WININ, 0);
+        SetGpuReg(REG_OFFSET_WINOUT, 0);
         gMain.state++;
         break;
+
     case 1:
         ResetPaletteFade();
         ResetSpriteData();
@@ -120,7 +132,10 @@ static void CB2_SetUpSeagallopScene(void)
         }
         break;
     case 5:
+        if (IsDma3ManagerBusyWithBgCopy())
+            break;
         BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+        TransferPlttBuffer();
         gMain.state++;
         break;
     case 6:
