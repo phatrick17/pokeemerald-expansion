@@ -1285,6 +1285,29 @@ void IsGrassTypeInParty(void)
     gSpecialVar_Result = FALSE;
 }
 
+void RecenterCameraOnPlayer(void)
+{
+    u8 i;
+    s16 x, y;
+
+    PlayerGetDestCoords(&x, &y);
+    gSaveBlock1Ptr->pos.x = x - MAP_OFFSET;
+    gSaveBlock1Ptr->pos.y = y - MAP_OFFSET;
+
+    DrawWholeMapView();
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (gObjectEvents[i].active)
+            MoveObjectEventToMapCoords(&gObjectEvents[i],
+                                       gObjectEvents[i].currentCoords.x,
+                                       gObjectEvents[i].currentCoords.y);
+    }
+
+    RemoveObjectEventsOutsideView();
+    TrySpawnObjectEvents(0, 0);
+}
+
 void SpawnCameraObject(void)
 {
     u8 obj = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_BOY_1,

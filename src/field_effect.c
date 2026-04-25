@@ -3871,8 +3871,8 @@ static void FlyInFieldEffect_End(struct Task *task)
 #undef sAnimCompleted
 
 // ==================== Custom Fly (no bird animation) ====================
-// Uses submarine_shadow sprite instead of the bird fly animation.
-// Flow: player transforms to submarine_shadow -> fade out -> warp -> fade in as submarine_shadow -> transform back
+
+
 
 #define tState      data[0]
 #define tTimer      data[1]
@@ -4024,7 +4024,7 @@ void FieldCallback_CustomFlyIntoMap(void)
     Overworld_PlaySpecialMapMusic();
     FadeInFromBlack();
     CreateTask(Task_CustomFlyIntoMap, 0);
-    gObjectEvents[gPlayerAvatar.objectEventId].invisible = TRUE;
+    gObjectEvents[gPlayerAvatar.objectEventId].invisible = FALSE;
     LockPlayerFieldControls();
     FreezeObjectEvents();
     gFieldCallback = NULL;
@@ -4038,8 +4038,6 @@ static void Task_CustomFlyIntoMap(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        if (gPaletteFade.active)
-            return;
         CreateTask(Task_CustomFlyIn, 254);
         task->data[0]++;
         break;
@@ -4084,15 +4082,17 @@ static void Task_CustomFlyIn(u8 taskId)
 static void CustomFlyIn_Init(struct Task *task)
 {
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
     task->tAvatarFlags = gPlayerAvatar.flags;
     gPlayerAvatar.preventStep = TRUE;
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_ON_FOOT);
-    ObjectEventSetGraphicsId(objectEvent, OBJ_EVENT_GFX_SUBMARINE_SHADOW);
+    ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_NORMAL));
     ObjectEventTurn(objectEvent, DIR_SOUTH);
     objectEvent->invisible = FALSE;
     CameraObjectFreeze();
     task->tTimer = 0;
     task->tState++;
+
 }
 
 static void CustomFlyIn_Wait(struct Task *task)
