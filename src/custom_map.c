@@ -363,7 +363,7 @@ static void CB_HandleCustomMapInput(void)
     if (sCustomMap->state != 0)
         return;
 
-    if (JOY_NEW(DPAD_RIGHT))
+    if (JOY_NEW(DPAD_LEFT))
     {
         // Move to next available town
         u8 next = sCustomMap->selectedTown;
@@ -381,7 +381,7 @@ static void CB_HandleCustomMapInput(void)
             m4aSongNumStart(SE_DEX_SCROLL);
         }
     }
-    else if (JOY_NEW(DPAD_LEFT))
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         // Move to previous available town
         u8 prev = sCustomMap->selectedTown;
