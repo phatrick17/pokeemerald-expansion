@@ -111,10 +111,11 @@
 #define TRAINER_PIC_RIDER_WILLIE          93
 #define TRAINER_PIC_FOLLY                 94
 #define TRAINER_PIC_TRUDLY                95
-#define TRAINER_PIC_BLUNO                96
-#define TRAINER_PIC_VERDE                97
-#define TRAINER_PIC_ROSSO                98
-#define TRAINER_PIC_COUNT                 99
+#define TRAINER_PIC_BLUNO                 96
+#define TRAINER_PIC_VERDE                 97
+#define TRAINER_PIC_ROSSO                 98
+#define TRAINER_PIC_CIPHER_PEON_XD        99
+#define TRAINER_PIC_COUNT                 100
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -366,6 +367,7 @@ enum TrainerClassID
     TRAINER_CLASS_TEAM_SNAGEM,
     TRAINER_CLASS_MIRROR_B_PEON,
     TRAINER_CLASS_MYSTERY_TROOP,
+    TRAINER_CLASS_CIPHER_PEON_XD_UNKNOWN,
     TRAINER_CLASS_COUNT,
 };
 

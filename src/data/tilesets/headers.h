@@ -874,3 +874,14 @@ const struct Tileset gTileset_Outskirt_Stand_Indoor =
     .metatileAttributes = gMetatileAttributes_Outskirt_Stand_Indoor,
     .callback = InitTilesetAnim_OutskirtStandIndoor,
 };
+
+const struct Tileset gTileset_Realgam_Outside =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Realgam_Outside,
+    .palettes = gTilesetPalettes_Realgam_Outside,
+    .metatiles = gMetatiles_Realgam_Outside,
+    .metatileAttributes = gMetatileAttributes_Realgam_Outside,
+    .callback = NULL,
+};

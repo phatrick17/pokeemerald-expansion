@@ -404,6 +404,7 @@ const u32 gObjectEventPic_Bluno[] = INCBIN_U32("graphics/object_events/pics/peop
 const u16 gObjectEventPal_Bluno[]  = INCBIN_U16("graphics/object_events/palettes/bluno.gbapal");
 const u16 gObjectEventPal_Rosso[]   = INCBIN_U16("graphics/object_events/palettes/rosso.gbapal");
 const u16 gObjectEventPal_Verde[] = INCBIN_U16("graphics/object_events/palettes/verde.gbapal");
+const u16 gObjectEventPal_XDPeon[]  = INCBIN_U16("graphics/object_events/palettes/xd_cipher_peon.gbapal");
 
 
 #if OW_FOLLOWERS_POKEBALLS

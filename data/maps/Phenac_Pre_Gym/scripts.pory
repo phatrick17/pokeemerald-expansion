@@ -1,54 +1,73 @@
 mapscripts Phenac_Pre_Gym_MapScripts {}
 
 script Battlesim1 {
-    lockall
+    lock
     faceplayer
+    if (flag(FLAG_PHENAC_CITY_KRANE_CHALLENGE_1)) {
+            if (flag(FLAG_MAP_UNLOCK_PYRITE)) {
+                goto(Phenac_Pre_Gym_Krane_Event_2)
+        }
+        msgbox(format(
+            "Krane: Hey {PLAYER}! Still no sign of Justy.\p"
+            "Check back in later on and he'll certainly be here.\p"
+            "It's too bad all the trainers in here are on break until he tells them to come back! Ahahaha!"), MSGBOX_DEFAULT)
+        release
+        end
+    }
+    if (flag(FLAG_PHENAC_CITY_KRANE_ASKS_1)) {
+        msgbox(format("Krane: You must have changed your mind!") MSGBOX_DEFAULT)
+        goto(Phenac_Pre_Gym_Krane_YESNO_1_Loop)
+    }
     msgbox(format("Hey there! Welcome to the Pre Gym.\n"
         "My name is Professor Krane.\p"
+
+        "...Your name is {PLAYER}?\pNice to meet you {PLAYER}!\p"
         
-        "Krane: I know - I'm not Justy -\n"
-        "the Pre Gym Leader.\p"
+        "Krane: I know - I'm not Justy - the\n"
+        "Pre Gym Leader.\p"
 
         "Justy is actually training inside my\n"
-        "novel invention: the Battle Simulator.\p"
+        "creation: the Battle Simulator!\p"
 
-        "The Battle Simulator is a prototype\n"
-        "which projects you into an Augmented\l"
-        "Reality space to do its name:\p"
+        "My idea was simple enough: project\n"
+        "trainers into an augmented reality\l"
+        "space to do the invention's name:\p"
 
-        "Simulate battles!\p"
-
-        "Perfect for trainers to practice and simulate certain scenarios in order to improve fast.\p"
+        "simulate POKéMON battles against computers!\p"
 
         "I've been researching this invention\n"
-        "for the past 5 years.\p"
+        "for the past few months or so.\pIt's still in the prototype stage but it's very much functional.\p"
 
-        "I brought it to Justy's gym as\n"
-        "he offered to test it out!\p"
+        "I set it up here in Justy's gym as he\n"
+        "was so excited to try it out.\p"
 
-        "You look like a strong trainer.\n"
+        "You look like a strong trainer!\n"
         "Were you planning to undergo Justy's\l"
         "challenge?\p"
 
         "...\p"
 
-        "You were! I see.\n"
-        "Well I have a proposition for you.\p"
-
-        "Why don't you try out my battle\n"
-        "simulator while you're waiting for Justy to come back?\p"
-
-        "You can get some training in while helping my cause!"), MSGBOX_YESNO)
+        "I figured you were going to {PLAYER}!\n"
+        "Well I have a proposition for you.") MSGBOX_DEFAULT)
+    setflag(FLAG_PHENAC_CITY_KRANE_ASKS_1)
+    Phenac_Pre_Gym_Krane_YESNO_1_Loop:
+    msgbox(format(
+        "Why don't you try out my simulation of the Pre Gym Challenge here?\p"
+        "It would be 4 successive battles in a row.\p"
+        "I'll give you a reward for completing it.\p"
+        "You can get some training in, and you'll help me get more testing done!\nWhat do you say?"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
+        msgbox(format(
+            "Alright. Well please come back if you change your mind!"), MSGBOX_DEFAULT)
         release
         end
     }
     msgbox(format(
-        "Krane: Great! Give me one second to\n"
-        "program the battle...\p"
-        "I'll start with beginner difficulty...\p"
-        "Okay! We're locked in. I'll just have you step onto the platform to you right."
+        "Great! Give me one second to program\n"
+        "the POKéMON battles...\p"
+        "Okay! We're locked in {PLAYER}. I'll just have you step onto the platform to your right."
     ), MSGBOX_DEFAULT)
+    closemessage
     fadescreen(FADE_TO_BLACK)
     playse(SE_CLICK)
     waitse
@@ -75,7 +94,7 @@ script Battlesim1 {
     fadenewbgm(MUS_NONE)
     msgbox(format(
         "Krane: Alright! Initiating protocol.\n"
-        "challenger entering simulation in...\p"
+        "Challenger entering simulation in:\p"
         "3...\p"
         "2...\p"
         "1..."
@@ -88,9 +107,28 @@ script Battlesim1 {
     hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM)
     playse(SE_WARP_IN)
     waitse
-	delay (60)
+	delay (20)
+    msgbox(format("SIMULATION: Battle 1 commence.") MSGBOX_DEFAULT)
     trainerbattle_no_intro(TRAINER_GRUNT_AQUA_HIDEOUT_4,
-        format("Simulation completed. Battle success."))
+        format("SIMULATION: Battle success."))
+
+    msgbox(format("SIMULATION: Battle 1 complete.\nBattle 2 commence.") MSGBOX_DEFAULT)
+    trainerbattle_no_intro(TRAINER_ED,
+        format("SIMULATION: Battle success."))
+    
+    msgbox(format("SIMULATION: Battle 2 complete.\nHealing trainer party.") MSGBOX_DEFAULT)
+    closemessage
+    special(HealPlayerParty)
+    playse(SE_USE_ITEM)
+    waitse
+    msgbox(format("SIMULATION: Battle 3 commence.") MSGBOX_DEFAULT)
+    trainerbattle_no_intro(TRAINER_GRUNT_SEAFLOOR_CAVERN_4,
+        format("SIMULATION: Battle success."))
+
+    msgbox(format("SIMULATION: Battle 3 complete.\nFinal battle commence.") MSGBOX_DEFAULT)
+    trainerbattle_no_intro(TRAINER_DECLAN,
+        format("SIMULATION: Battle success."))
+
     fadescreen(FADE_TO_BLACK)
     delay(30)
     showobjectat(OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM)
@@ -98,21 +136,115 @@ script Battlesim1 {
     waitse
     playse(MUS_HEAL)
     waitse
+    msgbox("POKéMON BATTLE Simulation succesful. Player defeated trainer with ease. In comparison, slower than\nJusty's clear. But POKéMON party is now healed. Exiting Augmented Reality space. No. 487. Exiting and closing the WORMHOLE protocol. No. 796.")
+    closemessage
     fadescreen(FADE_FROM_BLACK)
     special(HealPlayerParty)
+    setflag(FLAG_PHENAC_CITY_KRANE_CHALLENGE_1)
     msgbox(format
-        ("Krane: Your party is fully healed.\n"
-        "Well done!\p"
-        "You cruised through that simulation no problem!\p"
-        "...What's that? No sign of Justy in there?...\p"
-        "Well he's training in a different, erm, I guess level compared to you. He might be a while so you might want to check back in later.\p"
-        "Why don't you check back in a little bit? He'll definitely be here when you get back.\p"
-        "Alright, see you next time!"), MSGBOX_DEFAULT)
+        ("Krane: Hmm. Strange message there.\p"
+        "Oh {PLAYER} is back!\p"
+        "Your party has been fully healed.\nWell done!\p"
+        "You cruised through that challenge!\p"
+        "Thank you so much for participating - I got plenty of good data from those POKéMON battles.\p"
+        "Here's your reward."), MSGBOX_DEFAULT)
+    giveitem(ITEM_SUPER_POTION, 5)
+    giveitem(ITEM_QUICK_CLAW)
+    giveitem(ITEM_WHITE_HERB)
+    msgbox(format
+        ("...What's that? No sign of Justy in there? He's not back either?\p"
+        "Well, I guess I did send him into a more difficult battle scenario. Sorry about that. That might take a bit...\p"
+        "Why don't you come back in a little while. I'm sure Justy'll be back by then.\p"
+        "I'll see you soon {PLAYER}, okay? Thanks again!"), MSGBOX_DEFAULT)
     closemessage
     warp(MAP_OLDALE_TOWN, 25, 29)
-    releaseall
+    release
     end
 }
+
+script Phenac_Pre_Gym_Krane_Event_2 {
+    msgbox(format(
+        "Krane: {PLAYER}, I need your help."), MSGBOX_DEFAULT)
+    fadenewbgm(MUS_WEATHER_GROUDON)
+    msgbox(format(
+        "Justy...Justy hasn't come back.\p"
+        "I...I feel horrible. I can see that he's still in the simulation but... I've lost contact with him.\p"
+        "I need a trainer to go into the simulation. I...I don't know how to battle with POKéMON myself...\p"
+        "Please {PLAYER}.\nI don't think we should wait.\p"
+        "{PLAYER}, step into the platform and let's get you in there."), MSGBOX_DEFAULT)
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    delay(60)
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 27, 33)
+
+    applymovement(PHENAC_PRE_GYM_KRANE, moves(
+		face_player
+	))
+	applymovement(OBJ_EVENT_ID_NPC_FOLLOWER, moves(
+		face_player
+	))
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		face_down
+	))
+    waitmovement
+    special(RecenterCameraOnPlayer)
+    fadescreen(FADE_FROM_BLACK)
+    msgbox(format(
+        "Krane: Okay. Here we go {PLAYER}.\p"
+        "You're set to go into the same simulation as Justy.\p"
+        "Oh, goodness I hope he's okay.\p"
+        "Initiating protocol and starting in...\p"
+        "3...\p2...\p1..."), MSGBOX_DEFAULT)
+    closemessage
+    hideobjectat(OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM)
+    playse(SE_WARP_IN)
+    waitse
+    fadescreen(FADE_TO_BLACK)
+    showobjectat(OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM)
+
+    setobjectxy(OBJ_EVENT_ID_PLAYER, 27, 19)
+
+    special(RecenterCameraOnPlayer)
+
+	delay (60)
+    fadescreen(FADE_FROM_BLACK)
+    playbgm(MUS_NONE, FALSE)
+    msgbox("SYSTEM: Battle Simulation commence. ????Error No. 796 - anom?al....ous presence dete...?cted within WORMH...796OLE protoc...ol. Anal??yzing...Life form d???etected.........??????????")
+    closemessage
+	delay (30)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(
+		face_up
+	))
+    waitmovement
+    playse(SE_WARP_IN)
+    waitse
+    addobject(PHENAC_PRE_GYM_CIPHER_ANOMALY_1)
+	delay (15)
+	applymovement(PHENAC_PRE_GYM_CIPHER_ANOMALY_1, moves(
+		walk_down
+	))
+    waitmovement
+    delay(60)
+	applymovement(PHENAC_PRE_GYM_CIPHER_ANOMALY_1, moves(
+        walk_left * 4
+        walk_down
+	))
+    waitmovement
+
+    msgbox(format(
+        "???: ...\n...\p"
+        "You?!?"), MSGBOX_DEFAULT)
+    closemessage
+    trainerbattle_no_intro(TRAINER_ALBERTO,
+        format("..."))
+    msgbox("SYSTEM: Battle detected. Battle complete. Battle data downloaded...???...{PLAYER} with a triumphant victory. Anomalous lifeform from .dif.??er?.n. d..?mentio... dispersed....\nRemoving {PLAYER} from simulation...")
+    release
+    end
+}
+
 
 script GiveShadowMonTest {
     createmon(0, PARTY_SIZE, SPECIES_QUILAVA_SHADOW, 100)

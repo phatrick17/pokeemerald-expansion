@@ -219,3 +219,6 @@ const u16 gMetatileAttributes_Desert_Primary[] = INCBIN_U16("data/tilesets/prima
 
 const u16 gMetatiles_Outskirt_Stand_Indoor[] = INCBIN_U16("data/tilesets/secondary/outskirt_stand_indoor/metatiles.bin");
 const u16 gMetatileAttributes_Outskirt_Stand_Indoor[] = INCBIN_U16("data/tilesets/secondary/outskirt_stand_indoor/metatile_attributes.bin");
+
+const u16 gMetatiles_Realgam_Outside[] = INCBIN_U16("data/tilesets/secondary/realgam_outside/metatiles.bin");
+const u16 gMetatileAttributes_Realgam_Outside[] = INCBIN_U16("data/tilesets/secondary/realgam_outside/metatile_attributes.bin");

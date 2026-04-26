@@ -61,8 +61,8 @@
 #define FLAG_POKEBALLS_UNLOCKED    0x2F // Unused Flag
 #define FLAG_PHENAC_CITY_MAYOR_MIRORB    0x30 // For First encounter w miror B
 #define FLAG_PHENAC_CITY_CIPHER_TRIO    0x31 // Russo Bluno Verde Visibility
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
+#define FLAG_PHENAC_CITY_KRANE_CHALLENGE_1    0x32 // Finish krane's 4 battles
+#define FLAG_PHENAC_CITY_KRANE_ASKS_1   0x33 // Bypass Kranes Big speech
 #define FLAG_UNUSED_0x034    0x34 // Unused Flag
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
 #define FLAG_UNUSED_0x036    0x36 // Unused Flag

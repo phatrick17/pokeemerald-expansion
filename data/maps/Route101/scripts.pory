@@ -563,10 +563,15 @@ script My_Debug_Menu {
 			setvar(VAR_PHENAC_CITY_STATE, 3) // prevents snagem event happen again
 			clearflag(FLAG_WILLIE_APPEAR_1)
         	setflag(FLAG_POKEBALLS_UNLOCKED)// changes phenac dialogue
-		    setvar(VAR_PHENAC_CITY_STATE, 4) //for phenac lady script when walking in
-			clearflag(FLAG_PHENAC_CITY_MAYOR_MIRORB)
+		    setvar(VAR_PHENAC_CITY_STATE, 5) //for phenac lady script when walking in, sets mirror b event in mayor house
+		    setvar(VAR_PHENAC_CITY_STATE, 6) //defeated mirror b
+			setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB) //mirror b defeated
+			setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
+			setflag(FLAG_PHENAC_CITY_KRANE_CHALLENGE_1) // first battle sim event
+
 
 			setflag(FLAG_MAP_UNLOCK_PHENAC) //map unlocks on different row on flags.h
+			setflag(FLAG_MAP_UNLOCK_PYRITE)
 			special(DoRivalNameChoiceScreen)
     		waitstate()
 			createfollowernpc(OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL)

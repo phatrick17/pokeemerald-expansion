@@ -4460,6 +4460,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/Phenac_Mayor_House_Upstaris/border.bin",
       "blockdata_filepath": "data/layouts/Phenac_Mayor_House_Upstaris/map.bin"
+    },
+    {
+      "id": "LAYOUT_REAGAM_ENTRACE",
+      "name": "Reagam_Entrace_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Realgam_Outside",
+      "border_filepath": "data/layouts/Reagam_Entrace/border.bin",
+      "blockdata_filepath": "data/layouts/Reagam_Entrace/map.bin"
     }
   ]
 }

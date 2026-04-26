@@ -309,12 +309,11 @@ Level: 30
 - Bubble Beam
 
 === TRAINER_ALBERTO ===
-Name: ALBERTO
-Class: Bird Keeper
-Pic: Bird Keeper
+Name: ???
+Class: CIPHER_PEON_XD_UNKNOWN
+Pic: CIPHER_PEON_XD
 Gender: Male
-Music: Cool
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move
 
 Pelipper
@@ -326,47 +325,55 @@ Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ED ===
-Name: ED
-Class: Collector
-Pic: Collector
-Gender: Male
-Music: Suspicious
-Double Battle: No
+Name: Liqui
+Class: Battle_Sim_M
+Pic: Cooltrainer F
+Double Battle: Yes
 AI: Check Bad Move
 
-Zangoose
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Marill
+Level: 26
+- Water Gun
+- Defense Curl
 
-Seviper
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Surskit
+Level: 27
+- Bubble
+- Agility
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_4 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt F
-Gender: Female
-Music: Aqua
-Double Battle: No
+Name: Dugo
+Class: Battle_Sim_M
+Pic: Rich Boy
+Double Battle: Yes
 AI: Check Bad Move
 
-Carvanha
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Trapinch
+Level: 27
+- Sand Tomb
+- Sand Attack
+
+Swinub
+Level: 27
+- Dig
+- Odor Sleuth
 
 === TRAINER_DECLAN ===
-Name: DECLAN
-Class: Swimmer M
-Pic: Swimmer M
-Gender: Male
-Music: Swimmer
-Double Battle: No
+Name: Gwin
+Class: Battle_Sim_M
+Pic: Lady
+Double Battle: Yes
 AI: Check Bad Move
 
-Gyarados
-Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Geodude
+Level: 27
+- Rock Throw
+- Defense Curl
+
+Rhyhorn
+Level: 27
+- Rock Tomb
+- Tail Whip
 
 === TRAINER_GRUNT_RUSTURF_TUNNEL ===
 Name: GRUNT

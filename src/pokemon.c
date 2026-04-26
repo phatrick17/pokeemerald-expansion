@@ -6133,6 +6133,8 @@ u16 GetBattleBGM(void)
             return MUS_B_FACTORY;
         case TRAINER_CLASS_MYSTERY_TROOP:
             return MUS_B_PYRAMID_TOP;
+        case TRAINER_CLASS_CIPHER_PEON_XD_UNKNOWN:
+            return MUS_B_PYRAMID;
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;

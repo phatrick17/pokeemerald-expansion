@@ -1054,6 +1054,7 @@ script Phenac_Verde_Battle_1 {
     "{PLAYER}, let's go. Those guys are probably headed for PYRITE TOWN.\p"
     "After all, it was in PYRITE that they captured me."), MSGBOX_DEFAULT)
     setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
+    setflag(FLAG_MAP_UNLOCK_PYRITE)
     release
     end
 }
@@ -1108,6 +1109,7 @@ script Phenac_Rosso_Battle_1 {
             "{PLAYER}, let's go. Those guys are probably headed for PYRITE TOWN.\p"
             "After all, it was in PYRITE that they captured me."), MSGBOX_DEFAULT)
     setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
+    setflag(FLAG_MAP_UNLOCK_PYRITE)
     release
     end
 }
