@@ -88,54 +88,58 @@ Phenac_Pre_Gym_Krane_YESNO_1_Loop:
 # 120 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	closemessage
 # 121 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	playse SE_USE_ITEM
-# 122 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitse
-# 123 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Battlesim1_Text_11
-# 124 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_GRUNT_SEAFLOOR_CAVERN_4, Battlesim1_Text_8
-# 127 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Battlesim1_Text_12
-# 128 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_DECLAN, Battlesim1_Text_8
-# 131 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 132 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	delay 30
-# 133 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	showobjectat OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM
-# 134 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	playse SE_WARP_IN
-# 135 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitse
-# 136 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	playse MUS_HEAL
-# 137 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitse
-# 138 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Battlesim1_Text_13
-# 139 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	closemessage
-# 140 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 141 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	special HealPlayerParty
-# 142 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	setflag FLAG_PHENAC_CITY_KRANE_CHALLENGE_1
-# 143 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Battlesim1_Text_14, MSGBOX_DEFAULT
-# 150 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	giveitem ITEM_SUPER_POTION, 5
-# 151 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	giveitem ITEM_QUICK_CLAW
-# 152 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Battlesim1_Text_15, MSGBOX_DEFAULT
-# 157 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 122 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	playse SE_USE_ITEM
+# 123 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitse
+# 124 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Battlesim1_Text_11
+# 125 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	trainerbattle_no_intro TRAINER_GRUNT_SEAFLOOR_CAVERN_4, Battlesim1_Text_8
+# 128 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Battlesim1_Text_12
+# 129 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	trainerbattle_no_intro TRAINER_DECLAN, Battlesim1_Text_8
+# 132 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 133 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	delay 30
+# 134 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM
+# 135 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	playse SE_WARP_IN
+# 136 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitse
+# 137 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	playse MUS_HEAL
+# 138 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitse
+# 139 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Battlesim1_Text_13
+# 140 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	closemessage
-# 158 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	warp MAP_OLDALE_TOWN, 25, 29
+# 141 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 142 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	special HealPlayerParty
+# 143 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	setflag FLAG_PHENAC_CITY_KRANE_CHALLENGE_1
+# 144 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Battlesim1_Text_14, MSGBOX_DEFAULT
+# 151 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	giveitem ITEM_SUPER_POTION, 5
+# 152 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	giveitem ITEM_QUICK_CLAW
+# 153 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	giveitem ITEM_WHITE_HERB
+# 154 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Battlesim1_Text_15, MSGBOX_DEFAULT
 # 159 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	closemessage
+# 160 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	warp MAP_OLDALE_TOWN, 25, 29
+# 161 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	release
 	end
 
@@ -170,109 +174,109 @@ Battlesim1_11:
 
 
 Phenac_Pre_Gym_Krane_Event_2::
-# 164 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_0, MSGBOX_DEFAULT
 # 166 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_0, MSGBOX_DEFAULT
+# 168 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	fadenewbgm MUS_WEATHER_GROUDON
-# 167 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 169 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_1, MSGBOX_DEFAULT
-# 173 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	closemessage
-# 174 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	fadescreen FADE_TO_BLACK
 # 175 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	delay 60
+	closemessage
 # 176 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	setobjectxy OBJ_EVENT_ID_PLAYER, 27, 33
-# 178 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement PHENAC_PRE_GYM_KRANE, Battlesim1_Movement_1
-# 181 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement OBJ_EVENT_ID_NPC_FOLLOWER, Battlesim1_Movement_1
-# 184 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Battlesim1_Movement_2
-# 187 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitmovement
-# 188 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	special RecenterCameraOnPlayer
-# 189 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 190 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_2, MSGBOX_DEFAULT
-# 196 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	closemessage
-# 197 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM
-# 198 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	playse SE_WARP_IN
-# 199 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitse
-# 200 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	fadescreen FADE_TO_BLACK
-# 201 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	showobjectat OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM
-# 203 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	setobjectxy OBJ_EVENT_ID_PLAYER, 27, 19
-# 205 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 177 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	delay 60
+# 178 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	setobjectxy OBJ_EVENT_ID_PLAYER, 27, 33
+# 180 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement PHENAC_PRE_GYM_KRANE, Battlesim1_Movement_1
+# 183 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement OBJ_EVENT_ID_NPC_FOLLOWER, Battlesim1_Movement_1
+# 186 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Battlesim1_Movement_2
+# 189 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitmovement
+# 190 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	special RecenterCameraOnPlayer
-# 207 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	delay 60
-# 208 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 191 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	fadescreen FADE_FROM_BLACK
-# 209 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	playbgm MUS_NONE, FALSE
-# 210 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_3
-# 211 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 192 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_2, MSGBOX_DEFAULT
+# 198 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	closemessage
-# 212 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	delay 30
-# 213 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
-# 214 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	playse SE_PIN
-# 215 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitse
-# 216 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Phenac_Pre_Gym_Krane_Event_2_Movement_0
-# 219 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitmovement
-# 220 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 199 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM
+# 200 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	playse SE_WARP_IN
-# 221 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 201 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	waitse
-# 222 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	addobject PHENAC_PRE_GYM_CIPHER_ANOMALY_1
-# 223 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	delay 15
-# 224 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement PHENAC_PRE_GYM_CIPHER_ANOMALY_1, Phenac_Pre_Gym_Krane_Event_2_Movement_1
-# 227 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitmovement
-# 228 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 202 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 203 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_PHENAC_PRE_GYM
+# 205 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	setobjectxy OBJ_EVENT_ID_PLAYER, 27, 19
+# 207 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	special RecenterCameraOnPlayer
+# 209 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	delay 60
-# 229 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	applymovement PHENAC_PRE_GYM_CIPHER_ANOMALY_1, Phenac_Pre_Gym_Krane_Event_2_Movement_2
-# 233 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	waitmovement
-# 235 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_4, MSGBOX_DEFAULT
-# 238 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 210 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 211 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	playbgm MUS_NONE, FALSE
+# 212 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_3
+# 213 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	closemessage
-# 239 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	trainerbattle_no_intro TRAINER_ALBERTO, Phenac_Pre_Gym_Krane_Event_2_Text_5
+# 214 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	delay 30
+# 215 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+# 216 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	playse SE_PIN
+# 217 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitse
+# 218 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Phenac_Pre_Gym_Krane_Event_2_Movement_0
+# 221 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitmovement
+# 222 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	playse SE_WARP_IN
+# 223 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitse
+# 224 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	addobject PHENAC_PRE_GYM_CIPHER_ANOMALY_1
+# 225 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	delay 15
+# 226 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement PHENAC_PRE_GYM_CIPHER_ANOMALY_1, Phenac_Pre_Gym_Krane_Event_2_Movement_1
+# 229 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitmovement
+# 230 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	delay 60
+# 231 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	applymovement PHENAC_PRE_GYM_CIPHER_ANOMALY_1, Phenac_Pre_Gym_Krane_Event_2_Movement_2
+# 235 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	waitmovement
+# 237 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_4, MSGBOX_DEFAULT
+# 240 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	closemessage
 # 241 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	trainerbattle_no_intro TRAINER_ALBERTO, Phenac_Pre_Gym_Krane_Event_2_Text_5
+# 243 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	msgbox Phenac_Pre_Gym_Krane_Event_2_Text_6
-# 242 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 244 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	release
 	end
 
 
 GiveShadowMonTest::
-# 248 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	createmon 0, PARTY_SIZE, SPECIES_QUILAVA_SHADOW, 100
-# 249 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	createmon 0, PARTY_SIZE, SPECIES_BAYLEEF_SHADOW, 100
 # 250 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	createmon 0, PARTY_SIZE, SPECIES_QUILAVA_SHADOW, 100
+# 251 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	createmon 0, PARTY_SIZE, SPECIES_BAYLEEF_SHADOW, 100
+# 252 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	release
 	end
 
@@ -309,29 +313,29 @@ Battlesim1_Movement_3:
 	walk_in_place_slow_down
 	step_end
 
-# 216 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 218 "data/maps/Phenac_Pre_Gym/scripts.pory"
 Phenac_Pre_Gym_Krane_Event_2_Movement_0:
-# 217 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 219 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	face_up
 	step_end
 
-# 224 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 226 "data/maps/Phenac_Pre_Gym/scripts.pory"
 Phenac_Pre_Gym_Krane_Event_2_Movement_1:
-# 225 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 227 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	walk_down
 	step_end
 
-# 229 "data/maps/Phenac_Pre_Gym/scripts.pory"
-Phenac_Pre_Gym_Krane_Event_2_Movement_2:
-# 230 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	walk_left
-# 230 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	walk_left
-# 230 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	walk_left
-# 230 "data/maps/Phenac_Pre_Gym/scripts.pory"
-	walk_left
 # 231 "data/maps/Phenac_Pre_Gym/scripts.pory"
+Phenac_Pre_Gym_Krane_Event_2_Movement_2:
+# 232 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	walk_left
+# 232 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	walk_left
+# 232 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	walk_left
+# 232 "data/maps/Phenac_Pre_Gym/scripts.pory"
+	walk_left
+# 233 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	walk_down
 	step_end
 
@@ -429,20 +433,20 @@ Battlesim1_Text_10:
 	.string "Healing trainer party.$"
 
 Battlesim1_Text_11:
-# 123 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 124 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "SIMULATION: Battle 3 commence.$"
 
 Battlesim1_Text_12:
-# 127 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 128 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "SIMULATION: Battle 3 complete.\n"
 	.string "Final battle commence.$"
 
 Battlesim1_Text_13:
-# 138 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 139 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "POKéMON BATTLE Simulation succesful. Player defeated trainer with ease. In comparison, slower than\nJusty's clear. But POKéMON party is now healed. Exiting Augmented Reality space. No. 487. Exiting and closing the WORMHOLE protocol. No. 796.$"
 
 Battlesim1_Text_14:
-# 144 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 145 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "Krane: Hmm. Strange message there.\p"
 	.string "Oh {PLAYER} is back!\p"
 	.string "Your party has been fully healed.\n"
@@ -454,7 +458,7 @@ Battlesim1_Text_14:
 	.string "Here's your reward.$"
 
 Battlesim1_Text_15:
-# 153 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 155 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "...What's that? No sign of Justy in\n"
 	.string "there? He's not back either?\p"
 	.string "Well, I guess I did send him into a more\n"
@@ -466,11 +470,11 @@ Battlesim1_Text_15:
 	.string "Thanks again!$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_0:
-# 165 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 167 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "Krane: {PLAYER}, I need your help.$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_1:
-# 168 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 170 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "Justy...Justy hasn't come back.\p"
 	.string "I...I feel horrible. I can see that he's\n"
 	.string "still in the simulation but... I've lost\l"
@@ -484,7 +488,7 @@ Phenac_Pre_Gym_Krane_Event_2_Text_1:
 	.string "let's get you in there.$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_2:
-# 191 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 193 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "Krane: Okay. Here we go {PLAYER}.\p"
 	.string "You're set to go into the same\n"
 	.string "simulation as Justy.\p"
@@ -495,19 +499,19 @@ Phenac_Pre_Gym_Krane_Event_2_Text_2:
 	.string "1...$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_3:
-# 210 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 212 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "SYSTEM: Battle Simulation commence. ????Error No. 796 - anom?al....ous presence dete...?cted within WORMH...796OLE protoc...ol. Anal??yzing...Life form d???etected.........??????????$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_4:
-# 236 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 238 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "???: ...\n"
 	.string "...\p"
 	.string "You?!?$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_5:
-# 240 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 242 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "...$"
 
 Phenac_Pre_Gym_Krane_Event_2_Text_6:
-# 241 "data/maps/Phenac_Pre_Gym/scripts.pory"
+# 243 "data/maps/Phenac_Pre_Gym/scripts.pory"
 	.string "SYSTEM: Battle detected. Battle complete. Battle data downloaded...???...{PLAYER} with a triumphant victory. Anomalous lifeform from .dif.??er?.n. d..?mentio... dispersed....\nRemoving {PLAYER} from simulation...$"

@@ -1368,3 +1368,8 @@ static const struct SpriteFrameImage sPicTable_MirorB[] = {
 static const struct SpriteFrameImage sPicTable_Bluno[] = {
     overworld_ascending_frames(gObjectEventPic_Bluno, 2, 4),
 };
+
+static const struct SpriteFrameImage sPicTable_Construction[] = {
+    overworld_ascending_frames(gObjectEventPic_Construction, 2, 4),
+};
+

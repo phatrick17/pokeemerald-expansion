@@ -406,6 +406,9 @@ const u16 gObjectEventPal_Rosso[]   = INCBIN_U16("graphics/object_events/palette
 const u16 gObjectEventPal_Verde[] = INCBIN_U16("graphics/object_events/palettes/verde.gbapal");
 const u16 gObjectEventPal_XDPeon[]  = INCBIN_U16("graphics/object_events/palettes/xd_cipher_peon.gbapal");
 
+const u32 gObjectEventPic_Construction[] = INCBIN_U32("graphics/object_events/pics/people/construction.4bpp");
+const u16 gObjectEventPal_Construction[] = INCBIN_U16("graphics/object_events/palettes/construction.gbapal");
+
 
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");
