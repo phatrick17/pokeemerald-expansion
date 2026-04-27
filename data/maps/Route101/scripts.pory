@@ -568,10 +568,11 @@ script My_Debug_Menu {
 			setflag(FLAG_PHENAC_CITY_MAYOR_MIRORB) //mirror b defeated
 			setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
 			setflag(FLAG_PHENAC_CITY_KRANE_CHALLENGE_1) // first battle sim event
+			setflag(FLAG_PHENAC_PART1_COMPLETE)
 
 
 			setflag(FLAG_MAP_UNLOCK_PHENAC) //map unlocks on different row on flags.h
-			setflag(FLAG_MAP_UNLOCK_PYRITE)
+    		setflag(FLAG_MAP_UNLOCK_REALGAM_TEMP) //realgam
 			special(DoRivalNameChoiceScreen)
     		waitstate()
 			createfollowernpc(OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL)

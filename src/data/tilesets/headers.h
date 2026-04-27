@@ -885,3 +885,14 @@ const struct Tileset gTileset_Realgam_Outside =
     .metatileAttributes = gMetatileAttributes_Realgam_Outside,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_PyriteTown =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PyriteTown,
+    .palettes = gTilesetPalettes_PyriteTown,
+    .metatiles = gMetatiles_PyriteTown,
+    .metatileAttributes = gMetatileAttributes_PyriteTown,
+    .callback = NULL,
+};

@@ -16,18 +16,19 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_CONSTRUCTION",
-      "x": 8,
-      "y": 10,
+      "x": 7,
+      "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Realgam_Construction_Man2",
       "flag": "0"
     },
     {
+      "local_id": "Realgam_Construction_Man_1",
       "graphics_id": "OBJ_EVENT_GFX_CONSTRUCTION",
       "x": 11,
       "y": 12,
@@ -37,7 +38,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Realgam_Construction_Man1",
       "flag": "0"
     },
     {
@@ -50,7 +51,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Realgam_Construction_Man3",
       "flag": "0"
     }
   ],
@@ -73,6 +74,24 @@
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Realgam_Construction_Enter"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "Realgam_Construction_Enter"
     }
   ],
   "bg_events": []

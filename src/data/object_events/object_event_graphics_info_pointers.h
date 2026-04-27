@@ -241,7 +241,8 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bluno;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rosso;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Verde;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_XDPeon;
-extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Construction
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Construction;
+
 // Begin pokemon event objects
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeBall;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Follower;

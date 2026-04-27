@@ -1,1 +1,47 @@
 mapscripts Realgam_Entrace_MapScripts {}
+
+script Realgam_Construction_Enter {
+    if (flag(FLAG_MAP_UNLOCK_PYRITE)) {
+        release
+        end
+    }
+    lock
+    applymovement(Realgam_Construction_Man_1, Common_Movement_ExclamationMark)
+    playse(SE_PIN)
+    waitse
+    msgbox(format("Woah, hold it there.\nThis is a construction site.\lIt's not a safe place to be.\p"
+    "This is no place for tourists to visit.\nGo on, scram.\pYou can go visit Pyrite for all I care - it's just west of here.") MSGBOX_DEFAULT)
+    setflag(FLAG_MAP_UNLOCK_PYRITE)
+    closemessage
+    release
+    end
+}
+
+script Realgam_Construction_Man1 {
+    lock
+    faceplayer
+    msgbox(format("Woah, hold it there.\nThis is a construction site.\lIt's not a safe place to be.\p"
+    "This is no place for tourists to visit.\nGo on, scram.\pYou can go visit Pyrite for all I care - it's just west of here.") MSGBOX_DEFAULT)
+    release
+    end
+}
+
+
+script Realgam_Construction_Man2 {
+    lock
+    faceplayer
+    msgbox(format("Ayup, it's been a mighty long time.\nI can't rightly recall when it was that I was last at home.\p"
+    "But, we're just about done here.\nAll that's left is to clean up the site, and we're done.") MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Realgam_Construction_Man3 {
+    lock
+    faceplayer
+    msgbox(format("Aaaaaah...\nBeen working hard, I have.\p"
+    "Let me tell you, making this here huge tower's one massive job.\pIt's hard to imagine, even for me.\p"
+    "Y'all come back to visit when we're all done here.\pThere'll be a Colosseum on top of the tower up ahead. Amazing stuff!") MSGBOX_DEFAULT)
+    release
+    end
+}

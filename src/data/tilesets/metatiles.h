@@ -222,3 +222,6 @@ const u16 gMetatileAttributes_Outskirt_Stand_Indoor[] = INCBIN_U16("data/tileset
 
 const u16 gMetatiles_Realgam_Outside[] = INCBIN_U16("data/tilesets/secondary/realgam_outside/metatiles.bin");
 const u16 gMetatileAttributes_Realgam_Outside[] = INCBIN_U16("data/tilesets/secondary/realgam_outside/metatile_attributes.bin");
+
+const u16 gMetatiles_PyriteTown[] = INCBIN_U16("data/tilesets/secondary/pyrite_town/metatiles.bin");
+const u16 gMetatileAttributes_PyriteTown[] = INCBIN_U16("data/tilesets/secondary/pyrite_town/metatile_attributes.bin");

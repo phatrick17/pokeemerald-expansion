@@ -1175,3 +1175,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Phenac_Mayor_House_Upstaris/scripts.inc"
 
 	.include "data/maps/Realgam_Entrace/scripts.inc"
+
+	.include "data/maps/Pyrite_Town/scripts.inc"

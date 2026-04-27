@@ -34,7 +34,8 @@
     "gMapGroup_IndoorRoute123",
     "gMapGroup_IndoorRoute119",
     "gMapGroup_IndoorRoute124",
-    "gMapGroup_RealgamTower"
+    "gMapGroup_RealgamTower",
+    "gMapGroup_PyriteTown"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -629,5 +630,8 @@
   ],
   "gMapGroup_RealgamTower": [
     "Realgam_Entrace"
+  ],
+  "gMapGroup_PyriteTown": [
+    "Pyrite_Town"
   ]
 }

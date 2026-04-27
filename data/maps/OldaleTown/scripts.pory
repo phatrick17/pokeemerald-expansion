@@ -318,7 +318,7 @@ script Phenac_Runner_1_Dialogue_1 {
 script Phenac_Runner_1_Dialogue_2 {
     lock
 	faceplayer
-    if (flag(FLAG_MAP_UNLOCK_PYRITE)) {
+    if (flag(FLAG_PHENAC_PART1_COMPLETE)) {
         lock
         faceplayer
         msgbox(format("This town's been the very picture of peace, but now the mood is tense and nervous.\p"
@@ -370,7 +370,7 @@ script Phenac_Runner_1_Dialogue_2 {
 script Phenac_Lady_1_Dialogue_1 {
     lock
 	faceplayer
-    if (flag(FLAG_MAP_UNLOCK_PYRITE)) {
+    if (flag(FLAG_PHENAC_PART1_COMPLETE)) {
         lock
 	    faceplayer
         msgbox(format("Isn't this awful?\n"
@@ -551,7 +551,7 @@ script Phenac_DudeGym_Dialogue_1 {
 script Phenac_OldLadyMayor_Dialogue_1 {
 	lock
 	faceplayer
-    if (flag(FLAG_MAP_UNLOCK_PYRITE)) {
+    if (flag(FLAG_PHENAC_PART1_COMPLETE)) {
         msgbox(format(
             "Oh? You were safe?\n"
             "The MAYOR wasn't home, either, I hear. All's well that ends well!"), MSGBOX_DEFAULT)
@@ -1054,7 +1054,8 @@ script Phenac_Verde_Battle_1 {
     "{PLAYER}, let's go. Those guys are probably headed for PYRITE TOWN.\p"
     "After all, it was in PYRITE that they captured me."), MSGBOX_DEFAULT)
     setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
-    setflag(FLAG_MAP_UNLOCK_PYRITE)
+    setflag(FLAG_PHENAC_PART1_COMPLETE)
+    setflag(FLAG_MAP_UNLOCK_REALGAM_TEMP)
     release
     end
 }
@@ -1109,7 +1110,8 @@ script Phenac_Rosso_Battle_1 {
             "{PLAYER}, let's go. Those guys are probably headed for PYRITE TOWN.\p"
             "After all, it was in PYRITE that they captured me."), MSGBOX_DEFAULT)
     setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
-    setflag(FLAG_MAP_UNLOCK_PYRITE)
+    setflag(FLAG_PHENAC_PART1_COMPLETE)
+    setflag(FLAG_MAP_UNLOCK_REALGAM_TEMP)
     release
     end
 }
@@ -1163,7 +1165,8 @@ script Phenac_Bluno_Battle_1 {
             "{PLAYER}, let's go. Those guys are probably headed for PYRITE TOWN.\p"
             "After all, it was in PYRITE that they captured me."), MSGBOX_DEFAULT)
     setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
-    setflag(FLAG_MAP_UNLOCK_PYRITE)
+    setflag(FLAG_PHENAC_PART1_COMPLETE)
+    setflag(FLAG_MAP_UNLOCK_REALGAM_TEMP)
     release
     end
 }

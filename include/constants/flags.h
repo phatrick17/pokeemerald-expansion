@@ -63,7 +63,7 @@
 #define FLAG_PHENAC_CITY_CIPHER_TRIO    0x31 // Russo Bluno Verde Visibility
 #define FLAG_PHENAC_CITY_KRANE_CHALLENGE_1    0x32 // Finish krane's 4 battles
 #define FLAG_PHENAC_CITY_KRANE_ASKS_1   0x33 // Bypass Kranes Big speech
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
+#define FLAG_PHENAC_PART1_COMPLETE    0x34 // Finished Phenac Part 1
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
 #define FLAG_UNUSED_0x036    0x36 // Unused Flag
 #define FLAG_UNUSED_0x037    0x37 // Unused Flag
@@ -740,8 +740,8 @@
 //OW Map Unlocks
 
 #define FLAG_MAP_UNLOCK_PHENAC  0x2B3 // Unlock Phenac City
-#define FLAG_MAP_UNLOCK_PYRITE  0x2B4 // Unused Flag
-#define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
+#define FLAG_MAP_UNLOCK_PYRITE  0x2B4 // Unlock Pyrite Town
+#define FLAG_MAP_UNLOCK_REALGAM_TEMP  0x2B5 // Realgam UNDER CONSTRUCTION
 #define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
 #define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
 #define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag

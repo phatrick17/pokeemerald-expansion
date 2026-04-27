@@ -4470,6 +4470,16 @@
       "secondary_tileset": "gTileset_Realgam_Outside",
       "border_filepath": "data/layouts/Realgam_Entrace/border.bin",
       "blockdata_filepath": "data/layouts/Realgam_Entrace/map.bin"
+    },
+    {
+      "id": "LAYOUT_PYRITE_TOWN",
+      "name": "Pyrite_Town_Layout",
+      "width": 20,
+      "height": 70,
+      "primary_tileset": "gTileset_Desert_Primary",
+      "secondary_tileset": "gTileset_PyriteTown",
+      "border_filepath": "data/layouts/Pyrite_Town/border.bin",
+      "blockdata_filepath": "data/layouts/Pyrite_Town/map.bin"
     }
   ]
 }

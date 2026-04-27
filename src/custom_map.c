@@ -49,7 +49,7 @@ struct CustomMapTown {
 static const struct CustomMapTown sCustomTowns[NUM_CUSTOM_TOWNS] = {
     { .x =  212, .y =  116, .mapSecId = MAPSEC_ROUTE_101,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
     { .x =  164, .y =  116, .mapSecId = MAPSEC_OLDALE_TOWN,     .healLocationId = HEAL_LOCATION_OLDALE_TOWN, .flag = FLAG_MAP_UNLOCK_PHENAC },
-    { .x = 200, .y =  48, .mapSecId = MAPSEC_LILYCOVE_CITY,     .healLocationId = HEAL_LOCATION_LILYCOVE_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x = 132, .y =  100, .mapSecId = MAPSEC_REALGAM_TOWER,     .healLocationId = HEAL_LOCATION_REALGAM_ENTRACE, .flag = FLAG_MAP_UNLOCK_REALGAM_TEMP },
     { .x =  24, .y =  96, .mapSecId = MAPSEC_PETALBURG_CITY,    .healLocationId = HEAL_LOCATION_PETALBURG_CITY, .flag = FLAG_UNUSED_0x2BB },
     { .x =  72, .y =  96, .mapSecId = MAPSEC_MAUVILLE_CITY,     .healLocationId = HEAL_LOCATION_MAUVILLE_CITY, .flag = FLAG_UNUSED_0x2BB },
     { .x =  56, .y = 128, .mapSecId = MAPSEC_LITTLEROOT_TOWN,   .healLocationId = HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, .flag = FLAG_UNUSED_0x2BB },
@@ -363,7 +363,7 @@ static void CB_HandleCustomMapInput(void)
     if (sCustomMap->state != 0)
         return;
 
-    if (JOY_NEW(DPAD_RIGHT))
+    if (JOY_NEW(DPAD_LEFT))
     {
         // Move to next available town
         u8 next = sCustomMap->selectedTown;
@@ -381,7 +381,7 @@ static void CB_HandleCustomMapInput(void)
             m4aSongNumStart(SE_DEX_SCROLL);
         }
     }
-    else if (JOY_NEW(DPAD_LEFT))
+    else if (JOY_NEW(DPAD_RIGHT))
     {
         // Move to previous available town
         u8 prev = sCustomMap->selectedTown;

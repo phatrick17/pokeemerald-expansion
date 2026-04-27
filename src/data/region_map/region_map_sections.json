@@ -1233,7 +1233,11 @@
     },
     {
       "id": "MAPSEC_REALGAM_TOWER",
-      "name": "Realgam Tower"
+      "name": "Construction Lot"
+    },
+    {
+      "id": "MAPSEC_Pyrite_Town",
+      "name": "Pyrite Town"
     }
   ]
 }
