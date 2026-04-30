@@ -15,6 +15,25 @@
   "connections": null,
   "object_events": [],
   "warp_events": [],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 83,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 83,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    }
+  ],
   "bg_events": []
 }

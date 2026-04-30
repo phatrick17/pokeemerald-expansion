@@ -192,6 +192,12 @@
       "map": "MAP_REALGAM_ENTRACE",
       "x": 10,
       "y": 16
+    },
+    {
+      "id": "HEAL_LOCATION_PYRITE_TOWN",
+      "map": "MAP_PYRITE_TOWN",
+      "x": 15,
+      "y": 81
     }
   ]
 }

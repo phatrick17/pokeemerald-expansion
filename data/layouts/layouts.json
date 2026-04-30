@@ -4474,8 +4474,8 @@
     {
       "id": "LAYOUT_PYRITE_TOWN",
       "name": "Pyrite_Town_Layout",
-      "width": 20,
-      "height": 70,
+      "width": 28,
+      "height": 90,
       "primary_tileset": "gTileset_Desert_Primary",
       "secondary_tileset": "gTileset_PyriteTown",
       "border_filepath": "data/layouts/Pyrite_Town/border.bin",

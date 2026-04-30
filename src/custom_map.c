@@ -50,7 +50,7 @@ static const struct CustomMapTown sCustomTowns[NUM_CUSTOM_TOWNS] = {
     { .x =  212, .y =  116, .mapSecId = MAPSEC_ROUTE_101,     .healLocationId = HEAL_LOCATION_RUSTBORO_CITY },
     { .x =  164, .y =  116, .mapSecId = MAPSEC_OLDALE_TOWN,     .healLocationId = HEAL_LOCATION_OLDALE_TOWN, .flag = FLAG_MAP_UNLOCK_PHENAC },
     { .x = 132, .y =  100, .mapSecId = MAPSEC_REALGAM_TOWER,     .healLocationId = HEAL_LOCATION_REALGAM_ENTRACE, .flag = FLAG_MAP_UNLOCK_REALGAM_TEMP },
-    { .x =  24, .y =  96, .mapSecId = MAPSEC_PETALBURG_CITY,    .healLocationId = HEAL_LOCATION_PETALBURG_CITY, .flag = FLAG_UNUSED_0x2BB },
+    { .x =  68, .y =  108, .mapSecId = MAPSEC_Pyrite_Town,        .healLocationId = HEAL_LOCATION_PYRITE_TOWN, .flag = FLAG_MAP_UNLOCK_PYRITE },
     { .x =  72, .y =  96, .mapSecId = MAPSEC_MAUVILLE_CITY,     .healLocationId = HEAL_LOCATION_MAUVILLE_CITY, .flag = FLAG_UNUSED_0x2BB },
     { .x =  56, .y = 128, .mapSecId = MAPSEC_LITTLEROOT_TOWN,   .healLocationId = HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, .flag = FLAG_UNUSED_0x2BB },
     { .x = 104, .y = 128, .mapSecId = MAPSEC_SLATEPORT_CITY,    .healLocationId = HEAL_LOCATION_SLATEPORT_CITY, .flag = FLAG_UNUSED_0x2BB },
