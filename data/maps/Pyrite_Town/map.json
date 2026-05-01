@@ -19,7 +19,7 @@
     {
       "type": "trigger",
       "x": 15,
-      "y": 83,
+      "y": 85,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -28,7 +28,34 @@
     {
       "type": "trigger",
       "x": 14,
-      "y": 83,
+      "y": 85,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 85,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 85,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OPEN_WORLD_MAP_ENTER_DOWN"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 85,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
