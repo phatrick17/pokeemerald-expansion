@@ -138,9 +138,8 @@ script Route119_EventScript_IntroCutscene {
 	setflag(FLAG_PHENAC_CITY_CIPHER_TRIO)
     clearflag(FLAG_HIDE_MAP_NAME_POPUP)
 	addmoney(5000)
-    warp(MAP_ROUTE101, 33, 15)
-    waitstate
- 
+    special(Special_SeagallopToRoute101)
+
     releaseall
     end
 }

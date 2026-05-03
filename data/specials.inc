@@ -573,3 +573,4 @@ gSpecials::
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
 	def_special Special_OpenCustomMap
+	def_special Special_SeagallopToRoute101

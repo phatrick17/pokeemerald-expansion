@@ -16,6 +16,8 @@
 #include "seagallop.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
+#include "constants/map_groups.h"
+#include "constants/maps.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
 
@@ -73,6 +75,12 @@ void StartSeagallopScene(void)
     Overworld_ResetStateAfterFly();
     SetMainCallback2(CB2_SetUpSeagallopScene);
     gMain.state = 0;
+}
+
+void Special_SeagallopToRoute101(void)
+{
+    SetWarpDestination(MAP_GROUP(MAP_ROUTE101), MAP_NUM(MAP_ROUTE101), WARP_ID_NONE, 33, 15);
+    StartSeagallopScene();
 }
 
 static void CB2_SetUpSeagallopScene(void)
