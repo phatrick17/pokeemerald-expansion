@@ -429,8 +429,8 @@ script Outside_EventScript_WillieAmbush {
 
     // --- Willie's dialogue ---
     msgbox(
-        format("WILLIE: Yo! Wait! Wait up!\p"
-               "Hey, my name's WILLIE.\p"
+        format("Willie: Yo! Wait! Wait up!\p"
+               "Hey, my name's Willie.\p"
                "After I got a good look at you,\n"
                "well, I got this urge to battle you.\p"
                "It's like I'm compelled to.\p"
@@ -448,13 +448,13 @@ script Outside_EventScript_WillieAmbush {
     if (var(VAR_RESULT) == YES) {
         // Player said Yes
         msgbox(
-            format("WILLIE: Yeahah! That's the spirit!\n"
+            format("Willie: Yeahah! That's the spirit!\n"
 			"All right, all right.\p"
 			"Over here, this way!"),MSGBOX_DEFAULT)
     } else {
         // Player said No - loop back
         msgbox(
-            format("WILLIE: What are you saying?\n"
+            format("Willie: What are you saying?\n"
                    "You're joshing, right?"),
             MSGBOX_DEFAULT)
         goto(Outside_EventScript_WillieAskBattle)
@@ -490,7 +490,7 @@ script Outside_EventScript_WillieAmbush {
     // --- After the battle ---
     // Willie has already said his defeat line via the trainerbattle.
     // He now stands in place. Set the flags:
-    msgbox(format("WILLIE: You're tough. Real tough.\n"
+    msgbox(format("Willie: You're tough. Real tough.\n"
                    "You did a real number on us.\p"
                    "Hey, I know. Why not test your\n"
                    "skills in Phenac City?\l"
@@ -515,7 +515,7 @@ script Outside_EventScript_WillieAmbush {
 script Outskirt_Stand_Willie_Outside_1 {
     lockall
     faceplayer
-    msgbox(format("WILLIE: Oh, hey, it's you!\n"
+    msgbox(format("Willie: Oh, hey, it's you!\n"
         "I was worried about you.\p"
         "Some rough-looking characters came around asking about you.\p"
         "It made me worried.\p"

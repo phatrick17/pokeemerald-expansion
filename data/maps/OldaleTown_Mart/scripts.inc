@@ -439,7 +439,7 @@ Outskirt_Shop_Guy_TEXT_Movement_0:
 
 InsideBuilding_EventScript_Willie_Text_0:
 # 62 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "WILLIE: But, yeah, you're tough.\n"
+	.string "Willie: But, yeah, you're tough.\n"
 	.string "Real tough.\p"
 	.string "You did a real number on us.\p"
 	.string "Hey, I know. Why not test your\n"

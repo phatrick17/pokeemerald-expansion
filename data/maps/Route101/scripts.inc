@@ -1125,8 +1125,8 @@ Outskirt_Stand_Folley_Trudly_1_Text_0:
 
 Outside_EventScript_WillieAmbush_Text_0:
 # 432 "data/maps/Route101/scripts.pory"
-	.string "WILLIE: Yo! Wait! Wait up!\p"
-	.string "Hey, my name's WILLIE.\p"
+	.string "Willie: Yo! Wait! Wait up!\p"
+	.string "Hey, my name's Willie.\p"
 	.string "After I got a good look at you,\n"
 	.string "well, I got this urge to battle you.\p"
 	.string "It's like I'm compelled to.\p"
@@ -1140,13 +1140,13 @@ Outside_EventScript_WillieAmbush_Text_1:
 
 Outside_EventScript_WillieAmbush_Text_2:
 # 451 "data/maps/Route101/scripts.pory"
-	.string "WILLIE: Yeahah! That's the spirit!\n"
+	.string "Willie: Yeahah! That's the spirit!\n"
 	.string "All right, all right.\p"
 	.string "Over here, this way!$"
 
 Outside_EventScript_WillieAmbush_Text_3:
 # 457 "data/maps/Route101/scripts.pory"
-	.string "WILLIE: What are you saying?\n"
+	.string "Willie: What are you saying?\n"
 	.string "You're joshing, right?$"
 
 Outside_EventScript_WillieAmbush_Text_4:
@@ -1163,7 +1163,7 @@ Outside_EventScript_WillieAmbush_Text_5:
 
 Outside_EventScript_WillieAmbush_Text_6:
 # 493 "data/maps/Route101/scripts.pory"
-	.string "WILLIE: You're tough. Real tough.\n"
+	.string "Willie: You're tough. Real tough.\n"
 	.string "You did a real number on us.\p"
 	.string "Hey, I know. Why not test your\n"
 	.string "skills in Phenac City?\l"
@@ -1175,7 +1175,7 @@ Outside_EventScript_WillieAmbush_Text_6:
 
 Outskirt_Stand_Willie_Outside_1_Text_0:
 # 518 "data/maps/Route101/scripts.pory"
-	.string "WILLIE: Oh, hey, it's you!\n"
+	.string "Willie: Oh, hey, it's you!\n"
 	.string "I was worried about you.\p"
 	.string "Some rough-looking characters came\n"
 	.string "around asking about you.\p"

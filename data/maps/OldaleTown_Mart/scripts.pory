@@ -59,7 +59,7 @@ script InsideBuilding_EventScript_Willie {
     if (flag(FLAG_DEFEATED_WILLIE)) {
         // Post-defeat dialogue
         msgbox(
-            format("WILLIE: But, yeah, you're tough.\n"
+            format("Willie: But, yeah, you're tough.\n"
                    "Real tough.\p"
                    "You did a real number on us.\p"
                    "Hey, I know. Why not test your\n"

@@ -4628,7 +4628,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GRIMMSNARL}),
     },
 
-
     [SPECIES_GRIMMSNARL] =
     {
         .baseHP        = 95,

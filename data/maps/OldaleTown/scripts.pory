@@ -259,7 +259,7 @@ script Script_PhenacCity_Intro {
         "{RIVAL} became a partner!"
     ), MSGBOX_DEFAULT)
     
-    playfanfare(MUS_EVOLVED)
+    playfanfare(MUS_WELCOME_RUI)
     waitfanfare
     closemessage
     playbgm(MUS_B_ARENA, FALSE)

@@ -144,7 +144,7 @@ Script_PhenacCity_Intro::
 # 258 "data/maps/OldaleTown/scripts.pory"
 	msgbox Script_PhenacCity_Intro_Text_17, MSGBOX_DEFAULT
 # 262 "data/maps/OldaleTown/scripts.pory"
-	playfanfare MUS_EVOLVED
+	playfanfare MUS_WELCOME_RUI
 # 263 "data/maps/OldaleTown/scripts.pory"
 	waitfanfare
 # 264 "data/maps/OldaleTown/scripts.pory"

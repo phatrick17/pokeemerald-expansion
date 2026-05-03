@@ -314,15 +314,18 @@ Class: CIPHER_PEON_XD_UNKNOWN
 Pic: CIPHER_PEON_XD
 Gender: Male
 Double Battle: Yes
-AI: Check Bad Move
+AI: Basic Trainer
 
-Pelipper
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Glameow
+Level: 28
+- Tail Whip
+- Scratch
 
-Xatu
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Yungoos 
+Level: 28
+- Sand Attack
+- Tackle
+- Quick Attack
 
 === TRAINER_ED ===
 Name: Liqui
