@@ -115,7 +115,9 @@
 #define TRAINER_PIC_VERDE                 97
 #define TRAINER_PIC_ROSSO                 98
 #define TRAINER_PIC_CIPHER_PEON_XD        99
-#define TRAINER_PIC_COUNT                 100
+#define TRAINER_PIC_CHASER_M              100
+#define TRAINER_PIC_ROGUE_CAIL            101
+#define TRAINER_PIC_COUNT                 102
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0
@@ -368,6 +370,8 @@ enum TrainerClassID
     TRAINER_CLASS_MIRROR_B_PEON,
     TRAINER_CLASS_MYSTERY_TROOP,
     TRAINER_CLASS_CIPHER_PEON_XD_UNKNOWN,
+    TRAINER_CLASS_CIPHER_CHASER,
+    TRAINER_CLASS_CIPHER_ROGUE,
     TRAINER_CLASS_COUNT,
 };
 

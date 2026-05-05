@@ -409,6 +409,15 @@ const u16 gObjectEventPal_XDPeon[]  = INCBIN_U16("graphics/object_events/palette
 const u32 gObjectEventPic_Construction[] = INCBIN_U32("graphics/object_events/pics/people/construction.4bpp");
 const u16 gObjectEventPal_Construction[] = INCBIN_U16("graphics/object_events/palettes/construction.gbapal");
 
+const u32 gObjectEventPic_PyriteOfficer[] = INCBIN_U32("graphics/object_events/pics/people/pyrite_officer.4bpp");
+const u16 gObjectEventPal_PyriteOfficer[] = INCBIN_U16("graphics/object_events/palettes/pyrite_officer.gbapal");
+
+const u32 gObjectEventPic_RogueCail[] = INCBIN_U32("graphics/object_events/pics/people/rogue_cail_ow.4bpp");
+const u16 gObjectEventPal_RogueCail[] = INCBIN_U16("graphics/object_events/palettes/rogue_cail_ow.gbapal");
+
+const u32 gObjectEventPic_ChaserM[] = INCBIN_U32("graphics/object_events/pics/people/chaser_m_ow.4bpp");
+const u16 gObjectEventPal_ChaserM[] = INCBIN_U16("graphics/object_events/palettes/chaser_m_ow.gbapal");
+
 
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");
