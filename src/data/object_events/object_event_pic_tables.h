@@ -1373,3 +1373,15 @@ static const struct SpriteFrameImage sPicTable_Construction[] = {
     overworld_ascending_frames(gObjectEventPic_Construction, 2, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_PyriteOfficer[] = {
+    overworld_ascending_frames(gObjectEventPic_PyriteOfficer, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_RogueCail[] = {
+    overworld_ascending_frames(gObjectEventPic_RogueCail, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_ChaserM[] = {
+    overworld_ascending_frames(gObjectEventPic_ChaserM, 2, 4),
+};
+
