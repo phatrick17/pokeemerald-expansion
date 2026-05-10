@@ -377,8 +377,8 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_MIRROR_B_PEON]     = { _("Miror B Peon"), 2 },
     [TRAINER_CLASS_MYSTERY_TROOP]     = { _("??? Troop"), 2 },
     [TRAINER_CLASS_CIPHER_PEON_XD_UNKNOWN]     = { _("??? Peon"), 2 },
-    [TRAINER_CLASS_CIPHER_CHASER]     = { _("Chaser"), 2 },
-    [TRAINER_CLASS_CIPHER_ROGUE]     = { _("Rogue"), 2 },
+    [TRAINER_CLASS_CHASER]     = { _("Chaser"), 2 },
+    [TRAINER_CLASS_ROGUE]     = { _("Rogue"), 2 },
 
 };
 

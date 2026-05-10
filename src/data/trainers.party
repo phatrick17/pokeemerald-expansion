@@ -379,13 +379,15 @@ Level: 27
 - Tail Whip
 
 === TRAINER_GRUNT_RUSTURF_TUNNEL ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
+Name: Test
+Class: Rogue
+Pic: Rogue_Cail
+Double Battle: Yes
 AI: Check Bad Move
+
+Poochyena
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Poochyena
 Level: 11

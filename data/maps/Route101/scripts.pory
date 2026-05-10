@@ -573,6 +573,7 @@ script My_Debug_Menu {
 
 			setflag(FLAG_MAP_UNLOCK_PHENAC) //map unlocks on different row on flags.h
     		setflag(FLAG_MAP_UNLOCK_REALGAM_TEMP) //realgam
+    		setflag(FLAG_MAP_UNLOCK_PYRITE)
 			special(DoRivalNameChoiceScreen)
     		waitstate()
 			createfollowernpc(OBJ_EVENT_GFX_RIVAL_MAY_NORMAL, FNPC_ALL)

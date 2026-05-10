@@ -1,1 +1,18 @@
+script testbattle1234 {
+    lock
+    faceplayer
+    trainerbattle_no_intro(TRAINER_GRUNT_RUSTURF_TUNNEL,
+        format("SIMULATION: Battle success."))
+    release
+    end
+}
+
+script addshadowdebug {
+    lock
+    createmon(0, PARTY_SIZE, SPECIES_BAYLEEF_SHADOW, 40, item=ITEM_NONE, nature=NATURE_HASTY, move1=MOVE_SHADOW_BLITZ, move2=MOVE_RAZOR_LEAF, move3=MOVE_TAUNT, move4=MOVE_PROTECT)
+	createmon(0, PARTY_SIZE, SPECIES_QUILAVA_SHADOW, 40, item=ITEM_NONE, nature=NATURE_TIMID, move1=MOVE_SHADOW_BLITZ, move2=MOVE_BUBBLE_BEAM, move3=MOVE_RETURN, move4=MOVE_HELPING_HAND)
+    release
+}
+
+
 mapscripts Pyrite_Town_MapScripts {}
