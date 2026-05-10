@@ -1385,3 +1385,7 @@ static const struct SpriteFrameImage sPicTable_ChaserM[] = {
     overworld_ascending_frames(gObjectEventPic_ChaserM, 2, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_Nascour[] = {
+    overworld_ascending_frames(gObjectEventPic_Nascour, 2, 4),
+};
+

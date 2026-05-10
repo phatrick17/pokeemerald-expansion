@@ -322,6 +322,9 @@ const u16 gTrainerPalette_ChaserM[]  = INCBIN_U16("graphics/trainers/palettes/ch
 const u32 gTrainerFrontPic_RogueCail[] = INCBIN_U32("graphics/trainers/front_pics/rogue_cail.4bpp.smol");
 const u16 gTrainerPalette_RogueCail[]  = INCBIN_U16("graphics/trainers/palettes/rogue_cail.gbapal");
 
+const u32 gTrainerFrontPic_Nascour[] = INCBIN_U32("graphics/trainers/front_pics/nascour.4bpp.smol");
+const u16 gTrainerPalette_Nascour[]  = INCBIN_U16("graphics/trainers/palettes/nascour.gbapal");
+
 // The first two parameters invoke a front pic and palette by
 // calling a "TRAINER_PIC" constant (e.g. TRAINER_PIC_HIKER), and
 // gTrainerFrontPic/gTrainerPalette pointers, (e.g "gTrainerFrontPic_Hiker" and "gTrainerPalette_Hiker").
@@ -440,6 +443,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_CIPHER_PEON_XD, gTrainerFrontPic_XDPeon, gTrainerPalette_XDPeon),
     TRAINER_SPRITE(TRAINER_PIC_CHASER_M, gTrainerFrontPic_ChaserM, gTrainerPalette_ChaserM),
     TRAINER_SPRITE(TRAINER_PIC_ROGUE_CAIL, gTrainerFrontPic_RogueCail, gTrainerPalette_RogueCail),
+    TRAINER_SPRITE(TRAINER_PIC_NASCOUR, gTrainerFrontPic_Nascour, gTrainerPalette_Nascour),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =
