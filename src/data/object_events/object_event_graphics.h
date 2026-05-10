@@ -418,6 +418,9 @@ const u16 gObjectEventPal_RogueCail[] = INCBIN_U16("graphics/object_events/palet
 const u32 gObjectEventPic_ChaserM[] = INCBIN_U32("graphics/object_events/pics/people/chaser_m_ow.4bpp");
 const u16 gObjectEventPal_ChaserM[] = INCBIN_U16("graphics/object_events/palettes/chaser_m_ow.gbapal");
 
+const u32 gObjectEventPic_Nascour[] = INCBIN_U32("graphics/object_events/pics/people/nascour_ow.4bpp");
+const u16 gObjectEventPal_Nascour[] = INCBIN_U16("graphics/object_events/palettes/nascour_ow.gbapal");
+
 
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");
