@@ -246,6 +246,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PyriteOffic
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RogueCail;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ChaserM;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Nascour;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EsCade;
 
 // Begin pokemon event objects
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeBall;
@@ -515,6 +516,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_ROGUE_CAIL] = &gObjectEventGraphicsInfo_RogueCail,
     [OBJ_EVENT_GFX_CHASER_M] = &gObjectEventGraphicsInfo_ChaserM,
     [OBJ_EVENT_GFX_NASCOUR] = &gObjectEventGraphicsInfo_Nascour,
+    [OBJ_EVENT_GFX_ES_CADE] = &gObjectEventGraphicsInfo_EsCade,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
