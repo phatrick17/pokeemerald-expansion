@@ -570,6 +570,9 @@ void Usm_InitStartMenu(void)
         return;
     }
 
+    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
+    SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_BG0);
+
     sUsmState = &sUsmMemory->state;
 
     sUsmState->page = sUsmSavedPage;
@@ -843,6 +846,7 @@ static void Usm_CreateIcons(s16 x, s16 y)
         u8 iconId = sUsmState->visible.iconIndex[i];
 
         u8 id = CreateSprite(sUsmMenuItems[iconId].template, posX, y, 1);
+        gSprites[id].objWinMask = TRUE;
         sUsmMemory->spriteIds[i] = id;
     }
 }
@@ -1270,7 +1274,9 @@ static u32 Usm_CreateHandSprite(s16 x, s16 y)
         sUsmHandGfx, USM_TILETAG_HAND, sIconPal, USM_PALTAG_ICON,
         SPRITE_SIZE(32x32), SPRITE_SHAPE(32x32), x, y, 0, SpriteCallbackDummy,
         TRUE);
-    gSprites[spriteId].oam.priority = 0;
+    struct Sprite* sprite = &gSprites[spriteId];
+    sprite->objWinMask = TRUE;
+    sprite->oam.priority = 0;
     return spriteId;
 }
 
