@@ -6581,11 +6581,14 @@ void StopPokemonAnimationDelayTask(void)
 
 void StopShadowAnimDelayTask(void)
 {
-    if (sShadowAnimDelayTaskId != TASK_NONE)
-    {
+    // sShadowAnimDelayTaskId starts at 0 (EWRAM can't be initialized to TASK_NONE)
+    // and can go stale across ResetTasks, so only destroy a task this module
+    // actually owns.
+    if (sShadowAnimDelayTaskId != TASK_NONE
+     && gTasks[sShadowAnimDelayTaskId].isActive
+     && gTasks[sShadowAnimDelayTaskId].func == Task_PokemonSummaryAnimateAfterDelay)
         DestroyTask(sShadowAnimDelayTaskId);
-        sShadowAnimDelayTaskId = TASK_NONE;
-    }
+    sShadowAnimDelayTaskId = TASK_NONE;
 }
 
 void BattleAnimateBackSprite(struct Sprite *sprite, u16 species)
