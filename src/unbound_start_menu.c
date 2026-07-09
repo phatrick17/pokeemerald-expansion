@@ -1,5 +1,4 @@
 #include "global.h"
-#include "assertf.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "bg.h"
