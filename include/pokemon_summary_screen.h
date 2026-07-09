@@ -57,5 +57,6 @@ u8 GetMoveSlotToReplace(void);
 void SummaryScreen_SetAnimDelayTaskId(u8 taskId);
 void ShowRelearnPrompt(void);
 void TryUpdateRelearnType(enum IncrDecrUpdateValues delta);
+void StopShadowAnimDelayTask(void);
 
 #endif // GUARD_POKEMON_SUMMARY_SCREEN_H
