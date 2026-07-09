@@ -1,8 +1,8 @@
 #include "global.h"
-#include "assertf.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "bg.h"
+#include "config/debug.h"
 #include "constants/battle_pyramid.h"
 #include "constants/characters.h"
 #include "constants/field_weather.h"
@@ -570,6 +570,12 @@ void Usm_InitStartMenu(void)
         return;
     }
 
+    if (!!GetFlashLevel())
+    {
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
+        SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_BG0);
+    }
+
     sUsmState = &sUsmMemory->state;
 
     sUsmState->page = sUsmSavedPage;
@@ -782,6 +788,7 @@ static bool32 Usm_IsItemAvailable(enum Usm_Icons item)
         case USM_ICO_POKENAV: return FlagGet(FLAG_SYS_POKENAV_GET);
         case USM_ICO_FRONTIER_RETIRE: return IsPlayerInBattlePyramid();
         case USM_ICO_SAFARI_RETIRE: return FALSE;
+        case USM_ICO_DEBUG: return (DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU);
         default: return TRUE;
     }
 
@@ -805,7 +812,9 @@ static void Usm_BuildDefaultMenuItems(void)
     Usm_AddMenuItem(USM_ICO_TRAINER);
     Usm_AddMenuItem(USM_ICO_SAVE);
     Usm_AddMenuItem(USM_ICO_OPTIONS);
-    Usm_AddMenuItem(USM_ICO_DEBUG);
+
+    if (DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU)
+        Usm_AddMenuItem(USM_ICO_DEBUG);
 }
 
 static void Usm_BuildVisibleList(void)
@@ -843,6 +852,10 @@ static void Usm_CreateIcons(s16 x, s16 y)
         u8 iconId = sUsmState->visible.iconIndex[i];
 
         u8 id = CreateSprite(sUsmMenuItems[iconId].template, posX, y, 1);
+
+        if (!!GetFlashLevel())
+            gSprites[id].objWinMask = TRUE;
+
         sUsmMemory->spriteIds[i] = id;
     }
 }
@@ -1270,7 +1283,9 @@ static u32 Usm_CreateHandSprite(s16 x, s16 y)
         sUsmHandGfx, USM_TILETAG_HAND, sIconPal, USM_PALTAG_ICON,
         SPRITE_SIZE(32x32), SPRITE_SHAPE(32x32), x, y, 0, SpriteCallbackDummy,
         TRUE);
-    gSprites[spriteId].oam.priority = 0;
+    struct Sprite* sprite = &gSprites[spriteId];
+    sprite->objWinMask = TRUE;
+    sprite->oam.priority = 0;
     return spriteId;
 }
 
