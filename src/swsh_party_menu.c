@@ -9879,7 +9879,7 @@ static const u8 sMultiBattlePartyIdToMenuId_Right[PARTY_SIZE] = { 3, 4, 5, 0, 1,
 
 static void UpdatePartyToBattleOrder(void)
 {
-    struct Pokemon *partyBuffer = Alloc(sizeof(gParties[B_TRAINER_PLAYER]));
+    struct Pokemon *partyBuffer = Alloc(sizeof(struct Pokemon) * PARTY_SIZE);
     u8 i;
     const u8 *multiBattlePartyIdToMenuId = sMultiBattlePartyIdToMenuId_Left;
 
@@ -9911,7 +9911,7 @@ static void UpdatePartyToBattleOrder(void)
 
 static void UpdatePartyToFieldOrder(void)
 {
-    struct Pokemon *partyBuffer = Alloc(sizeof(gParties[B_TRAINER_PLAYER]));
+    struct Pokemon *partyBuffer = Alloc(sizeof(struct Pokemon) * PARTY_SIZE);
     u8 i;
     const u8 *multiBattlePartyIdToMenuId = sMultiBattlePartyIdToMenuId_Left;
 
