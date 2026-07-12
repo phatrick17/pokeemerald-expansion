@@ -11742,6 +11742,21 @@ static void Cmd_copymovepermanently(void)
             }
             movePpData.ppBonuses = gBattleMons[gBattlerAttacker].ppBonuses;
 
+            // A Shadow Pokémon's locked move slots are hidden in battle;
+            // don't let this full moveset sync erase them from the party.
+            struct Pokemon *monAttacker = GetBattlerMon(gBattlerAttacker);
+            if (IsMonShadow(monAttacker))
+            {
+                for (i = 0; i < MAX_MON_MOVES; i++)
+                {
+                    if (movePpData.moves[i] == MOVE_NONE)
+                    {
+                        movePpData.moves[i] = GetMonData(monAttacker, MON_DATA_MOVE1 + i);
+                        movePpData.pp[i] = GetMonData(monAttacker, MON_DATA_PP1 + i);
+                    }
+                }
+            }
+
             BtlController_EmitSetMonData(gBattlerAttacker, B_COMM_TO_CONTROLLER, REQUEST_MOVES_PP_BATTLE, 0, sizeof(movePpData), &movePpData);
             MarkBattlerForControllerExec(gBattlerAttacker);
 

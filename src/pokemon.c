@@ -3718,6 +3718,8 @@ void CopyPartyMonToBattleData(u32 battler, u32 partyIndex)
     u32 side = GetBattlerSide(battler);
     struct Pokemon *party = GetSideParty(side);
     PokemonToBattleMon(&party[partyIndex], &gBattleMons[battler]);
+    if (side == B_SIDE_PLAYER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
+        MaskShadowMonBattleMoves(&party[partyIndex], &gBattleMons[battler]);
     gBattleStruct->hpOnSwitchout[side] = gBattleMons[battler].hp;
     UpdateSentPokesToOpponentValue(battler);
     ClearTemporarySpeciesSpriteData(battler, FALSE, FALSE);
@@ -5307,6 +5309,43 @@ void LowerMonHeartGauge(struct Pokemon *mon, u32 amount)
     SetMonData(mon, MON_DATA_HEART_GAUGE, &heartGauge);
 }
 
+// How many of a Pokémon's move slots are currently usable. A Shadow
+// Pokémon starts with only its first move; one more slot unlocks for each
+// quarter of its heart gauge that empties, so its full moveset becomes
+// available once the gauge is at 25% or below (as in Colosseum/XD).
+u32 GetBoxMonUnlockedMoveSlots(struct BoxPokemon *boxMon)
+{
+    u32 gauge, gaugeMax, filledQuarters;
+
+    if (!P_SHADOW_LOCK_MOVES || !IsBoxMonShadow(boxMon))
+        return MAX_MON_MOVES;
+
+    gauge = GetBoxMonData(boxMon, MON_DATA_HEART_GAUGE);
+    gaugeMax = GetSpeciesShadowHeartGaugeMax(GetBoxMonData(boxMon, MON_DATA_SPECIES));
+    filledQuarters = (gauge * MAX_MON_MOVES + gaugeMax - 1) / gaugeMax;
+    if (filledQuarters == 0)
+        return MAX_MON_MOVES;
+    if (filledQuarters >= MAX_MON_MOVES)
+        return 1;
+    return MAX_MON_MOVES + 1 - filledQuarters;
+}
+
+u32 GetMonUnlockedMoveSlots(struct Pokemon *mon)
+{
+    return GetBoxMonUnlockedMoveSlots(&mon->box);
+}
+
+// Hides the locked move slots of a Shadow Pokémon from a battle struct so
+// they can't be seen or chosen in battle. PP is left untouched so nothing
+// stale can be synced back to the party.
+void MaskShadowMonBattleMoves(struct Pokemon *mon, struct BattlePokemon *battleMon)
+{
+    u32 i;
+
+    for (i = GetMonUnlockedMoveSlots(mon); i < MAX_MON_MOVES; i++)
+        battleMon->moves[i] = MOVE_NONE;
+}
+
 // Exp. earned by Shadow Pokémon is stored instead of being applied, and is
 // granted to them when they are purified.
 void AddMonStoredExperience(struct Pokemon *mon, u32 amount)
@@ -5931,6 +5970,9 @@ static void SortMovesAlphabetically(u16 *moves, u32 numMoves)
 
 u32 GetRelearnerLevelUpMoves(struct Pokemon *mon, u16 *moves)
 {
+    if (IsMonShadow(mon)) // Shadow Pokémon can't relearn moves until purified.
+        return 0;
+
     u16 learnedMoves[MAX_MON_MOVES] = {0};
     u32 numMoves = 0;
     u32 species = GetMonData(mon, MON_DATA_SPECIES, 0);
@@ -5979,6 +6021,9 @@ u32 GetRelearnerLevelUpMoves(struct Pokemon *mon, u16 *moves)
 
 u32 GetRelearnerEggMoves(struct Pokemon *mon, u16 *moves)
 {
+    if (IsMonShadow(mon))
+        return 0;
+
     if (!FlagGet(P_FLAG_EGG_MOVES) && !P_ENABLE_MOVE_RELEARNERS)
         return 0;
 
@@ -6026,6 +6071,9 @@ u32 GetRelearnerEggMoves(struct Pokemon *mon, u16 *moves)
 
 u32 GetRelearnerTMMoves(struct Pokemon *mon, u16 *moves)
 {
+    if (IsMonShadow(mon))
+        return 0;
+
     if (!P_TM_MOVES_RELEARNER)
         return 0;
 
@@ -6080,6 +6128,9 @@ u32 GetRelearnerTMMoves(struct Pokemon *mon, u16 *moves)
 
 u32 GetRelearnerTutorMoves(struct Pokemon *mon, u16 *moves)
 {
+    if (IsMonShadow(mon))
+        return 0;
+
     if (!FlagGet(P_FLAG_TUTOR_MOVES) && !P_ENABLE_MOVE_RELEARNERS)
         return 0;
 
@@ -6139,6 +6190,9 @@ static inline bool32 DoesMonHaveMove(const u16 *moves, u16 move)
 
 bool32 HasRelearnerLevelUpMoves(struct Pokemon *mon)
 {
+    if (IsMonShadow(mon))
+        return FALSE;
+
     u32 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
 
     if (species == SPECIES_EGG)
@@ -6173,6 +6227,9 @@ bool32 HasRelearnerLevelUpMoves(struct Pokemon *mon)
 
 bool32 HasRelearnerEggMoves(struct Pokemon *mon)
 {
+    if (IsMonShadow(mon))
+        return FALSE;
+
     if (!FlagGet(P_FLAG_EGG_MOVES) && !P_ENABLE_MOVE_RELEARNERS)
         return FALSE;
 
@@ -6204,6 +6261,9 @@ bool32 HasRelearnerEggMoves(struct Pokemon *mon)
 
 bool32 HasRelearnerTMMoves(struct Pokemon *mon)
 {
+    if (IsMonShadow(mon))
+        return FALSE;
+
     if (!P_TM_MOVES_RELEARNER)
         return FALSE;
 
@@ -6240,6 +6300,9 @@ bool32 HasRelearnerTMMoves(struct Pokemon *mon)
 
 bool32 HasRelearnerTutorMoves(struct Pokemon *mon)
 {
+    if (IsMonShadow(mon))
+        return FALSE;
+
     if (!FlagGet(P_FLAG_TUTOR_MOVES) && !P_ENABLE_MOVE_RELEARNERS)
         return FALSE;
 

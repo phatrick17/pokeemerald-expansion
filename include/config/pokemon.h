@@ -74,6 +74,8 @@
 #define P_SHADOW_GAUGE_BATTLE_AMOUNT    3    // How much the heart gauge lowers when the Pokémon participates in a battle.
 #define P_SHADOW_PURIFY_MUSIC           MUS_RG_MYSTERY_GIFT  // Music played during the purification ceremony (the evolution scene uses MUS_EVOLUTION).
 #define P_SHADOW_PURIFY_FANFARE         MUS_EVOLVED          // Fanfare played when purification completes.
+#define P_SHADOW_LOCK_MOVES             TRUE // If TRUE, a Shadow Pokémon caught by the player can only use its first move while its heart gauge is full; one more move slot unlocks silently for each quarter of the gauge emptied (as in Colosseum/XD). Locked moves are hidden in battle and shown as "???" in the summary screen.
+#define P_SHADOW_SUMMARY_HEART_GAUGE    TRUE // If TRUE, the summary screen of a Shadow Pokémon shows its heart gauge as a purple bar in place of the Exp. bar. The bar starts full and drains as the Pokémon gets closer to purification.
 
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.

@@ -27,6 +27,32 @@ While a Pokémon is a Shadow Pokémon:
     * `P_SHADOW_GAUGE_STEP_AMOUNT` every `P_SHADOW_GAUGE_STEP_INTERVAL` steps while in the party.
     * Any amount you like by calling `LowerMonHeartGauge(mon, amount)` — this is
       the hook for future "Scent" items.
+* Its **moves are locked** (if `P_SHADOW_LOCK_MOVES` is `TRUE`, the default).
+  While the heart gauge is full only the first move slot is usable; one more
+  slot silently unlocks for each quarter of the gauge that empties:
+
+  | Gauge remaining | Usable move slots |
+  |---|---|
+  | Above 75% | 1 |
+  | 75% down to just above 50% | 2 |
+  | 50% down to just above 25% | 3 |
+  | 25% or below | 4 |
+
+  Give Shadow Pokémon their full movesets as usual (e.g. via `createmon` with
+  the Shadow move first) — the locked slots stay stored on the Pokémon and are
+  simply hidden: they show as blank in battle and as `???` in the summary
+  screen, and reappear (with no move-learning message) once the gauge drops
+  past each threshold. Locked moves can't be selected in battle, don't appear
+  as field moves in the party menu, and can't be targeted by Ether/PP Up.
+  Shadow Pokémon also can't be taught TM/tutor moves or use the Move Relearner
+  until they are purified, as in Colosseum/XD. (Note: deleting a move at the
+  Move Deleter shifts later moves up a slot, which can reveal the next locked
+  move one threshold early.)
+* Its **summary screen shows the heart gauge** (if
+  `P_SHADOW_SUMMARY_HEART_GAUGE` is `TRUE`, the default). The Exp. bar on the
+  skills page is replaced with a purple heart gauge bar that starts full and
+  drains toward purification, and the "EXP. POINTS"/"NEXT LV." labels are
+  replaced with "HEART GAUGE" and the gauge's current value.
 
 When purified (`PurifyMon`):
 
@@ -69,6 +95,8 @@ to give every Shadow Pokémon the same static `P_SHADOW_HEART_GAUGE_MAX` instead
 | `P_SHADOW_GAUGE_BATTLE_AMOUNT` | `3` | Gauge lost per battle participated in. |
 | `P_SHADOW_PURIFY_MUSIC` | `MUS_RG_MYSTERY_GIFT` | Ceremony music (the normal evolution scene uses `MUS_EVOLUTION`). |
 | `P_SHADOW_PURIFY_FANFARE` | `MUS_EVOLVED` | Fanfare when the purification completes. |
+| `P_SHADOW_LOCK_MOVES` | `TRUE` | Shadow Pokémon can only use their first move at full gauge; one more slot unlocks per quarter of the gauge emptied. |
+| `P_SHADOW_SUMMARY_HEART_GAUGE` | `TRUE` | The summary screen shows a purple heart gauge bar in place of a Shadow Pokémon's Exp. bar. |
 
 ## Creating Shadow Pokémon
 
@@ -138,6 +166,8 @@ bool32 IsMonShadow(struct Pokemon *mon);
 bool32 IsBoxMonShadow(struct BoxPokemon *boxMon);
 u32 GetSpeciesShadowHeartGaugeMax(u16 species);           // BST-scaled or static
 void LowerMonHeartGauge(struct Pokemon *mon, u32 amount); // clamps at 0
+u32 GetMonUnlockedMoveSlots(struct Pokemon *mon);         // 1-4; always 4 for non-Shadows
+u32 GetBoxMonUnlockedMoveSlots(struct BoxPokemon *boxMon);
 void AddMonStoredExperience(struct Pokemon *mon, u32 amount); // banks Exp.
 bool32 CanMonBePurified(struct Pokemon *mon);
 u16 GetPurifiedSpecies(u16 species);
