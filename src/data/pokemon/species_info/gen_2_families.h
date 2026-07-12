@@ -207,6 +207,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sShadowMonLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
         .isShadow = TRUE,
+        .purifiedSpecies = SPECIES_BAYLEEF,
     },
 
     [SPECIES_MEGANIUM] =
@@ -560,6 +561,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sShadowMonLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
         .isShadow = TRUE,
+        .purifiedSpecies = SPECIES_QUILAVA,
     },
 
     [SPECIES_TYPHLOSION] =
@@ -913,6 +915,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sShadowMonLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
         .isShadow = TRUE,
+        .purifiedSpecies = SPECIES_CROCONAW,
     },
 
     [SPECIES_FERALIGATR] =

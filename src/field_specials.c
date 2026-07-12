@@ -9,6 +9,7 @@
 #include "diploma.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "evolution_scene.h"
 #include "fieldmap.h"
 #include "field_camera.h"
 #include "field_effect.h"
@@ -4403,4 +4404,47 @@ void SetAbility(void)
 {
     u32 ability = gSpecialVar_Result;
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ABILITY_NUM, &ability);
+}
+
+// ---------------------------------------------------
+// Shadow Pokémon purification specials.
+// All of these operate on the party slot in VAR_0x8004,
+// e.g. as selected by 'special ChoosePartyMon'.
+// ---------------------------------------------------
+
+// VAR_RESULT = whether the selected Pokémon is a Shadow Pokémon.
+void IsSelectedMonShadow(void)
+{
+    if (gSpecialVar_0x8004 >= PARTY_SIZE)
+        gSpecialVar_Result = FALSE;
+    else
+        gSpecialVar_Result = IsMonShadow(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// VAR_RESULT = the selected Pokémon's heart gauge (0 - P_SHADOW_HEART_GAUGE_MAX).
+void GetSelectedMonHeartGauge(void)
+{
+    if (gSpecialVar_0x8004 >= PARTY_SIZE)
+        gSpecialVar_Result = 0;
+    else
+        gSpecialVar_Result = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HEART_GAUGE);
+}
+
+// VAR_RESULT = whether the selected Pokémon is a Shadow Pokémon whose
+// heart gauge has reached 0.
+void CanSelectedMonBePurified(void)
+{
+    if (gSpecialVar_0x8004 >= PARTY_SIZE)
+        gSpecialVar_Result = FALSE;
+    else
+        gSpecialVar_Result = CanMonBePurified(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+// Plays the purification ceremony (evolution scene variant) for the selected
+// Pokémon and purifies it. Callers should verify CanSelectedMonBePurified
+// first, and must use 'waitstate' afterwards.
+void DoPurificationCeremony(void)
+{
+    gCB2_AfterEvolution = CB2_ReturnToFieldContinueScriptPlayMapMusic;
+    BeginPurificationScene(&gPlayerParty[gSpecialVar_0x8004], gSpecialVar_0x8004);
 }

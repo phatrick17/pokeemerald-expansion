@@ -75,6 +75,7 @@ static bool8 TryStartWarpEventScript(struct MapPosition *, u16);
 static bool8 TryStartMiscWalkingScripts(u16);
 static bool8 TryStartStepCountScript(u16);
 static void UpdateFriendshipStepCounter(void);
+static void UpdateShadowHeartGaugeStepCounter(void);
 static void UpdateFollowerStepCounter(void);
 #if OW_POISON_DAMAGE < GEN_5
 static bool8 UpdatePoisonStepCounter(void);
@@ -676,6 +677,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
 
     IncrementRematchStepCounter();
     UpdateFriendshipStepCounter();
+    UpdateShadowHeartGaugeStepCounter();
     UpdateFarawayIslandStepCounter();
     UpdateFollowerStepCounter();
 
@@ -767,6 +769,25 @@ static void UpdateFriendshipStepCounter(void)
         {
             AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
             mon++;
+        }
+    }
+}
+
+// Lowers the heart gauge of every Shadow Pokémon in the party
+// each time P_SHADOW_GAUGE_STEP_INTERVAL steps are taken.
+static void UpdateShadowHeartGaugeStepCounter(void)
+{
+    u16 *ptr = GetVarPointer(VAR_SHADOW_GAUGE_STEP_COUNTER);
+    int i;
+
+    (*ptr)++;
+    (*ptr) %= P_SHADOW_GAUGE_STEP_INTERVAL;
+    if (*ptr == 0)
+    {
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (IsMonShadow(&gPlayerParty[i]))
+                LowerMonHeartGauge(&gPlayerParty[i], P_SHADOW_GAUGE_STEP_AMOUNT);
         }
     }
 }

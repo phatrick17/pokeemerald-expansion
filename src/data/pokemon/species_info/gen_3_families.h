@@ -4319,6 +4319,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .teachableLearnset = sNoneTeachableLearnset,
         .eggMoveLearnset = sMakuhitaEggMoveLearnset,
         .isShadow = TRUE,
+        .purifiedSpecies = SPECIES_MAKUHITA,
     },
 #endif //P_FAMILY_MAKUHITA
 

@@ -5694,6 +5694,21 @@ static void HandleEndTurn_FinishBattle(void)
             }
         }
 
+        // Shadow Pokémon that participated in the battle have their heart gauge lowered.
+        if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK
+                                  | BATTLE_TYPE_RECORDED_LINK
+                                  | BATTLE_TYPE_EREADER_TRAINER
+                                  | BATTLE_TYPE_TRAINER_HILL
+                                  | BATTLE_TYPE_FRONTIER)))
+        {
+            for (u32 partySlot = 0; partySlot < PARTY_SIZE; partySlot++)
+            {
+                if (gBattleStruct->partyState[B_SIDE_PLAYER][partySlot].sentOut
+                 && IsMonShadow(&gPlayerParty[partySlot]))
+                    LowerMonHeartGauge(&gPlayerParty[partySlot], P_SHADOW_GAUGE_BATTLE_AMOUNT);
+            }
+        }
+
         if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK
                                   | BATTLE_TYPE_RECORDED_LINK
                                   | BATTLE_TYPE_TRAINER

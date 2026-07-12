@@ -1215,6 +1215,13 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
+    // Shadow Pokémon start with a full heart gauge.
+    if (gSpeciesInfo[species].isShadow)
+    {
+        value = P_SHADOW_HEART_GAUGE_MAX;
+        SetBoxMonData(boxMon, MON_DATA_HEART_GAUGE, &value);
+    }
+
     GiveBoxMonInitialMoveset(boxMon);
 }
 
@@ -2670,6 +2677,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_IS_SHADOW:
             retVal = GetSubstruct3(boxMon)->isShadow;
             break;
+        case MON_DATA_HEART_GAUGE:
+            retVal = (GetSubstruct1(boxMon)->heartGaugeHi << 3) | GetSubstruct1(boxMon)->heartGaugeLo;
+            break;
         case MON_DATA_DYNAMAX_LEVEL:
             retVal = GetSubstruct3(boxMon)->dynamaxLevel;
             break;
@@ -3110,7 +3120,21 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_IS_SHADOW:
             SET8(GetSubstruct3(boxMon)->isShadow);
+            // A Pokémon flagged as Shadow starts with a full heart gauge.
+            if (GetSubstruct3(boxMon)->isShadow)
+            {
+                GetSubstruct1(boxMon)->heartGaugeHi = P_SHADOW_HEART_GAUGE_MAX >> 3;
+                GetSubstruct1(boxMon)->heartGaugeLo = P_SHADOW_HEART_GAUGE_MAX & 7;
+            }
             break;
+        case MON_DATA_HEART_GAUGE:
+        {
+            u8 heartGauge;
+            SET8(heartGauge);
+            GetSubstruct1(boxMon)->heartGaugeHi = heartGauge >> 3;
+            GetSubstruct1(boxMon)->heartGaugeLo = heartGauge & 7;
+            break;
+        }
         case MON_DATA_DYNAMAX_LEVEL:
             SET8(GetSubstruct3(boxMon)->dynamaxLevel);
             break;
@@ -5202,6 +5226,135 @@ u16 ModifyStatByNature(u8 nature, u16 stat, enum Stat statIndex)
         return stat * 90 / 100;
     else
         return stat;
+}
+
+#if P_SHADOW_HEART_GAUGE_MAX > 255 || P_SHADOW_HEART_GAUGE_MAX < 1
+#error "P_SHADOW_HEART_GAUGE_MAX must be between 1 and 255."
+#endif
+
+static inline bool32 IsShadowMove(u32 move)
+{
+    return move >= MOVES_COUNT_GEN9 && move < MOVES_COUNT_SHADOW;
+}
+
+bool32 IsBoxMonShadow(struct BoxPokemon *boxMon)
+{
+    return gSpeciesInfo[GetBoxMonData(boxMon, MON_DATA_SPECIES)].isShadow
+        || GetBoxMonData(boxMon, MON_DATA_IS_SHADOW) == TRUE;
+}
+
+bool32 IsMonShadow(struct Pokemon *mon)
+{
+    return IsBoxMonShadow(&mon->box);
+}
+
+void LowerMonHeartGauge(struct Pokemon *mon, u32 amount)
+{
+    u32 heartGauge = GetMonData(mon, MON_DATA_HEART_GAUGE);
+
+    if (heartGauge > amount)
+        heartGauge -= amount;
+    else
+        heartGauge = 0;
+    SetMonData(mon, MON_DATA_HEART_GAUGE, &heartGauge);
+}
+
+bool32 CanMonBePurified(struct Pokemon *mon)
+{
+    return IsMonShadow(mon) && GetMonData(mon, MON_DATA_HEART_GAUGE) == 0;
+}
+
+u16 GetPurifiedSpecies(u16 species)
+{
+    u16 purifiedSpecies = gSpeciesInfo[species].purifiedSpecies;
+
+    return purifiedSpecies != SPECIES_NONE ? purifiedSpecies : species;
+}
+
+// Removes any Shadow moves and fills the freed slots with the strongest
+// level-up moves of the purified species that the Pokémon doesn't know yet.
+static void ReplaceShadowMovesOnPurification(struct Pokemon *mon, u16 species)
+{
+    u16 moves[MAX_MON_MOVES] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
+    const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
+    u32 level = GetMonData(mon, MON_DATA_LEVEL);
+    u32 i, numMoves = 0;
+    bool32 hadShadowMove = FALSE;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 move = GetMonData(mon, MON_DATA_MOVE1 + i);
+
+        if (IsShadowMove(move))
+            hadShadowMove = TRUE;
+        else if (move != MOVE_NONE)
+            moves[numMoves++] = move;
+    }
+
+    if (!hadShadowMove && numMoves != 0)
+        return;
+
+    if (learnset != NULL)
+    {
+        s32 lastLearnable = -1;
+
+        for (i = 0; learnset[i].move != LEVEL_UP_MOVE_END; i++)
+        {
+            if (learnset[i].level <= level)
+                lastLearnable = i;
+        }
+        // Learn the most recent moves first.
+        for (; lastLearnable >= 0 && numMoves < MAX_MON_MOVES; lastLearnable--)
+        {
+            u16 move = learnset[lastLearnable].move;
+            bool32 alreadyKnown = FALSE;
+
+            for (i = 0; i < numMoves; i++)
+            {
+                if (moves[i] == move)
+                    alreadyKnown = TRUE;
+            }
+            if (!alreadyKnown)
+                moves[numMoves++] = move;
+        }
+    }
+
+    if (numMoves == 0)
+        moves[numMoves++] = MOVE_POUND;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        RemoveMonPPBonus(mon, i);
+        SetMonMoveSlot(mon, moves[i], i);
+    }
+}
+
+// Turns a Shadow Pokémon back into a regular one. The heart gauge should
+// already be at 0 (see CanMonBePurified), but this is not enforced here.
+void PurifyMon(struct Pokemon *mon)
+{
+    u32 zero = 0;
+    u32 isShadow = FALSE;
+    u32 hasRibbon = TRUE;
+    u32 friendship;
+    u16 oldSpecies = GetMonData(mon, MON_DATA_SPECIES);
+    u16 newSpecies = GetPurifiedSpecies(oldSpecies);
+
+    if (newSpecies != oldSpecies)
+    {
+        SetMonData(mon, MON_DATA_SPECIES, &newSpecies);
+        SetMonData(mon, MON_DATA_EVOLUTION_TRACKER, &zero);
+        EvolutionRenameMon(mon, oldSpecies, newSpecies);
+        CalculateMonStats(mon);
+    }
+
+    SetMonData(mon, MON_DATA_IS_SHADOW, &isShadow);
+    SetMonData(mon, MON_DATA_HEART_GAUGE, &zero);
+    // In Colosseum/XD, purified Shadow Pokémon receive the National Ribbon.
+    SetMonData(mon, MON_DATA_NATIONAL_RIBBON, &hasRibbon);
+    friendship = gSpeciesInfo[newSpecies].friendship;
+    SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+    ReplaceShadowMovesOnPurification(mon, newSpecies);
 }
 
 void AdjustFriendship(struct Pokemon *mon, u8 event)

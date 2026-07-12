@@ -574,4 +574,7 @@ gSpecials::
 	def_special ObjectEventInteractionPickApricornTree
 	def_special Special_OpenCustomMap
 	def_special Special_SeagallopToRoute101
-	
+	def_special IsSelectedMonShadow
+	def_special GetSelectedMonHeartGauge
+	def_special CanSelectedMonBePurified
+	def_special DoPurificationCeremony
