@@ -126,6 +126,8 @@ enum MonData {
     MON_DATA_GIGANTAMAX_FACTOR,
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
+    MON_DATA_HEART_GAUGE,
+    MON_DATA_STORED_EXP,
 };
 
 struct PokemonSubstruct0
@@ -133,15 +135,15 @@ struct PokemonSubstruct0
     u16 species:11; // 2047 species.
     enum Type teraType:5; // 30 types.
     u16 heldItem:10; // 1023 items.
-    u16 unused_02:6;
+    u16 storedExpHi:6; // Upper 6 bits of a Shadow Pokémon's stored Exp.
     u32 experience:21;
     u32 nickname11:8; // 11th character of nickname.
-    u32 unused_04:3;
+    u32 storedExpMid:3; // Middle 3 bits of a Shadow Pokémon's stored Exp.
     u8 ppBonuses;
     u8 friendship;
     u16 pokeball:6; // 63 balls.
     u16 nickname12:8; // 12th character of nickname.
-    u16 unused_0A:2;
+    u16 storedExpLo:2; // Lower 2 bits of a Shadow Pokémon's stored Exp (11 bits total, in units of SHADOW_STORED_EXP_GRANULARITY).
 };
 
 struct PokemonSubstruct1
@@ -151,9 +153,9 @@ struct PokemonSubstruct1
     u16 move2:11; // 2047 moves.
     u16 evolutionTracker2:5;
     u16 move3:11; // 2047 moves.
-    u16 unused_04:5;
+    u16 heartGaugeHi:5; // Upper 5 bits of a Shadow Pokémon's heart gauge.
     u16 move4:11; // 2047 moves.
-    u16 unused_06:3;
+    u16 heartGaugeLo:3; // Lower 3 bits of a Shadow Pokémon's heart gauge (8 bits total, 255 max).
     u16 hyperTrainedHP:1;
     u16 hyperTrainedAttack:1;
     u8 pp1:7; // 127 PP.
@@ -516,7 +518,8 @@ struct SpeciesInfo /*0xC4*/
     s8 enemyShadowYOffset; // This determines the Y-offset for an enemy Pokémon's shadow during battle; negative values point up, positive values point down.
     u16 enemyShadowSize:3; // This determines the size of the shadow sprite used for an enemy Pokémon's front sprite during battle.
     u16 suppressEnemyShadow:1; // If set to true, then a shadow will not be drawn beneath an enemy Pokémon's front sprite during battle.
-    u16 padding5:12;
+    u16 purifiedSpecies:11; // The species a Shadow Pokémon of this species turns into when purified. SPECIES_NONE = keeps its current species.
+    u16 padding5:1;
     // Move Data
     const struct LevelUpMove *levelUpLearnset;
     const u16 *teachableLearnset;
@@ -830,6 +833,14 @@ u16 GetLinkTrainerFlankId(u8 linkPlayerId);
 s32 GetBattlerMultiplayerId(u16 id);
 u8 GetTrainerEncounterMusicId(u16 trainerOpponentId);
 u16 ModifyStatByNature(u8 nature, u16 stat, enum Stat statIndex);
+bool32 IsMonShadow(struct Pokemon *mon);
+bool32 IsBoxMonShadow(struct BoxPokemon *boxMon);
+u32 GetSpeciesShadowHeartGaugeMax(u16 species);
+void LowerMonHeartGauge(struct Pokemon *mon, u32 amount);
+void AddMonStoredExperience(struct Pokemon *mon, u32 amount);
+bool32 CanMonBePurified(struct Pokemon *mon);
+u16 GetPurifiedSpecies(u16 species);
+void PurifyMon(struct Pokemon *mon);
 void AdjustFriendship(struct Pokemon *mon, u8 event);
 u8 CalculateFriendshipBonuses(struct Pokemon *mon, u32 modifier, enum HoldEffect itemHoldEffect);
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);

@@ -1395,6 +1395,8 @@ const u16 gSpinHazardsStringIds[] =
 
 const u8 gText_PkmnIsEvolving[] = _("What?\n{STR_VAR_1} is evolving!");
 const u8 gText_CongratsPkmnEvolved[] = _("Congratulations! Your {STR_VAR_1}\nevolved into {STR_VAR_2}!{WAIT_SE}\p");
+const u8 gText_PkmnBeingPurified[] = _("The door to {STR_VAR_1}'s heart\nis opening!");
+const u8 gText_PkmnWasPurified[] = _("Congratulations! Your {STR_VAR_1}\nwas purified!{WAIT_SE}\p");
 const u8 gText_PkmnStoppedEvolving[] = _("Huh? {STR_VAR_1}\nstopped evolving!\p");
 const u8 gText_EllipsisQuestionMark[] = _("……?\p");
 const u8 gText_WhatWillPkmnDo[] = _("What will\n{B_BUFF1} do?");

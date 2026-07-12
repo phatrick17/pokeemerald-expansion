@@ -176,6 +176,12 @@ enum __attribute__((packed)) Stat
 
 #define MAX_LEVEL_UP_MOVES       20
 
+// A Shadow Pokémon's stored Exp. is kept in 11 spare substruct bits, in units
+// of SHADOW_STORED_EXP_GRANULARITY (values are rounded to the nearest unit
+// when saved). This allows storing up to SHADOW_STORED_EXP_MAX Exp.
+#define SHADOW_STORED_EXP_GRANULARITY  64
+#define SHADOW_STORED_EXP_MAX          (2047 * SHADOW_STORED_EXP_GRANULARITY) // 131,008 Exp.
+
 #define MON_MALE       0x00
 #define MON_FEMALE     0xFE
 #define MON_GENDERLESS 0xFF

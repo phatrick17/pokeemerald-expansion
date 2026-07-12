@@ -66,6 +66,15 @@
 #define P_LEARNSET_HELPER_TEACHABLE      TRUE   // If TRUE, teachable_learnsets.h will be populated by tools/learnset_helpers/make_teachables.py using the included JSON files based on available TMs and tutors.
 #define P_TUTOR_MOVES_ARRAY              FALSE  // If TRUE, generates a gTutorMoves array automatically using make_teachables.py. (generally not needed, but the HGSS Pokedex has an optional use for it)
 
+// Shadow Pokémon settings
+#define P_SHADOW_GAUGE_BST_DIVISOR      3    // If > 0, a Shadow Pokémon's heart gauge starts at its species' base stat total divided by this number (capped at 255), so legendaries take longer to purify than a Pidgey. Set to 0 to use the static P_SHADOW_HEART_GAUGE_MAX instead.
+#define P_SHADOW_HEART_GAUGE_MAX        100  // The value a Shadow Pokémon's heart gauge starts at (1-255) when P_SHADOW_GAUGE_BST_DIVISOR is 0. The Pokémon can be purified once it reaches 0.
+#define P_SHADOW_GAUGE_STEP_INTERVAL    256  // While a Shadow Pokémon is in the party, its heart gauge lowers by P_SHADOW_GAUGE_STEP_AMOUNT every this many steps. Lower it (e.g. to 128) to speed purification up.
+#define P_SHADOW_GAUGE_STEP_AMOUNT      1    // How much the heart gauge lowers per step interval.
+#define P_SHADOW_GAUGE_BATTLE_AMOUNT    3    // How much the heart gauge lowers when the Pokémon participates in a battle.
+#define P_SHADOW_PURIFY_MUSIC           MUS_RG_MYSTERY_GIFT  // Music played during the purification ceremony (the evolution scene uses MUS_EVOLUTION).
+#define P_SHADOW_PURIFY_FANFARE         MUS_EVOLVED          // Fanfare played when purification completes.
+
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.

@@ -4755,6 +4755,16 @@ static void Cmd_getexp(void)
                             gBattleStruct->battlerExpReward = gExperienceTables[growthRate][levelCap] - currentExp;
                     }
 
+                    if (IsMonShadow(&gPlayerParty[*expMonId]))
+                    {
+                        // Shadow Pokémon don't receive Exp. directly. It is
+                        // silently stored, and granted when they are purified.
+                        AddMonStoredExperience(&gPlayerParty[*expMonId], gBattleStruct->battlerExpReward);
+                        gBattleStruct->battlerExpReward = 0;
+                        gBattleScripting.getexpState = 5;
+                        break;
+                    }
+
                     if (IsTradedMon(&gPlayerParty[*expMonId]))
                     {
                         // check if the Pokémon doesn't belong to the player
