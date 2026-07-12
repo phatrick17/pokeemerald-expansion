@@ -4421,13 +4421,22 @@ void IsSelectedMonShadow(void)
         gSpecialVar_Result = IsMonShadow(&gPlayerParty[gSpecialVar_0x8004]);
 }
 
-// VAR_RESULT = the selected Pokémon's heart gauge (0 - P_SHADOW_HEART_GAUGE_MAX).
+// VAR_RESULT = the selected Pokémon's current heart gauge.
+// VAR_0x8005 = the heart gauge's maximum for its species, for showing progress.
 void GetSelectedMonHeartGauge(void)
 {
     if (gSpecialVar_0x8004 >= PARTY_SIZE)
+    {
         gSpecialVar_Result = 0;
+        gSpecialVar_0x8005 = 0;
+    }
     else
-        gSpecialVar_Result = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HEART_GAUGE);
+    {
+        struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+
+        gSpecialVar_Result = GetMonData(mon, MON_DATA_HEART_GAUGE);
+        gSpecialVar_0x8005 = GetSpeciesShadowHeartGaugeMax(GetMonData(mon, MON_DATA_SPECIES));
+    }
 }
 
 // VAR_RESULT = whether the selected Pokémon is a Shadow Pokémon whose

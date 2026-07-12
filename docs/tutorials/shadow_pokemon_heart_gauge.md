@@ -14,7 +14,14 @@ A Pokémon counts as a Shadow Pokémon if either:
 
 While a Pokémon is a Shadow Pokémon:
 
-* **It earns no Exp. in battle** (it is skipped by `getexp`, including Exp. Share).
+* **It earns no Exp. in battle directly.** Its Exp. share is calculated exactly
+  as normal (Exp. Share, multipliers and level caps included), but is silently
+  **stored** instead of applied, XD-style. The stored Exp. is granted when the
+  Pokémon is purified, potentially leveling it up several times at once.
+  Stored Exp. is kept in units of 64 (rounded to the nearest unit, so e.g. 500
+  earned Exp. is stored as 512) and caps at 131,008. Shadow Pokémon gain no EVs.
+  Day-Care Exp. is stored the same way, and Rare/Exp. Candies have no effect on
+  Shadow Pokémon.
 * Its **heart gauge lowers** by:
     * `P_SHADOW_GAUGE_BATTLE_AMOUNT` every battle it participates in.
     * `P_SHADOW_GAUGE_STEP_AMOUNT` every `P_SHADOW_GAUGE_STEP_INTERVAL` steps while in the party.
@@ -25,17 +32,38 @@ When purified (`PurifyMon`):
 
 * If the species defines `.purifiedSpecies` (e.g. `SPECIES_BAYLEEF_SHADOW` →
   `SPECIES_BAYLEEF`), the Pokémon changes into that species.
+* **All stored Exp. is granted** and the Pokémon's level is recalculated.
 * `MON_DATA_IS_SHADOW` is cleared and the heart gauge zeroed.
 * It receives the **National Ribbon**, like purified Shadow Pokémon in Colosseum/XD.
 * Its friendship is set to the species' base friendship.
 * Shadow moves (Shadow Blitz, Shadow Wave, …) are replaced with the strongest
-  level-up moves of the purified species it doesn't already know.
+  level-up moves of the purified species — at its new, post-Exp.-grant level —
+  that it doesn't already know.
+
+## Heart gauge size
+
+By default the heart gauge scales with the species' **base stat total**:
+`gauge max = BST / P_SHADOW_GAUGE_BST_DIVISOR`, capped at 255. With the default
+divisor of 3 and default drain rates:
+
+| Species (BST) | Gauge max | Battles to purify | Steps only |
+|---|---|---|---|
+| Makuhita (237) | 79 | 27 | ~20,200 |
+| Pidgey (251) | 83 | 28 | ~21,200 |
+| Bayleef (405) | 135 | 45 | ~34,600 |
+| Entei (580) | 193 | 65 | ~49,400 |
+| Lugia (680) | 226 | 76 | ~57,900 |
+
+(In practice both drains combine, plus future Scents, so real numbers land in
+between.) Raise the divisor to make purification faster overall; set it to `0`
+to give every Shadow Pokémon the same static `P_SHADOW_HEART_GAUGE_MAX` instead.
 
 ## Configuration (`include/config/pokemon.h`)
 
 | Define | Default | Description |
 |---|---|---|
-| `P_SHADOW_HEART_GAUGE_MAX` | `100` | Starting heart gauge value (1-255). |
+| `P_SHADOW_GAUGE_BST_DIVISOR` | `3` | Gauge max = base stat total / this (capped 255). `0` = use the static value below. |
+| `P_SHADOW_HEART_GAUGE_MAX` | `100` | Static starting gauge (1-255), used only when the divisor is `0`. |
 | `P_SHADOW_GAUGE_STEP_INTERVAL` | `256` | Steps per gauge decrease (lower to `128` for faster purification). |
 | `P_SHADOW_GAUGE_STEP_AMOUNT` | `1` | Gauge lost per step interval. |
 | `P_SHADOW_GAUGE_BATTLE_AMOUNT` | `3` | Gauge lost per battle participated in. |
@@ -59,7 +87,7 @@ All of these operate on the party slot in `VAR_0x8004` (as set by
 | Special | Result |
 |---|---|
 | `IsSelectedMonShadow` | `VAR_RESULT` = mon is a Shadow Pokémon |
-| `GetSelectedMonHeartGauge` | `VAR_RESULT` = current heart gauge value |
+| `GetSelectedMonHeartGauge` | `VAR_RESULT` = current heart gauge, `VAR_0x8005` = its species' gauge max |
 | `CanSelectedMonBePurified` | `VAR_RESULT` = shadow **and** gauge is 0 |
 | `DoPurificationCeremony` | Plays the ceremony and purifies the mon. Use `waitstate` after. |
 
@@ -108,13 +136,15 @@ You can show progress with `GetSelectedMonHeartGauge`, e.g. comparing
 ```c
 bool32 IsMonShadow(struct Pokemon *mon);
 bool32 IsBoxMonShadow(struct BoxPokemon *boxMon);
+u32 GetSpeciesShadowHeartGaugeMax(u16 species);           // BST-scaled or static
 void LowerMonHeartGauge(struct Pokemon *mon, u32 amount); // clamps at 0
+void AddMonStoredExperience(struct Pokemon *mon, u32 amount); // banks Exp.
 bool32 CanMonBePurified(struct Pokemon *mon);
 u16 GetPurifiedSpecies(u16 species);
 void PurifyMon(struct Pokemon *mon);                      // instant, no scene
 void BeginPurificationScene(struct Pokemon *mon, u8 partyId); // ceremony
 ```
 
-`MON_DATA_HEART_GAUGE` can be read/written with `GetMonData`/`SetMonData`
-(stored in 8 previously unused bits of the Pokémon substructs, so no save
-struct growth).
+`MON_DATA_HEART_GAUGE` and `MON_DATA_STORED_EXP` can be read/written with
+`GetMonData`/`SetMonData` (both live in previously unused bits of the Pokémon
+substructs, so no save struct growth).

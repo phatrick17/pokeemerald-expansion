@@ -1218,7 +1218,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     // Shadow Pokémon start with a full heart gauge.
     if (gSpeciesInfo[species].isShadow)
     {
-        value = P_SHADOW_HEART_GAUGE_MAX;
+        value = GetSpeciesShadowHeartGaugeMax(species);
         SetBoxMonData(boxMon, MON_DATA_HEART_GAUGE, &value);
     }
 
@@ -2680,6 +2680,13 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_HEART_GAUGE:
             retVal = (GetSubstruct1(boxMon)->heartGaugeHi << 3) | GetSubstruct1(boxMon)->heartGaugeLo;
             break;
+        case MON_DATA_STORED_EXP:
+        {
+            struct PokemonSubstruct0 *substruct0 = GetSubstruct0(boxMon);
+            retVal = ((substruct0->storedExpHi << 5) | (substruct0->storedExpMid << 2) | substruct0->storedExpLo)
+                   * SHADOW_STORED_EXP_GRANULARITY;
+            break;
+        }
         case MON_DATA_DYNAMAX_LEVEL:
             retVal = GetSubstruct3(boxMon)->dynamaxLevel;
             break;
@@ -3123,8 +3130,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             // A Pokémon flagged as Shadow starts with a full heart gauge.
             if (GetSubstruct3(boxMon)->isShadow)
             {
-                GetSubstruct1(boxMon)->heartGaugeHi = P_SHADOW_HEART_GAUGE_MAX >> 3;
-                GetSubstruct1(boxMon)->heartGaugeLo = P_SHADOW_HEART_GAUGE_MAX & 7;
+                u32 heartGaugeMax = GetSpeciesShadowHeartGaugeMax(GetSubstruct0(boxMon)->species);
+                GetSubstruct1(boxMon)->heartGaugeHi = heartGaugeMax >> 3;
+                GetSubstruct1(boxMon)->heartGaugeLo = heartGaugeMax & 7;
             }
             break;
         case MON_DATA_HEART_GAUGE:
@@ -3133,6 +3141,21 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(heartGauge);
             GetSubstruct1(boxMon)->heartGaugeHi = heartGauge >> 3;
             GetSubstruct1(boxMon)->heartGaugeLo = heartGauge & 7;
+            break;
+        }
+        case MON_DATA_STORED_EXP:
+        {
+            struct PokemonSubstruct0 *substruct0 = GetSubstruct0(boxMon);
+            u32 storedExp;
+            SET32(storedExp);
+            // Stored in units of SHADOW_STORED_EXP_GRANULARITY, rounded to the
+            // nearest unit and saturating at SHADOW_STORED_EXP_MAX.
+            storedExp = (storedExp + SHADOW_STORED_EXP_GRANULARITY / 2) / SHADOW_STORED_EXP_GRANULARITY;
+            if (storedExp > SHADOW_STORED_EXP_MAX / SHADOW_STORED_EXP_GRANULARITY)
+                storedExp = SHADOW_STORED_EXP_MAX / SHADOW_STORED_EXP_GRANULARITY;
+            substruct0->storedExpHi = storedExp >> 5;
+            substruct0->storedExpMid = (storedExp >> 2) & 7;
+            substruct0->storedExpLo = storedExp & 3;
             break;
         }
         case MON_DATA_DYNAMAX_LEVEL:
@@ -3797,9 +3820,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
         // Handle ITEM3 effects (Guard Spec, Rare Candy, cure status)
         case 3:
-            // Rare Candy / EXP Candy
+            // Rare Candy / EXP Candy. Shadow Pokémon can't gain Exp. until purified.
             if ((itemEffect[i] & ITEM3_LEVEL_UP)
-             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL)
+             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL
+             && !IsMonShadow(mon))
             {
                 u8 param = GetItemHoldEffectParam(item);
                 dataUnsigned = 0;
@@ -5248,6 +5272,30 @@ bool32 IsMonShadow(struct Pokemon *mon)
     return IsBoxMonShadow(&mon->box);
 }
 
+// Returns the value a species' heart gauge starts at. If
+// P_SHADOW_GAUGE_BST_DIVISOR is set, it scales with the species' base stat
+// total, so stronger Shadow Pokémon take longer to purify.
+u32 GetSpeciesShadowHeartGaugeMax(u16 species)
+{
+#if P_SHADOW_GAUGE_BST_DIVISOR > 0
+    u32 baseStatTotal = GetSpeciesBaseHP(species)
+                      + GetSpeciesBaseAttack(species)
+                      + GetSpeciesBaseDefense(species)
+                      + GetSpeciesBaseSpeed(species)
+                      + GetSpeciesBaseSpAttack(species)
+                      + GetSpeciesBaseSpDefense(species);
+    u32 heartGaugeMax = baseStatTotal / P_SHADOW_GAUGE_BST_DIVISOR;
+
+    if (heartGaugeMax > 255)
+        heartGaugeMax = 255;
+    else if (heartGaugeMax == 0)
+        heartGaugeMax = 1;
+    return heartGaugeMax;
+#else
+    return P_SHADOW_HEART_GAUGE_MAX;
+#endif
+}
+
 void LowerMonHeartGauge(struct Pokemon *mon, u32 amount)
 {
     u32 heartGauge = GetMonData(mon, MON_DATA_HEART_GAUGE);
@@ -5257,6 +5305,15 @@ void LowerMonHeartGauge(struct Pokemon *mon, u32 amount)
     else
         heartGauge = 0;
     SetMonData(mon, MON_DATA_HEART_GAUGE, &heartGauge);
+}
+
+// Exp. earned by Shadow Pokémon is stored instead of being applied, and is
+// granted to them when they are purified.
+void AddMonStoredExperience(struct Pokemon *mon, u32 amount)
+{
+    u32 storedExp = GetMonData(mon, MON_DATA_STORED_EXP) + amount;
+
+    SetMonData(mon, MON_DATA_STORED_EXP, &storedExp);
 }
 
 bool32 CanMonBePurified(struct Pokemon *mon)
@@ -5337,6 +5394,7 @@ void PurifyMon(struct Pokemon *mon)
     u32 isShadow = FALSE;
     u32 hasRibbon = TRUE;
     u32 friendship;
+    u32 storedExp;
     u16 oldSpecies = GetMonData(mon, MON_DATA_SPECIES);
     u16 newSpecies = GetPurifiedSpecies(oldSpecies);
 
@@ -5345,8 +5403,24 @@ void PurifyMon(struct Pokemon *mon)
         SetMonData(mon, MON_DATA_SPECIES, &newSpecies);
         SetMonData(mon, MON_DATA_EVOLUTION_TRACKER, &zero);
         EvolutionRenameMon(mon, oldSpecies, newSpecies);
-        CalculateMonStats(mon);
     }
+
+    // Grant the Exp. that was earned (and stored) while the Pokémon was a
+    // Shadow Pokémon. CalculateMonStats below takes care of the level.
+    storedExp = GetMonData(mon, MON_DATA_STORED_EXP);
+    if (storedExp != 0)
+    {
+        enum GrowthRate growthRate = gSpeciesInfo[newSpecies].growthRate;
+        u32 maxExp = gExperienceTables[growthRate][MAX_LEVEL];
+        u32 exp;
+
+        if (B_EXP_CAP_TYPE == EXP_CAP_HARD)
+            maxExp = min(maxExp, gExperienceTables[growthRate][GetCurrentLevelCap()]);
+        exp = min(GetMonData(mon, MON_DATA_EXP) + storedExp, maxExp);
+        SetMonData(mon, MON_DATA_EXP, &exp);
+        SetMonData(mon, MON_DATA_STORED_EXP, &zero);
+    }
+    CalculateMonStats(mon);
 
     SetMonData(mon, MON_DATA_IS_SHADOW, &isShadow);
     SetMonData(mon, MON_DATA_HEART_GAUGE, &zero);
@@ -5354,6 +5428,7 @@ void PurifyMon(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_NATIONAL_RIBBON, &hasRibbon);
     friendship = gSpeciesInfo[newSpecies].friendship;
     SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+    // Uses the (possibly higher) level from the stored Exp. granted above.
     ReplaceShadowMovesOnPurification(mon, newSpecies);
 }
 

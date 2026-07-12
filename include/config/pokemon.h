@@ -67,7 +67,8 @@
 #define P_TUTOR_MOVES_ARRAY              FALSE  // If TRUE, generates a gTutorMoves array automatically using make_teachables.py. (generally not needed, but the HGSS Pokedex has an optional use for it)
 
 // Shadow Pokémon settings
-#define P_SHADOW_HEART_GAUGE_MAX        100  // The value a Shadow Pokémon's heart gauge starts at (1-255). The Pokémon can be purified once it reaches 0.
+#define P_SHADOW_GAUGE_BST_DIVISOR      3    // If > 0, a Shadow Pokémon's heart gauge starts at its species' base stat total divided by this number (capped at 255), so legendaries take longer to purify than a Pidgey. Set to 0 to use the static P_SHADOW_HEART_GAUGE_MAX instead.
+#define P_SHADOW_HEART_GAUGE_MAX        100  // The value a Shadow Pokémon's heart gauge starts at (1-255) when P_SHADOW_GAUGE_BST_DIVISOR is 0. The Pokémon can be purified once it reaches 0.
 #define P_SHADOW_GAUGE_STEP_INTERVAL    256  // While a Shadow Pokémon is in the party, its heart gauge lowers by P_SHADOW_GAUGE_STEP_AMOUNT every this many steps. Lower it (e.g. to 128) to speed purification up.
 #define P_SHADOW_GAUGE_STEP_AMOUNT      1    // How much the heart gauge lowers per step interval.
 #define P_SHADOW_GAUGE_BATTLE_AMOUNT    3    // How much the heart gauge lowers when the Pokémon participates in a battle.

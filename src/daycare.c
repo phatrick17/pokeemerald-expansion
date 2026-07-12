@@ -359,7 +359,13 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         species = newSpecies;
     }
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) < GetCurrentLevelCap())
+    if (IsMonShadow(&pokemon))
+    {
+        // Shadow Pokémon store the Exp. from Day-Care steps; it is granted
+        // when they are purified.
+        AddMonStoredExperience(&pokemon, daycareMon->steps);
+    }
+    else if (GetMonData(&pokemon, MON_DATA_LEVEL) < GetCurrentLevelCap())
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
         u32 maxExp = GetExpAtLevelCap(&pokemon);
@@ -398,8 +404,13 @@ u16 TakePokemonFromDaycare(void)
 static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
 {
     struct BoxPokemon tempMon = *mon;
+    u32 experience;
 
-    u32 experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
+    // Shadow Pokémon store their Day-Care Exp. instead of leveling up.
+    if (IsBoxMonShadow(mon))
+        return GetLevelFromBoxMonExp(mon);
+
+    experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
     SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
     return GetLevelFromBoxMonExp(&tempMon);
 }

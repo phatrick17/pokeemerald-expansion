@@ -4701,8 +4701,7 @@ static void Cmd_getexp(void)
             holdEffect = GetMonHoldEffect(&gPlayerParty[*expMonId]);
 
             if ((holdEffect != HOLD_EFFECT_EXP_SHARE && !wasSentOut && !IsGen6ExpShareEnabled())
-             || GetMonData(&gPlayerParty[*expMonId], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG
-             || IsMonShadow(&gPlayerParty[*expMonId])) // Shadow Pokémon earn no Exp. until they are purified.
+             || GetMonData(&gPlayerParty[*expMonId], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG)
             {
                 gBattleScripting.getexpState = 5;
                 gBattleStruct->battlerExpReward = 0;
@@ -4754,6 +4753,16 @@ static void Cmd_getexp(void)
                             gBattleStruct->battlerExpReward = 0;
                         else if (gExperienceTables[growthRate][levelCap] < currentExp + gBattleStruct->battlerExpReward)
                             gBattleStruct->battlerExpReward = gExperienceTables[growthRate][levelCap] - currentExp;
+                    }
+
+                    if (IsMonShadow(&gPlayerParty[*expMonId]))
+                    {
+                        // Shadow Pokémon don't receive Exp. directly. It is
+                        // silently stored, and granted when they are purified.
+                        AddMonStoredExperience(&gPlayerParty[*expMonId], gBattleStruct->battlerExpReward);
+                        gBattleStruct->battlerExpReward = 0;
+                        gBattleScripting.getexpState = 5;
+                        break;
                     }
 
                     if (IsTradedMon(&gPlayerParty[*expMonId]))

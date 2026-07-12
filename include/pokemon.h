@@ -127,6 +127,7 @@ enum MonData {
     MON_DATA_TERA_TYPE,
     MON_DATA_EVOLUTION_TRACKER,
     MON_DATA_HEART_GAUGE,
+    MON_DATA_STORED_EXP,
 };
 
 struct PokemonSubstruct0
@@ -134,15 +135,15 @@ struct PokemonSubstruct0
     u16 species:11; // 2047 species.
     enum Type teraType:5; // 30 types.
     u16 heldItem:10; // 1023 items.
-    u16 unused_02:6;
+    u16 storedExpHi:6; // Upper 6 bits of a Shadow Pokémon's stored Exp.
     u32 experience:21;
     u32 nickname11:8; // 11th character of nickname.
-    u32 unused_04:3;
+    u32 storedExpMid:3; // Middle 3 bits of a Shadow Pokémon's stored Exp.
     u8 ppBonuses;
     u8 friendship;
     u16 pokeball:6; // 63 balls.
     u16 nickname12:8; // 12th character of nickname.
-    u16 unused_0A:2;
+    u16 storedExpLo:2; // Lower 2 bits of a Shadow Pokémon's stored Exp (11 bits total, in units of SHADOW_STORED_EXP_GRANULARITY).
 };
 
 struct PokemonSubstruct1
@@ -834,7 +835,9 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId);
 u16 ModifyStatByNature(u8 nature, u16 stat, enum Stat statIndex);
 bool32 IsMonShadow(struct Pokemon *mon);
 bool32 IsBoxMonShadow(struct BoxPokemon *boxMon);
+u32 GetSpeciesShadowHeartGaugeMax(u16 species);
 void LowerMonHeartGauge(struct Pokemon *mon, u32 amount);
+void AddMonStoredExperience(struct Pokemon *mon, u32 amount);
 bool32 CanMonBePurified(struct Pokemon *mon);
 u16 GetPurifiedSpecies(u16 species);
 void PurifyMon(struct Pokemon *mon);
