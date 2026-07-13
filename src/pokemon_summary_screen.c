@@ -136,7 +136,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u16 species2; // 0x2
         u8 isEgg:1; // 0x4
         u8 isShiny:1;
-        u8 padding:6;
+        u8 isShadow:1;
+        u8 padding:5;
         u8 level; // 0x5
         u8 ribbonCount; // 0x6
         u8 ailment; // 0x7
@@ -165,6 +166,9 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u32 OTID; // 0x48
         enum Type teraType;
         u8 mintNature;
+        u8 heartGauge; // A Shadow Pokémon's current heart gauge.
+        u8 heartGaugeMax; // The value its heart gauge started at.
+        u8 lockedMoves; // Bitmask of move slots hidden while its heart gauge is up.
     } summary;
     u16 bgTilemapBuffers[PSS_PAGE_COUNT][2][0x400];
     u8 mode;
@@ -1209,25 +1213,33 @@ static const u16 sShadowFramePalette[] =
     RGB( 9,  0, 16), // Index 15: very dark purple (was very dark teal)
 };
  
-static u16 GetSummaryScreenMonSpecies(void)
+static bool32 IsSummaryScreenMonShadow(void)
 {
     if (!sMonSummaryScreen->isBoxMon)
-    {
-        struct Pokemon *mon = &sMonSummaryScreen->monList.mons[sMonSummaryScreen->curMonIndex];
-        return GetMonData(mon, MON_DATA_SPECIES);
-    }
+        return IsMonShadow(&sMonSummaryScreen->monList.mons[sMonSummaryScreen->curMonIndex]);
     else
-    {
-        struct BoxPokemon *boxMon = &sMonSummaryScreen->monList.boxMons[sMonSummaryScreen->curMonIndex];
-        return GetBoxMonData(boxMon, MON_DATA_SPECIES);
-    }
+        return IsBoxMonShadow(&sMonSummaryScreen->monList.boxMons[sMonSummaryScreen->curMonIndex]);
 }
- 
+
 static void LoadShadowFramePaletteIfNeeded(void)
 {
-    u16 species = GetSummaryScreenMonSpecies();
-    if (gSpeciesInfo[species].isShadow)
+    if (IsSummaryScreenMonShadow())
         LoadPalette(sShadowFramePalette, BG_PLTT_ID(0) + 7, sizeof(sShadowFramePalette));
+}
+
+// BG palette slot holding a copy of the skills page palette with the Exp.
+// bar's fill colors swapped for purple. Used to draw a Shadow Pokémon's
+// heart gauge (BG slots 0-8 are in use, see LoadGraphics).
+#define PLTT_SHADOW_HEART_GAUGE 9
+
+static void LoadShadowHeartGaugePalette(void)
+{
+    u16 palette[16];
+
+    memcpy(palette, &gSummaryScreen_Pal[2 * 16], sizeof(palette));
+    palette[12] = RGB(21, 9, 29);  // Bright purple (bar fill, was pale green)
+    palette[13] = RGB(14, 5, 22);  // Dark purple (bar fill, was pale gray)
+    LoadPalette(palette, BG_PLTT_ID(PLTT_SHADOW_HEART_GAUGE), sizeof(palette));
 }
 
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
@@ -1501,6 +1513,8 @@ static bool8 DecompressGraphics(void)
     case 6:
         LoadPalette(gSummaryScreen_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
         LoadShadowFramePaletteIfNeeded();
+        if (P_SHADOW_SUMMARY_HEART_GAUGE)
+            LoadShadowHeartGaugePalette();
         LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
         sMonSummaryScreen->switchCounter++;
         break;
@@ -1564,6 +1578,9 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->item = GetMonData(mon, MON_DATA_HELD_ITEM);
         sum->pid = GetMonData(mon, MON_DATA_PERSONALITY);
         sum->sanity = GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG);
+        sum->isShadow = IsMonShadow(mon);
+        sum->heartGauge = GetMonData(mon, MON_DATA_HEART_GAUGE);
+        sum->heartGaugeMax = GetSpeciesShadowHeartGaugeMax(sum->species);
 
         if (sum->sanity)
             sum->isEgg = TRUE;
@@ -1578,6 +1595,18 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
             sum->pp[i] = GetMonData(mon, MON_DATA_PP1+i);
         }
         sum->ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
+        // A Shadow Pokémon's locked moves are shown as ??? and can't be
+        // selected; they unlock as its heart gauge empties.
+        sum->lockedMoves = 0;
+        for (i = GetMonUnlockedMoveSlots(mon); i < MAX_MON_MOVES; i++)
+        {
+            if (sum->moves[i] != MOVE_NONE)
+            {
+                sum->lockedMoves |= 1 << i;
+                sum->moves[i] = MOVE_NONE;
+                sum->pp[i] = 0;
+            }
+        }
         break;
     case 2:
         ExtractMonSkillStatsData(mon, sum);
@@ -3211,9 +3240,20 @@ static void DrawExperienceProgressBar(struct Pokemon *unused)
     s64 numExpProgressBarTicks;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u16 *dst;
+    u16 barTileBase = 0x2062; // Exp. bar tiles with the skills page palette.
     u8 i;
 
-    if (summary->level < MAX_LEVEL)
+    if (P_SHADOW_SUMMARY_HEART_GAUGE && summary->isShadow)
+    {
+        // A Shadow Pokémon's heart gauge is drawn in place of the Exp. bar,
+        // reusing its tiles with a purple palette. It starts full and
+        // drains as the Pokémon gets closer to purification.
+        numExpProgressBarTicks = summary->heartGauge * 64 / summary->heartGaugeMax;
+        if (numExpProgressBarTicks == 0 && summary->heartGauge != 0)
+            numExpProgressBarTicks = 1;
+        barTileBase = (PLTT_SHADOW_HEART_GAUGE << 12) + 0x62;
+    }
+    else if (summary->level < MAX_LEVEL)
     {
         u32 expBetweenLevels = gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level + 1] - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
         u32 expSinceLastLevel = summary->exp - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
@@ -3234,9 +3274,9 @@ static void DrawExperienceProgressBar(struct Pokemon *unused)
     for (i = 0; i < 8; i++)
     {
         if (numExpProgressBarTicks > 7)
-            dst[i] = 0x206A;
+            dst[i] = barTileBase + 8;
         else
-            dst[i] = 0x2062 + (numExpProgressBarTicks % 8);
+            dst[i] = barTileBase + (numExpProgressBarTicks % 8);
         numExpProgressBarTicks -= 8;
         if (numExpProgressBarTicks < 0)
             numExpProgressBarTicks = 0;
@@ -4109,6 +4149,24 @@ static void PrintExpPointsNextLevel(void)
     int x;
     u32 expToNextLevel;
 
+    if (P_SHADOW_SUMMARY_HEART_GAUGE)
+    {
+        // For Shadow Pokémon this panel shows the heart gauge instead of
+        // Exp., so reprint the labels every time the shown Pokémon changes.
+        FillWindowPixelBuffer(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, PIXEL_FILL(0));
+        if (sum->isShadow)
+        {
+            PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_HeartGauge, 6, 1, 0, 1);
+
+            ConvertIntToDecimalStringN(gStringVar1, sum->heartGauge, STR_CONV_MODE_RIGHT_ALIGN, 7);
+            x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar1, 42) + 2;
+            PrintTextOnWindow(windowId, gStringVar1, x, 1, 0, 0);
+            return;
+        }
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_ExpPoints, 6, 1, 0, 1);
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_NextLv, 6, 17, 0, 1);
+    }
+
     ConvertIntToDecimalStringN(gStringVar1, sum->exp, STR_CONV_MODE_RIGHT_ALIGN, 7);
     x = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar1, 42) + 2;
     PrintTextOnWindow(windowId, gStringVar1, x, 1, 0, 0);
@@ -4215,7 +4273,11 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     }
     else
     {
-        PrintTextOnWindow(moveNameWindowId, gText_OneDash, 0, moveIndex * 16 + 1, 0, 1);
+        // A Shadow Pokémon's locked moves show as ??? until they unlock.
+        if (summary->lockedMoves & (1 << moveIndex))
+            PrintTextOnWindow(moveNameWindowId, gText_ThreeQuestionMarks, 0, moveIndex * 16 + 1, 0, 1);
+        else
+            PrintTextOnWindow(moveNameWindowId, gText_OneDash, 0, moveIndex * 16 + 1, 0, 1);
         text = gText_TwoDashes;
         ppState = 12;
         x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 44);

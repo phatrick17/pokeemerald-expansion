@@ -2939,6 +2939,8 @@ static enum CanMoveBeLearned CanTeachMove(struct Pokemon *mon, u16 move)
 {
     if (GetMonData(mon, MON_DATA_IS_EGG))
         return CANNOT_LEARN_MOVE_IS_EGG;
+    else if (IsMonShadow(mon)) // Shadow Pokémon can't be taught moves until purified (as in Colosseum/XD).
+        return CANNOT_LEARN_MOVE;
     else if (!CanLearnTeachableMove(GetMonData(mon, MON_DATA_SPECIES_OR_EGG), move))
         return CANNOT_LEARN_MOVE;
     else if (MonKnowsMove(mon, move) == TRUE)
@@ -3800,8 +3802,8 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
 
-    // Add field moves to action list
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    // Add field moves to action list (a Shadow Pokémon's locked moves don't count)
+    for (i = 0; i < GetMonUnlockedMoveSlots(&mons[slotId]); i++)
     {
         for (j = 0; j != FIELD_MOVES_COUNT; j++)
         {
@@ -7189,10 +7191,13 @@ static void ShowMoveSelectWindow(u8 slot)
     u8 moveCount = 0;
     u8 windowId = DisplaySelectionWindow(SELECTWINDOW_MOVES);
     u16 move;
+    u8 unlockedSlots = GetMonUnlockedMoveSlots(&gParties[B_TRAINER_PLAYER][slot]);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         move = GetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_MOVE1 + i);
+        if (i >= unlockedSlots)
+            move = MOVE_NONE; // A Shadow Pokémon's locked moves stay hidden.
         u8 fontId = GetFontIdToFit(GetMoveName(move), FONT_NORMAL, 0, 72);
         AddTextPrinterParameterized(windowId, fontId, GetMoveName(move), 8, (i * 16) + 1, TEXT_SKIP_DRAW, NULL);
         if (move != MOVE_NONE)
