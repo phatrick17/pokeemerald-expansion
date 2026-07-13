@@ -1544,6 +1544,7 @@ static void UpdatePartyMoveWindows(u8 slot)
     u16 moves[MAX_MON_MOVES];
     u8 pps[MAX_MON_MOVES];
     u8 ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
+    u8 unlockedSlots = GetMonUnlockedMoveSlots(mon);
     for (m = 0; m < MAX_MON_MOVES; m++)
     {
         moves[m] = GetMonData(mon, MON_DATA_MOVE1 + m);
@@ -1553,14 +1554,25 @@ static void UpdatePartyMoveWindows(u8 slot)
     DestroyMoveTypeSprites();
     for (m = 0; m < MAX_MON_MOVES; ++m)
     {
+        bool32 isLockedShadowMove = (m >= unlockedSlots && moves[m] != MOVE_NONE);
+
         if (sMoveSlots[m].windowId == WINDOW_NONE)
             continue;
 
         FillWindowPixelBuffer(sMoveSlots[m].windowId, PIXEL_FILL(0));
         const u8 *tm = (moves[m] != MOVE_NONE) ? sMoveTilemap_Main_SwSh : sMoveTilemap_Empty_SwSh;
         BlitBitmapToPartyWindow(sMoveSlots[m].windowId, tm, 14, 0, 0, 14, 2);
-        if (moves[m] != MOVE_NONE)
+        if (isLockedShadowMove)
+        {
+            // A Shadow Pokémon's locked moves show as ??? until they unlock.
+            const struct PartyMenuMoveBoxInfoRects *info = &sPartyMoveBoxInfoRects[0];
+            AddTextPrinterParameterized3(sMoveSlots[m].windowId, FONT_SMALL, info->dimensions[0], info->dimensions[1],
+                                         sFontColorTable[11], 0, gText_ThreeQuestionMarks);
+        }
+        else if (moves[m] != MOVE_NONE)
+        {
             DisplayPartyPokemonMoves(sMoveSlots[m].windowId, m, moves[m], pps[m], ppBonuses);
+        }
         CopyWindowToVram(sMoveSlots[m].windowId, COPYWIN_GFX);
     }
     if (sAbilityWindowId != WINDOW_NONE)
@@ -6373,15 +6385,19 @@ static u8 CreateMonSprite(struct Pokemon *mon, bool32 isShadow)
 
 static void DestroyMonSprite(void)
 {
-    if (sMonSpriteId != 0 && sMonSpriteId != MAX_SPRITES)
+    // Always kill pending animation-delay tasks: they hold a raw pointer to
+    // the sprite and would animate a stale, reused sprite slot (a wild jump)
+    // if they outlived it. The old `!= 0` guards skipped this cleanup - and
+    // the destroy - whenever the sprite legitimately occupied slot 0.
+    StopPokemonAnimationDelayTask();
+    StopShadowAnimDelayTask();
+    if (sMonSpriteId < MAX_SPRITES)
     {
-        StopPokemonAnimationDelayTask();
         DestroySpriteAndFreeResources(&gSprites[sMonSpriteId]);
         sMonSpriteId = MAX_SPRITES;
     }
-    if (sMonShadowSpriteId != 0 && sMonShadowSpriteId != MAX_SPRITES)
+    if (sMonShadowSpriteId < MAX_SPRITES)
     {
-        StopShadowAnimDelayTask();
         DestroySpriteAndFreeResources(&gSprites[sMonShadowSpriteId]);
         sMonShadowSpriteId = MAX_SPRITES;
     }
