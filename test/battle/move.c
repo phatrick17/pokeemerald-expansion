@@ -327,6 +327,8 @@ DOUBLE_BATTLE_TEST("Remaining opponent battler stays visible after its partner f
     } THEN {
         visibility = gBattleSpritesDataPtr->battlerData[3].invisible;
         EXPECT_EQ(visibility, FALSE);
-        EXPECT_EQ(gSprites[gBattlerSpriteIds[3]].invisible, FALSE);
+        // EXPECT_EQ can't take a bit-field (typeof), so read it into a local first.
+        visibility = gSprites[gBattlerSpriteIds[3]].invisible;
+        EXPECT_EQ(visibility, FALSE);
     }
 }

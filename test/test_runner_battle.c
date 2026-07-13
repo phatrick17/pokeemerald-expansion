@@ -2248,6 +2248,12 @@ void Shadow_(u32 sourceLine, bool32 isShadow)
     SetMonData(DATA.currentMon, MON_DATA_IS_SHADOW, &isShadow);
 }
 
+void HeartGauge_(u32 sourceLine, u32 heartGauge)
+{
+    INVALID_IF(!DATA.currentMon, "HeartGauge outside of PLAYER/OPPONENT");
+    SetMonData(DATA.currentMon, MON_DATA_HEART_GAUGE, &heartGauge);
+}
+
 void Shiny_(u32 sourceLine, bool32 isShiny)
 {
     INVALID_IF(!DATA.currentMon, "Shiny outside of PLAYER/OPPONENT");
