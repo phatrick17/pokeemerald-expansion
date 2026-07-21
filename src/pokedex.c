@@ -120,6 +120,9 @@ enum {
 #define MON_PAGE_Y 56
 
 static EWRAM_DATA struct PokedexView *sPokedexView = NULL;
+// One-shot override for where the Pokédex returns on close (used by the P*DA's
+// Snag List). Cleared on read; defaults to CB2_ReturnToFieldWithOpenMenu.
+static EWRAM_DATA void (*sPokedexReturnCallback)(void) = NULL;
 static EWRAM_DATA u16 sLastSelectedPokemon = 0;
 static EWRAM_DATA u8 sPokeBallRotation = 0;
 static EWRAM_DATA struct PokedexListItem *sPokedexListItem = NULL;
@@ -1862,6 +1865,21 @@ static void Task_WaitForExitSearch(u8 taskId)
     }
 }
 
+void SetPokedexReturnCallback(void (*callback)(void))
+{
+    sPokedexReturnCallback = callback;
+}
+
+void (*GetPokedexReturnCallback(void))(void)
+{
+    void (*callback)(void) = sPokedexReturnCallback;
+
+    sPokedexReturnCallback = NULL;
+    if (callback == NULL)
+        callback = CB2_ReturnToFieldWithOpenMenu;
+    return callback;
+}
+
 static void Task_ClosePokedex(u8 taskId)
 {
     if (!gPaletteFade.active)
@@ -1873,7 +1891,7 @@ static void Task_ClosePokedex(u8 taskId)
         ClearMonSprites();
         FreeWindowAndBgBuffers();
         DestroyTask(taskId);
-        SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+        SetMainCallback2(GetPokedexReturnCallback());
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
         Free(sPokedexView);
     }

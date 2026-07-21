@@ -637,7 +637,10 @@ $(PKNAVOPTIONSGFXDIR)/options.4bpp: $(PKNAVOPTIONSGFXDIR)/hoenn_map.4bpp \
                                     $(PKNAVOPTIONSGFXDIR)/cute.4bpp \
                                     $(PKNAVOPTIONSGFXDIR)/smart.4bpp \
                                     $(PKNAVOPTIONSGFXDIR)/tough.4bpp \
-                                    $(PKNAVOPTIONSGFXDIR)/cancel.4bpp
+                                    $(PKNAVOPTIONSGFXDIR)/cancel.4bpp \
+                                    $(PKNAVOPTIONSGFXDIR)/snag_list.4bpp \
+                                    $(PKNAVOPTIONSGFXDIR)/wes_emails.4bpp \
+                                    $(PKNAVOPTIONSGFXDIR)/trainer_card.4bpp
 	@cat $^ >$@
 
 $(PKNAVGFXDIR)/header.4bpp: %.4bpp: %.png

@@ -155,7 +155,7 @@ static const struct CompressedSpriteSheet sPokenavOptionsSpriteSheets[] =
 {
     {
         .data = gPokenavOptions_Gfx,
-        .size = 0x3400,
+        .size = 0x4000,
         .tag = GFXTAG_OPTIONS
     },
     {
@@ -190,6 +190,10 @@ static const u16 sOptionsLabelGfx_Cute[]      = {0x120, PALTAG_OPTIONS_PINK - PA
 static const u16 sOptionsLabelGfx_Smart[]     = {0x140, PALTAG_OPTIONS_DEFAULT - PALTAG_OPTIONS_START};
 static const u16 sOptionsLabelGfx_Tough[]     = {0x160, PALTAG_OPTIONS_DEFAULT - PALTAG_OPTIONS_START};
 static const u16 sOptionsLabelGfx_Cancel[]    = {0x180, PALTAG_OPTIONS_BEIGE - PALTAG_OPTIONS_START};
+// P*DA menu labels
+static const u16 sOptionsLabelGfx_SnagList[]    = {0x1A0, PALTAG_OPTIONS_RED - PALTAG_OPTIONS_START};
+static const u16 sOptionsLabelGfx_WesEmails[]   = {0x1C0, PALTAG_OPTIONS_BLUE - PALTAG_OPTIONS_START};
+static const u16 sOptionsLabelGfx_TrainerCard[] = {0x1E0, PALTAG_OPTIONS_DEFAULT - PALTAG_OPTIONS_START};
 
 struct
 {
@@ -198,13 +202,15 @@ struct
     const u16 *gfx[MAX_POKENAV_MENUITEMS];
 } static const sPokenavMenuOptionLabelGfx[POKENAV_MENU_TYPE_COUNT] =
 {
+    // Repurposed as the P*DA menu
     [POKENAV_MENU_TYPE_DEFAULT] =
     {
         .yStart = 42,
         .deltaY = 20,
         .gfx = {
-            sOptionsLabelGfx_RegionMap,
-            sOptionsLabelGfx_Condition,
+            sOptionsLabelGfx_SnagList,
+            sOptionsLabelGfx_WesEmails,
+            sOptionsLabelGfx_TrainerCard,
             sOptionsLabelGfx_SwitchOff
         }
     },
@@ -273,7 +279,10 @@ static const u8 *const sPageDescriptions[] =
     [POKENAV_MENUITEM_CONDITION]               = COMPOUND_STRING("Check POKéMON in detail."),
     [POKENAV_MENUITEM_MATCH_CALL]              = COMPOUND_STRING("Call a registered TRAINER."),
     [POKENAV_MENUITEM_RIBBONS]                 = COMPOUND_STRING("Check obtained RIBBONS."),
-    [POKENAV_MENUITEM_SWITCH_OFF]              = COMPOUND_STRING("Put away the POKéNAV."),
+    [POKENAV_MENUITEM_SWITCH_OFF]              = COMPOUND_STRING("Put away the P*DA."),
+    [POKENAV_MENUITEM_SNAG_LIST]               = COMPOUND_STRING("Check the POKéMON you have snagged."),
+    [POKENAV_MENUITEM_WES_EMAILS]              = COMPOUND_STRING("Read received e-mails."),
+    [POKENAV_MENUITEM_TRAINER_CARD]            = COMPOUND_STRING("Check your TRAINER CARD."),
     [POKENAV_MENUITEM_CONDITION_PARTY]         = COMPOUND_STRING("Check party POKéMON in detail."),
     [POKENAV_MENUITEM_CONDITION_SEARCH]        = COMPOUND_STRING("Check all POKéMON in detail."),
     [POKENAV_MENUITEM_CONDITION_CANCEL]        = COMPOUND_STRING("Return to the POKéNAV menu."),

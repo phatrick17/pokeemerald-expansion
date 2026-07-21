@@ -22,6 +22,7 @@
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
 #include "constants/items.h"
+#include "constants/wes_emails.h"
 #include "config/save.h"
 
 // Prevent cross-jump optimization.
@@ -265,6 +266,9 @@ struct SaveBlock3
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif
     struct Usm_SavedItems usmSaved;
+    // P*DA email inbox: email IDs in the order they were received
+    u8 wesEmailInbox[WES_EMAIL_INBOX_CAPACITY];
+    u8 wesEmailCount;
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

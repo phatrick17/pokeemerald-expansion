@@ -161,6 +161,10 @@ enum
     POKENAV_MENUITEM_CONDITION_SEARCH_SMART,
     POKENAV_MENUITEM_CONDITION_SEARCH_TOUGH,
     POKENAV_MENUITEM_CONDITION_SEARCH_CANCEL,
+    // P*DA menu items
+    POKENAV_MENUITEM_SNAG_LIST,
+    POKENAV_MENUITEM_WES_EMAILS,
+    POKENAV_MENUITEM_TRAINER_CARD,
 };
 
 // Max menu options (condition search uses 6)
@@ -269,6 +273,10 @@ enum
 };
 
 #define POKENAV_MENU_FUNC_EXIT  -1
+// P*DA: exit the Pokénav entirely and launch an external screen
+#define POKENAV_MENU_FUNC_EXIT_TO_SNAG_LIST    -2
+#define POKENAV_MENU_FUNC_EXIT_TO_EMAILS       -3
+#define POKENAV_MENU_FUNC_EXIT_TO_TRAINER_CARD -4
 
 enum
 {
@@ -313,6 +321,9 @@ void SetSelectedConditionSearch(u32 cursorPos);
 u32 GetSelectedConditionSearch(void);
 
 void CB2_InitPokeNav(void);
+void CB2_ReopenPDA_SnagList(void);
+void CB2_ReopenPDA_Emails(void);
+void CB2_ReopenPDA_TrainerCard(void);
 u32 CreateLoopedTask(LoopedTask loopedTask, u32 priority);
 bool32 FuncIsActiveLoopedTask(LoopedTask func);
 void *GetSubstructPtr(u32 index);
@@ -384,9 +395,11 @@ u32 PokenavMainMenuLoopedTaskIsActive(void);
 bool32 WaitForPokenavShutdownFade(void);
 void SetActiveMenuLoopTasks(void *createLoopTask, void *isLoopTaskActive); // Fix types later.
 void ShutdownPokenav(void);
+void ShutdownPokenavToApp(void);
 
 // pokenav_menu_handler.c
 bool32 PokenavCallback_Init_MainMenuCursorOnMap(void);
+void SetPokenavPdaInitialCursorPos(u32 cursorPos);
 bool32 PokenavCallback_Init_MainMenuCursorOnMatchCall(void);
 bool32 PokenavCallback_Init_MainMenuCursorOnRibbons(void);
 bool32 PokenavCallback_Init_ConditionMenu(void);

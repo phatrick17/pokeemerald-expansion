@@ -320,6 +320,15 @@ void ShutdownPokenav(void)
     BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 16, RGB_BLACK);
 }
 
+// Shutdown when launching one of the P*DA's external screens
+// (Snag List/Wes' Emails/Trainer Card), rather than switching off
+void ShutdownPokenavToApp(void)
+{
+    PlaySE(SE_SELECT);
+    ResetBldCnt_();
+    BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 16, RGB_BLACK);
+}
+
 bool32 WaitForPokenavShutdownFade(void)
 {
     if (!gPaletteFade.active)

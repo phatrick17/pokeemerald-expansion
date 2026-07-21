@@ -145,7 +145,12 @@ Debug_EventScript_Text_OffensiveIVs:
 Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
+@ Test script for the P*DA's Wes' Emails inbox:
+@ receives both test emails (the duplicate should leave VAR_RESULT = FALSE)
 Debug_EventScript_Script_1::
+	receiveemail EMAIL_GREETINGS
+	receiveemail EMAIL_GREETINGS
+	receiveemail EMAIL_SNAGEM_ATTACK
 	release
 	end
 

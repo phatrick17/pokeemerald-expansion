@@ -578,3 +578,4 @@ gSpecials::
 	def_special GetSelectedMonHeartGauge
 	def_special CanSelectedMonBePurified
 	def_special DoPurificationCeremony
+	def_special ReceiveEmail
