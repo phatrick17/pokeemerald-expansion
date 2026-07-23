@@ -37,6 +37,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
+#include "pokenav.h"
 #include "rtc.h"
 #include "safari_zone.h"
 #include "save_dialog.h"
@@ -329,7 +330,7 @@ static const struct Usm_MenuItem sUsmMenuItems[USM_ICO_COUNT] = {
             .iconId = USM_ICO_POKENAV,
             .template = &sSpriteTemplate_Pokenav,
             .sheet = &sSpriteSheet_Pokenav,
-            .label = COMPOUND_STRING("PokéNav"),
+            .label = COMPOUND_STRING("P*DA"),
             .shouldFade = TRUE,
             .callback = StartMenuPokeNavCallback,
         },
@@ -438,6 +439,15 @@ static bool8 StartMenuBagCallback(void)
 
 static bool8 StartMenuPokeNavCallback(void)
 {
+    if (!gPaletteFade.active)
+    {
+        PlayRainStoppingSoundEffect();
+        CleanupOverworldWindowsAndTilemaps();
+        SetMainCallback2(CB2_InitPokeNav); // Display the P*DA
+
+        return TRUE;
+    }
+
     return FALSE;
 }
 
@@ -785,7 +795,8 @@ static bool32 Usm_IsItemAvailable(enum Usm_Icons item)
     switch (item) {
         case USM_ICO_POKEDEX: return FlagGet(FLAG_SYS_POKEDEX_GET);
         case USM_ICO_PARTY: return FlagGet(FLAG_SYS_POKEMON_GET);
-        case USM_ICO_POKENAV: return FlagGet(FLAG_SYS_POKENAV_GET);
+        case USM_ICO_POKENAV: return TRUE; // P*DA is always available
+        case USM_ICO_TRAINER: return FALSE; // Trainer Card lives inside the P*DA now
         case USM_ICO_FRONTIER_RETIRE: return IsPlayerInBattlePyramid();
         case USM_ICO_SAFARI_RETIRE: return FALSE;
         case USM_ICO_DEBUG: return (DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU);
@@ -806,10 +817,8 @@ static void Usm_BuildDefaultMenuItems(void)
 
     Usm_AddMenuItem(USM_ICO_BAG);
 
-    if (FlagGet(FLAG_SYS_POKENAV_GET))
-        Usm_AddMenuItem(USM_ICO_POKENAV);
+    Usm_AddMenuItem(USM_ICO_POKENAV);
 
-    Usm_AddMenuItem(USM_ICO_TRAINER);
     Usm_AddMenuItem(USM_ICO_SAVE);
     Usm_AddMenuItem(USM_ICO_OPTIONS);
 
