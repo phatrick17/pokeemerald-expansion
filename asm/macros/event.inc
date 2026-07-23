@@ -2112,6 +2112,13 @@
 	closebraillemessage
 	.endm
 
+	@ Adds an email to the P*DA's Wes' Emails inbox.
+	@ VAR_RESULT is TRUE if it was received, FALSE if it was a duplicate or the inbox is full.
+	.macro receiveemail email:req
+	setvar VAR_0x8004, \email
+	specialvar VAR_RESULT, ReceiveEmail
+	.endm
+
 	@ Creates a Pokémon with the modernFatefulEncounter bit set for an encounter
 	.macro seteventmon species:req, level:req, item=ITEM_NONE
 	setvar VAR_0x8004, \species

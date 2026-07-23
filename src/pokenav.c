@@ -7,6 +7,9 @@
 #include "palette.h"
 #include "pokemon_storage_system.h"
 #include "pokenav.h"
+#include "pokedex.h"
+#include "trainer_card.h"
+#include "wes_emails.h"
 
 #define LOOPED_TASK_DECODE_STATE(action) (action - 5)
 
@@ -206,6 +209,10 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
 EWRAM_DATA u8 gNextLoopedTaskId = 0;
 EWRAM_DATA struct PokenavResources *gPokenavResources = NULL;
 
+// Which external P*DA screen to launch after the Pokénav shuts down
+// (one of the POKENAV_MENU_FUNC_EXIT_TO_* values, or 0 for none)
+static EWRAM_DATA s32 sPdaAppLaunch = 0;
+
 // code
 u32 CreateLoopedTask(LoopedTask loopedTask, u32 priority)
 {
@@ -328,6 +335,26 @@ void CB2_InitPokeNav(void)
         SetMainCallback2(CB2_Pokenav);
         SetVBlankCallback(VBlankCB_Pokenav);
     }
+}
+
+// Return callbacks for the P*DA's external screens. They reopen the
+// Pokénav with the cursor on the entry the player launched.
+void CB2_ReopenPDA_SnagList(void)
+{
+    SetPokenavPdaInitialCursorPos(0);
+    CB2_InitPokeNav();
+}
+
+void CB2_ReopenPDA_Emails(void)
+{
+    SetPokenavPdaInitialCursorPos(1);
+    CB2_InitPokeNav();
+}
+
+void CB2_ReopenPDA_TrainerCard(void)
+{
+    SetPokenavPdaInitialCursorPos(2);
+    CB2_InitPokeNav();
 }
 
 void OpenPokenavForTutorial(void)
@@ -460,6 +487,16 @@ static void Task_Pokenav(u8 taskId)
             ShutdownPokenav();
             tState = 5;
         }
+        // Must be checked before the >= POKENAV_MENU_IDS_START comparison:
+        // as u32, these negative sentinels would otherwise index PokenavMenuCallbacks OOB
+        else if (menuId == (u32)POKENAV_MENU_FUNC_EXIT_TO_SNAG_LIST
+              || menuId == (u32)POKENAV_MENU_FUNC_EXIT_TO_EMAILS
+              || menuId == (u32)POKENAV_MENU_FUNC_EXIT_TO_TRAINER_CARD)
+        {
+            sPdaAppLaunch = (s32)menuId;
+            ShutdownPokenavToApp();
+            tState = 5;
+        }
         else if (menuId >= POKENAV_MENU_IDS_START)
         {
             PokenavMenuCallbacks[gPokenavResources->currentMenuIndex].free2();
@@ -489,13 +526,31 @@ static void Task_Pokenav(u8 taskId)
         if (!WaitForPokenavShutdownFade())
         {
             bool32 calledFromScript = (gPokenavResources->mode != POKENAV_MODE_NORMAL);
+            s32 pdaApp = sPdaAppLaunch;
 
+            sPdaAppLaunch = 0;
             FreeMenuHandlerSubstruct1();
             FreePokenavResources();
-            if (calledFromScript)
-                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-            else
-                SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+            switch (pdaApp)
+            {
+            case POKENAV_MENU_FUNC_EXIT_TO_SNAG_LIST:
+                IncrementGameStat(GAME_STAT_CHECKED_POKEDEX);
+                SetPokedexReturnCallback(CB2_ReopenPDA_SnagList);
+                SetMainCallback2(CB2_OpenPokedex);
+                break;
+            case POKENAV_MENU_FUNC_EXIT_TO_EMAILS:
+                ShowWesEmails(CB2_ReopenPDA_Emails);
+                break;
+            case POKENAV_MENU_FUNC_EXIT_TO_TRAINER_CARD:
+                ShowPlayerTrainerCard(CB2_ReopenPDA_TrainerCard);
+                break;
+            default:
+                if (calledFromScript)
+                    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+                else
+                    SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+                break;
+            }
         }
         break;
     }

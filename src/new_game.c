@@ -56,6 +56,7 @@ static void WarpToTruck(void);
 static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
+static void ResetWesEmailInbox(void);
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -214,6 +215,7 @@ void NewGameInitData(void)
     SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
     ResetItemFlags();
     ResetDexNav();
+    ResetWesEmailInbox();
     ClearFollowerNPCData();
 }
 
@@ -238,4 +240,10 @@ static void ResetDexNav(void)
     memset(gSaveBlock3Ptr->dexNavSearchLevels, 0, sizeof(gSaveBlock3Ptr->dexNavSearchLevels));
 #endif
     gSaveBlock3Ptr->dexNavChain = 0;
+}
+
+static void ResetWesEmailInbox(void)
+{
+    memset(gSaveBlock3Ptr->wesEmailInbox, 0, sizeof(gSaveBlock3Ptr->wesEmailInbox));
+    gSaveBlock3Ptr->wesEmailCount = 0;
 }
